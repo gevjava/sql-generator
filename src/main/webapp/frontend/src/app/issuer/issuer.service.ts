@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class IssuerService {
+
+  constructor(private http: HttpClient) { }
+
+  getAllIssuer(){
+    return  this.http.get('/issuer');
+  }
+}
