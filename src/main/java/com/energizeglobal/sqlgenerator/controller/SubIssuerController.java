@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.controller;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
-import com.energizeglobal.sqlgenerator.service.SubIssuerServiceImpl;
+import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import java.util.List;
 public class SubIssuerController {
     private final Logger log = LoggerFactory.getLogger(SubIssuerController.class);
 
-    private final SubIssuerServiceImpl subIssuerServiceImpl;
+    private final SubIssuerService subIssuerServiceImpl;
 
-    public SubIssuerController(SubIssuerServiceImpl subIssuerServiceImpl) {
+    public SubIssuerController(SubIssuerService subIssuerServiceImpl) {
         this.subIssuerServiceImpl = subIssuerServiceImpl;
     }
 

@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class SubIssuerServiceImpl {
+public class SubIssuerService {
 
     private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
     private final SubIssuerRepository subIssuerRepository;
 
 
-    public SubIssuerServiceImpl(SubIssuerRepository subIssuerRepository) {
+    public SubIssuerService(SubIssuerRepository subIssuerRepository) {
         this.subIssuerRepository = subIssuerRepository;
     }
 
