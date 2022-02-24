@@ -29,4 +29,10 @@ public class SubIssuerService {
 
         return subIssuerList;
     }
+
+    public SubIssuer createSubissuer(SubIssuer subIssuer){
+        SubIssuer subIssuer1 = this.subIssuerRepository.save(subIssuer);
+        return subIssuer1;
+
+    }
 }

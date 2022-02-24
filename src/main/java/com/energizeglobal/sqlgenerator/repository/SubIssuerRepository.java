@@ -6,4 +6,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubIssuerRepository extends JpaRepository<SubIssuer,Long> {
+
 }
+//@Modifying
+//    @Query("insert into subissuer (name,code,authentMeans)
+//    select :name,:code,:authentMeans")
+//    public int modifyingQueryInsertSubIssuer(
+//    @Param("name")String name,
+//    @Param("code")String code,
+//    @Param("authentMeans")String authentMeans);

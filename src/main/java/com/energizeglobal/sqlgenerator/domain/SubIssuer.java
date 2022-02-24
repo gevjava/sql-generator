@@ -9,19 +9,31 @@ import java.time.Instant;
 @Table(name = "subissuer")
 public class SubIssuer {
 
-
+    // name, code, authentMeans. show
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "acsId")
-    String acsId;
+
+    @Column
+    String name;
+
 
     @Column(name = "code")
     String code;
 
+    @Column(name = "authentMeans")
+    String authentMeans;
+
+
+
+
+    @Column(name = "acsId")
+    String acsId;
+
+
     @Column(name = "createdBy")
-    String createdBy;
+    String createdBy = "sdfsdfs";
 
     @CreatedDate
     @Column(name = "creationDate", updatable = false)
@@ -37,17 +49,26 @@ public class SubIssuer {
     @Column(name = "lastUpdateDate", updatable = false)
     private Instant lastUpdateDate = Instant.now();
 
-    @Column
-    String name;
 
     @Column(name = "updateState")
-    String updateState;
+    String updateState = "fdgfdgfd";
 
-    @Column
-    String label;
+    @Column(name = "label")
+    String label = "dfdfd" ;
 
     @Column(name = "availaibleAuthentMeans")
     String availaibleAuthentMeans;
+
+    @Column(name = "manageBackupsCombinedAmounts")
+    boolean manageBackupsCombinedAmounts;
+
+    public String getAuthentMeans() {
+        return authentMeans;
+    }
+
+    public void setAuthentMeans(String authentMeans) {
+        this.authentMeans = authentMeans;
+    }
 
     public String getAcsId() {
         return acsId;
