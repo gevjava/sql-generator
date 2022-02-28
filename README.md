@@ -3,7 +3,8 @@
 #Development
 
 For development phase install Node.js 
-Project use the following versions 
+
+Current Project using the following versions 
 
 Nodejs - 16.14.0
 
@@ -21,3 +22,5 @@ Front-End:
 1) for first time run <code>npm install</code>  to install node modules
 2) run front-end using <code>npm start</code> 
 go to folder "frontend" and in command line run  <code>npm start</code> 
+
+Open web browser and call URL  http://localhost:4200 
