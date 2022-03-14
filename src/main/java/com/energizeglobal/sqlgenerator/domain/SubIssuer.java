@@ -14,10 +14,8 @@ public class SubIssuer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column
     String name;
-
 
     @Column(name = "code")
     String code;
@@ -25,12 +23,8 @@ public class SubIssuer {
     @Column(name = "authentMeans")
     String authentMeans;
 
-
-
-
     @Column(name = "acsId")
     String acsId;
-
 
     @Column(name = "createdBy")
     String createdBy = "sdfsdfs";

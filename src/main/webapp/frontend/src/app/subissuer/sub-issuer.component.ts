@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SubIssuerService} from "./subIssuer.service";
-import {Subissuer} from "./subissuer";
-
-
+import {FormBuilder, Validators} from "@angular/forms";
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-subissuer',
@@ -12,13 +11,24 @@ import {Subissuer} from "./subissuer";
 export class SubIssuerComponent implements OnInit {
 
   subIssuers: any;
-  subIssuer: Subissuer = new Subissuer();
+  subIssuerForm: any;
+  filename: string = "";
 
-  constructor(private subIssuerService: SubIssuerService) {
+  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
     this.getAllSubIssuer();
+  }
+
+  initializeForm() {
+    this.subIssuerForm = this.formBuilder.group({
+      code: ['', Validators.required],
+      name: ['', Validators.required],
+      createdBy: ['', Validators.required],
+      description: ['', Validators.required]
+    });
   }
 
   getAllSubIssuer() {
@@ -27,21 +37,15 @@ export class SubIssuerComponent implements OnInit {
     });
   }
 
-  add(subIssuer: Subissuer){
-     this.subIssuerService.add(subIssuer).subscribe(data => {console.log(data)});
-     }
+  sendSubIssuerData() {
+    let subIssuerData = this.subIssuerForm.value;
+    this.subIssuerService.sendSubIssuerData(subIssuerData).subscribe(response => {
+      this.filename = response;
+    })
   }
 
+  downloadFile() {
+    this.subIssuerService.downloadFile(this.filename).subscribe(file => saveAs(file, this.filename));
+  }
+}
 
-
-
-//save(customItem: CustomItem) {
-//   this.customItemService
-//     .postCustomItem(customItem).subscribe(customItem => {
-//       console.log(customItem)
-//       this.customItem = new CustomItem();
-//       this.gotoList();
-//     },
-//     error => console.log(error));
-//
-// }

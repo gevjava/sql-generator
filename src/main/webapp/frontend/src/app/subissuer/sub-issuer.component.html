@@ -1,3 +1,56 @@
+<form [formGroup]="subIssuerForm" (ngSubmit)="sendSubIssuerData()">
+  <div class="container-fluid">
+    <div class="row bg-grey">
+      <div class="col text-center">
+        Insert SubIssuer Data
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="form-group">
+          <label for="code">Code</label>
+          <input type="text" id="code" formControlName="code" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="createdBy">Created By</label>
+          <input type="text" id="createdBy" authentMeans="authentMeans" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL Script</button>
+      </div>
+    </div>
+    <div class="row mt-2" *ngIf="filename">
+      <div class="col">
+        <button type="button" (click)="downloadFile()">Download - {{filename}}</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!--
+<hr>
+List of SubIssuer
+<hr>
+<div *ngFor="let subIssuer of subIssuers">
+  <div>{{subIssuer.id}} --- {{subIssuer.name}}</div>
+</div>
+
+-->
+
+
+
+<!--
 <p>subIssuer works!</p>
 <div class="container">
   <div class="row">
@@ -29,3 +82,4 @@ List of SubIssuer
   <div>{{subIssuer.id}} --- {{subIssuer.name}}</div>
 </div>
 
+-->

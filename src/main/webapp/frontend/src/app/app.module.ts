@@ -9,6 +9,8 @@ import { IssuerComponent } from './issuer/issuer.component';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SubIssuerComponent } from './subissuer/sub-issuer.component';
+import {ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { SubIssuerComponent } from './subissuer/sub-issuer.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
