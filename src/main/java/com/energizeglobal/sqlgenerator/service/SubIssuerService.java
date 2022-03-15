@@ -2,6 +2,7 @@ package com.energizeglobal.sqlgenerator.service;
 import java.io.IOException;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
+import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class SubIssuerService {
 
-    private final Logger log = LoggerFactory.getLogger(IssuerService.class);
+    private final Logger log = LoggerFactory.getLogger(SubIssuerService.class);
 
     private final SubIssuerRepository subIssuerRepository;
 
@@ -43,10 +44,12 @@ public class SubIssuerService {
 
     public String generateInsertSqlScript(SubIssuerDto dto) {
 
+        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
+
         String sqlInsert = "INSERT INTO subissuer (name, code, authentMeans ) VALUES ('" +
-                dto.getName() + "', '" +
-                dto.getCode() + "', '" +
-                dto.getAuthentMeans() + "');";
+                subIssuer.getName() + "', '" +
+                subIssuer.getCode() + "', '" +
+                subIssuer.getAuthentMeans() + "');";
 
         String path = FILE_PATH + FILE_NAME;
         Path newFilePath = Paths.get(path);
@@ -78,4 +81,5 @@ public class SubIssuerService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
+
 }

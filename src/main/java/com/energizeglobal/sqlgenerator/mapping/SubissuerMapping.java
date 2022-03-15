@@ -5,7 +5,7 @@ import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 
 public class SubissuerMapping {
 
-    public SubIssuer dtoToEntity(SubIssuerDto subIssuerDto){
+    public static SubIssuer dtoToEntity(SubIssuerDto subIssuerDto){
         SubIssuer subIssuer = new SubIssuer();
         subIssuer.setName(subIssuerDto.getName());
         subIssuer.setCode(subIssuerDto.getCode());
@@ -14,7 +14,7 @@ public class SubissuerMapping {
         return subIssuer;
     }
 
-    public SubIssuerDto entitytoDto(SubIssuer subIssuer){
+    public static SubIssuerDto entitytoDto(SubIssuer subIssuer){
         SubIssuerDto subIssuerDto = new SubIssuerDto();
         subIssuerDto.setName(subIssuer.getName());
         subIssuerDto.setCode(subIssuer.getCode());

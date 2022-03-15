@@ -26,8 +26,7 @@ export class SubIssuerComponent implements OnInit {
     this.subIssuerForm = this.formBuilder.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
-      createdBy: ['', Validators.required],
-      description: ['', Validators.required]
+      authentMeans: ['', Validators.required]
     });
   }
 
