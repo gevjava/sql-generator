@@ -14,28 +14,28 @@ export class SubIssuerService {
     return this.http.get('/subissuer');
   }
 
-  add(subIssuer: Subissuer){
+  add(subIssuer: Subissuer) {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       }),
       observe: 'response' as 'response'
     };
 
-   return this.http.post(
+    return this.http.post(
       '/subissuer',
-      JSON.stringify({name:subIssuer.name,code:subIssuer.code,authentMeans:subIssuer.authentMeans}),
+      JSON.stringify({name: subIssuer.name, code: subIssuer.code, authentMeans: subIssuer.authentMeans}),
       httpOptions
-      );
+    );
   }
 
-  sendSubIssuerData(subIssuerData:any){
-    return this.http.post('/subissuer', subIssuerData, { responseType: 'text'});
+  sendSubIssuerData(subIssuerData: any) {
+    return this.http.post('/subissuer', subIssuerData, {responseType: 'text'});
   }
 
-  downloadFile(filename: String){
-    return this.http.get('/subissuer/script/download/'+filename, { responseType: 'blob'});
+  downloadFile(filename: String) {
+    return this.http.get('/subissuer/script/download/' + filename, {responseType: 'blob'});
   }
 
 }

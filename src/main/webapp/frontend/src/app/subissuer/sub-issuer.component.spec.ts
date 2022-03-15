@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SubIssuerComponent } from './sub-issuer.component';
+import {SubIssuerComponent} from './sub-issuer.component';
 
 describe('SubIssuerComponent', () => {
   let component: SubIssuerComponent;
@@ -8,9 +8,9 @@ describe('SubIssuerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubIssuerComponent ]
+      declarations: [SubIssuerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
