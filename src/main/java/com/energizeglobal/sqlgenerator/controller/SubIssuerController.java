@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
@@ -33,7 +33,7 @@ public class SubIssuerController {
 
 
     @PostMapping
-    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDTO subIssuerDTO){
+    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO){
 
         String filename = subIssuerService.generateInsertSqlScript(subIssuerDTO);
 

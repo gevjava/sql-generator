@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.service;
 import java.io.IOException;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
@@ -41,7 +41,7 @@ public class SubIssuerService {
     }
 
 
-    public String generateInsertSqlScript(SubIssuerDTO dto) {
+    public String generateInsertSqlScript(SubIssuerDto dto) {
 
         String sqlInsert = "INSERT INTO subissuer (name, code, authentMeans ) VALUES ('" +
                 dto.getName() + "', '" +

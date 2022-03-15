@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.dto;
 
-public class SubIssuerDTO {
+public class SubIssuerDto {
 
 
     String name;

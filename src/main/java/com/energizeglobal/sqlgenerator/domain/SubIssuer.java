@@ -9,7 +9,6 @@ import java.time.Instant;
 @Table(name = "subissuer")
 public class SubIssuer {
 
-    // name, code, authentMeans. show
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -27,7 +26,7 @@ public class SubIssuer {
     String acsId;
 
     @Column(name = "createdBy")
-    String createdBy = "sdfsdfs";
+    String createdBy;
 
     @CreatedDate
     @Column(name = "creationDate", updatable = false)
@@ -45,10 +44,10 @@ public class SubIssuer {
 
 
     @Column(name = "updateState")
-    String updateState = "fdgfdgfd";
+    String updateState;
 
     @Column(name = "label")
-    String label = "dfdfd" ;
+    String label;
 
     @Column(name = "availaibleAuthentMeans")
     String availaibleAuthentMeans;
