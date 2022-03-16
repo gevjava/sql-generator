@@ -34,9 +34,9 @@ public class SubIssuerService {
     }
 
     @Transactional(readOnly = true)
-    public List<SubIssuerDto> getAllSubIssuer() {
+    public List<SubIssuer> getAllSubIssuer() {
 
-        List<SubIssuerDto> subIssuerList = subIssuerRepository.findAll();
+        List<SubIssuer> subIssuerList = subIssuerRepository.findAll();
 
         return subIssuerList;
     }
