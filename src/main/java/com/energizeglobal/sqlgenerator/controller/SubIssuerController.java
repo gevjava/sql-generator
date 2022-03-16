@@ -24,7 +24,7 @@ public class SubIssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubIssuer>> getAllSubIssuer(){
+    public ResponseEntity<List<SubIssuer>> getAllSubIssuer() {
 
         List<SubIssuer> subIssuerList = subIssuerService.getAllSubIssuer();
 
@@ -33,7 +33,7 @@ public class SubIssuerController {
 
 
     @PostMapping
-    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO){
+    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO) {
 
         String filename = subIssuerService.generateInsertSqlScript(subIssuerDTO);
 
@@ -41,13 +41,13 @@ public class SubIssuerController {
     }
 
     @GetMapping("/script/download/{filename}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String filename){
+    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
         Resource file = subIssuerService.downloadFile(filename);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_TYPE, "application/sql")
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+file.getFilename())
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getFilename())
                 .body(file);
     }
 }
