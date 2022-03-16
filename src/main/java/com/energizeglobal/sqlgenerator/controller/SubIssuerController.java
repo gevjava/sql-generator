@@ -24,9 +24,9 @@ public class SubIssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubIssuer>> getAllSubIssuer(){
+    public ResponseEntity<List<SubIssuerDto>> getAllSubIssuer(){
 
-        List<SubIssuer> subIssuerList = subIssuerService.getAllSubIssuer();
+        List<SubIssuerDto> subIssuerList = subIssuerService.getAllSubIssuer();
 
         return ResponseEntity.ok(subIssuerList);
     }
