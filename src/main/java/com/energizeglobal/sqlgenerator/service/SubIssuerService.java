@@ -1,5 +1,6 @@
 package com.energizeglobal.sqlgenerator.service;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
@@ -8,11 +9,9 @@ import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 
 import java.net.MalformedURLException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +21,24 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
+// try {
+//            if (Files.exists(newFilePath)) {
+//                sqlInsert = System.getProperty("line.separator") + sqlInsert;
+//               Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+//              // TODO FIle.writer() -> file.newBufferedWriter()
+//              //  Files.newBufferedWriter(newFilePath,StandardCharsets.UTF_8, StandardOpenOption.APPEND).write(sqlInsert);
+//
+//
+//            } else {
+//                Path fileDirectory = Paths.get(path);
+//                Files.createDirectories(fileDirectory);
+//                Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
+//              //  Files.newBufferedWriter(newFilePath, StandardCharsets.UTF_8 ,StandardOpenOption.APPEND).write(sqlInsert);
+//            }
+
 
 @Service
 public class SubIssuerService {
@@ -61,11 +78,19 @@ public class SubIssuerService {
         try {
             if (Files.exists(newFilePath)) {
                 sqlInsert = System.getProperty("line.separator") + sqlInsert;
-                Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                try (BufferedWriter bufferedWriter =
+                             Files.newBufferedWriter(newFilePath, UTF_8,
+                                     APPEND)) {
+                    bufferedWriter.write(sqlInsert);
+                }
             } else {
                 Path fileDiectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDiectory);
-                Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
+                try (
+                        BufferedWriter bufferedWriter =
+                                Files.newBufferedWriter(newFilePath, UTF_8)) {
+                    bufferedWriter.write(sqlInsert);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

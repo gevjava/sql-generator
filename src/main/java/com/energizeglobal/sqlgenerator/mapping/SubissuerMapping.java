@@ -14,7 +14,7 @@ public class SubissuerMapping {
         return subIssuer;
     }
 
-    public static SubIssuerDto entitytoDto(SubIssuer subIssuer){
+    public static SubIssuerDto entityToDto(SubIssuer subIssuer){
         SubIssuerDto subIssuerDto = new SubIssuerDto();
         subIssuerDto.setName(subIssuer.getName());
         subIssuerDto.setCode(subIssuer.getCode());
