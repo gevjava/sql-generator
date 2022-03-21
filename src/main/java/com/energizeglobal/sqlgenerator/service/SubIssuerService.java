@@ -24,21 +24,6 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
-// try {
-//            if (Files.exists(newFilePath)) {
-//                sqlInsert = System.getProperty("line.separator") + sqlInsert;
-//               Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
-//              // TODO FIle.writer() -> file.newBufferedWriter()
-//              //  Files.newBufferedWriter(newFilePath,StandardCharsets.UTF_8, StandardOpenOption.APPEND).write(sqlInsert);
-//
-//
-//            } else {
-//                Path fileDirectory = Paths.get(path);
-//                Files.createDirectories(fileDirectory);
-//                Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
-//              //  Files.newBufferedWriter(newFilePath, StandardCharsets.UTF_8 ,StandardOpenOption.APPEND).write(sqlInsert);
-//            }
-
 
 @Service
 public class SubIssuerService {
