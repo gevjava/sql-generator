@@ -70,13 +70,13 @@ public class SubIssuer {
     private String acs_URL1_VE_VISA = "acs_URL1_VE_VISA";
 
     @Column
-    private String acs_URL2_VE_VISA ="acs_URL2_VE_VISA";
+    private String acs_URL2_VE_VISA = "acs_URL2_VE_VISA";
 
     @Column
     private String acs_URL1_VE_CB = "acs_URL1_VE_CB";
 
     @Column
-    private String acs_URL2_VE_CB ="acs_URL2_VE_CB";
+    private String acs_URL2_VE_CB = "acs_URL2_VE_CB";
 
     @Column(columnDefinition = "BIT", length = 1)
     private Boolean personnalDataStorage = true;
@@ -169,7 +169,6 @@ public class SubIssuer {
 //    @Column(name = "hubMaintenanceModeEnabled", nullable = false, columnDefinition = "BIT", length = 1)
 //    private boolean hubMaintenanceModeEnabled;
 //
-
 
 
     public Long getId() {
@@ -557,7 +556,6 @@ public class SubIssuer {
 //    public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
 //        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
 //    }
-
 
 
     //        @ManyToOne(fetch = FetchType.LAZY)
