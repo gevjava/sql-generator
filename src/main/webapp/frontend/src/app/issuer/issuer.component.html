@@ -1,54 +1,111 @@
-<form [formGroup]="issuerForm" (ngSubmit)="sendIssuerData()">
+<section class="issuer_section">
   <div class="container-fluid">
-    <div class="row bg-grey">
-      <div class="col text-center">
-        Insert Issuer Data
-      </div>
-    </div>
     <div class="row">
-      <div class="col-3">
-        <div class="form-group">
-          <label for="code">Code</label>
-          <input type="text" id="code" formControlName="code" class="form-control">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+
+
+
+            <div class="wrapper">
+              <form name="form" class="common-form ng-pristine ng-valid ng-valid-minlength ng-valid-maxlength" style="">
+                <legend class="ng-scope">Issuer Set search</legend>
+                <fieldset>
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="transaction-issuer-code" data-translate="ISSUER_CODE" class="ng-scope">Issuer
+                        code</label>
+                      <!-- ngIf: !readonly --><select id="transaction-issuer-code"
+                                                      class="form-control input-sm ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                                      title="Choose an issuer code" export="true"
+                                                      name-export="Issuer code"
+                                                      ng-model="search_inputs.issuer.issuer_code"
+                                                      ng-change="getSubIssuerList()"
+                                                      ng-options="issuer.code as (issuer.code+' - '+issuer.label) for issuer in issuer_list | orderBy:'code'"
+                                                      data-cy="issuer-code" style="">
+                      <option label="* - All" value="string:*" selected="selected">* - All</option>
+                      <option label="00006 - RCBC" value="string:00006">00006 - RCBC</option>
+                      <option label="00062 - East West Bank" value="string:00062">00062 - East West Bank</option>
+                      <option label="00070 - China Bank Corporation" value="string:00070">00070 - China Bank Corporation
+                      </option>
+                      <option label="10300 - ReiseBank" value="string:10300">10300 - ReiseBank</option>
+                      <option label="16500 - ING" value="string:16500">16500 - ING</option>
+                      <option label="16600 - Comdirect" value="string:16600">16600 - Comdirect</option>
+                      <option label="16900 - Consorsbank" value="string:16900">16900 - Consorsbank</option>
+                      <option label="16950 - Sparda-Bank" value="string:16950">16950 - Sparda-Bank</option>
+                      <option label="18500 - Postbank" value="string:18500">18500 - Postbank</option>
+                      <option label="19440 - Commerzbank AG" value="string:19440">19440 - Commerzbank AG</option>
+                      <option label="19450 - Commerzbank Cobrands" value="string:19450">19450 - Commerzbank Cobrands
+                      </option>
+                      <option label="19550 - Landesbank Baden-Württemberg" value="string:19550">19550 - Landesbank
+                        Baden-Württemberg
+                      </option>
+                      <option label="19600 - Landesbank Berlin" value="string:19600">19600 - Landesbank Berlin</option>
+                      <option label="20000 - OP Bank" value="string:20000">20000 - OP Bank</option>
+                    </select><!-- end ngIf: !readonly -->
+                      <!-- ngIf: readonly -->
+                    </div>
+                    <div ng-show="!issuerOnly" class="form-group col-md-offset-1 col-md-3">
+                      <label for="transaction-sub-issuer-code" class="control-label ng-scope"
+                             data-translate="SUB_ISSUER_CODE">SubIssuer code</label>
+                      <!-- ngIf: !readonly --><select ng-if="!readonly" id="transaction-sub-issuer-code"
+                                                      class="form-control input-sm ng-pristine ng-untouched ng-valid ng-scope ng-not-empty"
+                                                      title="Choose a sub issuer code" export="true"
+                                                      name-export="SubIssuer code"
+                                                      ng-model="search_inputs.issuer.sub_issuer_code"
+                                                      ng-options="sub_issuer.code as (sub_issuer.code+' - '+sub_issuer.label) for sub_issuer in sub_issuer_list | orderBy:'code'"
+                                                      data-cy="sub-issuer-code"
+                                                      ng-change="subIssuerChangeLocal(search_inputs.issuer.sub_issuer_code)"
+                                                      style="">
+                      <option label="* - All" value="string:*" selected="selected">* - All</option>
+                    </select><!-- end ngIf: !readonly -->
+                      <!-- ngIf: readonly -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="bin-range" data-translate="BIN_RANGE" class="ng-scope">BIN range</label>
+                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"
+                            uib-tooltip-html="'The length of bin range must be exactly 6 characters'"
+                            tooltip-placement="top">
+</span>
+                      <input id="bin-range" name="binrange" type="text"
+                             class="form-control input-sm ng-pristine ng-untouched ng-valid ng-empty ng-valid-minlength ng-valid-maxlength"
+                             export="true" name-export="BIN range" ng-focus="hint.binrange = true"
+                             ng-blur="hint.binrange = false" ng-model="search_inputs.bin_range" ng-minlength="6"
+                             ng-maxlength="6" style="">
+                      <!-- ngIf: form.binrange.$error.minlength && !hint.binrange -->
+                      <!-- ngIf: form.binrange.$error.maxlength && !hint.binrange -->
+                    </div>
+                    <div class="form-group col-md-offset-1 col-md-3">
+                      <label for="name_profile_set" translate="PROFILE_SET_NAME" class="ng-scope">Profile Set Name</label>
+                      <input export="true" name-export="Profile Set Name" name="nameprofileset"
+                             class="form-control input-sm ng-pristine ng-untouched ng-valid ng-empty"
+                             id="name_profile_set" type="text" ng-model="search_inputs.name_profile_set">
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="row margin-top-10">
+                  <div class="form-group col-md-12">
+                    <button class="btn btn-success ladda-button" ladda="searching" ng-click="getProfileSets()"
+                            ng-disabled="buttonDisable" data-style="expand-left"><span class="ladda-label">
+                            <i class="fa fa-search"></i> <span translate="SEARCH" class="ng-scope">Search</span>
+                        </span><span class="ladda-spinner"></span></button>
+                    <button class="btn btn-grey" ng-click="reset()">
+                      <i class="fa fa-times"></i> <span translate="BTN_RESET" class="ng-scope">Reset</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
         </div>
       </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" formControlName="name" class="form-control">
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="createdBy">Created By</label>
-          <input type="text" id="createdBy" formControlName="createdBy" class="form-control">
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text"  id="description" formControlName="description" class="form-control">
-        </div>
-      </div>
-    </div>
-    <div class="row mt-2">
-      <div class="col">
-        <button type="submit" [disabled]="!issuerForm.valid" class="btn btn-primary btn-block">Generate SQL Script</button>
-      </div>
-    </div>
-    <div class="row mt-2" *ngIf="filename">
-      <div class="col">
-        <button type="button" (click)="downloadFile()">Download - {{filename}}</button>
-      </div>
+      <div class="col-md-2"></div>
     </div>
   </div>
-</form>
+</section>
 
-<!--
-<hr>
-List of Issuer
-<hr>
-<div *ngFor="let issuer of issuers">
-  <div>{{issuer.code}} --- {{issuer.name}}</div>
-</div>
--->
