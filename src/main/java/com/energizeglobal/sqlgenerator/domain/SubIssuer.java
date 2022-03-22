@@ -1,6 +1,8 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -24,6 +26,12 @@ public class SubIssuer {
     @ManyToOne
     @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
     private Issuer issuer;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+    @JsonIgnore
+    private CryptoConfig cryptoConfigEntity;
 
     public Issuer getIssuer() {
         return issuer;
