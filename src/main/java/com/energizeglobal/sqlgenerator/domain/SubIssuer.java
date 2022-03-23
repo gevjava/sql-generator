@@ -33,13 +33,6 @@ public class SubIssuer {
     @JsonIgnore
     private CryptoConfig cryptoConfigEntity;
 
-    public Issuer getIssuer() {
-        return issuer;
-    }
-
-    public void setIssuer(Issuer issuer) {
-        this.issuer = issuer;
-    }
 
     @Column(nullable = false)
     private String label = " label";
@@ -123,6 +116,9 @@ public class SubIssuer {
     private String issuerCountry;
 
 
+  //  private EntityData data;
+
+
 //    @Column
 //    private Integer rbaThreshold;
 //
@@ -134,9 +130,9 @@ public class SubIssuer {
 //    private String dateFormat;
 //
 //
-//    private EntityData data;
 
-//
+
+    //
 //    @Column(nullable = false)
 //    private String formattedDateJavaFormat;
 //
@@ -177,7 +173,13 @@ public class SubIssuer {
 //    @Column(name = "hubMaintenanceModeEnabled", nullable = false, columnDefinition = "BIT", length = 1)
 //    private boolean hubMaintenanceModeEnabled;
 //
+    public Issuer getIssuer() {
+        return issuer;
+    }
 
+    public void setIssuer(Issuer issuer) {
+        this.issuer = issuer;
+    }
 
     public Long getId() {
         return id;
