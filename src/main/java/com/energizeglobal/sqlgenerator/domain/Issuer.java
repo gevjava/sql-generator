@@ -47,20 +47,20 @@ public class Issuer {
     @Column(name = "availaibleAuthentMeans")
     String availaibleAuthentMeans;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
-    private List<SubIssuer> subIssuers;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
+//    private List<SubIssuer> subIssuers;
 
-    public List<SubIssuer> getSubIssuers() {
-        return subIssuers != null ? Collections.unmodifiableList(subIssuers) : null;
-    }
-
-    public void setSubIssuers(List<SubIssuer> subIssuers) {
-        if (subIssuers != null) {
-            this.subIssuers = subIssuers.stream().collect(Collectors.toList());
-        } else {
-            this.subIssuers = null;
-        }
-    }
+//    public List<SubIssuer> getSubIssuers() {
+//        return subIssuers != null ? Collections.unmodifiableList(subIssuers) : null;
+//    }
+//
+//    public void setSubIssuers(List<SubIssuer> subIssuers) {
+//        if (subIssuers != null) {
+//            this.subIssuers = subIssuers.stream().collect(Collectors.toList());
+//        } else {
+//            this.subIssuers = null;
+//        }
+//    }
 
     public long getId() {
         return id;

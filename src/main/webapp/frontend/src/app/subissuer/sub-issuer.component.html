@@ -51,6 +51,31 @@
 </form>
 
 
-
+<div class="container-fluid" style="margin-top: 150px;">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Code</th>
+          <th scope="col">Auth</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let subIssuer of subIssuers;">
+          <th scope="row">{{ subIssuer.id }}</th>
+          <td>{{ subIssuer.name }}</td>
+          <td>{{ subIssuer.code }}</td>
+          <td>{{ subIssuer.authentMeans }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
 
 
