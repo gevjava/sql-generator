@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "CriptoConfig")
+@Table(name = "CryptoConfig")
 public class CryptoConfig {
 
     @Id
@@ -16,9 +16,9 @@ public class CryptoConfig {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @OneToMany(mappedBy = "cryptoConfigEntity")
-//    @JsonIgnore
-//    private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
+    @OneToMany(mappedBy = "cryptoConfigEntity")
+    @JsonIgnore
+    private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -27,12 +27,12 @@ public class CryptoConfig {
     public void setId(Integer id) {
         this.id = id;
     }
-//
-//    public List<SubIssuer> getLinkedSubIssuers() {
-//        return linkedSubIssuers;
-//    }
-//
-//    public void setLinkedSubIssuers(List<SubIssuer> linkedSubIssuers) {
-//        this.linkedSubIssuers = linkedSubIssuers;
-//    }
+
+    public List<SubIssuer> getLinkedSubIssuers() {
+        return linkedSubIssuers;
+    }
+
+    public void setLinkedSubIssuers(List<SubIssuer> linkedSubIssuers) {
+        this.linkedSubIssuers = linkedSubIssuers;
+    }
 }

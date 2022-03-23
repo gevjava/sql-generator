@@ -47,10 +47,12 @@ public class Issuer {
     @Column(name = "availaibleAuthentMeans")
     String availaibleAuthentMeans;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
-//    private List<SubIssuer> subIssuers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
+    private List<SubIssuer> subIssuers;
 
-//    public List<SubIssuer> getSubIssuers() {
+
+//
+//        public List<SubIssuer> getSubIssuers() {
 //        return subIssuers != null ? Collections.unmodifiableList(subIssuers) : null;
 //    }
 //
