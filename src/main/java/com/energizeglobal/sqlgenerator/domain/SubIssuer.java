@@ -441,7 +441,7 @@ public class SubIssuer {
 
 
 
-    
+
     //  private EntityData data;
 //
 //    @Column
