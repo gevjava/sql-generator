@@ -1,3 +1,29 @@
-.bg-grey{
-  background-color:silver;
+.issuer_section{
+  padding: 150px 0;
+}
+
+.wrapper {
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+}
+
+.wrapper legend {
+  color: #337ab7;
+}
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }

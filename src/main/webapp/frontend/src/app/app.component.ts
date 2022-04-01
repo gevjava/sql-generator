@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import {catchError, map} from "rxjs/operators";
 })
 export class AppComponent {
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
