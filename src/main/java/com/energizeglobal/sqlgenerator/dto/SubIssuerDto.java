@@ -8,12 +8,10 @@ public class SubIssuerDto {
     String code;
     String codeSvi;
     String currencyCode;
-    Boolean personnalDataStorage;
-    String createdBy;
-
     String name;
     String authentMeans;
     String label;
+    Boolean personnalDataStorage;
 
     public String getAcsId() {
         return acsId;
@@ -39,6 +37,14 @@ public class SubIssuerDto {
         this.defaultLanguage = defaultLanguage;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getCodeSvi() {
         return codeSvi;
     }
@@ -55,32 +61,12 @@ public class SubIssuerDto {
         this.currencyCode = currencyCode;
     }
 
-
-
-    public Boolean getPersonnalDataStorage() {
-        return personnalDataStorage;
-    }
-
-    public void setPersonnalDataStorage(Boolean personnalDataStorage) {
-        this.personnalDataStorage = personnalDataStorage;
-    }
-
-
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getAuthentMeans() {
@@ -99,12 +85,11 @@ public class SubIssuerDto {
         this.label = label;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public Boolean getPersonnalDataStorage() {
+        return personnalDataStorage;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setPersonnalDataStorage(Boolean personnalDataStorage) {
+        this.personnalDataStorage = personnalDataStorage;
     }
-
 }

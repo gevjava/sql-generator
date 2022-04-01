@@ -43,9 +43,7 @@ public class SubIssuerService {
 
     @Transactional(readOnly = true)
     public List<SubIssuer> getAllSubIssuer() {
-
         List<SubIssuer> subIssuerList = subIssuerRepository.findAll();
-
         return subIssuerList;
     }
 
@@ -58,9 +56,7 @@ public class SubIssuerService {
     }
 
     public SubIssuerDto findById(Long id) {
-
         SubIssuer subIssuer = subIssuerRepository.getById(id);
-
         SubIssuerDto subIssuerDto = SubissuerMapping.entityToDto(subIssuer);
         return subIssuerDto;
     }
@@ -70,19 +66,17 @@ public class SubIssuerService {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
-        String queryType = "INSERT INTO subissuer   ( acsId ,authenticationTimeOut," +
+        String queryType = "INSERT INTO subissuer  ( acsId ,authenticationTimeOut," +
                 " defaultLanguage , code, codeSvi ," +
                 " currencyCode , name,  label , authenticationMeans )";
 
         String queryValue = " \n  VALUES ('" +
-                subIssuer.getAcsId() + "', '" +
-                subIssuer.getAuthenticationTimeOut() + "', '" +
+                subIssuer.getAcsId() + "', " +
+                subIssuer.getAuthenticationTimeOut() + ", '" +
                 subIssuer.getDefaultLanguage() + "', '" +
                 subIssuer.getCode() + "', '" +
                 subIssuer.getCodeSvi() + "', '" +
                 subIssuer.getCurrencyCode() + "', '" +
-                // TODO
-                subIssuer.getCreatedBy() + "', '" +
                 subIssuer.getPersonnalDataStorage() + "', '" +
                 subIssuer.getName() + "', '" +
                 subIssuer.getLabel() + "', '" +
@@ -95,26 +89,25 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-    public String generateUpdateSqlScript(String id,SubIssuerDto dto) {
+    //TODO
+    public String generateUpdateSqlScript(String id, SubIssuerDto dto) {
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
-       // SubIssuer s = subIssuerRepository.getById(subIssuer.getId());
+        // SubIssuer s = subIssuerRepository.getById(subIssuer.getId());
+        // SubIssuer subIssuer2 = subIssuerRepository.getById(SubissuerMapping.dtoToEntity(dto).getId());
 
-       // SubIssuer subIssuer2 = subIssuerRepository.getById(SubissuerMapping.dtoToEntity(dto).getId());
 
-
-        String queryUpdate = "UPDATE `subissuer` SET " +
-                "`acsId` = '" + subIssuer.getAcsId() + "', " +
-                "`authenticationTimeOut` = '" + subIssuer.getAuthenticationTimeOut() + "'," +
-                "`defaultLanguage` = '" + subIssuer.getDefaultLanguage() + "', '" +
-                "`code` = '" + subIssuer.getCode() + "', '" +
-                "`codeSvi` = '" + subIssuer.getCodeSvi() + "', '" +
-                "`currencyCode` = '" + subIssuer.getCurrencyCode() + "', '" +
-                "`personnalDataStorage` = '" + subIssuer.getPersonnalDataStorage() + "', '" +
-                "`name` = '" + subIssuer.getName() + "', '" +
-                "`label` = '" + subIssuer.getLabel() + "', '" +
-                "`authentMeans` = '" + subIssuer.getAuthentMeans() + "' " +
-                " WHERE `id` = '" + id + "';";
-
+        String queryUpdate = "UPDATE subissuer SET " +
+                "'acsId' = '" + subIssuer.getAcsId() + "', " +
+                "'authenticationTimeOut' = " + subIssuer.getAuthenticationTimeOut() + ", " +
+                "'defaultLanguage' = '" + subIssuer.getDefaultLanguage() + "', " +
+                "'code' = '" + subIssuer.getCode() + "', " +
+                "'codeSvi' = '" + subIssuer.getCodeSvi() + "', " +
+                "'currencyCode' = '" + subIssuer.getCurrencyCode() + "', " +
+                "'personnalDataStorage' = '" + subIssuer.getPersonnalDataStorage() + "', " +
+                "'name' = '" + subIssuer.getName() + "', " +
+                "'label' = '" + subIssuer.getLabel() + "', " +
+                "'authentMeans' = '" + subIssuer.getAuthentMeans() + "' " +
+                " WHERE `id` = `" + id + "`;";
 
 
         pathGenerator(queryUpdate);
@@ -124,7 +117,7 @@ public class SubIssuerService {
 
     public String generateDeleteSqlScript(String id) {
 
-        String queryDelete = "DELETE FROM `subissuer`  WHERE id = '" + id + "';";
+        String queryDelete = "DELETE FROM subissuer WHERE id = " + id + ";";
 
         pathGenerator(queryDelete);
 

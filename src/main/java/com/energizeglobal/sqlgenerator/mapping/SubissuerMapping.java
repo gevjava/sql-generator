@@ -13,7 +13,6 @@ public class SubissuerMapping {
         subIssuer.setCode(subIssuerDto.getCode());
         subIssuer.setCodeSvi(subIssuerDto.getCodeSvi());
         subIssuer.setCurrencyCode(subIssuerDto.getCurrencyCode());
-        subIssuer.setCreatedBy(subIssuerDto.getCreatedBy());
         subIssuer.setPersonnalDataStorage(subIssuerDto.getPersonnalDataStorage());
         subIssuer.setName(subIssuerDto.getName());
         subIssuer.setAuthentMeans(subIssuerDto.getAuthentMeans());
@@ -30,7 +29,6 @@ public class SubissuerMapping {
         subIssuerDto.setCode(subIssuer.getCode());
         subIssuerDto.setCodeSvi(subIssuer.getCodeSvi());
         subIssuerDto.setCurrencyCode(subIssuer.getCurrencyCode());
-        subIssuerDto.setCreatedBy(subIssuer.getCreatedBy());
         subIssuerDto.setPersonnalDataStorage(subIssuer.getPersonnalDataStorage());
         subIssuerDto.setName(subIssuer.getName());
         subIssuerDto.setAuthentMeans(subIssuer.getAuthentMeans());

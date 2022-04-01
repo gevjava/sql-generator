@@ -24,33 +24,15 @@ INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, 
 
 
 
-
-
-
-
-
-
-
-
-UPDATE `subissuer` SET `acsId` = 'o', `authenticationTimeOut` = '0',`defaultLanguage` = 'k', '`code` = 'q', '`codeSvi` = 'm', '`currencyCode` = 'o', '`personnalDataStorage` = 'false', '`name` = 'ghgfhgfhf', '`label` = 'lable', '`authentMeans` = 's'); WHERE `id` = '36';
-UPDATE `subissuer` SET `acsId` = 'q', `authenticationTimeOut` = '2',`defaultLanguage` = 'q', '`code` = 'q', '`codeSvi` = 'q', '`currencyCode` = 'q', '`personnalDataStorage` = 'false', '`name` = 'q', '`label` = 'q', '`authentMeans` = 'q'); WHERE `id` = '0';
-UPDATE `subissuer` SET `acsId` = 'd', `authenticationTimeOut` = '0',`defaultLanguage` = 'ddd', '`code` = 'dd', '`codeSvi` = 'ddd', '`currencyCode` = 'ddd', '`personnalDataStorage` = 'false', '`name` = 'dd', '`label` = 'dd', '`authentMeans` = 'dd'); WHERE `id` = '0';
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('gf', '0', 'f', 'ff', 'ff', 'f', 'f', 'false', 'f', 'f', 'f');
-UPDATE `subissuer` SET `acsId` = 'z', `authenticationTimeOut` = '0',`defaultLanguage` = 'z', '`code` = 'z', '`codeSvi` = 'z', '`currencyCode` = 'z', '`personnalDataStorage` = 'false', '`name` = 'z', '`label` = 'z', '`authentMeans` = 'z'  WHERE `id` = '0';
-UPDATE `subissuer` SET `acsId` = 'fgf', `authenticationTimeOut` = '0',`defaultLanguage` = 'ff', '`code` = 'ff', '`codeSvi` = 'ff', '`currencyCode` = 'ff', '`personnalDataStorage` = 'false', '`name` = 'ss', '`label` = 'w', '`authentMeans` = '233'  WHERE `id` = '36';
-DELETE FROM subissuer WHERE id ='36';
-DELETE FROM subissuer  WHERE id='36'
-DELETE FROM subissuer  WHERE id='36';
-UPDATE `subissuer` SET `acsId` = 'ssss', `authenticationTimeOut` = '0',`defaultLanguage` = 's', '`code` = 'ss', '`codeSvi` = 'ss', '`currencyCode` = 'ss', '`personnalDataStorage` = 'false', '`name` = 's', '`label` = 's', '`authentMeans` = 's'  WHERE `id` = '36';
-DELETE FROM subissuer  WHERE id='36';
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('fgfgf', '0', 'fgfgf', 'fgfgf', 'fghfhf', 'gfhfghgf', 'gfhgfh', 'true', 'gfhgfh', 'gfhfghgf', 'ghgfhfg');
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('u', '2', 'u', 'u', 'u', 'u', 'u', 'false', 'u', 'u', 'u');
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('u', '2', 'u', 'u', 'u', 'u', 'u', 'true', 'u', 'u', 'u');
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('a', '2', 'a', 'a', 'a', 'a', 'a', 'true', 'a', 'a', 'a');
-INSERT INTO subissuer   ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
-  VALUES ('r', '2', 'r', 'r', 'r', 'r', 'r', 'true', 'r', 'r', 'r');
+UPDATE subissuer SET 'acsId' = 'r', 'authenticationTimeOut' = `0`, 'defaultLanguage' = 'f', 'code' = 'd', 'codeSvi' = 's', 'currencyCode' = 'a', 'personnalDataStorage' = 'false', 'name' = 'd', 'label' = 'g', 'authentMeans' = 'b'  WHERE `id` = `36`;
+UPDATE subissuer SET 'acsId' = 'r', 'authenticationTimeOut' = `0`, 'defaultLanguage' = 'f', 'code' = 'd', 'codeSvi' = 's', 'currencyCode' = 'a', 'personnalDataStorage' = 'false', 'name' = 'd', 'label' = 'g', 'authentMeans' = 'b'  WHERE `id` = `36`;
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
+  VALUES ('h', 0, 'hg', 'f', 'hg', 'c', 'false', 'gf', 'f', 'f');
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
+  VALUES ('h', `0`, 'hg', 'f', 'hg', 'c', 'false', 'gf', 'f', 'f');
+UPDATE subissuer SET 'acsId' = 'e', 'authenticationTimeOut' = 0, 'defaultLanguage' = 'e', 'code' = 'e', 'codeSvi' = 'e', 'currencyCode' = 'e', 'personnalDataStorage' = 'false', 'name' = 'eh', 'label' = 'h', 'authentMeans' = 'h'  WHERE `id` = `36`;
+UPDATE subissuer SET 'acsId' = 'e', 'authenticationTimeOut' = 0, 'defaultLanguage' = 'e', 'code' = 'e', 'codeSvi' = 'e', 'currencyCode' = 'e', 'personnalDataStorage' = 'false', 'name' = 'eh', 'label' = 'h', 'authentMeans' = 'h'  WHERE `id` = `36`;
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
+  VALUES ('ed', `0`, 'ed', 'ed', 'ed', 'ed', 'false', 'd', 'd', 'd');
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
+  VALUES ('exexex', 0, 'w', 'w', 'w', 'w', 'false', 'w', 'w', 'w');
