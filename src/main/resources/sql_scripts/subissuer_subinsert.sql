@@ -36,3 +36,4 @@ INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, c
   VALUES ('ed', `0`, 'ed', 'ed', 'ed', 'ed', 'false', 'd', 'd', 'd');
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authenticationMeans ) 
   VALUES ('exexex', 0, 'w', 'w', 'w', 'w', 'false', 'w', 'w', 'w');
+UPDATE subissuer SET 'acsId' = 'D', 'authenticationTimeOut' = 0, 'defaultLanguage' = 'D', 'code' = 'D', 'codeSvi' = 'D', 'currencyCode' = 'Ds', 'personnalDataStorage' = 'false', 'name' = 's', 'label' = 's', 'authentMeans' = 's'  WHERE `id` = `36`;

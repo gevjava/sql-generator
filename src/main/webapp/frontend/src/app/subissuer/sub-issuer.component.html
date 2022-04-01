@@ -108,7 +108,7 @@
 <div class="container-fluid" style="margin-top: 150px;">
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <table class="table table-bordered">
         <thead>
         <tr>
@@ -119,10 +119,11 @@
           <th scope="col">Code</th>
           <th scope="col">CodeSvi</th>
           <th scope="col">CurrencyCode</th>
-          <!--         TODO <th scope="col">PersonnalDataStorage</th>-->
           <th scope="col">Name</th>
           <th scope="col">AuthentMeans</th>
           <th scope="col">Label</th>
+          <th scope="col">PersonnalDataStorage</th>
+          <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -134,12 +135,12 @@
           <td>{{ subIssuer.code }}</td>
           <td>{{ subIssuer.codeSvi }}</td>
           <td>{{ subIssuer.currencyCode }}</td>
-          <!--        TODO  <td>{{ subIssuer.personnalDataStorage }}</td>-->
           <td>{{ subIssuer.name }}</td>
           <td>{{ subIssuer.authentMeans }}</td>
           <td>{{ subIssuer.label }}</td>
+          <td>{{ subIssuer.personnalDataStorage }}</td>
           <td>
-            <!--            TODO -->
+
             <a routerLink="/subissuer/{{ subIssuer.id }}/edit" (click)="updateSubIssuerData(subIssuer,subIssuer.id)"
                class="btn btn-primary"> Update</a>
             <br>
@@ -149,6 +150,7 @@
                class="btn btn-danger"> Delete</a>
 
           </td>
+
         </tr>
         </tbody>
       </table>
