@@ -11,13 +11,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 @Service
-public class GenerateSqlScriptServiceServiceImpl implements GenerateSqlScriptService {
+public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
+
+  final static String FILE_PATH = "src/main/resources/sql_scripts/";
+  final static String FILE_NAME = "insert_query.sql";
 
   @Override
   public void insertSqlScript(String sqlInsert) {
-
-    String FILE_PATH = "src/main/resources/sql_scripts/";
-    String FILE_NAME = "Insert.sql";
 
     String path = FILE_PATH + FILE_NAME;
 

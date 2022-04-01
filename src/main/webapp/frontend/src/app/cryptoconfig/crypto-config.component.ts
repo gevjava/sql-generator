@@ -45,17 +45,19 @@ export class CryptoConfigComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCryptoConfigList();
     this.initializeAddForm();
     this.initializeUpdateForm();
-    this.getCryptoConfigList();
   }
 
   updateCrypto({content}: { content: any }) {
     this.modalService.open(content, {size: 'xl', scrollable: true});
+
   }
 
   addCrypto({content}: { content: any }) {
     this.modalService.open(content);
+    this.reloadData();
   }
 
   getCryptoConfigById(id: number) {
@@ -65,7 +67,7 @@ export class CryptoConfigComponent implements OnInit {
   }
 
   reloadData() {
-    this.cryptoConfigs = this.getCryptoConfigList()
+    this.cryptoConfigs = this.getCryptoConfigList();
   }
 
 
@@ -89,15 +91,17 @@ export class CryptoConfigComponent implements OnInit {
     let cryptoConfigData = this.cryptoConfigAddForm.value;
     this.cryptoConfigService.addCryptoConfig(cryptoConfigData).subscribe(response => {
       this.filename = response;
+      this.reloadData();
     });
   }
 
   updateCryptoConfig() {
     let cryptoConfigData = this.cryptoConfigUpdateForm.value;
     this.cryptoConfigService.updateCryptoConfig(cryptoConfigData).subscribe(response => {
+      console.log(response);
       this.filename = response;
+      this.reloadData();
     });
-
   }
 
   downloadFile() {

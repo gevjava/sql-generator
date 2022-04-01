@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class IssuerServiceImpl {
 
-  private final GenerateSqlScriptServiceServiceImpl generateSqlScriptServiceImpl;
+  private final GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl;
   private final Logger log = LoggerFactory.getLogger(IssuerServiceImpl.class);
 
   private String FILE_PATH = "src/main/resources/sql_scripts/";
@@ -25,9 +25,9 @@ public class IssuerServiceImpl {
   private final DownloadFileServiceImpl downloadFileServiceImpl;
 
   public IssuerServiceImpl(
-      IssuerRepository issuerRepository,
-      GenerateSqlScriptServiceServiceImpl generateSqlScriptServiceImpl,
-      DownloadFileServiceImpl downloadFileServiceImpl) {
+          IssuerRepository issuerRepository,
+          GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl,
+          DownloadFileServiceImpl downloadFileServiceImpl) {
     this.issuerRepository = issuerRepository;
     this.generateSqlScriptServiceImpl = generateSqlScriptServiceImpl;
     this.downloadFileServiceImpl = downloadFileServiceImpl;

@@ -83,29 +83,25 @@
                       <div class="col-3">
                         <div class="form-group">
                           <label for="id"><b>Id: </b></label>
-                          <input type="text" id="id" formControlName="id" class="form-control"
-                                 [(ngModel)]="cryptoConfig.id" readonly>
+                          <input type="text" ngModel="{{cryptoConfig?.id}}" readOnly id="id" formControlName="id" class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="protocolOne"><b>protocolOne: </b></label>
-                          <input type="text" id="protocolOne1" formControlName="protocolOne" class="form-control"
-                                 [(ngModel)]="cryptoConfig.protocolOne">
+                          <input type="text" ngModel="{{cryptoConfig?.protocolOne}}" id="protocolOne1" formControlName="protocolOne" class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="protocolTwo"><b>protocolTwo: </b></label>
-                          <input type="text" id="protocolTwo1" formControlName="protocolTwo" class="form-control"
-                                 [(ngModel)]="cryptoConfig.protocolTwo">
+                          <input type="text" ngModel="{{cryptoConfig?.protocolTwo}}" id="protocolTwo1" formControlName="protocolTwo" class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="description"><b>description: </b></label>
-                          <input type="text" id="description1" formControlName="description" class="form-control"
-                                 [(ngModel)]="cryptoConfig.description">
+                          <input type="text" ngModel="{{cryptoConfig?.description }}" id="description1" formControlName="description" class="form-control">
                         </div>
                       </div>
                     </div>
