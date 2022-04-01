@@ -10,7 +10,7 @@ export class SubIssuerService {
   constructor(private http: HttpClient) {
   }
 
-  getAllSubIssuer() {
+  getAllSubIssuer(){
     return this.http.get('/subissuer');
   }
 
@@ -25,13 +25,32 @@ export class SubIssuerService {
 
     return this.http.post(
       '/subissuer',
-      JSON.stringify({name: subIssuer.name, code: subIssuer.code, authentMeans: subIssuer.authentMeans}),
+      JSON.stringify({ acsId: subIssuer.acsId ,
+        authenticationTimeOut: subIssuer.authenticationTimeOut,
+        defaultLanguage: subIssuer.defaultLanguage,
+        codeSvi: subIssuer.codeSvi,
+        currencyCode: subIssuer.currencyCode,
+        createdBy: subIssuer.createdBy,
+        personnalDataStorage: subIssuer.personnalDataStorage,
+        name: subIssuer.name,
+        code: subIssuer.code,
+        authentMeans: subIssuer.authentMeans,
+        label:subIssuer.label}),
       httpOptions
     );
   }
 
-  sendSubIssuerData(subIssuerData: any) {
+  sendData(subIssuerData: Subissuer) {
     return this.http.post('/subissuer', subIssuerData, {responseType: 'text'});
+  }
+
+  updateData(subIssuerData: any , id: number){
+    return this.http.put(`$'/subissuer'/${id}`, subIssuerData)
+  }
+
+  //TODO
+  deleteById(id: number) {
+    return this.http.delete( `/subissuer/delete${id}`);
   }
 
   downloadFile(filename: String) {

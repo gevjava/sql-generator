@@ -34,6 +34,7 @@ public class SubIssuerService {
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
     String FILE_NAME = "subissuer_subinsert.sql";
+    String path = FILE_PATH + FILE_NAME;
 
     public SubIssuerService(SubIssuerRepository subIssuerRepository) {
 
@@ -48,39 +49,109 @@ public class SubIssuerService {
         return subIssuerList;
     }
 
+    public String deleteById(Long id) {
+
+        String query = "DELETE FROM subissuer WHERE id ='" + id + "';";
+        pathGenerator(query);
+        subIssuerRepository.deleteById(id);
+        return FILE_NAME;
+    }
+
+    public SubIssuerDto findById(Long id) {
+
+        SubIssuer subIssuer = subIssuerRepository.getById(id);
+
+        SubIssuerDto subIssuerDto = SubissuerMapping.entityToDto(subIssuer);
+        return subIssuerDto;
+    }
+
 
     public String generateInsertSqlScript(SubIssuerDto dto) {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
-        String sqlInsert = "INSERT INTO subissuer (name, code, authentMeans ) VALUES ('" +
-                subIssuer.getName() + "', '" +
+        String queryType = "INSERT INTO subissuer   ( acsId ,authenticationTimeOut," +
+                " defaultLanguage , code, codeSvi ," +
+                " currencyCode , name,  label , authenticationMeans )";
+
+        String queryValue = " \n  VALUES ('" +
+                subIssuer.getAcsId() + "', '" +
+                subIssuer.getAuthenticationTimeOut() + "', '" +
+                subIssuer.getDefaultLanguage() + "', '" +
                 subIssuer.getCode() + "', '" +
+                subIssuer.getCodeSvi() + "', '" +
+                subIssuer.getCurrencyCode() + "', '" +
+                // TODO
+                subIssuer.getCreatedBy() + "', '" +
+                subIssuer.getPersonnalDataStorage() + "', '" +
+                subIssuer.getName() + "', '" +
+                subIssuer.getLabel() + "', '" +
                 subIssuer.getAuthentMeans() + "');";
 
-        String path = FILE_PATH + FILE_NAME;
+        String sqlInsert = queryType + queryValue;
+
+        pathGenerator(sqlInsert);
+
+        return FILE_NAME;
+    }
+
+    public String generateUpdateSqlScript(String id,SubIssuerDto dto) {
+        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
+       // SubIssuer s = subIssuerRepository.getById(subIssuer.getId());
+
+       // SubIssuer subIssuer2 = subIssuerRepository.getById(SubissuerMapping.dtoToEntity(dto).getId());
+
+
+        String queryUpdate = "UPDATE `subissuer` SET " +
+                "`acsId` = '" + subIssuer.getAcsId() + "', " +
+                "`authenticationTimeOut` = '" + subIssuer.getAuthenticationTimeOut() + "'," +
+                "`defaultLanguage` = '" + subIssuer.getDefaultLanguage() + "', '" +
+                "`code` = '" + subIssuer.getCode() + "', '" +
+                "`codeSvi` = '" + subIssuer.getCodeSvi() + "', '" +
+                "`currencyCode` = '" + subIssuer.getCurrencyCode() + "', '" +
+                "`personnalDataStorage` = '" + subIssuer.getPersonnalDataStorage() + "', '" +
+                "`name` = '" + subIssuer.getName() + "', '" +
+                "`label` = '" + subIssuer.getLabel() + "', '" +
+                "`authentMeans` = '" + subIssuer.getAuthentMeans() + "' " +
+                " WHERE `id` = '" + id + "';";
+
+
+
+        pathGenerator(queryUpdate);
+
+        return FILE_NAME;
+    }
+
+    public String generateDeleteSqlScript(String id) {
+
+        String queryDelete = "DELETE FROM `subissuer`  WHERE id = '" + id + "';";
+
+        pathGenerator(queryDelete);
+
+        return FILE_NAME;
+    }
+
+    private void pathGenerator(String sql) {
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
-                sqlInsert = System.getProperty("line.separator") + sqlInsert;
+                sql = System.getProperty("line.separator") + sql;
                 try (BufferedWriter bufferedWriter =
-                             Files.newBufferedWriter(newFilePath, UTF_8,
-                                     APPEND)) {
-                    bufferedWriter.write(sqlInsert);
+                             Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
+                    bufferedWriter.write(sql);
                 }
             } else {
-                Path fileDiectory = Paths.get(FILE_PATH);
-                Files.createDirectories(fileDiectory);
+                Path fileDirectory = Paths.get(FILE_PATH);
+                Files.createDirectories(fileDirectory);
                 try (
                         BufferedWriter bufferedWriter =
                                 Files.newBufferedWriter(newFilePath, UTF_8)) {
-                    bufferedWriter.write(sqlInsert);
+                    bufferedWriter.write(sql);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return FILE_NAME;
     }
 
     public Resource downloadFile(String filename) {

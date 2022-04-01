@@ -9,6 +9,29 @@ import javax.persistence.*;
 @Table(name = "subissuer")
 public class SubIssuer {
 
+//`id` + , `acsId + `, `authenticationTimeOut + `,
+// `backupLanguages + `, `code + `, `codeSvi + `,
+// `currencyCode + `, `createdBy` + , `creationDate`,
+// `description`, `lastUpdateBy`, `lastUpdateDate`,
+// `name`, `updateState`, `defaultLanguage`,
+// `freshnessPeriod`, `label`, `manageBackupsCombinedAmounts`,
+// `manageChoicesCombinedAmounts`,
+// `personnalDataStorage` - ???? ,
+// `resetBackupsIfSuccess`,
+// `resetChoicesIfSuccess`, `transactionTimeOut`, `fk_id_issuer`,
+// `acs_URL1_VE_MC`, `acs_URL2_VE_MC`, `acs_URL1_VE_CB`,
+// `acs_URL2_VE_CB`, `acs_URL1_VE_VISA`, `acs_URL2_VE_VISA`,
+// `automaticDeviceSelection`, `userChoiceAllowed`, `backupAllowed`,
+// `defaultDeviceChoice`, `preferredAuthentMeans`, `issuerCountry`,
+// `hubCallMode`, `rbaThreshold`, `maskParams`,
+// `dateFormat`, `formattedDateJavaFormat`, `twoStepCancellation`,
+// `fk_id_cryptoConfig`, `paChallengePublicUrl`, `verifyCardStatus`,
+// `3DS2AdditionalInfo`, `permanentStrongMeansCounter`, `resendOTPThreshold`,
+// `resendSameOTP`, `combinedAuthenticationAllowed`, `protocol2FlowMode`,
+// `displayLanguageSelectPage`, `trustedBeneficiariesAllowed`, `authentMeans`,
+// `currencyFormat`, `npaEnabled`, `hubMaintenanceModeEnabled   57
+
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,13 +45,340 @@ public class SubIssuer {
     @Column(name = "authentMeans")
     String authentMeans;
 
-    public SubIssuer() {
-    }
-
     @ManyToOne
     @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
     private Issuer issuer;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+    @JsonIgnore
+    private CryptoConfig cryptoConfigEntity;
+
+    @Column
+    private String acsId ;
+
+    @Column
+    private Integer authenticationTimeOut;
+
+    @Column
+    private String defaultLanguage ;
+
+    @Column
+    private String codeSvi ;
+
+    @Column
+    private String currencyCode ;
+
+    @Column
+    private String createdBy ;
+
+
+    @Column(nullable = false)
+    private String label ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO
+    @Column(columnDefinition = "BIT", length = 1)
+    private Boolean personnalDataStorage ;
+
+    @Column
+    private String backupLanguages = "backupLanguages";
+
+    @Column
+    private Integer transactionTimeOut = 123;
+
+    @Column
+    private Integer freshnessPeriod = 789;
+
+
+    @Column
+    private String acs_URL1_VE_MC = "acs_URL1_VE_MC";
+
+    @Column
+    private String acs_URL2_VE_MC = "acs_URL2_VE_MC";
+
+    @Column
+    private String acs_URL1_VE_VISA = "acs_URL1_VE_VISA";
+
+    @Column
+    private String acs_URL2_VE_VISA = "acs_URL2_VE_VISA";
+
+    @Column
+    private String acs_URL1_VE_CB = "acs_URL1_VE_CB";
+
+    @Column
+    private String acs_URL2_VE_CB = "acs_URL2_VE_CB";
+
+
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean resetBackupsIfSuccess = false;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean resetChoicesIfSuccess = true;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean manageBackupsCombinedAmounts = false;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean manageChoicesCombinedAmounts = true;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean automaticDeviceSelection = false;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean userChoiceAllowed = true;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean backupAllowed = false;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean defaultDeviceChoice = true;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean displayLanguageSelectPage = false;
+
+    @Column
+    private String preferredAuthentMeans;
+
+    @Column
+    private String issuerCountry;
+
+
+    @Column
+    private Integer rbaThreshold;
+
+    @Column
+    private String maskParams;
+
+    @Column
+    private String dateFormat;
+
+    @Column(nullable = false)
+    private String formattedDateJavaFormat;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean twoStepCancellation;
+
+
+    @Column(columnDefinition = "text")
+    private String paChallengePublicUrl;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean verifyCardStatus;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private Boolean permanentStrongMeansCounter;
+
+    @Column(name = "3DS2AdditionalInfo", columnDefinition = "text")
+    private String operator;
+
+    @Column
+    private Integer resendOTPThreshold;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean resendSameOTP;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean combinedAuthenticationAllowed;
+
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean trustedBeneficiariesAllowed;
+
+    @Column(name = "currencyFormat", columnDefinition = "text")
+    private String currencyFormatConfig;
+
+    @Column(name = "npaEnabled", nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean npaEnabled;
+
+    @Column(name = "hubMaintenanceModeEnabled", nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean hubMaintenanceModeEnabled;
+
+
+//
+//    @Column(nullable = false)
+//    private String code; + 1
+//
+//    @Column(nullable = false)
+//    private String label; + 2
+//
+//    @Column
+//    private String codeSvi; + 3
+//
+//    @Column
+//    private String acsId; + 4
+//
+//    @Column
+//    private String defaultLanguage; + 5
+//
+//    @Column
+//    private String backupLanguages; 6
+//
+//    @Column
+//    private Integer transactionTimeOut;7
+//
+//    @Column
+//    private Integer authenticationTimeOut; +8
+//
+//    @Column
+//    private Integer freshnessPeriod;9
+//
+//    @Column
+//    private String currencyCode;10
+//
+//    @Column
+//    private String acs_URL1_VE_MC;11
+//
+//    @Column
+//    private String acs_URL2_VE_MC;12
+//
+//    @Column
+//    private String acs_URL1_VE_VISA;13
+//
+//    @Column
+//    private String acs_URL2_VE_VISA;14
+//
+//    @Column
+//    private String acs_URL1_VE_CB;15
+//
+//    @Column
+//    private String acs_URL2_VE_CB;16
+//
+//    @Column(columnDefinition = "BIT", length = 1)
+//    private Boolean personnalDataStorage;17
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean resetBackupsIfSuccess;18
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean resetChoicesIfSuccess;19
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean manageBackupsCombinedAmounts;20
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean manageChoicesCombinedAmounts;21
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean automaticDeviceSelection;22
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean userChoiceAllowed;23
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean backupAllowed;24
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean defaultDeviceChoice;25
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean displayLanguageSelectPage;26
+//
+//    @Column
+//    private String preferredAuthentMeans;26
+//
+//    @Column
+//    private String issuerCountry;28
+//
+//
+//    @Column
+//    private Integer rbaThreshold;29
+//
+//    @Column
+//    private String maskParams;30
+//
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean twoStepCancellation;31
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+//    @JsonIgnore
+//    private CryptoConfigurationEntity cryptoConfigurationEntity; +32
+//
+//    @Column(columnDefinition = "text")
+//    private String paChallengePublicUrl;
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)33
+//    private boolean verifyCardStatus;
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)34
+//    private Boolean permanentStrongMeansCounter;
+//
+//    @Column(name = "3DS2AdditionalInfo" , columnDefinition = "text")35
+//    private String operator;
+//
+//    @Column
+//    private Integer resendOTPThreshold;36
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean resendSameOTP;37
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean combinedAuthenticationAllowed;38
+//
+//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean trustedBeneficiariesAllowed;39
+//
+//    @Column(columnDefinition = "TEXT")
+//    private String authentMeans;40
+//
+//    @Column(name = "currencyFormat", columnDefinition = "text")
+//    private String currencyFormatConfig;41
+//
+//    @Column(name = "npaEnabled", nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean npaEnabled;42
+//
+//    @Column(name = "hubMaintenanceModeEnabled", nullable = false, columnDefinition = "BIT", length = 1)
+//    private boolean hubMaintenanceModeEnabled;43
+//
+//    //    @Column
+////    @Enumerated(EnumType.STRING)
+////    private HubCallMode hubCallMode;
+//
+//    //    /**
+////     * @see com.worldline.acs.config.issuers.IssuerConfig for more detail on format and usage
+////     */
+////    @Column
+////    private String dateFormat;
+////
+////    /**
+////     * @see com.worldline.acs.config.issuers.IssuerConfig for more detail on format and usage
+////     */
+////    @Column(nullable = false)
+////    private String formattedDateJavaFormat;
+
+
+    public SubIssuer() {
+    }
+
+    public String getAcsId() {
+        return acsId;
+    }
+
+    public void setAcsId(String acsId) {
+        this.acsId = acsId;
+    }
 
     public Issuer getIssuer() {
         return issuer;
@@ -74,101 +424,77 @@ public class SubIssuer {
         this.id = id;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
-    @JsonIgnore
-    private CryptoConfig cryptoConfigEntity;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
+    public String getFormattedDateJavaFormat() {
+        return formattedDateJavaFormat;
+    }
 
-    @Column(nullable = false)
-    private String label = " label";
+    public void setFormattedDateJavaFormat(String formattedDateJavaFormat) {
+        this.formattedDateJavaFormat = formattedDateJavaFormat;
+    }
 
-    @Column
-    private String codeSvi = "codeSvi";
+    public boolean getTwoStepCancellation() {
+        return twoStepCancellation;
+    }
 
-    @Column
-    private String acsId = "acsId";
+    public void setTwoStepCancellation(boolean twoStepCancellation) {
+        this.twoStepCancellation = twoStepCancellation;
+    }
 
-    @Column
-    private String defaultLanguage = "defaultLanguage";
+    public String getPaChallengePublicUrl() {
+        return paChallengePublicUrl;
+    }
 
-    @Column
-    private String backupLanguages = "backupLanguages";
+    public void setPaChallengePublicUrl(String paChallengePublicUrl) {
+        this.paChallengePublicUrl = paChallengePublicUrl;
+    }
 
-    @Column
-    private Integer transactionTimeOut = 123;
+    public boolean getVerifyCardStatus() {
+        return verifyCardStatus;
+    }
 
-    @Column
-    private Integer authenticationTimeOut = 456;
+    public void setVerifyCardStatus(boolean verifyCardStatus) {
+        this.verifyCardStatus = verifyCardStatus;
+    }
 
-    @Column
-    private Integer freshnessPeriod = 789;
+    public Boolean isPermanentStrongMeansCounter() {
+        return permanentStrongMeansCounter;
+    }
 
-    @Column
-    private String currencyCode = "currencyCode";
+    public void setPermanentStrongMeansCounter(Boolean permanentStrongMeansCounter) {
+        this.permanentStrongMeansCounter = permanentStrongMeansCounter;
+    }
 
-    @Column
-    private String acs_URL1_VE_MC = "acs_URL1_VE_MC";
+    public Integer getResendOTPThreshold() {
+        return resendOTPThreshold;
+    }
 
-    @Column
-    private String acs_URL2_VE_MC = "acs_URL2_VE_MC";
+    public void setResendOTPThreshold(Integer resendOTPThreshold) {
+        this.resendOTPThreshold = resendOTPThreshold;
+    }
 
-    @Column
-    private String acs_URL1_VE_VISA = "acs_URL1_VE_VISA";
+    public boolean isResendSameOTP() {
+        return resendSameOTP;
+    }
 
-    @Column
-    private String acs_URL2_VE_VISA = "acs_URL2_VE_VISA";
+    public void setResendSameOTP(boolean resendSameOTP) {
+        this.resendSameOTP = resendSameOTP;
+    }
 
-    @Column
-    private String acs_URL1_VE_CB = "acs_URL1_VE_CB";
+    public boolean isCombinedAuthenticationAllowed() {
+        return combinedAuthenticationAllowed;
+    }
 
-    @Column
-    private String acs_URL2_VE_CB = "acs_URL2_VE_CB";
-
-    @Column(columnDefinition = "BIT", length = 1)
-    private Boolean personnalDataStorage = true;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean resetBackupsIfSuccess = false;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean resetChoicesIfSuccess = true;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean manageBackupsCombinedAmounts = false;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean manageChoicesCombinedAmounts = true;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean automaticDeviceSelection = false;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean userChoiceAllowed = true;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean backupAllowed = false;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean defaultDeviceChoice = true;
-
-    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-    private boolean displayLanguageSelectPage = false;
-
-    @Column
-    private String preferredAuthentMeans;
-
-    @Column
-    private String issuerCountry;
-
-
-    @Column
-    private Integer rbaThreshold;
-
-    @Column
-    private String maskParams;
-    
+    public void setCombinedAuthenticationAllowed(boolean combinedAuthenticationAllowed) {
+        this.combinedAuthenticationAllowed = combinedAuthenticationAllowed;
+    }
 
     public boolean isDisplayLanguageSelectPage() {
         return displayLanguageSelectPage;
@@ -177,6 +503,47 @@ public class SubIssuer {
     public void setDisplayLanguageSelectPage(boolean displayLanguageSelectPage) {
         this.displayLanguageSelectPage = displayLanguageSelectPage;
     }
+
+    public boolean isTrustedBeneficiariesAllowed() {
+        return trustedBeneficiariesAllowed;
+    }
+
+    public void setTrustedBeneficiariesAllowed(boolean trustedBeneficiariesAllowed) {
+        this.trustedBeneficiariesAllowed = trustedBeneficiariesAllowed;
+    }
+
+    public String getCurrencyFormatConfig() {
+        return currencyFormatConfig;
+    }
+
+    public void setCurrencyFormatConfig(String currencyFormatConfig) {
+        this.currencyFormatConfig = currencyFormatConfig;
+    }
+
+    public boolean isNpaEnabled() {
+        return npaEnabled;
+    }
+
+    public void setNpaEnabled(boolean npaEnabled) {
+        this.npaEnabled = npaEnabled;
+    }
+
+    public boolean isHubMaintenanceModeEnabled() {
+        return hubMaintenanceModeEnabled;
+    }
+
+    public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
+        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
 
     public CryptoConfig getCryptoConfigEntity() {
         return cryptoConfigEntity;
@@ -202,13 +569,7 @@ public class SubIssuer {
         this.codeSvi = codeSvi;
     }
 
-    public String getAcsId() {
-        return acsId;
-    }
 
-    public void setAcsId(String acsId) {
-        this.acsId = acsId;
-    }
 
     public String getDefaultLanguage() {
         return defaultLanguage;
@@ -412,299 +773,25 @@ public class SubIssuer {
         this.maskParams = maskParams;
     }
 
+    public boolean isTwoStepCancellation() {
+        return twoStepCancellation;
+    }
 
+    public boolean isVerifyCardStatus() {
+        return verifyCardStatus;
+    }
 
+    public Boolean getPermanentStrongMeansCounter() {
+        return permanentStrongMeansCounter;
+    }
 
+    public String getOperator() {
+        return operator;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //  private EntityData data;
-//
-//    @Column
-//    private String dateFormat;
-//
-//
-
-
-    //
-//    @Column(nullable = false)
-//    private String formattedDateJavaFormat;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean twoStepCancellation;
-//
-//
-//    @Column(columnDefinition = "text")
-//    private String paChallengePublicUrl;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean verifyCardStatus;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private Boolean permanentStrongMeansCounter;
-//
-//    @Column(name = "3DS2AdditionalInfo", columnDefinition = "text")
-//    private String operator;
-//
-//    @Column
-//    private Integer resendOTPThreshold;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean resendSameOTP;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean combinedAuthenticationAllowed;
-//
-//    @Column(nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean trustedBeneficiariesAllowed;
-//
-//    @Column(name = "currencyFormat", columnDefinition = "text")
-//    private String currencyFormatConfig;
-//
-//    @Column(name = "npaEnabled", nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean npaEnabled;
-//
-//    @Column(name = "hubMaintenanceModeEnabled", nullable = false, columnDefinition = "BIT", length = 1)
-//    private boolean hubMaintenanceModeEnabled;
-//
-
-//    public String getDateFormat() {
-//        return dateFormat;
-//    }
-//
-//    public void setDateFormat(String dateFormat) {
-//        this.dateFormat = dateFormat;
-//    }
-//
-//    public String getFormattedDateJavaFormat() {
-//        return formattedDateJavaFormat;
-//    }
-//
-//    public void setFormattedDateJavaFormat(String formattedDateJavaFormat) {
-//        this.formattedDateJavaFormat = formattedDateJavaFormat;
-//    }
-//
-//    public boolean getTwoStepCancellation() {
-//        return twoStepCancellation;
-//    }
-//
-//    public void setTwoStepCancellation(boolean twoStepCancellation) {
-//        this.twoStepCancellation = twoStepCancellation;
-//    }
-//
-//    public String getPaChallengePublicUrl() {
-//        return paChallengePublicUrl;
-//    }
-//
-//    public void setPaChallengePublicUrl(String paChallengePublicUrl) {
-//        this.paChallengePublicUrl = paChallengePublicUrl;
-//    }
-//
-//    public boolean getVerifyCardStatus() {
-//        return verifyCardStatus;
-//    }
-//
-//    public void setVerifyCardStatus(boolean verifyCardStatus) {
-//        this.verifyCardStatus = verifyCardStatus;
-//    }
-//
-//    public Boolean isPermanentStrongMeansCounter() {
-//        return permanentStrongMeansCounter;
-//    }
-//
-//    public void setPermanentStrongMeansCounter(Boolean permanentStrongMeansCounter) {
-//        this.permanentStrongMeansCounter = permanentStrongMeansCounter;
-//    }
-//
-//    public Integer getResendOTPThreshold() {
-//        return resendOTPThreshold;
-//    }
-//
-//    public void setResendOTPThreshold(Integer resendOTPThreshold) {
-//        this.resendOTPThreshold = resendOTPThreshold;
-//    }
-//
-//    public boolean isResendSameOTP() {
-//        return resendSameOTP;
-//    }
-//
-//    public void setResendSameOTP(boolean resendSameOTP) {
-//        this.resendSameOTP = resendSameOTP;
-//    }
-//
-//    public boolean isCombinedAuthenticationAllowed() {
-//        return combinedAuthenticationAllowed;
-//    }
-//
-//    public void setCombinedAuthenticationAllowed(boolean combinedAuthenticationAllowed) {
-//        this.combinedAuthenticationAllowed = combinedAuthenticationAllowed;
-//    }
-//
-//    public boolean isDisplayLanguageSelectPage() {
-//        return displayLanguageSelectPage;
-//    }
-//
-//    public void setDisplayLanguageSelectPage(boolean displayLanguageSelectPage) {
-//        this.displayLanguageSelectPage = displayLanguageSelectPage;
-//    }
-//
-//    public boolean isTrustedBeneficiariesAllowed() {
-//        return trustedBeneficiariesAllowed;
-//    }
-//
-//    public void setTrustedBeneficiariesAllowed(boolean trustedBeneficiariesAllowed) {
-//        this.trustedBeneficiariesAllowed = trustedBeneficiariesAllowed;
-//    }
-//
-//    public String getCurrencyFormatConfig() {
-//        return currencyFormatConfig;
-//    }
-//
-//    public void setCurrencyFormatConfig(String currencyFormatConfig) {
-//        this.currencyFormatConfig = currencyFormatConfig;
-//    }
-//
-//    public boolean isNpaEnabled() {
-//        return npaEnabled;
-//    }
-//
-//    public void setNpaEnabled(boolean npaEnabled) {
-//        this.npaEnabled = npaEnabled;
-//    }
-//
-//    public boolean isHubMaintenanceModeEnabled() {
-//        return hubMaintenanceModeEnabled;
-//    }
-//
-//    public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
-//        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
-//    }
-//
-//
-//    @Column
-//    @Enumerated(EnumType.STRING)
-//    private HubCallMode hubCallMode;
-//
-//    @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuers")
-//    @JsonIgnore
-//    private List<BinRangeEntity> bins;
-//
-//    @ManyToMany(mappedBy = "subIssuers")
-//    private List<NetworkEntity> networks;
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subIssuer")
-//    @JsonIgnore
-//    private List<ProfileSetEntity> profileSets;
-//
-//    @OneToMany(mappedBy = "subIssuer")
-//    @JsonIgnore
-//    private List<CustomItemSetEntity> customItemSets;
-//
-//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuer")
-//    @JsonBackReference(value = "MerchantPivotList")
-//    private List<MerchantPivotListEntity> merchantPivotList;
-//
-//    public List<BinRangeEntity> getBins() {
-//        return bins != null ? Collections.unmodifiableList(bins) : null;
-//    }
-//
-//    public void setBins(List<BinRangeEntity> bins) {
-//        if (bins != null) {
-//            this.bins = bins.stream().collect(Collectors.toList());
-//        } else {
-//            this.bins = null;
-//        }
-//    }
-//
-//
-//    public List<NetworkEntity> getNetworks() {
-//        return networks != null ? Collections.unmodifiableList(networks) : null;
-//    }
-//
-//    public void setNetworks(List<NetworkEntity> networks) {
-//        if (networks != null) {
-//            this.networks = networks.stream().collect(Collectors.toList());
-//        } else {
-//            this.networks = null;
-//        }
-//    }
-//
-//    public void addNetwork(NetworkEntity network) {
-//        if (networks != null) {
-//            this.networks.add(network);
-//        }
-//    }
-//
-//    public List<MerchantPivotListEntity> getMerchantPivotList() {
-//        return merchantPivotList;
-//    }
-//
-//    public void setMerchantPivotList(List<MerchantPivotListEntity> merchantPivotList) {
-//        this.merchantPivotList = merchantPivotList;
-//    }
-//
-//    public List<ProfileSetEntity> getProfileSets() {
-//        return profileSets;
-//    }
-//
-//    public void setProfileSets(List<ProfileSetEntity> profileSets) {
-//        this.profileSets = profileSets;
-//    }
-//
-//    public List<CustomItemSetEntity> getCustomItemSets() {
-//        return customItemSets;
-//    }
-//
-//    public void setCustomItemSets(List<CustomItemSetEntity> customItemSets) {
-//        this.customItemSets = customItemSets;
-//    }
-//
-//
-//    public HubCallMode getHubCallMode() {
-//        return hubCallMode;
-//    }
-//
-//    public void setHubCallMode(HubCallMode hubCallMode) {
-//        this.hubCallMode = hubCallMode;
-//    }
-//
-//
-//    public CryptoConfigurationEntity getCryptoConfigurationEntity() {
-//        return cryptoConfigurationEntity;
-//    }
-//
-//    public void setCryptoConfigurationEntity(CryptoConfigurationEntity cryptoConfigurationEntity) {
-//        this.cryptoConfigurationEntity = cryptoConfigurationEntity;
-//    }
-
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 
 }
 

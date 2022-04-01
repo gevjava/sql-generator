@@ -2,6 +2,7 @@ package com.energizeglobal.sqlgenerator.controller;
 
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
+import com.energizeglobal.sqlgenerator.exception.ResourceNotFoundException;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,8 @@ public class SubIssuerController {
     }
 
 
+
+
     @PostMapping
     public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO) {
 
@@ -40,6 +43,24 @@ public class SubIssuerController {
 
         return ResponseEntity.ok(filename);
     }
+
+    @PutMapping("/{id}/edit")
+    public ResponseEntity<String> updateSubissuer(@PathVariable("id") String id, @RequestBody SubIssuerDto subIssuerDto){
+        String filename = subIssuerService.generateUpdateSqlScript(id,subIssuerDto);
+        return ResponseEntity.ok(filename);
+    }
+
+    @DeleteMapping("/{id}/delete")
+    private ResponseEntity deletById(@PathVariable String id) {
+        String filename = subIssuerService.generateDeleteSqlScript(id);
+        return ResponseEntity.ok(filename);
+    }
+
+//    @DeleteMapping("/{id}/delete")
+//    private ResponseEntity deletById(@PathVariable Long id) {
+//        String filename = subIssuerService.deleteById(id);
+//        return ResponseEntity.ok(filename);
+//    }
 
     @GetMapping("/script/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {

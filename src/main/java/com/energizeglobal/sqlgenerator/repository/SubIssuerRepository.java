@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface SubIssuerRepository extends JpaRepository<SubIssuer,Long> {
 
+
+
 }
