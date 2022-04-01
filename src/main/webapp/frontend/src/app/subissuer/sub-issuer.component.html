@@ -140,7 +140,6 @@
           <td>{{ subIssuer.label }}</td>
           <td>{{ subIssuer.personnalDataStorage }}</td>
           <td>
-
             <a routerLink="/subissuer/{{ subIssuer.id }}/edit" (click)="updateSubIssuerData(subIssuer,subIssuer.id)"
                class="btn btn-primary"> Update</a>
             <br>
@@ -148,7 +147,6 @@
             <br>
             <a routerLink="/subissuer/{{ subIssuer.id }}/delete" (click)="deleteSubissuerById(subIssuer.id)"
                class="btn btn-danger"> Delete</a>
-
           </td>
 
         </tr>
