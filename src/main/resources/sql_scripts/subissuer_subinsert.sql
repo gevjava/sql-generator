@@ -1,11 +1,6 @@
+USE `U5G_ACS_BO`;
 
-INSERT INTO subissuer (name, code, authentMeans ) VALUES ('p', '1', 'p', 'p', 'p', 'p', 'false', 'p', 'p', 'p');
-INSERT INTO subissuer (name, code, authentMeans ) VALUES ('o', '320', 'o', 'o', 'o', 'o', 'o', 'false', 'o', 'o', 'o');
-INSERT INTO subissuer (name, code, authentMeans ) VALUES ('m', '5', 'm', 'm', 'm', 'm', 'm', 'false', 'm', 'm', 'm');
-INSERT INTO subissuer VALUES ('u', '2', 'u', 'u', 'u', 'u', 'u', 'false', 'u', 'u', 'u');
-
-
-UPDATE subissuer SET acsId = 'd', authenticationTimeOut = 0, defaultLanguage = '', code = '', codeSvi = '', currencyCode = '', personnalDataStorage = 'false', name = '', label = '', authentMeans = ''  WHERE `code` = 20000;
+UPDATE subissuer SET acsId = 'd', authenticationTimeOut = 0, defaultLanguage = '', code = '', codeSvi = '', currencyCode = '', personnalDataStorage = false, name = '', label = '', authentMeans = ''  WHERE `code` = 20000;
 UPDATE subissuer SET acsId = '', authenticationTimeOut = 0, defaultLanguage = '', code = '', codeSvi = '', currencyCode = '', personnalDataStorage = 'false', name = '', label = '', authentMeans = ''  WHERE `code` = 00070;
 UPDATE subissuer SET acsId = '', authenticationTimeOut = 0, defaultLanguage = '', code = '', codeSvi = '', currencyCode = '', personnalDataStorage = 'false', name = '', label = '', authentMeans = ''  WHERE `code` = 00070;
 UPDATE subissuer SET acsId = '908', authenticationTimeOut = 0, defaultLanguage = '', code = '', codeSvi = '', currencyCode = '', personnalDataStorage = 'false', name = '', label = '', authentMeans = ''  WHERE `code` = 00070;
@@ -30,7 +25,7 @@ UPDATE subissuer SET acsId = 'e', authenticationTimeOut = 0, defaultLanguage = '
 UPDATE subissuer SET acsId = 'u8hu', authenticationTimeOut = 0, defaultLanguage = '67u6', code = '7uu', codeSvi = 'uu6', currencyCode = '7u', personnalDataStorage = 'false', name = '67u', label = '67u', authentMeans = '67u'  WHERE `code` = 00070;
 
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans )
-  VALUES ('q', 0, 'q', 'q', 'q', 'q', 'false', 'q', 'q', 'q');
+                                                              VALUES ('q', 0, 'q', 'q', 'q', 'q', 'false', 'q', 'q', 'q');
 
 
 
@@ -77,3 +72,74 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLang
   "validate" : true
 } ]'  WHERE `code` = 00070;
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans )  VALUES ('d', 0, 'd', 'd', 'd', 'd', 'false', 'd', 'd', 'd');
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, personnalDataStorage = 'true', name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE `code` = 00070;
+
+
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00062, codeSvi = 00062, currencyCode = 978, personnalDataStorage = 'null', name = 'East West Bank', label = 'East West Bank', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE `code` = 00062;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00062, codeSvi = 00062, currencyCode = 978, personnalDataStorage = null, name = 'East West Bank', label = 'East West Bank', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE `code` = 00062;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'de', code = 12000, codeSvi = 12000, currencyCode = 978, personnalDataStorage = null, name = 'ReiseBank', label = 'ReiseBank', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]'  WHERE `code` = 12000;
+
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans , personnalDataStorage)  VALUES ('040422', 0, 'h', 'h', 'h', 'h', 'h', 'h', 'h', false);
+
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans , personnalDataStorage)  VALUES ('s', 0, 's', 's', 's', 's', 'false', 's', 's', 's');
+
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, personnalDataStorage = null, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE `code` = 00070;
+
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans , personnalDataStorage)  VALUES ('p', 666, 'p', 'p', 'p', 'p', 'p', 'p', 'p', false);
+
+
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'de', code = 12000, codeSvi = 12000, currencyCode = 978, personnalDataStorage = null, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]'  WHERE `code` = 12000;

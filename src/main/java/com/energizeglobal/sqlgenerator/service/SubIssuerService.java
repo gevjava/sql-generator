@@ -59,7 +59,7 @@ public class SubIssuerService {
 
         String queryType = "INSERT INTO subissuer  ( acsId ,authenticationTimeOut," +
                 " defaultLanguage , code, codeSvi ," +
-                " currencyCode , name,  label , authentMeans )";
+                " currencyCode , name,  label , authentMeans , personnalDataStorage)";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -68,10 +68,10 @@ public class SubIssuerService {
                 subIssuer.getCode() + "', '" +
                 subIssuer.getCodeSvi() + "', '" +
                 subIssuer.getCurrencyCode() + "', '" +
-                subIssuer.getPersonnalDataStorage() + "', '" +
+                subIssuer.getAuthentMeans() + "', '" +
                 subIssuer.getName() + "', '" +
-                subIssuer.getLabel() + "', '" +
-                subIssuer.getAuthentMeans() + "');";
+                subIssuer.getLabel() + "', " +
+                subIssuer.getPersonnalDataStorage() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -96,7 +96,7 @@ public class SubIssuerService {
                 "code = " + dto.getCode() + ", " +
                 "codeSvi = " + dto.getCodeSvi() + ", " +
                 "currencyCode = " + dto.getCurrencyCode() + ", " +
-                "personnalDataStorage = '" + dto.getPersonnalDataStorage() + "', " +
+                "personnalDataStorage = " + dto.getPersonnalDataStorage() + ", " +
                 "name = '" + dto.getName() + "', " +
                 "label = '" + dto.getLabel() + "', " +
                 "authentMeans = '" + dto.getAuthentMeans() + "' " +
