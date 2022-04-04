@@ -6,8 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 @Repository
-public interface SubIssuerRepository extends JpaRepository<SubIssuer,Long> {
+public interface SubIssuerRepository extends JpaRepository<SubIssuer, Long> {
 
+
+    SubIssuer findByCode(String code);
+
+    SubIssuer deleteByCode(String code);
 
 
 }

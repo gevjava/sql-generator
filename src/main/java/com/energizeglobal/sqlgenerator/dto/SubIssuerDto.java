@@ -21,6 +21,8 @@ public class SubIssuerDto {
         this.acsId = acsId;
     }
 
+
+
     public Integer getAuthenticationTimeOut() {
         return authenticationTimeOut;
     }
@@ -91,5 +93,21 @@ public class SubIssuerDto {
 
     public void setPersonnalDataStorage(Boolean personnalDataStorage) {
         this.personnalDataStorage = personnalDataStorage;
+    }
+
+    @Override
+    public String toString() {
+        return "SubIssuerDto{" +
+                "acsId='" + acsId + '\'' +
+                ", authenticationTimeOut=" + authenticationTimeOut +
+                ", defaultLanguage='" + defaultLanguage + '\'' +
+                ", code='" + code + '\'' +
+                ", codeSvi='" + codeSvi + '\'' +
+                ", currencyCode='" + currencyCode + '\'' +
+                ", name='" + name + '\'' +
+                ", authentMeans='" + authentMeans + '\'' +
+                ", label='" + label + '\'' +
+                ", personnalDataStorage=" + personnalDataStorage +
+                '}';
     }
 }

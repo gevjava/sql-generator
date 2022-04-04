@@ -1,5 +1,7 @@
 package com.energizeglobal.sqlgenerator.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.repository.Query;
+
 import javax.persistence.*;
 
 
@@ -52,6 +54,11 @@ public class SubIssuer {
     private Boolean personnalDataStorage;
 
     public SubIssuer() {
+    }
+
+    @Query("SELECT i FROM subissuer i WHERE i.id = ?1")
+    Issuer getsubIssuerById(long id) {
+        return null;
     }
 
     public String getAcsId() {
@@ -163,6 +170,25 @@ public class SubIssuer {
 
     public void setPersonnalDataStorage(Boolean personnalDataStorage) {
         this.personnalDataStorage = personnalDataStorage;
+    }
+
+    @Override
+    public String toString() {
+        return "SubIssuer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", authentMeans='" + authentMeans + '\'' +
+                ", issuer=" + issuer +
+                ", cryptoConfigEntity=" + cryptoConfigEntity +
+                ", acsId='" + acsId + '\'' +
+                ", authenticationTimeOut=" + authenticationTimeOut +
+                ", defaultLanguage='" + defaultLanguage + '\'' +
+                ", codeSvi='" + codeSvi + '\'' +
+                ", currencyCode='" + currencyCode + '\'' +
+                ", label='" + label + '\'' +
+                ", personnalDataStorage=" + personnalDataStorage +
+                '}';
     }
 }
 

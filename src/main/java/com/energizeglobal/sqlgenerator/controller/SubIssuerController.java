@@ -28,6 +28,12 @@ public class SubIssuerController {
         return ResponseEntity.ok(subIssuerList);
     }
 
+    @GetMapping("/{code}")
+    public ResponseEntity<SubIssuerDto> getByCodeSubIssuer(@PathVariable("code") String code) {
+        SubIssuerDto subIssuer = subIssuerService.findByCode(code);
+        return ResponseEntity.ok(subIssuer);
+    }
+
 
     @PostMapping
     public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO) {
@@ -35,15 +41,15 @@ public class SubIssuerController {
         return ResponseEntity.ok(filename);
     }
 
-    @PutMapping("/{id}/edit")
-    public ResponseEntity<String> updateSubissuer(@PathVariable("id") String id, @RequestBody SubIssuerDto subIssuerDto) {
-        String filename = subIssuerService.generateUpdateSqlScript(id, subIssuerDto);
+    @PutMapping("/edit/{code}")
+    public ResponseEntity<String> updateSubissuer(@PathVariable("code") String code, @RequestBody SubIssuerDto subIssuerDto) {
+        String filename = subIssuerService.generateUpdateSqlScript(code, subIssuerDto);
         return ResponseEntity.ok(filename);
     }
 
-    @DeleteMapping("/{id}/delete")
-    private ResponseEntity deletById(@PathVariable String id) {
-        String filename = subIssuerService.generateDeleteSqlScript(id);
+    @DeleteMapping("/delete/{code}")
+    private ResponseEntity deletByCode(@PathVariable("code") String code) {
+        String filename = subIssuerService.generateDeleteSqlScript(code);
         return ResponseEntity.ok(filename);
     }
 

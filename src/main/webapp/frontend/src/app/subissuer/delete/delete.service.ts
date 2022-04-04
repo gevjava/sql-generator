@@ -8,7 +8,7 @@ export class DeleteService {
 
   constructor(private http:HttpClient) { }
 
-  deleteSubissuer(id:any){
-    return this.http.delete("/subissuer/"+id+"/delete");
+  deleteSubissuer(code:any){
+    return this.http.delete("/subissuer/delete/"+code);
   }
 }

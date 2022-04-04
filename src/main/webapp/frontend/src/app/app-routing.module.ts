@@ -6,8 +6,8 @@ import {SubIssuerComponent} from "./subissuer/sub-issuer.component";
 
 const routes: Routes = [
   {path:'', component:SubIssuerComponent},
-  {path: 'subissuer/:id/edit', component:EditComponent},
-  {path: 'subissuer/:id/delete',component:DeleteComponent}
+  {path: 'subissuer/:code/edit', component:EditComponent},
+  {path: 'subissuer/:code/delete',component:DeleteComponent}
 ];
 
 @NgModule({

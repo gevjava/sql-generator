@@ -9,7 +9,18 @@ export class EditService {
   constructor(private http:HttpClient) { }
 
 
-  edit(subissuer:any,id:any){
-    return this.http.put('/subissuer/' +id+'/edit',subissuer,{responseType: 'text'});
+  edit(subissuer:any,code:any){
+    return this.http.put('/subissuer/edit/'+code,subissuer,{responseType: 'text'});
   }
+
+  downloadSqlFile(filename: String) {
+    return this.http.get('/subissuer/script/download/' + filename, {responseType: 'blob'});
+  }
+
+
+  getByCodeSubissuer(code:any){
+    return this.http.get('/subissuer/'+code);
+  }
+
+
 }

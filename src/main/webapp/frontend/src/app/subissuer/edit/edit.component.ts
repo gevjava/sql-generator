@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {EditService} from "./edit.service";
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-edit',
@@ -10,19 +11,29 @@ import {EditService} from "./edit.service";
 })
 export class EditComponent implements OnInit {
 
-  id:any;
+  code: any;
   subIssuerForm: any;
   filename: string = "";
   subIssuer: any;
+
   constructor(
     private service: EditService,
     private route: ActivatedRoute,
-    private formBuilder:FormBuilder ) { }
+    private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.code = this.route.snapshot.paramMap.get("code");
+    this.getByCode(this.code)
     this.initializeForm();
   }
+
+  getByCode(code:any) {
+    this.service.getByCodeSubissuer(code).subscribe(resposne => {
+      this.subIssuer = resposne;
+    });
+  }
+
 
   initializeForm() {
     this.subIssuerForm = this.formBuilder.group({
@@ -32,7 +43,7 @@ export class EditComponent implements OnInit {
       code: ['', Validators.required],
       codeSvi: ['', Validators.required],
       currencyCode: ['', Validators.required],
-      createdBy:['', Validators.required],
+      createdBy: ['', Validators.required],
       personnalDataStorage: [0, Validators.required],
       name: ['', Validators.required],
       authentMeans: ['', Validators.required],
@@ -40,11 +51,16 @@ export class EditComponent implements OnInit {
     });
   }
 
-  updateSubIssuerData(){
-     this.service.edit(this.subIssuerForm.value,this.id).subscribe(resposne => {console.log(resposne)});
+  updateSubIssuerData() {
+    this.service.edit(this.subIssuerForm.value, this.code).subscribe(response => {
+      console.log(response)
+    });
   }
 
-  downloadFile(){
 
+  downloadFile() {
+    this.service.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
+
+
 }

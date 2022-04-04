@@ -47,18 +47,9 @@ public class SubIssuerService {
         return subIssuerList;
     }
 
-    public String deleteById(Long id) {
-
-        String query = "DELETE FROM subissuer WHERE id ='" + id + "';";
-        pathGenerator(query);
-        subIssuerRepository.deleteById(id);
-        return FILE_NAME;
-    }
-
-    public SubIssuerDto findById(Long id) {
-        SubIssuer subIssuer = subIssuerRepository.getById(id);
-        SubIssuerDto subIssuerDto = SubissuerMapping.entityToDto(subIssuer);
-        return subIssuerDto;
+    public SubIssuerDto findByCode(String code) {
+        SubIssuer subIssuer = subIssuerRepository.findByCode(code);
+        return SubissuerMapping.entityToDto(subIssuer);
     }
 
 
@@ -68,9 +59,9 @@ public class SubIssuerService {
 
         String queryType = "INSERT INTO subissuer  ( acsId ,authenticationTimeOut," +
                 " defaultLanguage , code, codeSvi ," +
-                " currencyCode , name,  label , authenticationMeans )";
+                " currencyCode , name,  label , authentMeans )";
 
-        String queryValue = " \n  VALUES ('" +
+        String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
                 subIssuer.getAuthenticationTimeOut() + ", '" +
                 subIssuer.getDefaultLanguage() + "', '" +
@@ -90,24 +81,26 @@ public class SubIssuerService {
     }
 
     //TODO
-    public String generateUpdateSqlScript(String id, SubIssuerDto dto) {
+    public String generateUpdateSqlScript(String code, SubIssuerDto dto) {
+        SubIssuerDto subIssuer1 = findByCode(code);
+        // gtac u ekac dashtern hamematel vor dashty null a toxel dbic ekaci dashty vorn null chi veragrel
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
-        // SubIssuer s = subIssuerRepository.getById(subIssuer.getId());
-        // SubIssuer subIssuer2 = subIssuerRepository.getById(SubissuerMapping.dtoToEntity(dto).getId());
 
+          System.out.println(subIssuer.toString());
+          System.out.println(subIssuer1.toString());
 
         String queryUpdate = "UPDATE subissuer SET " +
-                "'acsId' = '" + subIssuer.getAcsId() + "', " +
-                "'authenticationTimeOut' = " + subIssuer.getAuthenticationTimeOut() + ", " +
-                "'defaultLanguage' = '" + subIssuer.getDefaultLanguage() + "', " +
-                "'code' = '" + subIssuer.getCode() + "', " +
-                "'codeSvi' = '" + subIssuer.getCodeSvi() + "', " +
-                "'currencyCode' = '" + subIssuer.getCurrencyCode() + "', " +
-                "'personnalDataStorage' = '" + subIssuer.getPersonnalDataStorage() + "', " +
-                "'name' = '" + subIssuer.getName() + "', " +
-                "'label' = '" + subIssuer.getLabel() + "', " +
-                "'authentMeans' = '" + subIssuer.getAuthentMeans() + "' " +
-                " WHERE `id` = `" + id + "`;";
+                "acsId = '" + dto.getAcsId() + "', " +
+                "authenticationTimeOut = " + dto.getAuthenticationTimeOut() + ", " +
+                "defaultLanguage = '" + dto.getDefaultLanguage() + "', " +
+                "code = " + dto.getCode() + ", " +
+                "codeSvi = " + dto.getCodeSvi() + ", " +
+                "currencyCode = " + dto.getCurrencyCode() + ", " +
+                "personnalDataStorage = '" + dto.getPersonnalDataStorage() + "', " +
+                "name = '" + dto.getName() + "', " +
+                "label = '" + dto.getLabel() + "', " +
+                "authentMeans = '" + dto.getAuthentMeans() + "' " +
+                " WHERE `code` = " + code + ";";
 
 
         pathGenerator(queryUpdate);
@@ -115,12 +108,10 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-    public String generateDeleteSqlScript(String id) {
+    public String generateDeleteSqlScript(String code) {
 
-        String queryDelete = "DELETE FROM subissuer WHERE id = " + id + ";";
-
-        pathGenerator(queryDelete);
-
+        String deleteQuery = "DELETE FROM subissuer WHERE code = " + code + ";";
+        pathGenerator(deleteQuery);
         return FILE_NAME;
     }
 
@@ -160,5 +151,15 @@ public class SubIssuerService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
+
+
+    public String deleteById(String code) {
+
+        String query = "DELETE FROM subissuer WHERE code ='" + code + "';";
+        pathGenerator(query);
+        subIssuerRepository.deleteByCode(code);
+        return FILE_NAME;
+    }
+
 
 }

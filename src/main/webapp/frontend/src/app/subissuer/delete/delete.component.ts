@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class DeleteComponent implements OnInit {
 
-  id:any;
+  code:any;
 
   constructor(
     private service:DeleteService,
@@ -17,11 +17,11 @@ export class DeleteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.paramMap.get("id");
+    this.code = this.router.snapshot.paramMap.get("code");
   }
 
   delete(){
-    this.service.deleteSubissuer(this.id).subscribe(resposne => {console.log(resposne)});
+    this.service.deleteSubissuer(this.code).subscribe(resposne => {console.log(resposne)});
   }
 
 }
