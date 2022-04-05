@@ -89,7 +89,8 @@
     <div class="row text-center mt-2">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL Script
+        <button type="submit" [disabled]="!subIssuerForm.valid"
+                class="btn btn-primary btn-block">Generate SQL Script
         </button>
       </div>
 
@@ -144,7 +145,7 @@
             <br>
             <br>
             <br>
-            <a routerLink="/subissuer/{{ subIssuer.code }}/delete" (click)="deleteSubissuerByCode(subIssuer.code)"
+            <a routerLink="/subissuer/{{ subIssuer.code }}/delete"
                class="btn btn-danger"> Delete</a>
           </td>
 

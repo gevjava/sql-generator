@@ -198,3 +198,12 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLang
   "authentMeans" : "REFUSAL",
   "validate" : true
 } ]'  WHERE `code` = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, personnalDataStorage = true, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE code = 00070;
+DELETE FROM subissuer WHERE code = 00070;
+DELETE FROM subissuer WHERE code = 00070;

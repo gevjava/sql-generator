@@ -100,7 +100,7 @@ public class SubIssuerService {
                 "name = '" + dto.getName() + "', " +
                 "label = '" + dto.getLabel() + "', " +
                 "authentMeans = '" + dto.getAuthentMeans() + "' " +
-                " WHERE `code` = " + code + ";";
+                " WHERE code = " + code + ";";
 
 
         pathGenerator(queryUpdate);

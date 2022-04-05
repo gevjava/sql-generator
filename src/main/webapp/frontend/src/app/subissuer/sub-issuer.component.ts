@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SubIssuerService} from "./subIssuer.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from 'file-saver';
-import {Subissuer} from "./subissuer";
-import {response} from "express";
 
 
 @Component({
@@ -17,7 +15,7 @@ export class SubIssuerComponent implements OnInit {
   subIssuers: any;
   subIssuerForm: any;
   filename: string = "";
-  private subIssuer: any;
+
 
   constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {
   }
@@ -25,24 +23,7 @@ export class SubIssuerComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.getAllSubIssuer();
-
   }
-
-  // TODO
-  reloadData() {
-    this.subIssuers = this.getAllSubIssuer()
-  }
-
-  deleteSubissuerByCode(code:string) {
-    this.subIssuerService.deleteById(code)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
-  }
-
 
   sendSubIssuerData() {
     console.log(this.subIssuerForm);
@@ -51,8 +32,6 @@ export class SubIssuerComponent implements OnInit {
       this.filename = response;
     })
   }
-
-
 
   initializeForm() {
     this.subIssuerForm = this.formBuilder.group({
@@ -75,7 +54,6 @@ export class SubIssuerComponent implements OnInit {
       this.subIssuers = subIssuers;
     });
   }
-
 
   downloadFile() {
     this.subIssuerService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));

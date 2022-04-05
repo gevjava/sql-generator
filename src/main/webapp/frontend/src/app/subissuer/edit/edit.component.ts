@@ -28,12 +28,19 @@ export class EditComponent implements OnInit {
     this.initializeForm();
   }
 
+  updateSubIssuerData() {
+    console.log(this.subIssuerForm);
+    let subIssuerData = this.subIssuerForm.value;
+    this.service.edit(subIssuerData, this.code).subscribe(response => {
+      this.filename = response;
+    });
+  }
+
   getByCode(code:any) {
     this.service.getByCodeSubissuer(code).subscribe(resposne => {
       this.subIssuer = resposne;
     });
   }
-
 
   initializeForm() {
     this.subIssuerForm = this.formBuilder.group({
@@ -50,15 +57,6 @@ export class EditComponent implements OnInit {
       label: ['', Validators.required]
     });
   }
-
-  updateSubIssuerData() {
-    console.log(this.subIssuerForm);
-    let subIssuerData = this.subIssuerForm.value;
-    this.service.edit(subIssuerData, this.code).subscribe(response => {
-      this.filename = response;
-    });
-  }
-
 
   downloadFile() {
     this.service.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
