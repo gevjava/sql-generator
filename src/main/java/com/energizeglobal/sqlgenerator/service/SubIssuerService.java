@@ -80,15 +80,8 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-
-    public String generateUpdateSqlScript(String code, SubIssuerDto dto) {
-        SubIssuerDto subIssuer1 = findByCode(code);
-        
-        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
-
-          System.out.println(subIssuer.toString());
-          System.out.println(subIssuer1.toString());
-
+    public String generateUpdateSqlScript( SubIssuerDto dto) {
+   
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + dto.getAcsId() + "', " +
                 "authenticationTimeOut = " + dto.getAuthenticationTimeOut() + ", " +
@@ -100,7 +93,7 @@ public class SubIssuerService {
                 "label = '" + dto.getLabel() + "', " +
                 "authentMeans = '" + dto.getAuthentMeans() + "', " +
                 "personnalDataStorage = " + dto.getPersonnalDataStorage() + " " +
-                " WHERE code = " + code + ";";
+                " WHERE code = " + dto.getCode() + ";";
 
 
         pathGenerator(queryUpdate);

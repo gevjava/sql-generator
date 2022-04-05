@@ -10,7 +10,7 @@ export class EditService {
 
 
   edit(subissuer:any,code:any){
-    return this.http.put('/subissuer/edit/'+code,subissuer,{responseType: 'text'});
+    return this.http.put('/subissuer/edit/',subissuer,{responseType: 'text'});
   }
 
   downloadSqlFile(filename: String) {

@@ -207,6 +207,23 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLang
 } ]'  WHERE code = 00070;
 DELETE FROM subissuer WHERE code = 00070;
 DELETE FROM subissuer WHERE code = 00070;
+
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'de', code = 12000, codeSvi = 12000, currencyCode = 978, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 12000;
 UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
   "authentMeans" : "OTP_SMS",
   "validate" : true
@@ -214,3 +231,166 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLang
   "authentMeans" : "REFUSAL",
   "validate" : true
 } ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'de', code = 16009, codeSvi = 16009, currencyCode = 978, name = 'SBK_Baden-Württemberg', label = 'SBK_Baden-Württemberg', authentMeans = '[ {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP_EXT",
+  "validate" : true
+}, {
+  "authentMeans" : "OTP_SMS_EXT_MESSAGE",
+  "validate" : true
+}, {
+  "authentMeans" : "EXT_PASSWORD",
+  "validate" : true
+}, {
+  "authentMeans" : "CHIP_TAN",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 16009;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLanguage = 'de', code = 18501, codeSvi = 18501, currencyCode = 978, name = 'Postbank EBK', label = 'Postbank EBK', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP_EXT",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : false
+}, {
+  "authentMeans" : "PASSWORD",
+  "validate" : false
+}, {
+  "authentMeans" : "OTP_SMS_EXT_MESSAGE",
+  "validate" : true
+}, {
+  "authentMeans" : "KBA",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 18501;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans , personnalDataStorage)  VALUES ('k', 0, 'k', 'k', 'k', 'k', 'k', 'k', 'k', false);
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi , currencyCode , name,  label , authentMeans , personnalDataStorage)  VALUES ('k', 0, 'y', 'o', 'l', 'a', 'y', 'y', 'y', true);
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00062, codeSvi = 00062, currencyCode = 978, name = 'East West Bank', label = 'East West Bank', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00062;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00006, codeSvi = 00006, currencyCode = 978, name = 'Bankard Credit', label = 'Bankard Credit', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00006;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'de', code = 12000, codeSvi = 12000, currencyCode = 978, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 12000;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = null  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 00070;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]', personnalDataStorage = true  WHERE code = 00070;

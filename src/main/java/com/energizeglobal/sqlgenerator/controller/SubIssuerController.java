@@ -41,9 +41,9 @@ public class SubIssuerController {
         return ResponseEntity.ok(filename);
     }
 
-    @PutMapping("/edit/{code}")
-    public ResponseEntity<String> updateSubissuer(@PathVariable("code") String code, @RequestBody SubIssuerDto subIssuerDto) {
-        String filename = subIssuerService.generateUpdateSqlScript(code, subIssuerDto);
+    @PutMapping("/edit")
+    public ResponseEntity<String> updateSubissuer( @RequestBody SubIssuerDto subIssuerDto) {
+        String filename = subIssuerService.generateUpdateSqlScript( subIssuerDto);
         return ResponseEntity.ok(filename);
     }
 
