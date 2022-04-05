@@ -80,10 +80,10 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-    //TODO
+
     public String generateUpdateSqlScript(String code, SubIssuerDto dto) {
         SubIssuerDto subIssuer1 = findByCode(code);
-        // gtac u ekac dashtern hamematel vor dashty null a toxel dbic ekaci dashty vorn null chi veragrel
+        
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
           System.out.println(subIssuer.toString());
@@ -96,10 +96,10 @@ public class SubIssuerService {
                 "code = " + dto.getCode() + ", " +
                 "codeSvi = " + dto.getCodeSvi() + ", " +
                 "currencyCode = " + dto.getCurrencyCode() + ", " +
-                "personnalDataStorage = " + dto.getPersonnalDataStorage() + ", " +
                 "name = '" + dto.getName() + "', " +
                 "label = '" + dto.getLabel() + "', " +
-                "authentMeans = '" + dto.getAuthentMeans() + "' " +
+                "authentMeans = '" + dto.getAuthentMeans() + "', " +
+                "personnalDataStorage = " + dto.getPersonnalDataStorage() + " " +
                 " WHERE code = " + code + ";";
 
 
