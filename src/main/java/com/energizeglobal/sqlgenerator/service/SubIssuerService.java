@@ -13,8 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.core.io.Resource;
@@ -80,23 +82,35 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-    public String generateUpdateSqlScript( SubIssuerDto dto) {
-   
-        String queryUpdate = "UPDATE subissuer SET " +
-                "acsId = '" + dto.getAcsId() + "', " +
-                "authenticationTimeOut = " + dto.getAuthenticationTimeOut() + ", " +
-                "defaultLanguage = '" + dto.getDefaultLanguage() + "', " +
-                "code = " + dto.getCode() + ", " +
-                "codeSvi = " + dto.getCodeSvi() + ", " +
-                "currencyCode = " + dto.getCurrencyCode() + ", " +
-                "name = '" + dto.getName() + "', " +
-                "label = '" + dto.getLabel() + "', " +
-                "authentMeans = '" + dto.getAuthentMeans() + "', " +
-                "personnalDataStorage = " + dto.getPersonnalDataStorage() + " " +
-                " WHERE code = " + dto.getCode() + ";";
+    public String generateUpdateSqlScript( SubIssuerDto subIssuerDto) {
 
+        SubIssuerDto dto = findByCode(subIssuerDto.getCode());
+        
+        if (dto == null){
+            try {
+                throw new ChangeSetPersister.NotFoundException();
+            } catch (ChangeSetPersister.NotFoundException e) {
+                e.printStackTrace();
+            }
 
-        pathGenerator(queryUpdate);
+        }else {
+
+            String queryUpdate = "UPDATE subissuer SET " +
+                    "acsId = '" + subIssuerDto.getAcsId() + "', " +
+                    "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
+                    "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
+                    "code = " + subIssuerDto.getCode() + ", " +
+                    "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
+                    "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
+                    "name = '" + subIssuerDto.getName() + "', " +
+                    "label = '" + subIssuerDto.getLabel() + "', " +
+                    "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
+                    "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + " " +
+                    " WHERE code = " + subIssuerDto.getCode() + ";";
+
+            pathGenerator(queryUpdate);
+
+        }
 
         return FILE_NAME;
     }
