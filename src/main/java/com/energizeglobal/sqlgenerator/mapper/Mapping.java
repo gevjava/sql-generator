@@ -11,28 +11,23 @@ import java.util.stream.Collectors;
 @Component
 public class Mapping {
 
-  final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-  public Mapping(ModelMapper modelMapper) {
-    this.modelMapper = modelMapper;
-  }
+    public Mapping(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
-  public CryptoConfigDTO convertToDto(CryptoConfig cryptoConfig) {
+    public <E, D> D convertToDto(E entity, Class<D> dto) {
+        return modelMapper.map(entity, dto);
+    }
 
-    CryptoConfigDTO cryptoConfigDTO = modelMapper.map(cryptoConfig, CryptoConfigDTO.class);
-    System.out.println(cryptoConfigDTO);
+    public <D, E> E convertToEntity(D dto, Class<E> entity) {
+        return modelMapper.map(dto, entity);
+    }
 
-    return cryptoConfigDTO;
-  }
-
-  public CryptoConfig convertToEntity(CryptoConfigDTO cryptoConfigDTO) {
-
-    return modelMapper.map(cryptoConfigDTO, CryptoConfig.class);
-  }
-
-  public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
-    return source.stream()
-        .map(element -> modelMapper.map(element, targetClass))
-        .collect(Collectors.toList());
-  }
+    public <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+        return source.stream()
+                .map(element -> modelMapper.map(element, targetClass))
+                .collect(Collectors.toList());
+    }
 }

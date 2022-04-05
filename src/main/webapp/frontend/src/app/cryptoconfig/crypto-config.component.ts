@@ -78,13 +78,10 @@ export class CryptoConfigComponent implements OnInit {
   }
 
   deleteById(id: number) {
-    this.cryptoConfigService.deleteById(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
+    this.cryptoConfigService.deleteById(id).subscribe(response => {
+      this.filename = response;
+      this.reloadData();
+    });
   }
 
   sendCryptoConfigData() {
