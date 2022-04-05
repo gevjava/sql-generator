@@ -143,3 +143,58 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLang
   "authentMeans" : "MOBILE_APP",
   "validate" : true
 } ]'  WHERE `code` = 12000;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = '', code = 12000, codeSvi = 12000, currencyCode = 978, personnalDataStorage = null, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]'  WHERE `code` = 12000;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = '', code = 12000, codeSvi = 12000, currencyCode = 978, personnalDataStorage = null, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]'  WHERE `code` = 12000;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = '', code = 12000, codeSvi = 12000, currencyCode = 978, personnalDataStorage = null, name = 'ReiseBank', label = 'ReiseBankLabel', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : false
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "UNDEFINED",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+} ]'  WHERE `code` = 12000;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 300, defaultLanguage = 'en', code = 00070, codeSvi = 00070, currencyCode = 702, personnalDataStorage = null, name = 'China Bank Corporation', label = 'China Bank Corporation', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+} ]'  WHERE `code` = 00070;

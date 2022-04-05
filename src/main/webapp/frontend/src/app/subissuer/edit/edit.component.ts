@@ -52,8 +52,10 @@ export class EditComponent implements OnInit {
   }
 
   updateSubIssuerData() {
-    this.service.edit(this.subIssuerForm.value, this.code).subscribe(response => {
-      console.log(response)
+    console.log(this.subIssuerForm);
+    let subIssuerData = this.subIssuerForm.value;
+    this.service.edit(subIssuerData, this.code).subscribe(response => {
+      this.filename = response;
     });
   }
 

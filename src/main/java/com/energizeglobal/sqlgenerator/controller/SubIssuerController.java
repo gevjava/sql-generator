@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/subissuer")
 public class SubIssuerController {
+
     private final Logger log = LoggerFactory.getLogger(SubIssuerController.class);
 
     private final SubIssuerService subIssuerService;
@@ -30,10 +31,9 @@ public class SubIssuerController {
 
     @GetMapping("/{code}")
     public ResponseEntity<SubIssuerDto> getByCodeSubIssuer(@PathVariable("code") String code) {
-        SubIssuerDto subIssuer = subIssuerService.findByCode(code);
-        return ResponseEntity.ok(subIssuer);
+        SubIssuerDto subIssuerDto = subIssuerService.findByCode(code);
+        return ResponseEntity.ok(subIssuerDto);
     }
-
 
     @PostMapping
     public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO) {
