@@ -30,6 +30,7 @@
           <label for="code">Code</label>
           <input type="text" id="code" formControlName="code" class="form-control">
         </div>
+
         <div class="form-group">
           <label for="codeSvi">CodeSvi</label>
           <input type="text" id="codeSvi" formControlName="codeSvi" class="form-control">
@@ -41,8 +42,8 @@
         </div>
 
         <div class="form-group">
-          <label for="createdBy">CreatedBy</label>
-          <input type="text" id="createdBy" formControlName="createdBy" class="form-control">
+          <label for="authentMeans">AuthentMeans</label>
+          <input type="text" id="authentMeans" formControlName="authentMeans" class="form-control">
         </div>
 
         <div class="form-group">
@@ -56,10 +57,6 @@
           <input type="text" id="label" formControlName="label" class="form-control">
         </div>
 
-        <div class="form-group">
-          <label for="authentMeans">AuthentMeans</label>
-          <input type="text" id="authentMeans" formControlName="authentMeans" class="form-control">
-        </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
@@ -74,6 +71,22 @@
             </div>
             <label class="form-check-label" style="margin-left: 15px;"
                    for="personnalDataStorage">PersonalDataStorage</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="resetBackupsIfSuccess"
+                id="resetBackupsIfSuccess">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
           </div>
         </div>
 
@@ -119,10 +132,11 @@
           <th scope="col">Code</th>
           <th scope="col">CodeSvi</th>
           <th scope="col">CurrencyCode</th>
-          <th scope="col">Name</th>
           <th scope="col">AuthentMeans</th>
+          <th scope="col">Name</th>
           <th scope="col">Label</th>
           <th scope="col">PersonnalDataStorage</th>
+          <th scope="col">ResetBackupsIfSuccess</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -135,10 +149,11 @@
           <td>{{ subIssuer.code }}</td>
           <td>{{ subIssuer.codeSvi }}</td>
           <td>{{ subIssuer.currencyCode }}</td>
-          <td>{{ subIssuer.name }}</td>
           <td>{{ subIssuer.authentMeans }}</td>
+          <td>{{ subIssuer.name }}</td>
           <td>{{ subIssuer.label }}</td>
           <td>{{ subIssuer.personnalDataStorage }}</td>
+          <td>{{ subIssuer.resetBackupsIfSuccess }}</td>
           <td>
             <a routerLink="/subissuer/{{ subIssuer.code }}/edit"
                class="btn btn-primary"> Update</a>

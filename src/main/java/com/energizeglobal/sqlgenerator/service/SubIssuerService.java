@@ -59,9 +59,18 @@ public class SubIssuerService {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
-        String queryType = "INSERT INTO subissuer  ( acsId ,authenticationTimeOut," +
-                " defaultLanguage , code, codeSvi ," +
-                " currencyCode , name,  label , authentMeans , personnalDataStorage)";
+        String queryType = "INSERT INTO subissuer  ( " +
+                "acsId ," +
+                "authenticationTimeOut," +
+                " defaultLanguage , " +
+                "code, " +
+                "codeSvi ," +
+                "currencyCode , " +
+                "authentMeans , " +
+                "name,  " +
+                "label , " +
+                "personnalDataStorage, " +
+                "resetBackupsIfSuccess)";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -73,7 +82,8 @@ public class SubIssuerService {
                 subIssuer.getAuthentMeans() + "', '" +
                 subIssuer.getName() + "', '" +
                 subIssuer.getLabel() + "', " +
-                subIssuer.getPersonnalDataStorage() + ");";
+                subIssuer.getPersonnalDataStorage() + ", " +
+                subIssuer.getResetBackupsIfSuccess() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -82,43 +92,45 @@ public class SubIssuerService {
         return FILE_NAME;
     }
 
-    public String generateUpdateSqlScript( SubIssuerDto subIssuerDto) {
+    public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
 
-        SubIssuerDto dto = findByCode(subIssuerDto.getCode());
-        
-        if (dto == null){
-            try {
-                throw new ChangeSetPersister.NotFoundException();
-            } catch (ChangeSetPersister.NotFoundException e) {
-                e.printStackTrace();
-            }
+        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
+        String queryUpdate = "UPDATE subissuer SET " +
+                "acsId = '" + subIssuerDto.getAcsId() + "', " +
+                "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
+                "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
+                "code = " + subIssuerDto.getCode() + ", " +
+                "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
+                "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
+                "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
+                "name = '" + subIssuerDto.getName() + "', " +
+                "label = '" + subIssuerDto.getLabel() + "', " +
+                "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + " " +
+                "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + " " +
+                " WHERE code = " + subIssuerDto.getCode() + ";";
+        pathGenerator(queryUpdate);
 
-        }else {
-
-            String queryUpdate = "UPDATE subissuer SET " +
-                    "acsId = '" + subIssuerDto.getAcsId() + "', " +
-                    "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
-                    "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
-                    "code = " + subIssuerDto.getCode() + ", " +
-                    "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
-                    "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
-                    "name = '" + subIssuerDto.getName() + "', " +
-                    "label = '" + subIssuerDto.getLabel() + "', " +
-                    "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
-                    "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + " " +
-                    " WHERE code = " + subIssuerDto.getCode() + ";";
-
-            pathGenerator(queryUpdate);
-
-        }
+        System.out.println(subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
+                subIssuer.getAcsId(),
+                subIssuer.getAuthenticationTimeOut(),
+                subIssuer.getDefaultLanguage(),
+                subIssuer.getCodeSvi(),
+                subIssuer.getCurrencyCode(),
+                subIssuer.getAuthentMeans(),
+                subIssuer.getName(),
+                subIssuer.getLabel(),
+                subIssuer.getPersonnalDataStorage(),
+                subIssuer.getResetBackupsIfSuccess()));
 
         return FILE_NAME;
     }
+
 
     public String generateDeleteSqlScript(String code) {
 
         String deleteQuery = "DELETE FROM subissuer WHERE code = " + code + ";";
         pathGenerator(deleteQuery);
+        subIssuerRepository.deleteByCode(code);
         return FILE_NAME;
     }
 
@@ -158,15 +170,5 @@ public class SubIssuerService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
-
-
-    public String deleteById(String code) {
-
-        String query = "DELETE FROM subissuer WHERE code ='" + code + "';";
-        pathGenerator(query);
-        subIssuerRepository.deleteByCode(code);
-        return FILE_NAME;
-    }
-
 
 }

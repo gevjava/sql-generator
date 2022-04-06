@@ -47,14 +47,13 @@ export class EditComponent implements OnInit {
       acsId: ['', Validators.required],
       authenticationTimeOut: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       defaultLanguage: ['', Validators.required],
-      code: ['', Validators.required],
       codeSvi: ['', Validators.required],
       currencyCode: ['', Validators.required],
-      createdBy: ['', Validators.required],
-      personnalDataStorage: [0, Validators.required],
       name: ['', Validators.required],
       authentMeans: ['', Validators.required],
-      label: ['', Validators.required]
+      label: ['', Validators.required],
+      personnalDataStorage: [0, Validators.required],
+      code: ['', Validators.required]
     });
   }
 

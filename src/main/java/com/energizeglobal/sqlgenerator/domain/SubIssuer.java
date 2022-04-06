@@ -1,6 +1,5 @@
 package com.energizeglobal.sqlgenerator.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 
@@ -15,19 +14,22 @@ public class SubIssuer {
     private long id;
 
     @Column
-    String name;
+    private String name;
 
     @Column(name = "code")
-    String code;
+    private String code;
+
+    @Column(name = "createdBy")
+    private String createdBy;
 
     @Column(name = "authentMeans")
-    String authentMeans;
+    private String authentMeans;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
     private Issuer issuer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
     @JsonIgnore
     private CryptoConfig cryptoConfigEntity;
@@ -51,46 +53,20 @@ public class SubIssuer {
     private String label;
 
     @Column(columnDefinition = "BIT", length = 1)
+    private boolean resetBackupsIfSuccess;
+
+    @Column(columnDefinition = "BIT", length = 1)
     private Boolean personnalDataStorage;
 
     public SubIssuer() {
     }
 
-    @Query("SELECT i FROM subissuer i WHERE i.id = ?1")
-    Issuer getsubIssuerById(long id) {
-        return null;
-    }
-
-    public String getAcsId() {
-        return acsId;
-    }
-
-    public void setAcsId(String acsId) {
-        this.acsId = acsId;
-    }
-
-    public Issuer getIssuer() {
-        return issuer;
-    }
-
-    public void setIssuer(Issuer issuer) {
-        this.issuer = issuer;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {
@@ -101,6 +77,22 @@ public class SubIssuer {
         this.name = name;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public String getAuthentMeans() {
         return authentMeans;
     }
@@ -109,8 +101,12 @@ public class SubIssuer {
         this.authentMeans = authentMeans;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Issuer getIssuer() {
+        return issuer;
+    }
+
+    public void setIssuer(Issuer issuer) {
+        this.issuer = issuer;
     }
 
     public CryptoConfig getCryptoConfigEntity() {
@@ -121,12 +117,28 @@ public class SubIssuer {
         this.cryptoConfigEntity = cryptoConfigEntity;
     }
 
-    public String getLabel() {
-        return label;
+    public String getAcsId() {
+        return acsId;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setAcsId(String acsId) {
+        this.acsId = acsId;
+    }
+
+    public Integer getAuthenticationTimeOut() {
+        return authenticationTimeOut;
+    }
+
+    public void setAuthenticationTimeOut(Integer authenticationTimeOut) {
+        this.authenticationTimeOut = authenticationTimeOut;
+    }
+
+    public String getDefaultLanguage() {
+        return defaultLanguage;
+    }
+
+    public void setDefaultLanguage(String defaultLanguage) {
+        this.defaultLanguage = defaultLanguage;
     }
 
     public String getCodeSvi() {
@@ -137,24 +149,6 @@ public class SubIssuer {
         this.codeSvi = codeSvi;
     }
 
-
-    public String getDefaultLanguage() {
-        return defaultLanguage;
-    }
-
-    public void setDefaultLanguage(String defaultLanguage) {
-        this.defaultLanguage = defaultLanguage;
-    }
-
-
-    public Integer getAuthenticationTimeOut() {
-        return authenticationTimeOut;
-    }
-
-    public void setAuthenticationTimeOut(Integer authenticationTimeOut) {
-        this.authenticationTimeOut = authenticationTimeOut;
-    }
-
     public String getCurrencyCode() {
         return currencyCode;
     }
@@ -163,6 +157,13 @@ public class SubIssuer {
         this.currencyCode = currencyCode;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 
     public Boolean getPersonnalDataStorage() {
         return personnalDataStorage;
@@ -170,6 +171,14 @@ public class SubIssuer {
 
     public void setPersonnalDataStorage(Boolean personnalDataStorage) {
         this.personnalDataStorage = personnalDataStorage;
+    }
+
+    public boolean getResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
+        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
     }
 
     @Override

@@ -17,6 +17,7 @@ public class SubissuerMapping {
         subIssuer.setName(subIssuerDto.getName());
         subIssuer.setAuthentMeans(subIssuerDto.getAuthentMeans());
         subIssuer.setLabel(subIssuerDto.getLabel());
+        subIssuer.setResetBackupsIfSuccess(subIssuerDto.getResetBackupsIfSuccess());
 
         return subIssuer;
     }
@@ -33,6 +34,7 @@ public class SubissuerMapping {
         subIssuerDto.setName(subIssuer.getName());
         subIssuerDto.setAuthentMeans(subIssuer.getAuthentMeans());
         subIssuerDto.setLabel(subIssuer.getLabel());
+        subIssuerDto.setResetBackupsIfSuccess(subIssuer.getResetBackupsIfSuccess());
 
         return subIssuerDto;
     }

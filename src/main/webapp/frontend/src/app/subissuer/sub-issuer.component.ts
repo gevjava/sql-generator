@@ -23,6 +23,7 @@ export class SubIssuerComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.getAllSubIssuer();
+
   }
 
   sendSubIssuerData() {
@@ -38,14 +39,14 @@ export class SubIssuerComponent implements OnInit {
       acsId: ['', Validators.required],
       authenticationTimeOut: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       defaultLanguage: ['', Validators.required],
-      code: ['', Validators.required],
-      codeSvi: ['', Validators.required],
-      currencyCode: ['', Validators.required],
-      createdBy:['', Validators.required],
-      personnalDataStorage: [0, Validators.required],
+      code: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
       name: ['', Validators.required],
       authentMeans: ['', Validators.required],
-      label: ['', Validators.required]
+      codeSvi: ['', Validators.required],
+      currencyCode: ['', Validators.required],
+      label: ['', Validators.required],
+      personnalDataStorage: [0, Validators.required],
+      resetBackupsIfSuccess: [0, Validators.required]
     });
   }
 
@@ -54,6 +55,7 @@ export class SubIssuerComponent implements OnInit {
       this.subIssuers = subIssuers;
     });
   }
+
 
   downloadFile() {
     this.subIssuerService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));

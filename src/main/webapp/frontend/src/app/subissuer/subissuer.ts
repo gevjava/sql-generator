@@ -3,12 +3,13 @@ export interface Subissuer {
   acsId: string ;
   authenticationTimeOut: number;
   defaultLanguage: string ;
+  code: string;
   codeSvi: string ;
   currencyCode: string ;
-  createdBy: string ;
-  personnalDataStorage: boolean ;
-  name: string;
-  code: string ;
   authentMeans: string ;
+  name: string;
   label: string ;
+  personnalDataStorage: boolean ;
+  resetBackupsIfSuccess: boolean;
 }
+

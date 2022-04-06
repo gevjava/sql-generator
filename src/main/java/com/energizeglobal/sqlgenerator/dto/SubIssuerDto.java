@@ -12,6 +12,7 @@ public class SubIssuerDto {
     String authentMeans;
     String label;
     Boolean personnalDataStorage;
+    Boolean resetBackupsIfSuccess;
 
     public String getAcsId() {
         return acsId;
@@ -20,7 +21,6 @@ public class SubIssuerDto {
     public void setAcsId(String acsId) {
         this.acsId = acsId;
     }
-
 
 
     public Integer getAuthenticationTimeOut() {
@@ -93,6 +93,14 @@ public class SubIssuerDto {
 
     public void setPersonnalDataStorage(Boolean personnalDataStorage) {
         this.personnalDataStorage = personnalDataStorage;
+    }
+
+    public Boolean getResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public void setResetBackupsIfSuccess(Boolean resetBackupsIfSuccess) {
+        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
     }
 
     @Override
