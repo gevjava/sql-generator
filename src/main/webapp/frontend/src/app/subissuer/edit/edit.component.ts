@@ -42,24 +42,24 @@ export class EditComponent implements OnInit {
     });
   }
 
+
   initializeForm() {
     this.subIssuerForm = this.formBuilder.group({
       acsId: ['', Validators.required],
       authenticationTimeOut: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       defaultLanguage: ['', Validators.required],
-      codeSvi: ['', Validators.required],
-      currencyCode: ['', Validators.required],
+      code: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
       name: ['', Validators.required],
       authentMeans: ['', Validators.required],
+      codeSvi: ['', Validators.required],
+      currencyCode: ['', Validators.required],
       label: ['', Validators.required],
       personnalDataStorage: [0, Validators.required],
-      code: ['', Validators.required]
+      resetBackupsIfSuccess: [0, Validators.required]
     });
   }
-
   downloadFile() {
     this.service.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
-
 
 }

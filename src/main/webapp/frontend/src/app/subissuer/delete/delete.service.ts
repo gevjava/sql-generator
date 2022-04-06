@@ -8,7 +8,16 @@ export class DeleteService {
 
   constructor(private http:HttpClient) { }
 
-  deleteSubissuer(code:any){
-    return this.http.delete("/subissuer/delete/"+code);
+  deleteSubissuer(subissuer:any,code:any){
+    return this.http.delete("/subissuer/delete/"+code, {responseType: 'text'});
   }
+
+  downloadSqlFile(filename: String) {
+    return this.http.get('/subissuer/script/download/' + filename, {responseType: 'blob'});
+  }
+
+  getByCodeSubissuer(code:any){
+    return this.http.get('/subissuer/'+code);
+  }
+
 }

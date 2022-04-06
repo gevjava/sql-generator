@@ -1,27 +1,22 @@
 package com.energizeglobal.sqlgenerator.service;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import net.bytebuddy.implementation.bytecode.Throw;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -128,9 +123,13 @@ public class SubIssuerService {
 
     public String generateDeleteSqlScript(String code) {
 
-        String deleteQuery = "DELETE FROM subissuer WHERE code = " + code + ";";
+        String deleteQuery = "\nSTART TRANSACTION; \n" +
+                             "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                             "DELETE FROM subissuer WHERE code = " + code + ";\n" +
+                             "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                             "COMMIT;";
         pathGenerator(deleteQuery);
-        subIssuerRepository.deleteByCode(code);
+      // TODO  subIssuerRepository.deleteByCode(code);
         return FILE_NAME;
     }
 
