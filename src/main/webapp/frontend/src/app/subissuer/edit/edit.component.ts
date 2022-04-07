@@ -48,14 +48,18 @@ export class EditComponent implements OnInit {
       acsId: ['', Validators.required],
       authenticationTimeOut: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       defaultLanguage: ['', Validators.required],
-      code: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
+      code: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       name: ['', Validators.required],
       authentMeans: ['', Validators.required],
       codeSvi: ['', Validators.required],
       currencyCode: ['', Validators.required],
       label: ['', Validators.required],
       personnalDataStorage: [0, Validators.required],
-      resetBackupsIfSuccess: [0, Validators.required]
+      resetBackupsIfSuccess: [0, Validators.required],
+      resetChoicesIfSuccess: [0, Validators.required],
+      manageBackupsCombinedAmounts: [0, Validators.required],
+      manageChoicesCombinedAmounts: [0, Validators.required],
+      hubMaintenanceModeEnabled: [0, Validators.required]
     });
   }
   downloadFile() {

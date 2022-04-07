@@ -23,12 +23,12 @@
 
         <div class="form-group">
           <label for="defaultLanguage">DefaultLanguage</label>
-          <input type="text" id="defaultLanguage" formControlName="defaultLanguage" class="form-control">
+          <input type="text" id="defaultLanguage" formControlName="defaultLanguage" class="form-control" >
         </div>
 
         <div class="form-group">
           <label for="code">Code</label>
-          <input type="text" id="code" formControlName="code" class="form-control">
+          <input type="number" id="code" formControlName="code" class="form-control">
         </div>
 
         <div class="form-group">
@@ -41,22 +41,22 @@
           <input type="text" id="currencyCode" formControlName="currencyCode" class="form-control">
         </div>
 
-        <div class="form-group">
-          <label for="authentMeans">AuthentMeans</label>
-          <input type="text" id="authentMeans" formControlName="authentMeans" class="form-control">
-        </div>
+
 
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" formControlName="name" class="form-control">
         </div>
 
-
         <div class="form-group">
           <label for="label">Label</label>
           <input type="text" id="label" formControlName="label" class="form-control">
         </div>
 
+        <div class="form-group">
+          <label for="authentMeans">AuthentMeans</label>
+          <input type="text" id="authentMeans" formControlName="authentMeans" class="form-control">
+        </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
@@ -73,7 +73,6 @@
                    for="personnalDataStorage">PersonalDataStorage</label>
           </div>
         </div>
-
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
@@ -90,13 +89,76 @@
           </div>
         </div>
 
-      </div>
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
 
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="resetChoicesIfSuccess"
+                id="resetChoicesIfSuccess">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="manageBackupsCombinedAmounts"
+                id="manageBackupsCombinedAmounts">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="manageChoicesCombinedAmounts"
+                id="manageChoicesCombinedAmounts">
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="hubMaintenanceModeEnabled"
+                id="hubMaintenanceModeEnabled">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
+          </div>
+        </div>
+
+      </div>
 
       <div class="col-md-4"></div>
 
     </div>
   </div>
+
 
   <div class="container">
     <div class="row text-center mt-2">
@@ -126,17 +188,58 @@
         <thead>
         <tr>
           <th scope="col">Id</th>
+
           <th scope="col">AcsId</th>
-          <th scope="col">AuthenticationTimeOut</th>
-          <th scope="col">DefaultLanguage</th>
+          <th scope="col">
+            Authentication
+            Time
+            Out
+          </th>
+          <th scope="col">
+            Default
+            Language
+          </th>
           <th scope="col">Code</th>
           <th scope="col">CodeSvi</th>
           <th scope="col">CurrencyCode</th>
-          <th scope="col">AuthentMeans</th>
           <th scope="col">Name</th>
           <th scope="col">Label</th>
-          <th scope="col">PersonnalDataStorage</th>
-          <th scope="col">ResetBackupsIfSuccess</th>
+          <th scope="col">AuthentMeans</th>
+          <th scope="col">
+            Personal
+            Data
+            Storage
+          </th>
+          <th scope="col">
+            Reset
+            Backups
+            If
+            Success
+          </th>
+          <th scope="col">
+            Reset
+            Choices
+            If
+            Success
+          </th>
+          <th scope="col">
+            Manage
+            Backups
+            Combined
+            Amounts
+          </th>
+          <th scope="col">
+            Manage
+            Choices
+            Combined
+            Amounts
+          </th>
+          <th scope="col">
+            Hub
+            Maintenance
+            Mode
+            Enabled
+          </th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -149,11 +252,15 @@
           <td>{{ subIssuer.code }}</td>
           <td>{{ subIssuer.codeSvi }}</td>
           <td>{{ subIssuer.currencyCode }}</td>
-          <td>{{ subIssuer.authentMeans }}</td>
           <td>{{ subIssuer.name }}</td>
           <td>{{ subIssuer.label }}</td>
+          <td>{{ subIssuer.authentMeans }}</td>
           <td>{{ subIssuer.personnalDataStorage }}</td>
           <td>{{ subIssuer.resetBackupsIfSuccess }}</td>
+          <td>{{ subIssuer.resetChoicesIfSuccess }}</td>
+          <td>{{ subIssuer.manageBackupsCombinedAmounts }}</td>
+          <td>{{ subIssuer.manageChoicesCombinedAmounts }}</td>
+          <td>{{ subIssuer.hubMaintenanceModeEnabled }}</td>
           <td>
             <a routerLink="/subissuer/{{ subIssuer.code }}/edit"
                class="btn btn-primary"> Update</a>

@@ -13,6 +13,10 @@ public class SubIssuerDto {
     String label;
     Boolean personnalDataStorage;
     Boolean resetBackupsIfSuccess;
+    Boolean resetChoicesIfSuccess;
+    Boolean manageBackupsCombinedAmounts;
+    Boolean manageChoicesCombinedAmounts;
+    Boolean hubMaintenanceModeEnabled;
 
     public String getAcsId() {
         return acsId;
@@ -101,6 +105,38 @@ public class SubIssuerDto {
 
     public void setResetBackupsIfSuccess(Boolean resetBackupsIfSuccess) {
         this.resetBackupsIfSuccess = resetBackupsIfSuccess;
+    }
+
+    public Boolean getResetChoicesIfSuccess() {
+        return resetChoicesIfSuccess;
+    }
+
+    public void setResetChoicesIfSuccess(Boolean resetChoicesIfSuccess) {
+        this.resetChoicesIfSuccess = resetChoicesIfSuccess;
+    }
+
+    public Boolean getManageBackupsCombinedAmounts() {
+        return manageBackupsCombinedAmounts;
+    }
+
+    public void setManageBackupsCombinedAmounts(Boolean manageBackupsCombinedAmounts) {
+        this.manageBackupsCombinedAmounts = manageBackupsCombinedAmounts;
+    }
+
+    public Boolean getManageChoicesCombinedAmounts() {
+        return manageChoicesCombinedAmounts;
+    }
+
+    public void setManageChoicesCombinedAmounts(Boolean manageChoicesCombinedAmounts) {
+        this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
+    }
+
+    public Boolean getHubMaintenanceModeEnabled() {
+        return hubMaintenanceModeEnabled;
+    }
+
+    public void setHubMaintenanceModeEnabled(Boolean hubMaintenanceModeEnabled) {
+        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
 
     @Override

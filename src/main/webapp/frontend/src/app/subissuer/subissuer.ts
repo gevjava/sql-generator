@@ -1,15 +1,19 @@
 export interface Subissuer {
 
-  acsId: string ;
+  acsId: string;
   authenticationTimeOut: number;
-  defaultLanguage: string ;
+  defaultLanguage: string;
   code: string;
-  codeSvi: string ;
-  currencyCode: string ;
-  authentMeans: string ;
+  codeSvi: string;
+  currencyCode: string;
+  authentMeans: string;
   name: string;
-  label: string ;
-  personnalDataStorage: boolean ;
+  label: string;
+  personnalDataStorage: boolean;
   resetBackupsIfSuccess: boolean;
+  resetChoicesIfSuccess: boolean;
+  manageBackupsCombinedAmounts: boolean;
+  manageChoicesCombinedAmounts: boolean;
+  hubMaintenanceModeEnabled: boolean;
 }
 

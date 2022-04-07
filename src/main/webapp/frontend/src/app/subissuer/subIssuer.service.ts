@@ -10,12 +10,13 @@ export class SubIssuerService {
   constructor(private http: HttpClient) {
   }
 
-  getAllSubIssuer(){
+  getAllSubIssuer() {
     return this.http.get('/subissuer');
   }
 
   sendData(subIssuerData: Subissuer) {
-    return this.http.post('/subissuer', subIssuerData, {responseType: 'text'});
+     return this.http.post('/subissuer', subIssuerData, {responseType: 'text'});
+
   }
 
   downloadSqlFile(filename: String) {
@@ -33,7 +34,8 @@ export class SubIssuerService {
 
     return this.http.post(
       '/subissuer',
-      JSON.stringify({ acsId: subIssuer.acsId ,
+      JSON.stringify({
+        acsId: subIssuer.acsId,
         authenticationTimeOut: subIssuer.authenticationTimeOut,
         defaultLanguage: subIssuer.defaultLanguage,
         code: subIssuer.code,
@@ -43,7 +45,13 @@ export class SubIssuerService {
         authentMeans: subIssuer.authentMeans,
         personnalDataStorage: subIssuer.personnalDataStorage,
         resetBackupsIfSuccess: subIssuer.resetBackupsIfSuccess,
-        label:subIssuer.label}),
+        label: subIssuer.label,
+        resetChoicesIfSuccess: subIssuer.resetChoicesIfSuccess,
+        manageBackupsCombinedAmounts: subIssuer.manageBackupsCombinedAmounts,
+        manageChoicesCombinedAmounts: subIssuer.manageChoicesCombinedAmounts,
+        hubMaintenanceModeEnabled: subIssuer.hubMaintenanceModeEnabled
+      }),
+
       httpOptions
     );
   }

@@ -27,6 +27,11 @@
         </div>
 
         <div class="form-group">
+          <label for="code">Code</label>
+          <input type="text" ngModel="{{subIssuer?.code}}" readonly id="code" formControlName="code" class="form-control">
+        </div>
+
+        <div class="form-group">
           <label for="codeSvi">CodeSvi</label>
           <input type="text" ngModel="{{subIssuer?.codeSvi}}" id="codeSvi" formControlName="codeSvi" class="form-control">
         </div>
@@ -81,6 +86,73 @@
             </div>
             <label class="form-check-label" style="margin-left: 15px;"
                    for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="resetChoicesIfSuccess"
+                ngModel="{{subIssuer?.resetChoicesIfSuccess}}"
+                id="resetChoicesIfSuccess">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="manageBackupsCombinedAmounts"
+                ngModel="{{subIssuer?.manageBackupsCombinedAmounts}}"
+                id="manageBackupsCombinedAmounts">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="manageChoicesCombinedAmounts"
+                ngModel="{{subIssuer?.manageChoicesCombinedAmounts}}"
+                id="manageChoicesCombinedAmounts">
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group mb-3" style="margin-top: 15px;">
+            <div class="input-group-prepend">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="hubMaintenanceModeEnabled"
+                ngModel="{{subIssuer?.hubMaintenanceModeEnabled}}"
+                id="hubMaintenanceModeEnabled">
+
+            </div>
+            <label class="form-check-label" style="margin-left: 15px;"
+                   for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
           </div>
         </div>
 

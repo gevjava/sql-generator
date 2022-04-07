@@ -58,6 +58,18 @@ public class SubIssuer {
     @Column(columnDefinition = "BIT", length = 1)
     private Boolean personnalDataStorage;
 
+    @Column(columnDefinition = "BIT", length = 1)
+    private boolean resetChoicesIfSuccess;
+
+    @Column(columnDefinition = "BIT", length = 1)
+    private boolean manageBackupsCombinedAmounts;
+
+    @Column(columnDefinition = "BIT", length = 1)
+    private boolean manageChoicesCombinedAmounts;
+
+    @Column(columnDefinition = "BIT", length = 1)
+    private boolean hubMaintenanceModeEnabled;
+
     public SubIssuer() {
     }
 
@@ -179,6 +191,42 @@ public class SubIssuer {
 
     public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
         this.resetBackupsIfSuccess = resetBackupsIfSuccess;
+    }
+
+    public boolean isResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public boolean getResetChoicesIfSuccess() {
+        return resetChoicesIfSuccess;
+    }
+
+    public void setResetChoicesIfSuccess(boolean resetChoicesIfSuccess) {
+        this.resetChoicesIfSuccess = resetChoicesIfSuccess;
+    }
+
+    public boolean getManageBackupsCombinedAmounts() {
+        return manageBackupsCombinedAmounts;
+    }
+
+    public void setManageBackupsCombinedAmounts(boolean manageBackupsCombinedAmounts) {
+        this.manageBackupsCombinedAmounts = manageBackupsCombinedAmounts;
+    }
+
+    public boolean getManageChoicesCombinedAmounts() {
+        return manageChoicesCombinedAmounts;
+    }
+
+    public void setManageChoicesCombinedAmounts(boolean manageChoicesCombinedAmounts) {
+        this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
+    }
+
+    public boolean getHubMaintenanceModeEnabled() {
+        return hubMaintenanceModeEnabled;
+    }
+
+    public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
+        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
 
     @Override

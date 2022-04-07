@@ -30,8 +30,8 @@ public class SubIssuerService {
     private final SubIssuerRepository subIssuerRepository;
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String FILE_NAME = "subissuer_subinsert.sql";
-    String path = FILE_PATH + FILE_NAME;
+    String INSERT_FILE_NAME = "subissuer_subinsert.sql";
+    String path = FILE_PATH + INSERT_FILE_NAME;
 
     public SubIssuerService(SubIssuerRepository subIssuerRepository) {
 
@@ -54,6 +54,7 @@ public class SubIssuerService {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
+
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId ," +
                 "authenticationTimeOut," +
@@ -65,7 +66,11 @@ public class SubIssuerService {
                 "name,  " +
                 "label , " +
                 "personnalDataStorage, " +
-                "resetBackupsIfSuccess)";
+                "resetBackupsIfSuccess," +
+//                "resetChoicesIfSuccess, " +
+//                "manageBackupsCombinedAmounts," +
+//                " manageChoicesCombinedAmounts," +
+                " hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -78,30 +83,36 @@ public class SubIssuerService {
                 subIssuer.getName() + "', '" +
                 subIssuer.getLabel() + "', " +
                 subIssuer.getPersonnalDataStorage() + ", " +
-                subIssuer.getResetBackupsIfSuccess() + ");";
+                subIssuer.getResetBackupsIfSuccess() + ", " +
+//                subIssuer.getResetChoicesIfSuccess() + ", " +
+//                subIssuer.getManageBackupsCombinedAmounts() + ", " +
+//                subIssuer.getManageChoicesCombinedAmounts() + ", " +
+                subIssuer.getHubMaintenanceModeEnabled() + ");";
 
         String sqlInsert = queryType + queryValue;
 
         pathGenerator(sqlInsert);
 
-        return FILE_NAME;
+        return INSERT_FILE_NAME;
     }
 
     public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
-
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
                 "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
                 "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
-                "code = " + subIssuerDto.getCode() + ", " +
                 "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
                 "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
                 "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
-                "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + " " +
-                "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + " " +
+                "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + ", " +
+                "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + ", " +
+//                "resetChoicesIfSuccess = " + subIssuerDto.getResetChoicesIfSuccess() + ", " +
+//                "manageBackupsCombinedAmounts = " + subIssuerDto.getManageBackupsCombinedAmounts() + ", " +
+//                "manageChoicesCombinedAmounts = " + subIssuerDto.getManageChoicesCombinedAmounts() + ", " +
+                "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
         pathGenerator(queryUpdate);
 
@@ -115,11 +126,14 @@ public class SubIssuerService {
                 subIssuer.getName(),
                 subIssuer.getLabel(),
                 subIssuer.getPersonnalDataStorage(),
-                subIssuer.getResetBackupsIfSuccess()));
+                subIssuer.getResetBackupsIfSuccess(),
+//                subIssuer.getResetChoicesIfSuccess(),
+//                subIssuer.getManageBackupsCombinedAmounts(),
+//                subIssuer.getManageChoicesCombinedAmounts(),
+                subIssuer.getHubMaintenanceModeEnabled()));
 
-        return FILE_NAME;
+        return INSERT_FILE_NAME;
     }
-
 
     public String generateDeleteSqlScript(String code) {
 
@@ -129,8 +143,9 @@ public class SubIssuerService {
                              "SET FOREIGN_KEY_CHECKS = 1; \n" +
                              "COMMIT;";
         pathGenerator(deleteQuery);
-      // TODO  subIssuerRepository.deleteByCode(code);
-        return FILE_NAME;
+        // TODO flag for delete or not from db
+    //  subIssuerRepository.deleteByCode(code);
+        return INSERT_FILE_NAME;
     }
 
     private void pathGenerator(String sql) {
