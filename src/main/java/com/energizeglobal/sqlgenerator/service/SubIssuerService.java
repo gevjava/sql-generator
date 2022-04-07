@@ -67,9 +67,9 @@ public class SubIssuerService {
                 "label , " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
-//                "resetChoicesIfSuccess, " +
-//                "manageBackupsCombinedAmounts," +
-//                " manageChoicesCombinedAmounts," +
+                "resetChoicesIfSuccess, " +
+                "manageBackupsCombinedAmounts," +
+                " manageChoicesCombinedAmounts," +
                 " hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
@@ -84,9 +84,9 @@ public class SubIssuerService {
                 subIssuer.getLabel() + "', " +
                 subIssuer.getPersonnalDataStorage() + ", " +
                 subIssuer.getResetBackupsIfSuccess() + ", " +
-//                subIssuer.getResetChoicesIfSuccess() + ", " +
-//                subIssuer.getManageBackupsCombinedAmounts() + ", " +
-//                subIssuer.getManageChoicesCombinedAmounts() + ", " +
+                subIssuer.getResetChoicesIfSuccess() + ", " +
+                subIssuer.getManageBackupsCombinedAmounts() + ", " +
+                subIssuer.getManageChoicesCombinedAmounts() + ", " +
                 subIssuer.getHubMaintenanceModeEnabled() + ");";
 
         String sqlInsert = queryType + queryValue;
@@ -104,14 +104,14 @@ public class SubIssuerService {
                 "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
                 "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
                 "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
-                "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
+                "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
                 "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + ", " +
                 "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + ", " +
-//                "resetChoicesIfSuccess = " + subIssuerDto.getResetChoicesIfSuccess() + ", " +
-//                "manageBackupsCombinedAmounts = " + subIssuerDto.getManageBackupsCombinedAmounts() + ", " +
-//                "manageChoicesCombinedAmounts = " + subIssuerDto.getManageChoicesCombinedAmounts() + ", " +
+                "resetChoicesIfSuccess = " + subIssuerDto.getResetChoicesIfSuccess() + ", " +
+                "manageBackupsCombinedAmounts = " + subIssuerDto.getManageBackupsCombinedAmounts() + ", " +
+                "manageChoicesCombinedAmounts = " + subIssuerDto.getManageChoicesCombinedAmounts() + ", " +
                 "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
         pathGenerator(queryUpdate);
@@ -122,14 +122,14 @@ public class SubIssuerService {
                 subIssuer.getDefaultLanguage(),
                 subIssuer.getCodeSvi(),
                 subIssuer.getCurrencyCode(),
-                subIssuer.getAuthentMeans(),
                 subIssuer.getName(),
                 subIssuer.getLabel(),
+                subIssuer.getAuthentMeans(),
                 subIssuer.getPersonnalDataStorage(),
                 subIssuer.getResetBackupsIfSuccess(),
-//                subIssuer.getResetChoicesIfSuccess(),
-//                subIssuer.getManageBackupsCombinedAmounts(),
-//                subIssuer.getManageChoicesCombinedAmounts(),
+                subIssuer.getResetChoicesIfSuccess(),
+                subIssuer.getManageBackupsCombinedAmounts(),
+                subIssuer.getManageChoicesCombinedAmounts(),
                 subIssuer.getHubMaintenanceModeEnabled()));
 
         return INSERT_FILE_NAME;

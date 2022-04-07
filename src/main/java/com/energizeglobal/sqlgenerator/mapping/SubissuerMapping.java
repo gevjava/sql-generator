@@ -13,9 +13,9 @@ public class SubissuerMapping {
         subIssuer.setCode(subIssuerDto.getCode());
         subIssuer.setCodeSvi(subIssuerDto.getCodeSvi());
         subIssuer.setCurrencyCode(subIssuerDto.getCurrencyCode());
-        subIssuer.setAuthentMeans(subIssuerDto.getAuthentMeans());
         subIssuer.setName(subIssuerDto.getName());
         subIssuer.setLabel(subIssuerDto.getLabel());
+        subIssuer.setAuthentMeans(subIssuerDto.getAuthentMeans());
         subIssuer.setPersonnalDataStorage(subIssuerDto.getPersonnalDataStorage());
         subIssuer.setResetBackupsIfSuccess(subIssuerDto.getResetBackupsIfSuccess());
         subIssuer.setResetChoicesIfSuccess(subIssuerDto.getResetChoicesIfSuccess());
@@ -36,8 +36,8 @@ public class SubissuerMapping {
         subIssuerDto.setCodeSvi(subIssuer.getCodeSvi());
         subIssuerDto.setCurrencyCode(subIssuer.getCurrencyCode());
         subIssuerDto.setName(subIssuer.getName());
-        subIssuerDto.setAuthentMeans(subIssuer.getAuthentMeans());
         subIssuerDto.setLabel(subIssuer.getLabel());
+        subIssuerDto.setAuthentMeans(subIssuer.getAuthentMeans());
         subIssuerDto.setPersonnalDataStorage(subIssuer.getPersonnalDataStorage());
         subIssuerDto.setResetBackupsIfSuccess(subIssuer.getResetBackupsIfSuccess());
         subIssuerDto.setResetChoicesIfSuccess(subIssuer.getResetChoicesIfSuccess());

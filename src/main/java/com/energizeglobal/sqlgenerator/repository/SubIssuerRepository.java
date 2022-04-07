@@ -30,9 +30,9 @@ public interface SubIssuerRepository extends JpaRepository<SubIssuer, Long> {
             "s.authentMeans = :authentMeans," +
             "s.personnalDataStorage = :personnalDataStorage , " +
             "s.resetBackupsIfSuccess = :resetBackupsIfSuccess, " +
-//            "s.resetChoicesIfSuccess = :resetChoicesIfSuccess, " +
-//            "s.manageBackupsCombinedAmounts = :manageBackupsCombinedAmounts, " +
-//            "s.manageChoicesCombinedAmounts = :manageChoicesCombinedAmounts, " +
+            "s.resetChoicesIfSuccess = :resetChoicesIfSuccess, " +
+            "s.manageBackupsCombinedAmounts = :manageBackupsCombinedAmounts, " +
+            "s.manageChoicesCombinedAmounts = :manageChoicesCombinedAmounts, " +
             "s.hubMaintenanceModeEnabled = :hubMaintenanceModeEnabled " +
             "WHERE s.code = :subissuerCode")
     int updateSubIssuer(@Param("subissuerCode") String subissuerCode,
@@ -46,9 +46,9 @@ public interface SubIssuerRepository extends JpaRepository<SubIssuer, Long> {
                         @Param("authentMeans") String authentMeans,
                         @Param("personnalDataStorage") Boolean personnalDataStorage,
                         @Param("resetBackupsIfSuccess") Boolean resetBackupsIfSuccess,
-//                        @Param("resetChoicesIfSuccess") Boolean resetChoicesIfSuccess,
-//                        @Param("manageBackupsCombinedAmounts") Boolean manageBackupsCombinedAmounts,
-//                        @Param("manageChoicesCombinedAmounts") Boolean manageChoicesCombinedAmounts,
+                        @Param("resetChoicesIfSuccess") Boolean resetChoicesIfSuccess,
+                        @Param("manageBackupsCombinedAmounts") Boolean manageBackupsCombinedAmounts,
+                        @Param("manageChoicesCombinedAmounts") Boolean manageChoicesCombinedAmounts,
                         @Param("hubMaintenanceModeEnabled") Boolean hubMaintenanceModeEnabled);
 
 }

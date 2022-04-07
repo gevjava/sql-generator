@@ -796,3 +796,76 @@ SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM subissuer WHERE code = 19450;
 SET FOREIGN_KEY_CHECKS = 1; 
 COMMIT;
+
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('784512', 0, 'en', '568974', '214879', '215487', 'sms', 'Orang Bank', 'Orang', false, false, false);
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('36985', 300, 'fr', '45789', '235689', '45789', 'sms', 'Orang Bank', 'Orange', false, false, false);
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('36985', 300, 'fr', '45789', '235689', '45789', 'sms', 'Orang Bank', 'Orange', false, false, false);
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('36985', 300, 'fr', '45789', '235689', '45789', 'sms', 'Orang Bank', 'Orange', false, false, false);
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLanguage = 'de', codeSvi = 19550, currencyCode = 978, authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+}, {
+  "authentMeans" : "PWD_OTP",
+  "validate" : true
+}, {
+  "authentMeans" : "PASSWORD",
+  "validate" : true
+} ]', name = 'Landesbank Baden-Württemberg', label = 'Landesbank Baden-Württemberg', personnalDataStorage = true, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = false  WHERE code = 19550;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 290, defaultLanguage = 'de', codeSvi = 19440, currencyCode = 978, authentMeans = 'sms', name = 'Commerzbank AG', label = 'Commerzbank AG', personnalDataStorage = null, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = false  WHERE code = 19440;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 290, defaultLanguage = 'de', codeSvi = 19440, currencyCode = 978, authentMeans = 'sms', name = 'Commerzbank AG', label = 'Commerzbank AG', personnalDataStorage = null, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = false  WHERE code = 19440;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 290, defaultLanguage = 'de', codeSvi = 19440, currencyCode = 978, authentMeans = 'sms', name = 'Commerzbank AG', label = 'Commerzbank AG', personnalDataStorage = true, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = false  WHERE code = 19440;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLanguage = 'de', codeSvi = 19550, currencyCode = 978, name = 'Landesbank Baden-Württemberg', label = 'Landesbank Baden-Württemberg', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+}, {
+  "authentMeans" : "PWD_OTP",
+  "validate" : true
+}, {
+  "authentMeans" : "PASSWORD",
+  "validate" : true
+} ]', personnalDataStorage = true, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = false  WHERE code = 19550;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLanguage = 'de', codeSvi = 19550, currencyCode = 978, name = 'Landesbank Baden-Württemberg', label = 'Landesbank Baden-Württemberg', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+}, {
+  "authentMeans" : "PWD_OTP",
+  "validate" : true
+}, {
+  "authentMeans" : "PASSWORD",
+  "validate" : true
+} ]', personnalDataStorage = true,
+                     resetBackupsIfSuccess = true,
+                     resetChoicesIfSuccess = true,
+                     manageBackupsCombinedAmounts = true,
+                     manageChoicesCombinedAmounts = true,
+                     hubMaintenanceModeEnabled = true  WHERE code = 19550;
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('n', 0, 'n', '458', '8797', '8745', 'n', 'n', 'n', true, false, false);
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )
+VALUES ('789845', 0, 'en', '78465', '747', '7477', 'sms', 'ASGBC BAnk', 'ASGBC', false, true, false, true, true, false);

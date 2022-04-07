@@ -42,14 +42,14 @@ export class SubIssuerService {
         codeSvi: subIssuer.codeSvi,
         currencyCode: subIssuer.currencyCode,
         name: subIssuer.name,
+        label: subIssuer.label,
         authentMeans: subIssuer.authentMeans,
         personnalDataStorage: subIssuer.personnalDataStorage,
         resetBackupsIfSuccess: subIssuer.resetBackupsIfSuccess,
-        label: subIssuer.label,
         resetChoicesIfSuccess: subIssuer.resetChoicesIfSuccess,
         manageBackupsCombinedAmounts: subIssuer.manageBackupsCombinedAmounts,
         manageChoicesCombinedAmounts: subIssuer.manageChoicesCombinedAmounts,
-        hubMaintenanceModeEnabled: subIssuer.hubMaintenanceModeEnabled
+        hubMaintenanceModeEnabled: subIssuer.hubMaintenanceModeEnabled,
       }),
 
       httpOptions
