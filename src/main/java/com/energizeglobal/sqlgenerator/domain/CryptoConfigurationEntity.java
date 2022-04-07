@@ -1,14 +1,18 @@
 package com.energizeglobal.sqlgenerator.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "cryptoconfig")
-public class CryptoConfig implements Serializable {
+public class CryptoConfigurationEntity implements Serializable {
 
   @Id
   @Column
@@ -24,11 +28,9 @@ public class CryptoConfig implements Serializable {
   @Column(name = "description")
   private String description;
 
-  //  @OneToMany(mappedBy = "cryptoConfigurationEntity")
-  //  @JsonIgnore
-  //  private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
-  //
-  //  @OneToMany(mappedBy = "cryptoConfigurationEntity")
-  //  @JsonIgnore
-  //  private List<BinRange> linkedBinRanges = new ArrayList<>();
+    @OneToMany(mappedBy = "cryptoConfigurationEntity")
+    @Lazy
+    @JsonIgnore
+    private List<SubIssuerEntity> linkedSubIssuers = new ArrayList<>();
+
 }

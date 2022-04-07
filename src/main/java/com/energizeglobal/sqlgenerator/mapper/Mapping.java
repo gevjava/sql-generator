@@ -1,7 +1,5 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
-import com.energizeglobal.sqlgenerator.domain.CryptoConfig;
-import com.energizeglobal.sqlgenerator.dto.CryptoConfigDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +19,7 @@ public class Mapping {
         return modelMapper.map(entity, dto);
     }
 
-    public <D, E> E convertToEntity(D dto, Class<E> entity) {
+    public <E, D> E convertToEntity(D dto, Class<E> entity) {
         return modelMapper.map(dto, entity);
     }
 

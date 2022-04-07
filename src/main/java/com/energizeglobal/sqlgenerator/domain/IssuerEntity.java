@@ -1,15 +1,18 @@
 package com.energizeglobal.sqlgenerator.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "Issuer")
-public class Issuer {
+public class IssuerEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,4 +49,9 @@ public class Issuer {
 
   @Column(name = "availaibleAuthentMeans")
   private String availaibleAuthentMeans;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
+  @Lazy
+  @JsonIgnore
+  private List<SubIssuerEntity> subIssuers;
 }

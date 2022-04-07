@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.service.impl;
 
-import com.energizeglobal.sqlgenerator.domain.Issuer;
+import com.energizeglobal.sqlgenerator.domain.IssuerEntity;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.repository.IssuerRepository;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class IssuerServiceImpl {
   }
 
   @Transactional(readOnly = true)
-  public List<Issuer> getAllIssuer() {
+  public List<IssuerEntity> getAllIssuer() {
 
     return issuerRepository.findAll();
   }
@@ -42,14 +42,14 @@ public class IssuerServiceImpl {
   public String generateInsertSqlScript(IssuerDTO dto) {
 
     String sqlInsert =
-        "INSERT INTO Issuer (code, createdBy, description, name) VALUES ('"
+        "INSERT INTO IssuerEntity (code, createdBy, description, name) VALUES ('"
             + dto.getCode()
             + "', '"
-            + dto.getCreatedBy()
+            + dto.getData().getCreatedBy()
             + "', '"
-            + dto.getDescription()
+            + dto.getData().getDescription()
             + "', '"
-            + dto.getName()
+            + dto.getData().getName()
             + "');";
 
     generateSqlScriptServiceImpl.insertSqlScript(sqlInsert);

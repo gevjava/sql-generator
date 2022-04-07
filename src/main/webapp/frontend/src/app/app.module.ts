@@ -11,6 +11,8 @@ import {CryptoConfigComponent} from './cryptoconfig/crypto-config.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CryptoConfigService} from "./cryptoconfig/crypto-config.service";
 import {IssuerService} from "./issuer/issuer.service";
+import { AuthentmeansComponent } from './authentmeans/authentmeans.component';
+import {AuthentmeansService} from "./authentmeans/authentmeans.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {IssuerService} from "./issuer/issuer.service";
     AppComponent,
     IssuerComponent,
     MainComponent,
-    NavbarComponent
+    NavbarComponent,
+    AuthentmeansComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import {IssuerService} from "./issuer/issuer.service";
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [CryptoConfigService,
+  providers: [CryptoConfigService,AuthentmeansService,
     IssuerService],
   bootstrap: [AppComponent]
 })

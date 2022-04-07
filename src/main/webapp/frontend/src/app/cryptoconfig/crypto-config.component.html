@@ -3,13 +3,13 @@
        style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
     <h3>Configuration Cryptography</h3>
   </div>
-  <div class="container-sm">
+  <div class="container-sm" style="overflow: auto">
     <div class="row align-items-start" style="margin: 6px;">
 
-      <!--      Add CryptoConfig data-->
-      <ng-template #content let-c="close" let-d="dismiss">
+      <!--      Add CryptoConfigurationEntity data-->
+      <ng-template #add let-c="close" let-d="dismiss">
         <div class="modal-header">
-          <h4 class="modal-title" id="modal-title">Add CryptoConfig data</h4>
+          <h4 class="modal-title" id="modal-add-crypto">Add CryptoConfig data</h4>
           <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
         </div>
         <form [formGroup]="cryptoConfigAddForm" (ngSubmit)="sendCryptoConfigData()">
@@ -52,7 +52,7 @@
                   (click)="downloadFile()">Download - {{filename}}
           </button>
           <button class="btn btn-sm btn-outline-primary" style="width: auto; margin-left: auto;" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="addCrypto({content : content})">Add
+                  data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="addCrypto({content : add})">Add
           </button>
         </div>
       </div>
@@ -60,9 +60,9 @@
         <table class="table mat-table text-center">
           <thead>
           <tr>
-            <th style="width: 6%">ID</th>
-            <th style="width: 88%; margin-left: auto ">DESCRIPTION</th>
-            <th style="width: 6%">ACTION</th>
+            <th>ID</th>
+            <th>DESCRIPTION</th>
+            <th>ACTION</th>
           </tr>
           </thead>
           <tbody>
@@ -70,11 +70,10 @@
             <td>{{cryptoConfig.id}}</td>
             <td>{{cryptoConfig.description}}</td>
             <td>
-
-              <!--      Update CryptoConfig data-->
-              <ng-template #content let-c="close" let-d="dismiss">
+              <!--      Update CryptoConfigurationEntity data-->
+              <ng-template #update let-c="close" let-d="dismiss">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title1">Update CryptoConfig data</h4>
+                  <h4 class="modal-title" id="modal-update-crypto">Update CryptoConfig data</h4>
                   <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
                 </div>
                 <form [formGroup]="cryptoConfigUpdateForm" (ngSubmit)="updateCryptoConfig()">
@@ -83,25 +82,29 @@
                       <div class="col-3">
                         <div class="form-group">
                           <label for="id"><b>Id: </b></label>
-                          <input type="text" ngModel="{{cryptoConfig?.id}}" readOnly id="id" formControlName="id" class="form-control">
+                          <input type="text" ngModel="{{cryptoConfig?.id}}" readOnly id="id" formControlName="id"
+                                 class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="protocolOne"><b>protocolOne: </b></label>
-                          <input type="text" ngModel="{{cryptoConfig?.protocolOne}}" id="protocolOne1" formControlName="protocolOne" class="form-control">
+                          <input type="text" ngModel="{{cryptoConfig?.protocolOne}}" id="protocolOne1"
+                                 formControlName="protocolOne" class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="protocolTwo"><b>protocolTwo: </b></label>
-                          <input type="text" ngModel="{{cryptoConfig?.protocolTwo}}" id="protocolTwo1" formControlName="protocolTwo" class="form-control">
+                          <input type="text" ngModel="{{cryptoConfig?.protocolTwo}}" id="protocolTwo1"
+                                 formControlName="protocolTwo" class="form-control">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="description"><b>description: </b></label>
-                          <input type="text" ngModel="{{cryptoConfig?.description }}" id="description1" formControlName="description" class="form-control">
+                          <input type="text" ngModel="{{cryptoConfig?.description }}" id="description1"
+                                 formControlName="description" class="form-control">
                         </div>
                       </div>
                     </div>
@@ -116,12 +119,11 @@
                   </div>
                 </form>
               </ng-template>
-              <button class="btn btn-sm btn-outline-primary" (click)="updateCrypto({content : content});
+              <button class="btn btn-sm btn-outline-primary" style="margin: 5px" (click)="updateCrypto({content : update});
               getCryptoConfigById(cryptoConfig.id)">Update
               </button>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-outline-danger" (click)="deleteById(cryptoConfig.id)">Delete
+              <button class="btn btn-sm btn-outline-danger" style="margin: 5px" (click)="deleteById(cryptoConfig.id)">
+                Delete
               </button>
             </td>
           </tr>

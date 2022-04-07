@@ -23,7 +23,7 @@ export class CryptoConfigService {
 
   deleteById(id: number) {
 
-    return this.http.delete(this.baseUrl + '/' + `${id}`,{responseType: 'text'});
+    return this.http.delete(this.baseUrl + '/' + `${id}`, {responseType: 'text'});
   }
 
 

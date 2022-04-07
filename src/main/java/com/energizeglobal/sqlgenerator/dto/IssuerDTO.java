@@ -1,11 +1,53 @@
 package com.energizeglobal.sqlgenerator.dto;
 
+import com.energizeglobal.sqlgenerator.domain.EntityData;
+import com.energizeglobal.sqlgenerator.domain.MerchantPivotListEntity;
+import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
+
+import java.util.List;
+
 public class IssuerDTO {
 
+  private Long id;
+  private EntityData data;
+  private List<SubIssuerEntity> subIssuers;
+  private List<MerchantPivotListEntity> merchantPivotList;
   private String code;
-  private String createdBy;
-  private String description;
-  private String name;
+  private String label;
+  private String authentMeans;
+  private String availaibleAuthentMeans;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public EntityData getData() {
+    return data;
+  }
+
+  public void setData(EntityData data) {
+    this.data = data;
+  }
+
+  public List<SubIssuerEntity> getSubIssuers() {
+    return subIssuers;
+  }
+
+  public void setSubIssuers(List<SubIssuerEntity> subIssuers) {
+    this.subIssuers = subIssuers;
+  }
+
+  public List<MerchantPivotListEntity> getMerchantPivotList() {
+    return merchantPivotList;
+  }
+
+  public void setMerchantPivotList(List<MerchantPivotListEntity> merchantPivotList) {
+    this.merchantPivotList = merchantPivotList;
+  }
 
   public String getCode() {
     return code;
@@ -15,27 +57,27 @@ public class IssuerDTO {
     this.code = code;
   }
 
-  public String getName() {
-    return name;
+  public String getLabel() {
+    return label;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setLabel(String label) {
+    this.label = label;
   }
 
-  public String getCreatedBy() {
-    return createdBy;
+  public String getAuthentMeans() {
+    return authentMeans;
   }
 
-  public void setCreatedBy(String createdBy) {
-    this.createdBy = createdBy;
+  public void setAuthentMeans(String authentMeans) {
+    this.authentMeans = authentMeans;
   }
 
-  public String getDescription() {
-    return description;
+  public String getAvailaibleAuthentMeans() {
+    return availaibleAuthentMeans;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setAvailaibleAuthentMeans(String availaibleAuthentMeans) {
+    this.availaibleAuthentMeans = availaibleAuthentMeans;
   }
 }

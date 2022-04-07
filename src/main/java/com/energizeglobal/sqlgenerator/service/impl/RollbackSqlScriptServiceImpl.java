@@ -25,7 +25,7 @@ public class RollbackSqlScriptServiceImpl implements RollbackSqlScript {
 
         // get the current date
         LocalDateTime d = LocalDateTime.now();
-
+        System.out.println(d.toString());
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
