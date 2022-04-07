@@ -19,8 +19,8 @@ public class RollbackService {
 
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String INSERT_FILE_NAME = "subissuer_subrollback.sql";
-    String path = FILE_PATH + INSERT_FILE_NAME;
+    String ROLLBACK_FILE_NAME = "subissuer_subrollback.sql";
+    String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 
     public String generateSqlScriptForDeleteRollback(SubIssuerDto dto) {
@@ -65,7 +65,7 @@ public class RollbackService {
 
         pathGenerator(sqlInsert);
 
-        return INSERT_FILE_NAME;
+        return ROLLBACK_FILE_NAME;
     }
 
     public String generateSqlScriptForUpdateRollback(SubIssuerDto subIssuerDto) {
@@ -89,7 +89,7 @@ public class RollbackService {
 
         pathGenerator(queryUpdate);
 
-        return INSERT_FILE_NAME;
+        return ROLLBACK_FILE_NAME;
     }
 
     public String generateSqlScriptForInsertRollback(String code) {
@@ -100,7 +100,7 @@ public class RollbackService {
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
         pathGenerator(deleteQuery);
-        return INSERT_FILE_NAME;
+        return ROLLBACK_FILE_NAME;
     }
 
     private void pathGenerator(String sql) {
