@@ -881,3 +881,23 @@ SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM subissuer WHERE code = 19550;
 SET FOREIGN_KEY_CHECKS = 1; 
 COMMIT;
+UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLanguage = 'de', codeSvi = 19550, currencyCode = 978, name = 'Landesbank Baden-Württemberg', label = 'Landesbank Baden-Württemberg', authentMeans = '[ {
+  "authentMeans" : "OTP_SMS",
+  "validate" : true
+}, {
+  "authentMeans" : "REFUSAL",
+  "validate" : true
+}, {
+  "authentMeans" : "INFO",
+  "validate" : true
+}, {
+  "authentMeans" : "MOBILE_APP",
+  "validate" : true
+}, {
+  "authentMeans" : "PWD_OTP",
+  "validate" : true
+}, {
+  "authentMeans" : "PASSWORD",
+  "validate" : true
+} ]', personnalDataStorage = true, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = true  WHERE code = 19550;
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )  VALUES ('4245254', 0, 'en', '500', '7414', '74', 'sms', 'GBD', 'GBD', true, false, true, false, true, false);

@@ -99,7 +99,7 @@ public class SubIssuerService {
         rollbackService.generateSqlScriptForInsertRollback(subIssuer.getCode());
 
         if (dbAction == true)
-        subIssuerRepository.save(subIssuer);
+            subIssuerRepository.save(subIssuer);
 
         return INSERT_FILE_NAME;
     }
@@ -126,22 +126,22 @@ public class SubIssuerService {
                 " WHERE code = " + subIssuerDto.getCode() + ";";
         pathGenerator(queryUpdate);
 
-        if(dbAction == true)
-        subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
-                subIssuer.getAcsId(),
-                subIssuer.getAuthenticationTimeOut(),
-                subIssuer.getDefaultLanguage(),
-                subIssuer.getCodeSvi(),
-                subIssuer.getCurrencyCode(),
-                subIssuer.getName(),
-                subIssuer.getLabel(),
-                subIssuer.getAuthentMeans(),
-                subIssuer.getPersonnalDataStorage(),
-                subIssuer.getResetBackupsIfSuccess(),
-                subIssuer.getResetChoicesIfSuccess(),
-                subIssuer.getManageBackupsCombinedAmounts(),
-                subIssuer.getManageChoicesCombinedAmounts(),
-                subIssuer.getHubMaintenanceModeEnabled());
+        if (dbAction == true)
+            subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
+                    subIssuer.getAcsId(),
+                    subIssuer.getAuthenticationTimeOut(),
+                    subIssuer.getDefaultLanguage(),
+                    subIssuer.getCodeSvi(),
+                    subIssuer.getCurrencyCode(),
+                    subIssuer.getName(),
+                    subIssuer.getLabel(),
+                    subIssuer.getAuthentMeans(),
+                    subIssuer.getPersonnalDataStorage(),
+                    subIssuer.getResetBackupsIfSuccess(),
+                    subIssuer.getResetChoicesIfSuccess(),
+                    subIssuer.getManageBackupsCombinedAmounts(),
+                    subIssuer.getManageChoicesCombinedAmounts(),
+                    subIssuer.getHubMaintenanceModeEnabled());
 
         rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
 
@@ -150,7 +150,7 @@ public class SubIssuerService {
 
     public String generateDeleteSqlScript(String code) {
 
-        SubIssuerDto oldSubissuer = findByCode(code);
+        SubIssuerDto oldSubIssuer = findByCode(code);
 
         String deleteQuery = "\nSTART TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
@@ -159,7 +159,7 @@ public class SubIssuerService {
                 "COMMIT;";
         pathGenerator(deleteQuery);
 
-        rollbackService.generateSqlScriptForDeleteRollback(oldSubissuer);
+        rollbackService.generateSqlScriptForDeleteRollback(oldSubIssuer);
 
         if (dbAction == true)
             subIssuerRepository.deleteByCode(code);
