@@ -869,3 +869,15 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLang
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess, hubMaintenanceModeEnabled )  VALUES ('n', 0, 'n', '458', '8797', '8745', 'n', 'n', 'n', true, false, false);
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )
 VALUES ('789845', 0, 'en', '78465', '747', '7477', 'sms', 'ASGBC BAnk', 'ASGBC', false, true, false, true, true, false);
+
+START TRANSACTION; 
+SET FOREIGN_KEY_CHECKS = 0; 
+DELETE FROM subissuer WHERE code = 19550;
+SET FOREIGN_KEY_CHECKS = 1; 
+COMMIT;
+
+START TRANSACTION; 
+SET FOREIGN_KEY_CHECKS = 0; 
+DELETE FROM subissuer WHERE code = 19550;
+SET FOREIGN_KEY_CHECKS = 1; 
+COMMIT;

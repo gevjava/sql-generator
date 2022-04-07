@@ -27,15 +27,18 @@ public class SubIssuerService {
 
     private final Logger log = LoggerFactory.getLogger(SubIssuerService.class);
 
+    private Boolean dbAction = false;
     private final SubIssuerRepository subIssuerRepository;
+    private final RollbackService rollbackService;
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
     String INSERT_FILE_NAME = "subissuer_subinsert.sql";
     String path = FILE_PATH + INSERT_FILE_NAME;
 
-    public SubIssuerService(SubIssuerRepository subIssuerRepository) {
+    public SubIssuerService(SubIssuerRepository subIssuerRepository, RollbackService rollbackService) {
 
         this.subIssuerRepository = subIssuerRepository;
+        this.rollbackService = rollbackService;
     }
 
     @Transactional(readOnly = true)
@@ -93,11 +96,18 @@ public class SubIssuerService {
 
         pathGenerator(sqlInsert);
 
+        rollbackService.generateSqlScriptForInsertRollback(subIssuer.getCode());
+
+        if (dbAction == true)
+        subIssuerRepository.save(subIssuer);
+
         return INSERT_FILE_NAME;
     }
 
     public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
+        SubIssuerDto oldSubIssuer = findByCode(subIssuerDto.getCode());
+
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
                 "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
@@ -116,7 +126,8 @@ public class SubIssuerService {
                 " WHERE code = " + subIssuerDto.getCode() + ";";
         pathGenerator(queryUpdate);
 
-        System.out.println(subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
+        if(dbAction == true)
+        subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
                 subIssuer.getAcsId(),
                 subIssuer.getAuthenticationTimeOut(),
                 subIssuer.getDefaultLanguage(),
@@ -130,21 +141,29 @@ public class SubIssuerService {
                 subIssuer.getResetChoicesIfSuccess(),
                 subIssuer.getManageBackupsCombinedAmounts(),
                 subIssuer.getManageChoicesCombinedAmounts(),
-                subIssuer.getHubMaintenanceModeEnabled()));
+                subIssuer.getHubMaintenanceModeEnabled());
+
+        rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
 
         return INSERT_FILE_NAME;
     }
 
     public String generateDeleteSqlScript(String code) {
 
+        SubIssuerDto oldSubissuer = findByCode(code);
+
         String deleteQuery = "\nSTART TRANSACTION; \n" +
-                             "SET FOREIGN_KEY_CHECKS = 0; \n" +
-                             "DELETE FROM subissuer WHERE code = " + code + ";\n" +
-                             "SET FOREIGN_KEY_CHECKS = 1; \n" +
-                             "COMMIT;";
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM subissuer WHERE code = " + code + ";\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
         pathGenerator(deleteQuery);
-        // TODO flag for delete or not from db
-    //  subIssuerRepository.deleteByCode(code);
+
+        rollbackService.generateSqlScriptForDeleteRollback(oldSubissuer);
+
+        if (dbAction == true)
+            subIssuerRepository.deleteByCode(code);
+
         return INSERT_FILE_NAME;
     }
 
