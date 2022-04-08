@@ -9,31 +9,41 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 
 @Service
 public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
 
-  final static String FILE_PATH = "src/main/resources/sql_scripts/";
-  final static String FILE_NAME = "insert_query.sql";
+    final static String FILE_PATH = "src/main/resources/sql_scripts/";
 
-  @Override
-  public void insertSqlScript(String sqlInsert) {
 
-    String path = FILE_PATH + FILE_NAME;
+    @Override
+    public void insertSqlScript(String insertQuery,String fileName) {
 
-    Path newFilePath = Paths.get(path);
-    try {
-      if (Files.exists(newFilePath)) {
-        sqlInsert = System.getProperty("line.separator") + sqlInsert;
-        Files.write(
-            newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
-      } else {
-        Path fileDirectory = Paths.get(FILE_PATH);
-        Files.createDirectories(fileDirectory);
-        Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
+        String path = FILE_PATH + fileName;
+
+        String data = "--" + LocalDateTime.now().toString();
+
+
+        Path newFilePath = Paths.get(path);
+        try {
+            if (Files.exists(newFilePath)) {
+                data = System.getProperty("line.separator") + data;
+                insertQuery = System.getProperty("line.separator") + insertQuery;
+
+                Files.write(
+                        newFilePath, data.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                Files.write(
+                        newFilePath, insertQuery.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            } else {
+                Path fileDirectory = Paths.get(FILE_PATH);
+                Files.createDirectories(fileDirectory);
+                Files.write(
+                        newFilePath, data.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                Files.write(newFilePath, insertQuery.getBytes(StandardCharsets.UTF_8));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-  }
 }

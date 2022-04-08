@@ -52,7 +52,7 @@ public class IssuerServiceImpl {
             + dto.getData().getName()
             + "');";
 
-    generateSqlScriptServiceImpl.insertSqlScript(sqlInsert);
+    generateSqlScriptServiceImpl.insertSqlScript(sqlInsert,FILE_NAME);
     return FILE_NAME;
   }
 

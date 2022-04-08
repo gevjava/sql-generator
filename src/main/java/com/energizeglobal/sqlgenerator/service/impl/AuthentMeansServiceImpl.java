@@ -17,25 +17,23 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
+    private final String ROLLBACK_SQL_FILE_NAME = "rollback_query.sql";
+
     private final Mapping mappingAuthentMean;
 
     private final AuthentMeansRepository authentMeansRepository;
 
     private final GenerateSqlScriptServiceImpl generateSqlScriptService;
 
-    private final RollbackSqlScriptServiceImpl rollbackSqlScriptService;
-
     private final DownloadFileServiceImpl downloadFileService;
 
     public AuthentMeansServiceImpl(Mapping mappingAuthentMean,
                                    AuthentMeansRepository authentMeansRepository,
                                    GenerateSqlScriptServiceImpl generateSqlScriptService,
-                                   RollbackSqlScriptServiceImpl rollbackSqlScriptService,
                                    DownloadFileServiceImpl downloadFileService) {
         this.mappingAuthentMean = mappingAuthentMean;
         this.authentMeansRepository = authentMeansRepository;
         this.generateSqlScriptService = generateSqlScriptService;
-        this.rollbackSqlScriptService = rollbackSqlScriptService;
         this.downloadFileService = downloadFileService;
     }
 
@@ -74,8 +72,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
                 authentMeansEntity.getName(),
                 authentMeansEntity.getUpdateState());
 
-        generateSqlScriptService.insertSqlScript(deleteQuery);
-        rollbackSqlScriptService.rollbackScript(rollbackQuery);
+        generateSqlScriptService.insertSqlScript(deleteQuery, INSERT_SQL_FILE_NAME);
+        generateSqlScriptService.insertSqlScript(rollbackQuery, ROLLBACK_SQL_FILE_NAME);
         if (activeDB) {
             authentMeansRepository.deleteById(id);
         }
@@ -110,8 +108,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
                 authentMeansEntityRollback.getId());
 
 
-        generateSqlScriptService.insertSqlScript(updateQuery);
-        rollbackSqlScriptService.rollbackScript(rollbackUpdateQuery);
+        generateSqlScriptService.insertSqlScript(updateQuery, INSERT_SQL_FILE_NAME);
+        generateSqlScriptService.insertSqlScript(rollbackUpdateQuery, ROLLBACK_SQL_FILE_NAME);
         if (activeDB)
             authentMeansRepository.save(authentMeansEntity);
         return INSERT_SQL_FILE_NAME;
@@ -136,9 +134,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         String deleteQuery = "DELETE FROM `authentmeans` WHERE id ='" + lastId + "';";
 
-        generateSqlScriptService.insertSqlScript(insertQuery);
-
-        rollbackSqlScriptService.rollbackScript(deleteQuery);
+        generateSqlScriptService.insertSqlScript(insertQuery, INSERT_SQL_FILE_NAME);
+        generateSqlScriptService.insertSqlScript(deleteQuery, ROLLBACK_SQL_FILE_NAME);
 
         if (activeDB) {
             authentMeansRepository.save(authentMeansEntity);

@@ -7,6 +7,7 @@ import com.energizeglobal.sqlgenerator.repository.CryptoConfigRepository;
 import com.energizeglobal.sqlgenerator.service.CryptoConfigService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -14,30 +15,27 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
 
     private static boolean activeDB = true;
 
+    private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
+
+    private final String ROLLBACK_SQL_FILE_NAME = "rollback_query.sql";
+
     private final Mapping mappingCryptoConfig;
 
     private final CryptoConfigRepository cryptoConfigRepository;
 
     private final GenerateSqlScriptServiceImpl generateSqlScriptService;
 
-    private final RollbackSqlScriptServiceImpl rollbackSqlScriptService;
-
     private final DownloadFileServiceImpl downloadFileService;
-
-    private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_SQL_FILE_NAME = "insert_query.sql";
-    //private String ROLLBACK_SQL_FILE_NAME = "rollback_query.sql";
 
     public CryptoConfigServiceImpl(
             CryptoConfigRepository cryptoConfigRepository,
             Mapping mappingCryptoConfig,
             DownloadFileServiceImpl downloadFileService,
-            GenerateSqlScriptServiceImpl generateSqlScriptService, RollbackSqlScriptServiceImpl rollbackSqlScriptService) {
+            GenerateSqlScriptServiceImpl generateSqlScriptService) {
         this.cryptoConfigRepository = cryptoConfigRepository;
         this.mappingCryptoConfig = mappingCryptoConfig;
         this.generateSqlScriptService = generateSqlScriptService;
         this.downloadFileService = downloadFileService;
-        this.rollbackSqlScriptService = rollbackSqlScriptService;
     }
 
     public List<CryptoConfigDTO> findAllCryptoConfigs() {
@@ -61,13 +59,13 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
         String deleteQuery = "DELETE FROM `cryptoconfig` WHERE id ='" + id + "';";
 
         String rollbackQuery = String.format("INSERT INTO `cryptoconfig` (`protocolOne`, `protocolTwo`, `description`) " +
-                        "VALUES(''%s', '%s', '%s');",
+                        "VALUES('%s', '%s', '%s');",
                 cryptoConfigurationEntity.getProtocolOne(),
                 cryptoConfigurationEntity.getProtocolTwo(),
                 cryptoConfigurationEntity.getDescription());
 
-        generateSqlScriptService.insertSqlScript(deleteQuery);
-        rollbackSqlScriptService.rollbackScript(rollbackQuery);
+        generateSqlScriptService.insertSqlScript(deleteQuery, INSERT_SQL_FILE_NAME);
+        generateSqlScriptService.insertSqlScript(rollbackQuery, ROLLBACK_SQL_FILE_NAME);
         if (activeDB)
             cryptoConfigRepository.deleteById(id);
         return INSERT_SQL_FILE_NAME;
@@ -85,14 +83,14 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
 
         cryptoConfigRepository.save(cryptoConfigurationEntity);
 
-        generateSqlScriptService.insertSqlScript(queryType);
+        generateSqlScriptService.insertSqlScript(queryType, INSERT_SQL_FILE_NAME);
 
         Long lastId = cryptoConfigRepository.getMaxId();
 
         String deleteQuery = "DELETE FROM `cryptoconfig` WHERE id ='" + lastId + "';";
 
         if (activeDB)
-            rollbackSqlScriptService.rollbackScript(deleteQuery);
+            generateSqlScriptService.insertSqlScript(deleteQuery, ROLLBACK_SQL_FILE_NAME);
 
         return INSERT_SQL_FILE_NAME;
     }
@@ -103,24 +101,24 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
         CryptoConfigurationEntity rollbackCryptoConfigurationEntity = cryptoConfigRepository.getById(cryptoConfigDTO.getId());
 
 
-        String updateQuery = String.format("UPDATE `cryptoconfig` SET `protocolOne` = '%s', `protocolTwo` = '%s', `description` = '%s', WHERE id = '%s';",
+        String updateQuery = String.format("UPDATE `cryptoconfig` SET `protocolOne` = '%s', `protocolTwo` = '%s', `description` = '%s' WHERE id = '%s';",
                 cryptoConfigurationEntity.getProtocolOne(),
                 cryptoConfigurationEntity.getProtocolTwo(),
                 cryptoConfigurationEntity.getDescription(),
                 cryptoConfigurationEntity.getId());
 
-        String rollbackQuery = String.format("UPDATE `cryptoconfig` SET `protocolOne` = '%s', `protocolTwo` = '%s', `description` = '%s', WHERE id = '%s';",
+        String rollbackQuery = String.format("UPDATE `cryptoconfig` SET `protocolOne` = '%s', `protocolTwo` = '%s', `description` = '%s' WHERE id = '%s';",
                 rollbackCryptoConfigurationEntity.getProtocolOne(),
                 rollbackCryptoConfigurationEntity.getProtocolTwo(),
                 rollbackCryptoConfigurationEntity.getDescription(),
                 rollbackCryptoConfigurationEntity.getId());
 
-        generateSqlScriptService.insertSqlScript(updateQuery);
+        generateSqlScriptService.insertSqlScript(updateQuery, INSERT_SQL_FILE_NAME);
 
-        rollbackSqlScriptService.rollbackScript(rollbackQuery);
+        generateSqlScriptService.insertSqlScript(rollbackQuery, ROLLBACK_SQL_FILE_NAME);
 
-        if(activeDB)
-        cryptoConfigRepository.save(cryptoConfigurationEntity);
+        if (activeDB)
+            cryptoConfigRepository.save(cryptoConfigurationEntity);
 
         return INSERT_SQL_FILE_NAME;
     }

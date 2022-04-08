@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" xmlns:value="http://www.w3.org/1999/xhtml">
   <div class="center-pill text-center"
        style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
     <h3>Authentication Means</h3>
@@ -132,7 +132,7 @@
                       <div class="col-3">
                         <div class="form-group">
                           <label><b>Creation Date:</b></label>
-                          <input type="text" readonly placeholder="{{authentMeans?.creationDate}}"
+                          <input type="datetime-local" readonly placeholder="{{authentMeans?.creationDate}}"
                                  formControlName="creationDate"
                                  class="form-control">
                         </div>
@@ -170,7 +170,7 @@
                         <div class="form-group">
                           <label><b>Update State: </b></label>
                           <select class="form-select" type="text" formControlName="updateState">
-                            <option selected>{{authentMeans?.updateState}}</option>
+                            <option [value]="authentMeans?.updateState" selected>{{authentMeans?.updateState}}</option>
                             <option value="1">PUSHED_TO_CONFIG</option>
                             <option value="2">WAITING_FOR_PUSH</option>
                             <option value="3">WAITING_VALIDATION</option>
