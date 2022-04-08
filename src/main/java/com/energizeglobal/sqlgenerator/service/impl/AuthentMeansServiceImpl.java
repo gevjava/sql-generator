@@ -64,7 +64,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         String deleteQuery = "DELETE FROM `authentmeans` WHERE id ='" + id + "';";
 
-        String rollbackQuery = String.format("insert into authentmeans (createdBy, creationDate, description, lastUpdateBy, " +
+        String rollbackQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +
                         "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 authentMeansEntity.getCreatedBy(),
                 authentMeansEntity.getCreationDate(),
@@ -86,8 +86,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     public String updateAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
-        String updateQuery = String.format("update authentmeans set createdBy='%s', creationDate='%s', description='%s'," +
-                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s';",
+        String updateQuery = String.format("UPDATE `authentmeans` SET createdBy='%s', creationDate='%s', description='%s'," +
+                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' WHERE id='%s';",
                 authentMeansEntity.getCreatedBy(),
                 authentMeansEntity.getCreationDate(),
                 authentMeansEntity.getDescription(),
@@ -98,8 +98,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
                 authentMeansEntity.getId());
 
         AuthentMeansEntity authentMeansEntityRollback = authentMeansRepository.getById(authentMeansDTO.getId());
-        String rollbackUpdateQuery = String.format("update authentmeans set createdBy='%s', creationDate='%s', description='%s'," +
-                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s';",
+        String rollbackUpdateQuery = String.format("UPDATE `authentmeans` SET createdBy='%s', creationDate='%s', description='%s'," +
+                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' WHERE id='%s';",
                 authentMeansEntityRollback.getCreatedBy(),
                 authentMeansEntityRollback.getCreationDate(),
                 authentMeansEntityRollback.getDescription(),
@@ -124,7 +124,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         Long lastId = authentMeansRepository.getMaxId();
 
-        String insertQuery = String.format("insert into authentmeans (createdBy, creationDate, description, lastUpdateBy, " +
+        String insertQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +
                         "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s');",
                 authentMeansEntity.getCreatedBy(),
                 authentMeansEntity.getCreationDate(),
