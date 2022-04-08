@@ -116,7 +116,7 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
                         + cryptoConfigurationEntity.getDescription()
                         + "' WHERE id ='"
                         + cryptoConfigurationEntity.getId()
-                        + "'";
+                        + "';";
 
         String rollbackQuery =
                 "update `cryptoconfig` set `protocolOne` = '"
@@ -127,7 +127,7 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
                         + rollbackCryptoConfigurationEntity.getDescription()
                         + "' WHERE id ='"
                         + rollbackCryptoConfigurationEntity.getId()
-                        + "'";
+                        + "';";
 
         generateSqlScriptService.insertSqlScript(updateQuery);
 

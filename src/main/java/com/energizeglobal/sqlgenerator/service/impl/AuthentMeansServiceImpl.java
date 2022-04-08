@@ -87,7 +87,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
         String updateQuery = String.format("update authentmeans set createdBy='%s', creationDate='%s', description='%s'," +
-                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s'",
+                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s';",
                 authentMeansEntity.getCreatedBy(),
                 authentMeansEntity.getCreationDate(),
                 authentMeansEntity.getDescription(),
@@ -99,7 +99,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         AuthentMeansEntity authentMeansEntityRollback = authentMeansRepository.getById(authentMeansDTO.getId());
         String rollbackUpdateQuery = String.format("update authentmeans set createdBy='%s', creationDate='%s', description='%s'," +
-                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s'",
+                        " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' where id='%s';",
                 authentMeansEntityRollback.getCreatedBy(),
                 authentMeansEntityRollback.getCreationDate(),
                 authentMeansEntityRollback.getDescription(),
@@ -125,7 +125,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
         Long lastId = authentMeansRepository.getMaxId();
 
         String insertQuery = String.format("insert into authentmeans (createdBy, creationDate, description, lastUpdateBy, " +
-                        "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                        "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s');",
                 authentMeansEntity.getCreatedBy(),
                 authentMeansEntity.getCreationDate(),
                 authentMeansEntity.getDescription(),

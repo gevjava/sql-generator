@@ -23,9 +23,6 @@ public class RollbackSqlScriptServiceImpl implements RollbackSqlScript {
 
         String path = FILE_PATH + FILE_NAME;
 
-        // get the current date
-        LocalDateTime d = LocalDateTime.now();
-        System.out.println(d.toString());
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
@@ -35,7 +32,6 @@ public class RollbackSqlScriptServiceImpl implements RollbackSqlScript {
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                Files.write(newFilePath, d.toString().getBytes(StandardCharsets.UTF_8));
                 Files.write(newFilePath, rollbackScript.getBytes(StandardCharsets.UTF_8));
             }
         } catch (IOException e) {

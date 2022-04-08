@@ -31,7 +31,6 @@ public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
         Path fileDirectory = Paths.get(FILE_PATH);
         Files.createDirectories(fileDirectory);
         Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
-        Files.write(newFilePath, sqlInsert.getBytes(StandardCharsets.UTF_8));
       }
     } catch (IOException e) {
       e.printStackTrace();
