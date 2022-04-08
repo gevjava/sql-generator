@@ -3,6 +3,7 @@ package com.energizeglobal.sqlgenerator.service;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
+import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -17,7 +18,8 @@ import static java.nio.file.StandardOpenOption.APPEND;
 @Service
 public class RollbackService {
 
-
+    private SubIssuerRepository subIssuerRepository;
+    private Boolean dbAction = false;
     String FILE_PATH = "src/main/resources/sql_scripts/";
     String ROLLBACK_FILE_NAME = "subissuer_subrollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
@@ -65,10 +67,13 @@ public class RollbackService {
 
         pathGenerator(sqlInsert);
 
+        if (dbAction == true)
+            subIssuerRepository.save(subIssuer);
         return ROLLBACK_FILE_NAME;
     }
 
     public String generateSqlScriptForUpdateRollback(SubIssuerDto subIssuerDto) {
+        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
 
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
@@ -89,6 +94,26 @@ public class RollbackService {
 
         pathGenerator(queryUpdate);
 
+        if (dbAction == true) {
+            subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
+                    subIssuer.getAcsId(),
+                    subIssuer.getAuthenticationTimeOut(),
+                    subIssuer.getDefaultLanguage(),
+                    subIssuer.getCodeSvi(),
+                    subIssuer.getCurrencyCode(),
+                    subIssuer.getName(),
+                    subIssuer.getLabel(),
+                    subIssuer.getAuthentMeans(),
+                    subIssuer.getPersonnalDataStorage(),
+                    subIssuer.getResetBackupsIfSuccess(),
+                    subIssuer.getResetChoicesIfSuccess(),
+                    subIssuer.getManageBackupsCombinedAmounts(),
+                    subIssuer.getManageChoicesCombinedAmounts(),
+                    subIssuer.getHubMaintenanceModeEnabled());
+        }
+
+
+
         return ROLLBACK_FILE_NAME;
     }
 
@@ -99,7 +124,12 @@ public class RollbackService {
                 "DELETE FROM subissuer WHERE code = " + code + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
+
         pathGenerator(deleteQuery);
+
+        if (dbAction == true)
+            subIssuerRepository.deleteByCode(code);
+
         return ROLLBACK_FILE_NAME;
     }
 

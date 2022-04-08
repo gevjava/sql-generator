@@ -124,9 +124,14 @@ public class SubIssuerService {
                 "manageChoicesCombinedAmounts = " + subIssuerDto.getManageChoicesCombinedAmounts() + ", " +
                 "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
+
+
         pathGenerator(queryUpdate);
 
-        if (dbAction == true)
+        rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
+
+
+        if (dbAction == true){
             subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
                     subIssuer.getAcsId(),
                     subIssuer.getAuthenticationTimeOut(),
@@ -142,8 +147,8 @@ public class SubIssuerService {
                     subIssuer.getManageBackupsCombinedAmounts(),
                     subIssuer.getManageChoicesCombinedAmounts(),
                     subIssuer.getHubMaintenanceModeEnabled());
+        }
 
-        rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
 
         return INSERT_FILE_NAME;
     }

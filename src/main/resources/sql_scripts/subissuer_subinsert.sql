@@ -900,4 +900,7 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLang
   "authentMeans" : "PASSWORD",
   "validate" : true
 } ]', personnalDataStorage = true, resetBackupsIfSuccess = true, resetChoicesIfSuccess = true, manageBackupsCombinedAmounts = true, manageChoicesCombinedAmounts = true, hubMaintenanceModeEnabled = true  WHERE code = 19550;
-INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )  VALUES ('4245254', 0, 'en', '500', '7414', '74', 'sms', 'GBD', 'GBD', true, false, true, false, true, false);
+
+INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )
+ VALUES ('4245254', 0, 'en', '500', '7414', '74', 'sms', 'GBD', 'GBD', true, false, true, false, true, false);
+
