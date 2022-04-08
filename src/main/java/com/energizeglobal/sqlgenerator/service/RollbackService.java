@@ -36,9 +36,9 @@ public class RollbackService {
                 "code, " +
                 "codeSvi ," +
                 "currencyCode , " +
-                "authentMeans , " +
                 "name,  " +
                 "label , " +
+                "authentMeans , " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
                 "resetChoicesIfSuccess, " +
@@ -53,9 +53,9 @@ public class RollbackService {
                 subIssuer.getCode() + "', '" +
                 subIssuer.getCodeSvi() + "', '" +
                 subIssuer.getCurrencyCode() + "', '" +
-                subIssuer.getAuthentMeans() + "', '" +
                 subIssuer.getName() + "', '" +
                 subIssuer.getLabel() + "', " +
+                subIssuer.getAuthentMeans() + "', '" +
                 subIssuer.getPersonnalDataStorage() + ", " +
                 subIssuer.getResetBackupsIfSuccess() + ", " +
                 subIssuer.getResetChoicesIfSuccess() + ", " +
