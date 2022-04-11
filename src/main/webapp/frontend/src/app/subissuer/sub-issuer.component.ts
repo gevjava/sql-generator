@@ -20,7 +20,6 @@ export class SubIssuerComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.getAllSubIssuer();
-
   }
 
   sendSubIssuerData() {
@@ -56,7 +55,6 @@ export class SubIssuerComponent implements OnInit {
       this.subIssuers = subIssuers;
     });
   }
-
 
   downloadFile() {
     this.subIssuerService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));

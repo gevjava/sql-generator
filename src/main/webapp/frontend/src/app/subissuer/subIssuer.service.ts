@@ -7,8 +7,7 @@ import {Subissuer} from "./subissuer";
 })
 export class SubIssuerService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getAllSubIssuer() {
     return this.http.get('/subissuer');
@@ -16,7 +15,6 @@ export class SubIssuerService {
 
   sendData(subIssuerData: Subissuer) {
      return this.http.post('/subissuer', subIssuerData, {responseType: 'text'});
-
   }
 
   downloadSqlFile(filename: String) {
