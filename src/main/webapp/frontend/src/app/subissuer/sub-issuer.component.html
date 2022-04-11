@@ -5,9 +5,7 @@
       <div class="col text-center">
       </div>
     </div>
-
     <div class="row">
-
       <div class="col-md-4"></div>
       <div class="col-md-4 text-center">
 
@@ -23,7 +21,7 @@
 
         <div class="form-group">
           <label for="defaultLanguage">DefaultLanguage</label>
-          <input type="text" id="defaultLanguage" formControlName="defaultLanguage" class="form-control" >
+          <input type="text" id="defaultLanguage" formControlName="defaultLanguage" class="form-control">
         </div>
 
         <div class="form-group">
@@ -41,18 +39,14 @@
           <input type="text" id="currencyCode" formControlName="currencyCode" class="form-control">
         </div>
 
-
-
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" formControlName="name" class="form-control">
         </div>
-
         <div class="form-group">
           <label for="label">Label</label>
           <input type="text" id="label" formControlName="label" class="form-control">
         </div>
-
         <div class="form-group">
           <label for="authentMeans">AuthentMeans</label>
           <input type="text" id="authentMeans" formControlName="authentMeans" class="form-control">
@@ -61,87 +55,53 @@
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-
-              <input
-                class="form-check-input"
-                type="checkbox"
-                formControlName="personnalDataStorage"
-                id="personnalDataStorage">
-
+              <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage" id="personnalDataStorage">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="personnalDataStorage">PersonalDataStorage</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="personnalDataStorage">PersonalDataStorage</label>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-
-              <input
-                class="form-check-input" type="checkbox"
-                formControlName="resetBackupsIfSuccess"
-                id="resetBackupsIfSuccess">
-
+              <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess" id="resetBackupsIfSuccess">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-
-              <input
-                class="form-check-input" type="checkbox"
-                formControlName="resetChoicesIfSuccess"
-                id="resetChoicesIfSuccess">
-
+              <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess" id="resetChoicesIfSuccess">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-
-              <input
-                class="form-check-input" type="checkbox"
-                formControlName="manageBackupsCombinedAmounts"
-                id="manageBackupsCombinedAmounts">
-
+              <input class="form-check-input" type="checkbox" formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-
-              <input
-                class="form-check-input" type="checkbox"
-                formControlName="manageChoicesCombinedAmounts"
-                id="manageChoicesCombinedAmounts">
+              <input class="form-check-input" type="checkbox" formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="input-group mb-3" style="margin-top: 15px;">
             <div class="input-group-prepend">
-              <input
-                class="form-check-input" type="checkbox"
-                formControlName="hubMaintenanceModeEnabled"
-                id="hubMaintenanceModeEnabled">
+              <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled" id="hubMaintenanceModeEnabled">
             </div>
-            <label class="form-check-label" style="margin-left: 15px;"
-                   for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
+            <label class="form-check-label" style="margin-left: 15px;" for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
           </div>
         </div>
       </div>
@@ -149,16 +109,13 @@
     </div>
   </div>
 
-
   <div class="container">
     <div class="row text-center mt-2">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <button type="submit" [disabled]="!subIssuerForm.valid"
-                class="btn btn-primary btn-block">Generate SQL Script
+        <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate Insert SQL Script
         </button>
       </div>
-
       <div class="col-md-4"></div>
     </div>
   </div>
@@ -170,7 +127,6 @@
   </div>
 </form>
 
-
 <div class="container-fluid" style="margin-top: 150px;">
   <div class="row">
     <div class="col">
@@ -178,7 +134,6 @@
         <thead>
         <tr>
           <th scope="col">Id</th>
-
           <th scope="col">AcsId</th>
           <th scope="col">
             Authentication
@@ -260,7 +215,6 @@
             <a routerLink="/subissuer/{{ subIssuer.code }}/delete"
                class="btn btn-danger"> Delete</a>
           </td>
-
         </tr>
         </tbody>
       </table>
