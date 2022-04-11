@@ -23,38 +23,5 @@ export class SubIssuerService {
     return this.http.get('/subissuer/script/download/' + filename, {responseType: 'blob'});
   }
 
-  add(subIssuer: Subissuer) {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      observe: 'response' as 'response'
-    };
-
-    return this.http.post(
-      '/subissuer',
-      JSON.stringify({
-        acsId: subIssuer.acsId,
-        authenticationTimeOut: subIssuer.authenticationTimeOut,
-        defaultLanguage: subIssuer.defaultLanguage,
-        code: subIssuer.code,
-        codeSvi: subIssuer.codeSvi,
-        currencyCode: subIssuer.currencyCode,
-        name: subIssuer.name,
-        label: subIssuer.label,
-        authentMeans: subIssuer.authentMeans,
-        personnalDataStorage: subIssuer.personnalDataStorage,
-        resetBackupsIfSuccess: subIssuer.resetBackupsIfSuccess,
-        resetChoicesIfSuccess: subIssuer.resetChoicesIfSuccess,
-        manageBackupsCombinedAmounts: subIssuer.manageBackupsCombinedAmounts,
-        manageChoicesCombinedAmounts: subIssuer.manageChoicesCombinedAmounts,
-        hubMaintenanceModeEnabled: subIssuer.hubMaintenanceModeEnabled,
-      }),
-
-      httpOptions
-    );
-  }
-
 }
 

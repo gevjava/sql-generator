@@ -17,21 +17,18 @@ public class SubIssuer {
     @Column
     private String name;
 
-    @Column(name = "code")
+    @Column(name = "code", unique = true)
     private String code;
-
-    @Column(name = "createdBy")
-    private String createdBy;
 
     @Column(name = "authentMeans")
     private String authentMeans;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
+    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id", updatable = false)
     private Issuer issuer;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false )
     @JsonIgnore
     private CryptoConfig cryptoConfigEntity;
 
@@ -98,13 +95,6 @@ public class SubIssuer {
         this.code = code;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
 
     public String getAuthentMeans() {
         return authentMeans;

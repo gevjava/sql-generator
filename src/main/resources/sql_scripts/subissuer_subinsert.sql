@@ -864,3 +864,8 @@ UPDATE subissuer SET acsId = 'ACS_U5G', authenticationTimeOut = 120, defaultLang
 INSERT INTO subissuer  ( acsId ,authenticationTimeOut, defaultLanguage , code, codeSvi ,currencyCode , authentMeans , name,  label , personnalDataStorage, resetBackupsIfSuccess,resetChoicesIfSuccess, manageBackupsCombinedAmounts, manageChoicesCombinedAmounts, hubMaintenanceModeEnabled )
  VALUES ('4245254', 0, 'en', '500', '7414', '74', 'sms', 'GBD', 'GBD', true, false, true, false, true, false);
 
+START TRANSACTION;
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE FROM subissuer WHERE code = 12;
+SET FOREIGN_KEY_CHECKS = 1;
+COMMIT;

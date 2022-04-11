@@ -52,11 +52,9 @@ public class SubIssuerService {
         return SubissuerMapping.entityToDto(subIssuer);
     }
 
-
     public String generateInsertSqlScript(SubIssuerDto dto) {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
-
 
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId ," +
@@ -83,8 +81,8 @@ public class SubIssuerService {
                 subIssuer.getCodeSvi() + "', '" +
                 subIssuer.getCurrencyCode() + "', '" +
                 subIssuer.getName() + "', '" +
-                subIssuer.getLabel() + "', " +
-                subIssuer.getAuthentMeans() + "', '" +
+                subIssuer.getLabel() + "', '" +
+                subIssuer.getAuthentMeans() + "', " +
                 subIssuer.getPersonnalDataStorage() + ", " +
                 subIssuer.getResetBackupsIfSuccess() + ", " +
                 subIssuer.getResetChoicesIfSuccess() + ", " +
@@ -94,19 +92,20 @@ public class SubIssuerService {
 
         String sqlInsert = queryType + queryValue;
 
-        pathGenerator(sqlInsert);
+        InsertPathGenerator(sqlInsert);
 
         rollbackService.generateSqlScriptForInsertRollback(subIssuer.getCode());
 
-        if (dbAction == true)
+        if (dbAction)
             subIssuerRepository.save(subIssuer);
 
         return INSERT_FILE_NAME;
     }
 
     public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
-        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
-        SubIssuerDto oldSubIssuer = findByCode(subIssuerDto.getCode());
+        SubIssuer oldSubIssuer = subIssuerRepository.findByCode(subIssuerDto.getCode());
+        SubIssuer newSubIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
+        newSubIssuer.setId(oldSubIssuer.getId());
 
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
@@ -125,30 +124,11 @@ public class SubIssuerService {
                 "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
 
-
-        pathGenerator(queryUpdate);
+        InsertPathGenerator(queryUpdate);
 
         rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
-
-
-        if (dbAction == true){
-            subIssuerRepository.updateSubIssuer(subIssuer.getCode(),
-                    subIssuer.getAcsId(),
-                    subIssuer.getAuthenticationTimeOut(),
-                    subIssuer.getDefaultLanguage(),
-                    subIssuer.getCodeSvi(),
-                    subIssuer.getCurrencyCode(),
-                    subIssuer.getName(),
-                    subIssuer.getLabel(),
-                    subIssuer.getAuthentMeans(),
-                    subIssuer.getPersonnalDataStorage(),
-                    subIssuer.getResetBackupsIfSuccess(),
-                    subIssuer.getResetChoicesIfSuccess(),
-                    subIssuer.getManageBackupsCombinedAmounts(),
-                    subIssuer.getManageChoicesCombinedAmounts(),
-                    subIssuer.getHubMaintenanceModeEnabled());
-        }
-
+        if (dbAction)
+            subIssuerRepository.save(newSubIssuer);
 
         return INSERT_FILE_NAME;
     }
@@ -157,22 +137,23 @@ public class SubIssuerService {
 
         SubIssuerDto oldSubIssuer = findByCode(code);
 
-        String deleteQuery = "\nSTART TRANSACTION; \n" +
+        String deleteQuery = "\n" +
+                "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
                 "DELETE FROM subissuer WHERE code = " + code + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
-        pathGenerator(deleteQuery);
+        InsertPathGenerator(deleteQuery);
 
         rollbackService.generateSqlScriptForDeleteRollback(oldSubIssuer);
 
-        if (dbAction == true)
+        if (dbAction)
             subIssuerRepository.deleteByCode(code);
 
         return INSERT_FILE_NAME;
     }
 
-    private void pathGenerator(String sql) {
+    private void InsertPathGenerator(String sql) {
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {

@@ -5,8 +5,8 @@ import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +21,8 @@ public class SubIssuerController {
     private final SubIssuerService subIssuerService;
 
     public SubIssuerController(SubIssuerService subIssuerServiceImpl) {
-        this.subIssuerService = subIssuerServiceImpl; }
+        this.subIssuerService = subIssuerServiceImpl;
+    }
 
     @GetMapping
     public ResponseEntity<List<SubIssuer>> getAllSubIssuer() {
@@ -41,18 +42,17 @@ public class SubIssuerController {
         return ResponseEntity.ok(filename);
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity<String> updateSubissuer( @RequestBody SubIssuerDto subIssuerDto) {
-        String filename = subIssuerService.generateUpdateSqlScript( subIssuerDto);
+    @PutMapping
+    public ResponseEntity<String> updateSubissuer(@RequestBody SubIssuerDto subIssuerDto) {
+        String filename = subIssuerService.generateUpdateSqlScript(subIssuerDto);
         return ResponseEntity.ok(filename);
     }
 
-    @DeleteMapping("/delete/{code}")
+    @DeleteMapping("/{code}")
     private ResponseEntity deletByCode(@PathVariable("code") String code) {
         String filename = subIssuerService.generateDeleteSqlScript(code);
         return ResponseEntity.ok(filename);
     }
-
 
     @GetMapping("/script/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
