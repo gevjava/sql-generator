@@ -43,7 +43,7 @@ public class CryptoConfigController {
         return ResponseEntity.ok(filename);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<String> updateCryptoConfig(@RequestBody CryptoConfigDTO cryptoConfigDTO) {
         String filename = cryptoConfigServiceImpl.updateCryptoConfig(cryptoConfigDTO);
         return ResponseEntity.ok(filename);

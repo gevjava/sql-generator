@@ -1,4 +1,4 @@
-package com.energizeglobal.sqlgenerator.enams;
+package com.energizeglobal.sqlgenerator.enums;
 
 public enum HubCallMode {
     PA_ONLY_MODE,

@@ -1,4 +1,4 @@
-package com.energizeglobal.sqlgenerator.enams;
+package com.energizeglobal.sqlgenerator.enums;
 
 public enum UpdateState{
     WAITING_VALIDATION,

@@ -8,6 +8,8 @@ import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -84,6 +86,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     public String updateAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
+        authentMeansEntity.setLastUpdateDate(LocalDateTime.now());
+        authentMeansRepository.getById(authentMeansDTO.getId());
         String updateQuery = String.format("UPDATE `authentmeans` SET createdBy='%s', creationDate='%s', description='%s'," +
                         " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' WHERE id='%s';",
                 authentMeansEntity.getCreatedBy(),
@@ -110,8 +114,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         generateSqlScriptService.insertSqlScript(updateQuery, INSERT_SQL_FILE_NAME);
         generateSqlScriptService.insertSqlScript(rollbackUpdateQuery, ROLLBACK_SQL_FILE_NAME);
-        if (activeDB)
-            authentMeansRepository.save(authentMeansEntity);
+        if (activeDB){
+            authentMeansRepository.save(authentMeansEntity);}
         return INSERT_SQL_FILE_NAME;
     }
 

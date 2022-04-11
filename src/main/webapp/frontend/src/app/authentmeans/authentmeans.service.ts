@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -26,7 +26,6 @@ export class AuthentmeansService {
     return this.http.delete(this.baseUrl + '/' + `${id}`, {responseType: 'text'});
   }
 
-
   sendAuthentmeansData(authentMeansData: any) {
 
     return this.http.post(this.baseUrl, authentMeansData, {responseType: 'text'});
@@ -34,7 +33,7 @@ export class AuthentmeansService {
 
   updateAuthentmeans(authentMeansData: any) {
 
-    return this.http.put(this.baseUrl + '/update', authentMeansData, {responseType: 'text'});
+    return this.http.put(this.baseUrl, authentMeansData, {responseType: 'text'});
   }
 
   downloadFile(filename: String) {

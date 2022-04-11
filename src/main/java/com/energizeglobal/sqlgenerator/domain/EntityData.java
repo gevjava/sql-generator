@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.domain;
 
-import com.energizeglobal.sqlgenerator.enams.UpdateState;
+import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import lombok.Data;
 
 import javax.persistence.*;

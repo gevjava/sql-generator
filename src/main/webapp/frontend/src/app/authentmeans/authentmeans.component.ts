@@ -3,6 +3,7 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from "file-saver";
 import {AuthentmeansService} from "./authentmeans.service";
+import {Authentmeans} from "./authentmeans";
 
 @Component({
   selector: 'app-authentmeans',
@@ -11,16 +12,16 @@ import {AuthentmeansService} from "./authentmeans.service";
   providers: [NgbModalConfig, NgbModal]
 })
 export class AuthentmeansComponent implements OnInit {
-  authentMeanses: any;
-  authentMeans: any;
-  authentMeansAddForm: any;
-  authentMeansUpdateForm: any;
-  content: any;
-  filename = "";
+  public authentMeanses: any;
+  public authentMeans: any;
+  public authentMeansAddForm: any;
+  public authentMeansUpdateForm: any;
+  public content: any;
+  public filename = "";
 
   @Input() isChecked = false;
 
-  constructor(private AuthentmeansService: AuthentmeansService, config: NgbModalConfig, private modalService: NgbModal,
+  constructor(private authentmeansService: AuthentmeansService, config: NgbModalConfig, private modalService: NgbModal,
               private formBuilder: FormBuilder) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -29,6 +30,7 @@ export class AuthentmeansComponent implements OnInit {
   private initializeAddForm() {
     this.authentMeansAddForm = this.formBuilder.group({
       createdBy: ['', Validators.required],
+      createdDate: ['', Validators.required],
       description: ['', Validators.required],
       lastUpdateBy: ['', Validators.required],
       name: ['', Validators.required],
@@ -54,18 +56,18 @@ export class AuthentmeansComponent implements OnInit {
   }
 
   updateCrypto({content}: { content: any }) {
-    this.modalService.open(content, {size: 'xl', scrollable: true});
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
 
   }
 
   addAuthentmeans({content}: { content: any }) {
-    this.modalService.open(content,{size: 'lg', scrollable: true});
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     this.reloadData();
   }
 
   getAuthentmeansById(id: number) {
-    this.AuthentmeansService.getAuthentmeans(id).subscribe(cryptoConfig => {
-      this.authentMeans = cryptoConfig;
+    this.authentmeansService.getAuthentmeans(id).subscribe(authentMeans => {
+      this.authentMeans = authentMeans;
     });
   }
 
@@ -75,13 +77,13 @@ export class AuthentmeansComponent implements OnInit {
 
 
   getAuthentmeansList() {
-    this.AuthentmeansService.getAuthentmeansList().subscribe(cryptoConfigs => {
+    this.authentmeansService.getAuthentmeansList().subscribe(cryptoConfigs => {
       this.authentMeanses = cryptoConfigs;
     });
   }
 
   deleteAuthentmeansById(id: number) {
-    this.AuthentmeansService.deleteAuthentmeansById(id).subscribe(response => {
+    this.authentmeansService.deleteAuthentmeansById(id).subscribe(response => {
       this.filename = response;
       this.reloadData();
     });
@@ -89,7 +91,7 @@ export class AuthentmeansComponent implements OnInit {
 
   sendAuthentmeansData() {
     let authentMeansData = this.authentMeansAddForm.value;
-    this.AuthentmeansService.sendAuthentmeansData(authentMeansData).subscribe(response => {
+    this.authentmeansService.sendAuthentmeansData(authentMeansData).subscribe(response => {
       this.filename = response;
       this.reloadData();
     });
@@ -97,7 +99,7 @@ export class AuthentmeansComponent implements OnInit {
 
   updateAuthentmeans() {
     let authentMeansData = this.authentMeansUpdateForm.value;
-    this.AuthentmeansService.updateAuthentmeans(authentMeansData).subscribe(response => {
+    this.authentmeansService.updateAuthentmeans(authentMeansData).subscribe(response => {
       console.log(response);
       this.filename = response;
       this.reloadData();
@@ -105,6 +107,6 @@ export class AuthentmeansComponent implements OnInit {
   }
 
   downloadFile() {
-    this.AuthentmeansService.downloadFile(this.filename).subscribe(file => saveAs(file, this.filename));
+    this.authentmeansService.downloadFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
 }

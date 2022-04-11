@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 
-import com.energizeglobal.sqlgenerator.enams.HubCallMode;
+import com.energizeglobal.sqlgenerator.enums.HubCallMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 

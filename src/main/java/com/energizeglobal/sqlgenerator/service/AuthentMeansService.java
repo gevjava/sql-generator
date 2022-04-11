@@ -5,6 +5,7 @@ import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
 
 import java.util.List;
 
+
 public interface AuthentMeansService {
 
     List<AuthentMeansEntity> getAllAuthentMeans();

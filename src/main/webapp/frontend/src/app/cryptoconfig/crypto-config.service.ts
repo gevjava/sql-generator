@@ -34,7 +34,7 @@ export class CryptoConfigService {
 
   updateCryptoConfig(cryptoConfigData: any) {
 
-    return this.http.put(this.baseUrl + '/update', cryptoConfigData, {responseType: 'text'});
+    return this.http.put(this.baseUrl, cryptoConfigData, {responseType: 'text'});
   }
 
   downloadFile(filename: String) {

@@ -14,23 +14,27 @@ import java.util.List;
 @Table(name = "cryptoconfig")
 public class CryptoConfigurationEntity implements Serializable {
 
-  @Id
-  @Column
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @Column(name = "protocolOne")
-  private String protocolOne;
+    @Column(name = "protocolOne")
+    private String protocolOne;
 
-  @Column(name = "protocolTwo")
-  private String protocolTwo;
+    @Column(name = "protocolTwo")
+    private String protocolTwo;
 
-  @Column(name = "description")
-  private String description;
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(mappedBy = "cryptoConfigurationEntity")
-    @Lazy
     @JsonIgnore
     private List<SubIssuerEntity> linkedSubIssuers = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "cryptoConfigurationEntity")
+    @JsonIgnore
+    private List<BinRangeEntity> linkedBinRanges = new ArrayList<>();
 
 }

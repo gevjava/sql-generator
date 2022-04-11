@@ -45,7 +45,7 @@ public class AuthentMeansController {
         return ResponseEntity.ok(filename);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<String> updateAuthentMean(@RequestBody AuthentMeansDTO authentMeansDTO) {
         String filename = authentMeansService.updateAuthentMean(authentMeansDTO);
         return ResponseEntity.ok(filename);

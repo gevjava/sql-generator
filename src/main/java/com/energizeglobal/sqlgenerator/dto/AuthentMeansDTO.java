@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.dto;
 
-import com.energizeglobal.sqlgenerator.enams.UpdateState;
+import com.energizeglobal.sqlgenerator.enums.UpdateState;
 
 import java.time.LocalDate;
 import java.util.Date;
