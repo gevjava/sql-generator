@@ -11,14 +11,11 @@ import {saveAs} from 'file-saver';
 })
 export class SubIssuerComponent implements OnInit {
 
-
   subIssuers: any;
   subIssuerForm: any;
   filename: string = "";
 
-
-  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {
-  }
+  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -32,10 +29,7 @@ export class SubIssuerComponent implements OnInit {
     this.subIssuerService.sendData(subIssuerData).subscribe(response => {
       this.filename = response;
     })
-
-
   }
-
 
   initializeForm() {
     this.subIssuerForm = this.formBuilder.group({
@@ -43,11 +37,11 @@ export class SubIssuerComponent implements OnInit {
       authenticationTimeOut: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
       defaultLanguage: ['', Validators.required],
       code: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      name: ['', Validators.required],
-      authentMeans: ['', Validators.required],
       codeSvi: ['', Validators.required],
       currencyCode: ['', Validators.required],
+      name: ['', Validators.required],
       label: ['', Validators.required],
+      authentMeans: ['', Validators.required],
       personnalDataStorage: [0, Validators.required],
       resetBackupsIfSuccess: [0, Validators.required],
       resetChoicesIfSuccess: [0, Validators.required],

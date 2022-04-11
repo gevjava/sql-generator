@@ -167,10 +167,9 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <button type="submit"
-
-                class="btn btn-primary btn-block">Generate SQL Script
+                [disabled]="!subIssuerForm.valid"
+                class="btn btn-primary btn-block">Generate Update SQL Script
         </button>
-        <!--  on 84 validator  [disabled]="!subIssuerForm.valid" -->
       </div>
 
       <div class="col-md-4"></div>
