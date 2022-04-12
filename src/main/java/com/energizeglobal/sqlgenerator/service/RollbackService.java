@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
 
-
 @Service
 public class RollbackService {
 
@@ -22,26 +21,27 @@ public class RollbackService {
     String ROLLBACK_FILE_NAME = "subissuer_subrollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
+
     public String generateSqlScriptForDeleteRollback(SubIssuerDto dto) {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
-                "acsId ," +
-                "authenticationTimeOut," +
-                " defaultLanguage , " +
+                "acsId, " +
+                "authenticationTimeOut, " +
+                " defaultLanguage, " +
                 "code, " +
-                "codeSvi ," +
-                "currencyCode , " +
-                "name,  " +
-                "label , " +
-                "authentMeans , " +
+                "codeSvi, " +
+                "currencyCode, " +
+                "name, " +
+                "label, " +
+                "authentMeans, " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
                 "resetChoicesIfSuccess, " +
-                "manageBackupsCombinedAmounts," +
-                " manageChoicesCombinedAmounts," +
-                " hubMaintenanceModeEnabled )";
+                "manageBackupsCombinedAmounts, " +
+                "manageChoicesCombinedAmounts, " +
+                "hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -51,8 +51,8 @@ public class RollbackService {
                 subIssuer.getCodeSvi() + "', '" +
                 subIssuer.getCurrencyCode() + "', '" +
                 subIssuer.getName() + "', '" +
-                subIssuer.getLabel() + "', " +
-                subIssuer.getAuthentMeans() + "', '" +
+                subIssuer.getLabel() + "', '" +
+                subIssuer.getAuthentMeans() + "', " +
                 subIssuer.getPersonnalDataStorage() + ", " +
                 subIssuer.getResetBackupsIfSuccess() + ", " +
                 subIssuer.getResetChoicesIfSuccess() + ", " +
@@ -93,7 +93,8 @@ public class RollbackService {
 
     public String generateSqlScriptForInsertRollback(String code) {
 
-        String deleteQuery = "\nSTART TRANSACTION; \n" +
+        String deleteQuery = "\n" +
+                "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
                 "DELETE FROM subissuer WHERE code = " + code + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
@@ -109,16 +110,13 @@ public class RollbackService {
         try {
             if (Files.exists(newFilePath)) {
                 sql = System.getProperty("line.separator") + sql;
-                try (BufferedWriter bufferedWriter =
-                             Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
                     bufferedWriter.write(sql);
                 }
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                try (
-                        BufferedWriter bufferedWriter =
-                                Files.newBufferedWriter(newFilePath, UTF_8)) {
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8)) {
                     bufferedWriter.write(sql);
                 }
             }

@@ -31,9 +31,10 @@ public class SubIssuerService {
     private final SubIssuerRepository subIssuerRepository;
     private final RollbackService rollbackService;
 
-    String FILE_PATH = "src/main/resources/sql_scripts/";
-    String INSERT_FILE_NAME = "subissuer_subinsert.sql";
-    String path = FILE_PATH + INSERT_FILE_NAME;
+
+    private String FILE_PATH = "src/main/resources/sql_scripts/";
+    private String INSERT_FILE_NAME = "subissuer_insert.sql";
+    private String path = FILE_PATH + INSERT_FILE_NAME;
 
     public SubIssuerService(SubIssuerRepository subIssuerRepository, RollbackService rollbackService) {
 
@@ -58,21 +59,21 @@ public class SubIssuerService {
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
-                "acsId ," +
-                "authenticationTimeOut," +
-                " defaultLanguage , " +
+                "acsId, " +
+                "authenticationTimeOut, " +
+                "defaultLanguage, " +
                 "code, " +
-                "codeSvi ," +
-                "currencyCode , " +
-                "name,  " +
-                "label , " +
-                "authentMeans , " +
+                "codeSvi, " +
+                "currencyCode, " +
+                "name, " +
+                "label, " +
+                "authentMeans, " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
                 "resetChoicesIfSuccess, " +
-                "manageBackupsCombinedAmounts," +
-                " manageChoicesCombinedAmounts," +
-                " hubMaintenanceModeEnabled )";
+                "manageBackupsCombinedAmounts, " +
+                "manageChoicesCombinedAmounts, " +
+                "hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -113,8 +114,8 @@ public class SubIssuerService {
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
                 "authenticationTimeOut = " + subIssuerDto.getAuthenticationTimeOut() + ", " +
                 "defaultLanguage = '" + subIssuerDto.getDefaultLanguage() + "', " +
-                "codeSvi = " + subIssuerDto.getCodeSvi() + ", " +
-                "currencyCode = " + subIssuerDto.getCurrencyCode() + ", " +
+                "codeSvi = '" + subIssuerDto.getCodeSvi() + "', " +
+                "currencyCode = '" + subIssuerDto.getCurrencyCode() + "', " +
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
                 "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
@@ -157,20 +158,18 @@ public class SubIssuerService {
     }
 
     private void InsertPathGenerator(String sql) {
+
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
                 sql = System.getProperty("line.separator") + sql;
-                try (BufferedWriter bufferedWriter =
-                             Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
                     bufferedWriter.write(sql);
                 }
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                try (
-                        BufferedWriter bufferedWriter =
-                                Files.newBufferedWriter(newFilePath, UTF_8)) {
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8)) {
                     bufferedWriter.write(sql);
                 }
             }
@@ -192,5 +191,4 @@ public class SubIssuerService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
-
 }
