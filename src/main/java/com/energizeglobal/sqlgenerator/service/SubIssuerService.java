@@ -52,6 +52,7 @@ public class SubIssuerService {
         return SubissuerMapping.entityToDto(subIssuer);
     }
 
+    @Transactional(readOnly = true)
     public String generateInsertSqlScript(SubIssuerDto dto) {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
@@ -102,6 +103,7 @@ public class SubIssuerService {
         return INSERT_FILE_NAME;
     }
 
+    @Transactional(readOnly = true)
     public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
         SubIssuer oldSubIssuer = subIssuerRepository.findByCode(subIssuerDto.getCode());
         SubIssuer newSubIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
@@ -133,6 +135,7 @@ public class SubIssuerService {
         return INSERT_FILE_NAME;
     }
 
+    @Transactional(readOnly = true)
     public String generateDeleteSqlScript(String code) {
 
         SubIssuerDto oldSubIssuer = findByCode(code);
