@@ -2,12 +2,9 @@ package com.energizeglobal.sqlgenerator.domain;
 
 import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLUpdate;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -34,7 +31,7 @@ public class AuthentMeansEntity {
     private String lastUpdateBy;
 
     @CreatedDate
-    @Column(name = "lastUpdateDate", updatable = true)
+    @Column(name = "lastUpdateDate")
     private LocalDateTime lastUpdateDate;
 
     @Column(name = "name")
@@ -43,7 +40,6 @@ public class AuthentMeansEntity {
     @Column(name = "updateState", nullable = false)
     @Enumerated(EnumType.STRING)
     private UpdateState updateState;
-
 
 
 }

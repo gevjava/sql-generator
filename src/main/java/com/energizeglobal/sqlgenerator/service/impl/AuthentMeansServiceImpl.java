@@ -8,14 +8,13 @@ import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class AuthentMeansServiceImpl implements AuthentMeansService {
 
-    private static boolean activeDB = true;
+    private static boolean activeDB = false;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
@@ -114,8 +113,9 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
         generateSqlScriptService.insertSqlScript(updateQuery, INSERT_SQL_FILE_NAME);
         generateSqlScriptService.insertSqlScript(rollbackUpdateQuery, ROLLBACK_SQL_FILE_NAME);
-        if (activeDB){
-            authentMeansRepository.save(authentMeansEntity);}
+        if (activeDB) {
+            authentMeansRepository.save(authentMeansEntity);
+        }
         return INSERT_SQL_FILE_NAME;
     }
 
