@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {saveAs} from 'file-saver';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-issuer',
@@ -10,38 +11,51 @@ import {saveAs} from 'file-saver';
 })
 export class IssuerComponent implements OnInit {
 
-  issuers: any;
-  issuerForm: any;
+  issuers: any = [];
   filename: string ="";
+  filterTerm!: string;
+  showOnchange: boolean = false;
+  issuer: string = '';
+  id!: string | null;
 
-  constructor(private issuerService: IssuerService, private formBuilder: FormBuilder) { }
+  issuerForm: any;
+
+  constructor(
+    private issuerService: IssuerService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    this.initializeForm();
     this.getAllIssuer();
+    this.initializeForm();
   }
 
   initializeForm(){
     this.issuerForm = this.formBuilder.group({
+      id:['', Validators.required],
       code: ['', Validators.required],
-      name: ['', Validators.required],
       createdBy: ['', Validators.required],
-      description: ['', Validators.required]
+      creationDate:['', Validators.required],
+      name: ['', Validators.required],
+      updateState:['',Validators.required],
+      label:['',Validators.required],
+      availaibleAuthentMeans: ['', Validators.required]
     });
+  }
+
+  onSubmit(code: any){
+    this.issuerService.sendIssuerData(code).subscribe(response => {console.log(response)});
   }
 
   getAllIssuer(){
     this.issuerService.getAllIssuer().subscribe(issuers => {
-      this.issuers = issuers;
+        this.issuers = issuers;
     });
   }
 
-  sendIssuerData(){
-    let issuerData = this.issuerForm.value;
-    this.issuerService.sendIssuerData(issuerData).subscribe(response => {this.filename = response;})
+  listOfIssuers(){
+     this.showOnchange = true;
   }
 
-  downloadFile(){
-    this.issuerService.downloadFile(this.filename).subscribe(file => saveAs(file, this.filename));
-  }
 }
