@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface CryptoConfigService {
 
-  List<CryptoConfigDTO> findAllCryptoConfigs();
+    List<CryptoConfigDTO> findAllCryptoConfigs();
 
-  CryptoConfigDTO getById(Long id);
+    CryptoConfigDTO getById(Long id);
 
-  String deleteById(Long id);
+    String deleteById(Long id);
 
-  String saveCryptoConfig(CryptoConfigDTO cryptoConfigDTO);
+    String saveCryptoConfig(CryptoConfigDTO cryptoConfigDTO);
 
-  String updateCryptoConfig(CryptoConfigDTO cryptoConfigDTO);
+    String updateCryptoConfig(CryptoConfigDTO cryptoConfigDTO);
 }

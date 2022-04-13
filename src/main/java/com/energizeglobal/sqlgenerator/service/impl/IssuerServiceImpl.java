@@ -14,49 +14,49 @@ import java.util.List;
 @Service
 public class IssuerServiceImpl {
 
-  private final GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl;
-  private final Logger log = LoggerFactory.getLogger(IssuerServiceImpl.class);
+    private final GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl;
+    private final Logger log = LoggerFactory.getLogger(IssuerServiceImpl.class);
 
-  private String FILE_PATH = "src/main/resources/sql_scripts/";
-  private String FILE_NAME = "insert.sql";
+    private String FILE_PATH = "src/main/resources/sql_scripts/";
+    private String FILE_NAME = "insert.sql";
 
-  private final IssuerRepository issuerRepository;
+    private final IssuerRepository issuerRepository;
 
-  private final DownloadFileServiceImpl downloadFileServiceImpl;
+    private final DownloadFileServiceServiceImpl downloadFileServiceImpl;
 
-  public IssuerServiceImpl(
-          IssuerRepository issuerRepository,
-          GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl,
-          DownloadFileServiceImpl downloadFileServiceImpl) {
-    this.issuerRepository = issuerRepository;
-    this.generateSqlScriptServiceImpl = generateSqlScriptServiceImpl;
-    this.downloadFileServiceImpl = downloadFileServiceImpl;
-  }
+    public IssuerServiceImpl(
+            IssuerRepository issuerRepository,
+            GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl,
+            DownloadFileServiceServiceImpl downloadFileServiceImpl) {
+        this.issuerRepository = issuerRepository;
+        this.generateSqlScriptServiceImpl = generateSqlScriptServiceImpl;
+        this.downloadFileServiceImpl = downloadFileServiceImpl;
+    }
 
-  @Transactional(readOnly = true)
-  public List<IssuerEntity> getAllIssuer() {
+    @Transactional(readOnly = true)
+    public List<IssuerEntity> getAllIssuer() {
 
-    return issuerRepository.findAll();
-  }
+        return issuerRepository.findAll();
+    }
 
-  public String generateInsertSqlScript(IssuerDTO dto) {
+    public String generateInsertSqlScript(IssuerDTO dto) {
 
-    String sqlInsert =
-        "INSERT INTO IssuerEntity (code, createdBy, description, name) VALUES ('"
-            + dto.getCode()
-            + "', '"
-            + dto.getData().getCreatedBy()
-            + "', '"
-            + dto.getData().getDescription()
-            + "', '"
-            + dto.getData().getName()
-            + "');";
+        String sqlInsert =
+                "INSERT INTO IssuerEntity (code, createdBy, description, name) VALUES ('"
+                        + dto.getCode()
+                        + "', '"
+                        + dto.getData().getCreatedBy()
+                        + "', '"
+                        + dto.getData().getDescription()
+                        + "', '"
+                        + dto.getData().getName()
+                        + "');";
 
-    generateSqlScriptServiceImpl.insertSqlScript(sqlInsert,FILE_NAME);
-    return FILE_NAME;
-  }
+        generateSqlScriptServiceImpl.insertSqlScript(sqlInsert, FILE_NAME);
+        return FILE_NAME;
+    }
 
-  public Resource getDownloadFileServiceImpl() {
-    return downloadFileServiceImpl.downloadFile(FILE_NAME, FILE_PATH);
-  }
+    public Resource getDownloadFileServiceImpl() {
+        return downloadFileServiceImpl.downloadFile(FILE_NAME, FILE_PATH);
+    }
 }

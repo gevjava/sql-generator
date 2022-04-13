@@ -5,6 +5,8 @@ import com.energizeglobal.sqlgenerator.dto.CryptoConfigDTO;
 import com.energizeglobal.sqlgenerator.mapper.Mapping;
 import com.energizeglobal.sqlgenerator.repository.CryptoConfigRepository;
 import com.energizeglobal.sqlgenerator.service.CryptoConfigService;
+import com.energizeglobal.sqlgenerator.service.DownloadFileService;
+import com.energizeglobal.sqlgenerator.service.GenerateSqlScriptService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +25,15 @@ public class CryptoConfigServiceImpl implements CryptoConfigService {
 
     private final CryptoConfigRepository cryptoConfigRepository;
 
-    private final GenerateSqlScriptServiceImpl generateSqlScriptService;
+    private final GenerateSqlScriptService generateSqlScriptService;
 
-    private final DownloadFileServiceImpl downloadFileService;
+    private final DownloadFileService downloadFileService;
 
     public CryptoConfigServiceImpl(
             CryptoConfigRepository cryptoConfigRepository,
             Mapping mappingCryptoConfig,
-            DownloadFileServiceImpl downloadFileService,
-            GenerateSqlScriptServiceImpl generateSqlScriptService) {
+            DownloadFileService downloadFileService,
+            GenerateSqlScriptService generateSqlScriptService) {
         this.cryptoConfigRepository = cryptoConfigRepository;
         this.mappingCryptoConfig = mappingCryptoConfig;
         this.generateSqlScriptService = generateSqlScriptService;

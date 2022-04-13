@@ -5,6 +5,8 @@ import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
 import com.energizeglobal.sqlgenerator.mapper.Mapping;
 import com.energizeglobal.sqlgenerator.repository.AuthentMeansRepository;
 import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
+import com.energizeglobal.sqlgenerator.service.DownloadFileService;
+import com.energizeglobal.sqlgenerator.service.GenerateSqlScriptService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import java.util.List;
 @Service
 public class AuthentMeansServiceImpl implements AuthentMeansService {
 
-    public static boolean activeDB = true;
+    static boolean activeDB = true;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
@@ -24,14 +26,14 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
 
     private final AuthentMeansRepository authentMeansRepository;
 
-    private final GenerateSqlScriptServiceImpl generateSqlScriptService;
+    private final GenerateSqlScriptService generateSqlScriptService;
 
-    private final DownloadFileServiceImpl downloadFileService;
+    private final DownloadFileService downloadFileService;
 
     public AuthentMeansServiceImpl(Mapping mappingAuthentMean,
                                    AuthentMeansRepository authentMeansRepository,
-                                   GenerateSqlScriptServiceImpl generateSqlScriptService,
-                                   DownloadFileServiceImpl downloadFileService) {
+                                   GenerateSqlScriptService generateSqlScriptService,
+                                   DownloadFileService downloadFileService) {
         this.mappingAuthentMean = mappingAuthentMean;
         this.authentMeansRepository = authentMeansRepository;
         this.generateSqlScriptService = generateSqlScriptService;
@@ -42,9 +44,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     @Override
     public List<AuthentMeansEntity> getAllAuthentMeans() {
 
-        List<AuthentMeansEntity> authentMeansEntityList = authentMeansRepository.findAll();
-
-        return authentMeansEntityList;
+        return authentMeansRepository.findAll();
         //mappingAuthentMean.mapList(authentMeansEntityList, AuthentMeansDTO.class);
     }
 
@@ -123,8 +123,9 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     public String saveAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
-        if (authentMeansEntity.getCreationDate()==null){
-        authentMeansEntity.setCreationDate(LocalDateTime.now());}
+        if (authentMeansEntity.getCreationDate() == null) {
+            authentMeansEntity.setCreationDate(LocalDateTime.now());
+        }
         Long lastId = authentMeansRepository.getMaxId();
 
         String insertQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +
