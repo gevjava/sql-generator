@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class CryptoConfigServiceImpl implements CryptoConfigService {
 
-    private static boolean activeDB = true;
+    static boolean activeDB = true;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 

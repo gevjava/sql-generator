@@ -21,7 +21,7 @@ public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
     public void insertSqlScript(String insertQuery, String fileName) {
 
         String line = "-- -------------------------U5G_ACS_BO-------------------------------";
-        String DBname = "USE `U5G_ACS_BO`;";
+        String dbName = "USE `U5G_ACS_BO`;";
         String dateTime = "--" + LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM));
         String FILE_PATH = "src/main/resources/sql_scripts/";
         String path = FILE_PATH + fileName;
@@ -29,7 +29,6 @@ public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
-
                 dateTime = System.getProperty("line.separator") + dateTime;
                 insertQuery = System.getProperty("line.separator") + insertQuery;
                 String data = dateTime + insertQuery;
@@ -37,14 +36,15 @@ public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                DBname = System.getProperty("line.separator") + DBname;
+                dbName = System.getProperty("line.separator") + dbName;
                 dateTime = System.getProperty("line.separator") + dateTime;
                 insertQuery = System.getProperty("line.separator") + insertQuery;
-                String data = System.getProperty("line.separator") + line + DBname + dateTime + insertQuery;
-                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8));
-
+                String data = System.getProperty("line.separator") + line + dbName + dateTime + insertQuery;
+                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
             }
         } catch (IOException e) {
+            AuthentMeansServiceImpl.activeDB = false;
+            CryptoConfigServiceImpl.activeDB = false;
             e.printStackTrace();
         }
     }

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class AuthentMeansServiceImpl implements AuthentMeansService {
 
-    private static boolean activeDB = true;
+    public static boolean activeDB = true;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
