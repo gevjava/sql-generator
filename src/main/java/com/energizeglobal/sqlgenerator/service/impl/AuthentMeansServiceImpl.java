@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class AuthentMeansServiceImpl implements AuthentMeansService {
 
-    private static boolean activeDB = false;
+    private static boolean activeDB = true;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
@@ -123,7 +123,8 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     public String saveAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
-
+        if (authentMeansEntity.getCreationDate()==null){
+        authentMeansEntity.setCreationDate(LocalDateTime.now());}
         Long lastId = authentMeansRepository.getMaxId();
 
         String insertQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +

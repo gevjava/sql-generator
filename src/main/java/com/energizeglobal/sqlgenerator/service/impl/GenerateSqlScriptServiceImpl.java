@@ -10,28 +10,39 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Service
 public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
-
-    public final static String FILE_PATH = "src/main/resources/sql_scripts/";
 
 
     @Override
     public void insertSqlScript(String insertQuery, String fileName) {
 
+        String line = "-- -------------------------U5G_ACS_BO-------------------------------";
+        String DBname = "USE `U5G_ACS_BO`;";
+        String dateTime = "--" + LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM));
+        String FILE_PATH = "src/main/resources/sql_scripts/";
         String path = FILE_PATH + fileName;
 
-        String data = "--" + LocalDateTime.now().toString();
         Path newFilePath = Paths.get(path);
         try {
             if (Files.exists(newFilePath)) {
+
+                dateTime = System.getProperty("line.separator") + dateTime;
                 insertQuery = System.getProperty("line.separator") + insertQuery;
-                Files.write(newFilePath, insertQuery.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                String data = dateTime + insertQuery;
+                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                Files.write(newFilePath, insertQuery.getBytes(StandardCharsets.UTF_8));
+                DBname = System.getProperty("line.separator") + DBname;
+                dateTime = System.getProperty("line.separator") + dateTime;
+                insertQuery = System.getProperty("line.separator") + insertQuery;
+                String data = System.getProperty("line.separator") + line + DBname + dateTime + insertQuery;
+                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8));
+
             }
         } catch (IOException e) {
             e.printStackTrace();

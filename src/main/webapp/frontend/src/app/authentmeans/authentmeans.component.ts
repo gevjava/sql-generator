@@ -3,13 +3,13 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from "file-saver";
 import {AuthentmeansService} from "./authentmeans.service";
-import {Authentmeans} from "./authentmeans";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-authentmeans',
   templateUrl: './authentmeans.component.html',
   styleUrls: ['./authentmeans.component.css'],
-  providers: [NgbModalConfig, NgbModal]
+  providers: [NgbModalConfig, NgbModal, DatePipe]
 })
 export class AuthentmeansComponent implements OnInit {
   public authentMeanses: any;
@@ -18,21 +18,23 @@ export class AuthentmeansComponent implements OnInit {
   public authentMeansUpdateForm: any;
   public content: any;
   public filename = "";
-
   @Input() isChecked = false;
 
+
   constructor(private authentmeansService: AuthentmeansService, config: NgbModalConfig, private modalService: NgbModal,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private datePipe: DatePipe) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
+
   private initializeAddForm() {
+    let currentDateTime = this.datePipe.transform(new Date(), 'MM/dd/yyyy hh:mm:ss');
     this.authentMeansAddForm = this.formBuilder.group({
       createdBy: ['', Validators.required],
-      createdDate: ['', Validators.required],
+      createdDate: [currentDateTime, Validators.required],
       description: ['', Validators.required],
-      lastUpdateBy: ['', Validators.required],
+      lastUpdateBy: ['',],
       name: ['', Validators.required],
       updateState: ['', Validators.required],
     });
@@ -42,9 +44,9 @@ export class AuthentmeansComponent implements OnInit {
     this.authentMeansUpdateForm = this.formBuilder.group({
       id: ['', Validators.required],
       createdBy: ['', Validators.required],
-      createdDate: ['', Validators.required],
+      createdDate: ['',],
       description: ['', Validators.required],
-      lastUpdateBy: ['', Validators.required],
+      lastUpdateBy: ['',],
       name: ['', Validators.required],
       updateState: ['', Validators.required],
     });
