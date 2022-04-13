@@ -40,7 +40,7 @@ public class GenerateSqlScriptServiceImpl implements GenerateSqlScriptService {
                 dateTime = System.getProperty("line.separator") + dateTime;
                 insertQuery = System.getProperty("line.separator") + insertQuery;
                 String data = System.getProperty("line.separator") + line + dbName + dateTime + insertQuery;
-                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                Files.write(newFilePath, data.getBytes(StandardCharsets.UTF_8));
             }
         } catch (IOException e) {
             AuthentMeansServiceImpl.activeDB = false;
