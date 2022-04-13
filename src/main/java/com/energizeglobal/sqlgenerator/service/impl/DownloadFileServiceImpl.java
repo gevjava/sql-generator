@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
-public class DownloadFileServiceServiceImpl implements DownloadFileService {
+public class DownloadFileServiceImpl implements DownloadFileService {
 
     @Override
     public Resource downloadFile(String filename, String filePath) {

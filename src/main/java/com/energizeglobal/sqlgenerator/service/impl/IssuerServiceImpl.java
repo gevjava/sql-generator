@@ -22,12 +22,12 @@ public class IssuerServiceImpl {
 
     private final IssuerRepository issuerRepository;
 
-    private final DownloadFileServiceServiceImpl downloadFileServiceImpl;
+    private final DownloadFileServiceImpl downloadFileServiceImpl;
 
     public IssuerServiceImpl(
             IssuerRepository issuerRepository,
             GenerateSqlScriptServiceImpl generateSqlScriptServiceImpl,
-            DownloadFileServiceServiceImpl downloadFileServiceImpl) {
+            DownloadFileServiceImpl downloadFileServiceImpl) {
         this.issuerRepository = issuerRepository;
         this.generateSqlScriptServiceImpl = generateSqlScriptServiceImpl;
         this.downloadFileServiceImpl = downloadFileServiceImpl;
