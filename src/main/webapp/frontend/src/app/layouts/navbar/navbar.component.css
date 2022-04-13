@@ -1,6 +1,7 @@
-div {
-  height: 50px;
-  background-color: black;
-  color: white;
-  text-align: center;
+.navbar{
+   width: 100%;
+   position: relative;
+   background-color: rgb(51, 122, 183);
 }
+
+
