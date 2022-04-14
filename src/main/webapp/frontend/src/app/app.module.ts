@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {CryptoConfigComponent} from "./cryptoconfig/crypto-config.component";
+import {AuthentmeansComponent} from "./authentmeans/authentmeans.component";
 
 
 
@@ -18,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     MainComponent,
     NavbarComponent,
+    CryptoConfigComponent,
+    AuthentmeansComponent,
     routesList
 
   ],
