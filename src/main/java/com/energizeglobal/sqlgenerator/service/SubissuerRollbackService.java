@@ -15,10 +15,10 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
 
 @Service
-public class RollbackService {
+public class SubissuerRollbackService {
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String ROLLBACK_FILE_NAME = "subissuer_subrollback.sql";
+    String ROLLBACK_FILE_NAME = "rollback_data.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 

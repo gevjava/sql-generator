@@ -29,14 +29,14 @@ public class SubIssuerService {
 
     private Boolean dbAction = false;
     private final SubIssuerRepository subIssuerRepository;
-    private final RollbackService rollbackService;
+    private final SubissuerRollbackService rollbackService;
 
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_FILE_NAME = "subissuer_insert.sql";
+    private String INSERT_FILE_NAME = "data.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
 
-    public SubIssuerService(SubIssuerRepository subIssuerRepository, RollbackService rollbackService) {
+    public SubIssuerService(SubIssuerRepository subIssuerRepository, SubissuerRollbackService rollbackService) {
 
         this.subIssuerRepository = subIssuerRepository;
         this.rollbackService = rollbackService;
