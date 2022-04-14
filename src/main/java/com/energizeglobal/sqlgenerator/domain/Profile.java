@@ -51,7 +51,7 @@ public class Profile {
     private AuthentMeans authentMeans;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotFound(action = NotFoundAction.IGNORE)
+    //@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
     private SubIssuer subIssuer;
 

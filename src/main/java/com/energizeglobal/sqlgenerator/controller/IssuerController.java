@@ -1,14 +1,12 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.Issuer;
+import com.energizeglobal.sqlgenerator.domain.IssuerEntity;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.service.IssuerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -25,8 +23,8 @@ public class IssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Issuer>> getAllIssuer(){
-        List<Issuer> issuerList = issuerService.getAllIssuer();
+    public ResponseEntity<List<IssuerEntity>> getAllIssuer(){
+        List<IssuerEntity> issuerList = issuerService.getAllIssuer();
         return ResponseEntity.ok(issuerList);
     }
 
@@ -35,12 +33,11 @@ public class IssuerController {
        String fileName_1 = issuerService.generateInsertSqlScript(issuerDTO);
        String fileName_2 = issuerService.generateInsertSqlScriptWithRollback(issuerDTO);
        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
-
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Issuer> show(@PathVariable("code") String someId){
-        Issuer issuer = issuerService.findByIssuerByCode(someId);
+    public ResponseEntity<IssuerEntity> show(@PathVariable("code") String someId){
+        IssuerEntity issuer = issuerService.findByIssuerByCode(someId);
         return ResponseEntity.ok(issuer);
     }
 

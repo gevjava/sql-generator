@@ -18,7 +18,7 @@ public class SubIssuer {
 
     @ManyToOne
     @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
-    private Issuer issuer;
+    private IssuerEntity issuer;
 
 
     public SubIssuer() {
@@ -48,11 +48,11 @@ public class SubIssuer {
         this.code = code;
     }
 
-    public Issuer getIssuer() {
+    public IssuerEntity getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(Issuer issuer) {
+    public void setIssuer(IssuerEntity issuer) {
         this.issuer = issuer;
     }
 }
