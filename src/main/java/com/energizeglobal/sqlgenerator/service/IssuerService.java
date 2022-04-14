@@ -24,9 +24,9 @@ public class IssuerService {
 
     private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
-    String FILE_PATH = "src/main/resources/sql_scripts/";
-    String DATA_FILE_NAME = "data.sql";
-    String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
+    private String FILE_PATH = "src/main/resources/sql_scripts/";
+    private String DATA_FILE_NAME = "data.sql";
+    private String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
 
     private final IssuerRepository issuerRepository;
 

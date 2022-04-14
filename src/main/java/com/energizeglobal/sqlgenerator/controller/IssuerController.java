@@ -23,33 +23,33 @@ public class IssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IssuerEntity>> getAllIssuer(){
+    public ResponseEntity<List<IssuerEntity>> getAllIssuer() {
         List<IssuerEntity> issuerList = issuerService.getAllIssuer();
         return ResponseEntity.ok(issuerList);
     }
 
     @PostMapping
-    public ResponseEntity<String> generateSqlScript(@RequestBody IssuerDTO issuerDTO){
-       String fileName_1 = issuerService.generateInsertSqlScript(issuerDTO);
-       String fileName_2 = issuerService.generateInsertSqlScriptWithRollback(issuerDTO);
-       return ResponseEntity.ok(fileName_1 + " " + fileName_2);
+    public ResponseEntity<String> generateSqlScript(@RequestBody IssuerDTO issuerDTO) {
+        String fileName_1 = issuerService.generateInsertSqlScript(issuerDTO);
+        String fileName_2 = issuerService.generateInsertSqlScriptWithRollback(issuerDTO);
+        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<IssuerEntity> show(@PathVariable("code") String someId){
+    public ResponseEntity<IssuerEntity> show(@PathVariable("code") String someId) {
         IssuerEntity issuer = issuerService.findByIssuerByCode(someId);
         return ResponseEntity.ok(issuer);
     }
 
     @PutMapping("/{code}")
-    public ResponseEntity<String> edit(@RequestBody IssuerDTO issuerDTO, @PathVariable("code") String code){
-       String fileName_1 = issuerService.generateEditSqlScript(issuerDTO,code);
-       String fileName_2 = issuerService.generateEditSqlScriptWithRollback(issuerDTO,code);
-       return ResponseEntity.ok(fileName_1 + " " + fileName_2);
+    public ResponseEntity<String> edit(@RequestBody IssuerDTO issuerDTO, @PathVariable("code") String code) {
+        String fileName_1 = issuerService.generateEditSqlScript(issuerDTO, code);
+        String fileName_2 = issuerService.generateEditSqlScriptWithRollback(issuerDTO, code);
+        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity<String>  destroy(@PathVariable("code") String code) {
+    public ResponseEntity<String> destroy(@PathVariable("code") String code) {
         String fileName_1 = issuerService.generateDeleteSqlScript(code);
         String fileName_2 = issuerService.generateDeleteSqlScriptWithRollback(code);
         return ResponseEntity.ok(fileName_1 + " " + fileName_2);
