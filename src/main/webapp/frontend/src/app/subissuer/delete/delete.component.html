@@ -1,50 +1,13 @@
-<!--<form (click)="delete()">-->
-  <form [formGroup]="subIssuerForm" (ngSubmit)="delete()">
-
-
-
+<form [formGroup]="subIssuerForm" (ngSubmit)="delete()">
   <div class="container-fluid">
     <div class="row bg-grey">
       <div class="col text-center">
       </div>
     </div>
-
     <div class="row">
-
       <div class="col-md-4"></div>
-      <div class="col-md-4 text-center">
-
-
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" ngModel="{{subIssuer?.name}}" readonly id="name" formControlName="name" class="form-control">
-        </div>
-
-
-        <div class="form-group">
-          <label for="label">Label</label>
-          <input type="text" ngModel="{{subIssuer?.label}}" readonly id="label" formControlName="label" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="code">Code</label>
-          <input type="text" ngModel="{{subIssuer?.code}}" readonly id="code" formControlName="code" class="form-control">
-        </div>
-
-      </div>
     </div>
     <div class="col-md-4"></div>
-  </div>
-
-  <div class="container">
-    <div class="row text-center mt-2">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <button type="submit" class="btn btn-danger">Generate Delete SQL Script</button>
-      </div>
-
-      <div class="col-md-4"></div>
-    </div>
   </div>
 
   <div class="row  text-center" style="margin-top: 25px;" *ngIf="filename">
@@ -52,5 +15,36 @@
       <button class="btn-outline-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
     </div>
   </div>
+
+  <section class="issuer_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body">
+              <div class="wrapper">
+                <form (click)="delete()">
+                  <div class="alert alert-danger" role="alert">
+                    <span style="font-size: 36px;" class="material-icons">dangerous</span>
+                    <hr>
+                    <h4 class="alert-heading">Dangerous message</h4>
+                    <p>This action can change your table structure. Please be aware.</p>
+                    <hr>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-outline-danger">Delete</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </section>
+
 
 </form>

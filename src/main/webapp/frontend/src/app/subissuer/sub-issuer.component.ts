@@ -14,6 +14,7 @@ export class SubIssuerComponent implements OnInit {
   subIssuers: any;
   subIssuerForm: any;
   filename: string = "";
+  filterTerm!: string;
 
   constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {}
 
