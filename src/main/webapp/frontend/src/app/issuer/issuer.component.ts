@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {saveAs} from 'file-saver';
-import {ActivatedRoute} from "@angular/router";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-issuer',
@@ -23,8 +21,7 @@ export class IssuerComponent implements OnInit {
   constructor(
     private issuerService: IssuerService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getAllIssuer();
@@ -50,12 +47,12 @@ export class IssuerComponent implements OnInit {
 
   getAllIssuer(){
     this.issuerService.getAllIssuer().subscribe(issuers => {
-        this.issuers = issuers;
+      this.issuers = issuers;
     });
   }
 
   listOfIssuers(){
-     this.showOnchange = true;
+    this.showOnchange = true;
   }
 
 }
