@@ -1,12 +1,14 @@
 <div class="panel panel-primary">
   <div class="center-pill text-center"
        style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
-    <h3 style="color: #337ab7">Configuration Cryptography</h3>
   </div>
-  <div class="container-sm" style="overflow: auto">
+  <div class="container ng-scope" style="overflow: auto">
+
     <div class="row align-items-start" style="margin: 6px;">
+      <h3 style="color: #337ab7">Configuration Cryptography</h3>
 
       <!--      Add CryptoConfigurationEntity data-->
+
       <ng-template #add let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" id="modal-add-crypto" style="color: #337ab7">Add CryptoConfig data</h4>
@@ -52,17 +54,18 @@
                   (click)="downloadFile()">Download - {{filename}}
           </button>
           <button class="btn btn-sm btn-outline-primary" style="width: auto; margin-left: auto;" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="addCrypto({content : add})">Add
+                  data-bs-target="#exampleModal" data-bs-whatever="@mdo" (click)="addCrypto({content : add})">
+            New configuration
           </button>
         </div>
       </div>
       <div class="card-body">
-        <table class="table mat-table text-center">
+        <table class="table mat-table">
           <thead>
           <tr style="color: #337ab7">
             <th>ID</th>
-            <th>DESCRIPTION</th>
-            <th>ACTION</th>
+            <th>Description</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>

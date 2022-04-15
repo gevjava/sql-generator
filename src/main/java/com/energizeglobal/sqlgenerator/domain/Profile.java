@@ -1,5 +1,6 @@
 package com.energizeglobal.sqlgenerator.domain;
 
+import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -18,7 +19,7 @@ public class Profile {
     @Column(name = "createdBy", nullable = false)
     private String createdBy;
 
-    @Column(name = "creationDate",nullable = false)
+    @Column(name = "creationDate", nullable = false)
     private Instant creationDate;
 
     @Column(name = "description")
@@ -49,18 +50,12 @@ public class Profile {
     @ManyToOne
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_authentMeans", referencedColumnName = "id")
-    private AuthentMeans authentMeans;
+    private AuthentMeansEntity authentMeans;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
-    private SubIssuer subIssuer;
-
-    public enum UpdateState{
-        WAITING_VALIDATION,
-        PUSHED_TO_CONFIG,
-        WAITING_FOR_PUSH
-    }
+    private SubIssuerEntity subIssuer;
 
 
     public Long getId() {
@@ -151,19 +146,19 @@ public class Profile {
         this.dataEntryAllowedPattern = dataEntryAllowedPattern;
     }
 
-    public AuthentMeans getAuthentMeans() {
+    public AuthentMeansEntity getAuthentMeans() {
         return authentMeans;
     }
 
-    public void setAuthentMeans(AuthentMeans authentMeans) {
+    public void setAuthentMeans(AuthentMeansEntity authentMeans) {
         this.authentMeans = authentMeans;
     }
 
-    public SubIssuer getSubIssuer() {
+    public SubIssuerEntity getSubIssuer() {
         return subIssuer;
     }
 
-    public void setSubIssuer(SubIssuer subIssuer) {
+    public void setSubIssuer(SubIssuerEntity subIssuer) {
         this.subIssuer = subIssuer;
     }
 }

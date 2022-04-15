@@ -7,6 +7,8 @@ import com.energizeglobal.sqlgenerator.repository.AuthentMeansRepository;
 import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
 import com.energizeglobal.sqlgenerator.service.DownloadFileService;
 import com.energizeglobal.sqlgenerator.service.GenerateSqlScriptService;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,9 @@ import java.util.List;
 @Service
 public class AuthentMeansServiceImpl implements AuthentMeansService {
 
-    static boolean activeDB = true;
+    private Logger logger = LoggerFactory.getLogger(AuthentMeansServiceImpl.class);
+
+    static boolean activeDB = false;
 
     private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
 
@@ -52,6 +56,7 @@ public class AuthentMeansServiceImpl implements AuthentMeansService {
     public AuthentMeansDTO getByIdAuthentMean(Long id) {
 
         AuthentMeansEntity authentMeansEntity = authentMeansRepository.getById(id);
+
 
         return mappingAuthentMean.convertToDto(authentMeansEntity, AuthentMeansDTO.class);
     }
