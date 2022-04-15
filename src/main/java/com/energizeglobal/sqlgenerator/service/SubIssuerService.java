@@ -174,6 +174,7 @@ public class SubIssuerService {
                 }
             }
         } catch (IOException e) {
+            dbAction = false;
             e.printStackTrace();
         }
     }
