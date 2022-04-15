@@ -26,7 +26,7 @@ public class SubIssuer {
     private Issuer issuer;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false )
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false)
     @JsonIgnore
     private CryptoConfig cryptoConfigEntity;
 
@@ -77,7 +77,7 @@ public class SubIssuer {
 
     public void setId(Long id) {
 
-}
+    }
 
     public String getName() {
         return name;
