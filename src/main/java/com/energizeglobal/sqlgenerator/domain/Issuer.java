@@ -51,7 +51,9 @@ public class Issuer {
     String availaibleAuthentMeans;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
+
     @JsonIgnore
+
     private List<SubIssuer> subIssuers;
 
 
