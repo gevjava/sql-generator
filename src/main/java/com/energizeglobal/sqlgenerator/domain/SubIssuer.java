@@ -254,6 +254,6 @@ public class SubIssuer {
                 ", personnalDataStorage=" + personnalDataStorage +
                 '}';
     }
-    
+
 }
 
