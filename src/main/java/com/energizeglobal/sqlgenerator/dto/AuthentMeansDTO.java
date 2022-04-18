@@ -2,27 +2,26 @@ package com.energizeglobal.sqlgenerator.dto;
 
 import com.energizeglobal.sqlgenerator.enums.UpdateState;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class AuthentMeansDTO {
 
     private Long id;
 
-    private String name;
+    private String createdBy;
+
+    private LocalDateTime creationDate;
 
     private String description;
 
-    private LocalDate creationDate;
+    private String lastUpdateBy;
 
-    private String createdBy;
+    private LocalDateTime lastUpdateDate;
+
+    private String name;
 
     private UpdateState updateState;
-
-    private Date lastUpdateDate;
-
-    private String lastUpdateBy;
 
     private List<ProfileDTO> profiles;
 
@@ -34,12 +33,20 @@ public class AuthentMeansDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getDescription() {
@@ -50,21 +57,28 @@ public class AuthentMeansDTO {
         this.description = description;
     }
 
-
-    public String getCreatedBy() {
-        return createdBy;
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDateTime getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public UpdateState getUpdateState() {
@@ -73,22 +87,6 @@ public class AuthentMeansDTO {
 
     public void setUpdateState(UpdateState updateState) {
         this.updateState = updateState;
-    }
-
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
-    public String getLastUpdateBy() {
-        return lastUpdateBy;
-    }
-
-    public void setLastUpdateBy(String lastUpdateBy) {
-        this.lastUpdateBy = lastUpdateBy;
     }
 
     public List<ProfileDTO> getProfiles() {

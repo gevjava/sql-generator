@@ -24,9 +24,9 @@ public class IssuerService {
 
     private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
-    private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String DATA_FILE_NAME = "insert_query.sql";
-    private String DATA_ROLLBACK_FILE_NAME = "rollback_query.sql";
+    private final String FILE_PATH = "src/main/resources/sql_scripts/";
+    private final String DATA_FILE_NAME = "insert_query.sql";
+    private final String DATA_ROLLBACK_FILE_NAME = "rollback_query.sql";
 
     private final IssuerRepository issuerRepository;
 
@@ -93,8 +93,8 @@ public class IssuerService {
                 sql = System.getProperty("line.separator") + sql;
                 Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
             } else {
-                Path fileDiectory = Paths.get(FILE_PATH);
-                Files.createDirectories(fileDiectory);
+                Path fileDirectory = Paths.get(FILE_PATH);
+                Files.createDirectories(fileDirectory);
                 Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8));
             }
         } catch (IOException e) {

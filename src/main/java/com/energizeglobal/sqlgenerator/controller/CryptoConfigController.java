@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.controller;
 
 import com.energizeglobal.sqlgenerator.dto.CryptoConfigDTO;
-import com.energizeglobal.sqlgenerator.service.impl.CryptoConfigServiceImpl;
+import com.energizeglobal.sqlgenerator.service.CryptoConfigService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -13,46 +13,46 @@ import java.util.List;
 @RestController
 @RequestMapping("/crypto")
 public class CryptoConfigController {
-    private final CryptoConfigServiceImpl cryptoConfigServiceImpl;
+    private final CryptoConfigService cryptoConfigService;
 
-    public CryptoConfigController(CryptoConfigServiceImpl cryptoConfigServiceImpl) {
-        this.cryptoConfigServiceImpl = cryptoConfigServiceImpl;
+    public CryptoConfigController(CryptoConfigService cryptoConfigService) {
+        this.cryptoConfigService = cryptoConfigService;
     }
 
     @GetMapping
     private ResponseEntity<List<CryptoConfigDTO>> getAllCryptoConfigs() {
-        List<CryptoConfigDTO> cryptoConfigDTOS = cryptoConfigServiceImpl.findAllCryptoConfigs();
+        List<CryptoConfigDTO> cryptoConfigDTOS = cryptoConfigService.findAllCryptoConfigs();
         return ResponseEntity.ok(cryptoConfigDTOS);
     }
 
     @GetMapping("/{id}")
     private ResponseEntity<CryptoConfigDTO> getById(@PathVariable Long id) {
-        CryptoConfigDTO cryptoConfigDTO = cryptoConfigServiceImpl.getById(id);
+        CryptoConfigDTO cryptoConfigDTO = cryptoConfigService.getById(id);
         return ResponseEntity.ok(cryptoConfigDTO);
     }
 
     @DeleteMapping("/{id}")
     private ResponseEntity deleteById(@PathVariable Long id) {
-        String filename = cryptoConfigServiceImpl.deleteById(id);
+        String filename = cryptoConfigService.deleteById(id);
         return ResponseEntity.ok(filename);
     }
 
     @PostMapping()
     public ResponseEntity<String> saveCryptoConfig(@RequestBody CryptoConfigDTO cryptoConfigDTO) {
-        String filename = cryptoConfigServiceImpl.saveCryptoConfig(cryptoConfigDTO);
+        String filename = cryptoConfigService.saveCryptoConfig(cryptoConfigDTO);
         return ResponseEntity.ok(filename);
     }
 
     @PutMapping()
     public ResponseEntity<String> updateCryptoConfig(@RequestBody CryptoConfigDTO cryptoConfigDTO) {
-        String filename = cryptoConfigServiceImpl.updateCryptoConfig(cryptoConfigDTO);
+        String filename = cryptoConfigService.updateCryptoConfig(cryptoConfigDTO);
         return ResponseEntity.ok(filename);
     }
 
     @GetMapping("/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
-        Resource file = cryptoConfigServiceImpl.getDownloadFile(filename);
+        Resource file = cryptoConfigService.getDownloadFile(filename);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_TYPE, "application/sql")

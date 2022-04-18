@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.SubIssuer;
+import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
@@ -25,9 +25,9 @@ public class SubIssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubIssuer>> getAllSubIssuer() {
-        List<SubIssuer> subIssuerList = subIssuerService.getAllSubIssuer();
-        return ResponseEntity.ok(subIssuerList);
+    public ResponseEntity<List<SubIssuerEntity>> getAllSubIssuer() {
+        List<SubIssuerEntity> subIssuerEntityList = subIssuerService.getAllSubIssuer();
+        return ResponseEntity.ok(subIssuerEntityList);
     }
 
     @GetMapping("/{code}")

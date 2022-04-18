@@ -1,8 +1,7 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.AuthentMeansEntity;
 import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
-import com.energizeglobal.sqlgenerator.service.impl.AuthentMeansServiceImpl;
+import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +13,19 @@ import java.util.List;
 @RequestMapping("/authent")
 public class AuthentMeansController {
 
+    private final AuthentMeansService authentMeansService;
 
-    private final AuthentMeansServiceImpl authentMeansService;
-
-    public AuthentMeansController(AuthentMeansServiceImpl authentMeansService) {
+    public AuthentMeansController(AuthentMeansService authentMeansService) {
         this.authentMeansService = authentMeansService;
     }
 
     @GetMapping
-    private ResponseEntity<List<AuthentMeansEntity>> getAllAuthentMeans() {
-        List<AuthentMeansEntity> authentMeansDTOS = authentMeansService.getAllAuthentMeans();
+    private ResponseEntity<List<AuthentMeansDTO>> getAllAuthentMeans() {
+
+
+        List<AuthentMeansDTO> authentMeansDTOS = authentMeansService.getAllAuthentMeans();
+
+        System.out.println(authentMeansDTOS.toString());
         return ResponseEntity.ok(authentMeansDTOS);
     }
 
@@ -34,7 +36,7 @@ public class AuthentMeansController {
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity deleteAuthentMeanById(@PathVariable Long id) {
+    private ResponseEntity<String> deleteAuthentMeanById(@PathVariable Long id) {
         String filename = authentMeansService.deleteAuthentMeanById(id);
         return ResponseEntity.ok(filename);
     }

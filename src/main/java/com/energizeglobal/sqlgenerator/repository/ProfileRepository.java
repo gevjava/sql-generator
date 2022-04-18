@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
-    @Query(value = "SELECT DISTINCT * FROM profile",nativeQuery = true)
     List<Profile> findAll();
 
 }

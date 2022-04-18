@@ -1,8 +1,8 @@
 package com.energizeglobal.sqlgenerator.service;
 
-import com.energizeglobal.sqlgenerator.domain.SubIssuer;
+import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
-import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
+import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +27,13 @@ public class SubIssuerService {
 
     private final Logger log = LoggerFactory.getLogger(SubIssuerService.class);
 
-    private Boolean dbAction = false;
+    private boolean dbAction = false;
     private final SubIssuerRepository subIssuerRepository;
     private final SubissuerRollbackService rollbackService;
 
 
-    private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_FILE_NAME = "data.sql";
+    private final String FILE_PATH = "src/main/resources/sql_scripts/";
+    private final String INSERT_FILE_NAME = "data.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
 
     public SubIssuerService(SubIssuerRepository subIssuerRepository, SubissuerRollbackService rollbackService) {
@@ -43,20 +43,20 @@ public class SubIssuerService {
     }
 
     @Transactional(readOnly = true)
-    public List<SubIssuer> getAllSubIssuer() {
-        List<SubIssuer> subIssuerList = subIssuerRepository.findAll();
-        return subIssuerList;
+    public List<SubIssuerEntity> getAllSubIssuer() {
+        List<SubIssuerEntity> subIssuerEntityList = subIssuerRepository.findAll();
+        return subIssuerEntityList;
     }
 
     public SubIssuerDto findByCode(String code) {
-        SubIssuer subIssuer = subIssuerRepository.findByCode(code);
-        return SubissuerMapping.entityToDto(subIssuer);
+        SubIssuerEntity subIssuerEntity = subIssuerRepository.findByCode(code);
+        return SubissuerMapping.entityToDto(subIssuerEntity);
     }
 
     @Transactional
     public String generateInsertSqlScript(SubIssuerDto dto) {
 
-        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
+        SubIssuerEntity subIssuerEntity = SubissuerMapping.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId, " +
@@ -76,39 +76,39 @@ public class SubIssuerService {
                 "hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
-                subIssuer.getAcsId() + "', " +
-                subIssuer.getAuthenticationTimeOut() + ", '" +
-                subIssuer.getDefaultLanguage() + "', '" +
-                subIssuer.getCode() + "', '" +
-                subIssuer.getCodeSvi() + "', '" +
-                subIssuer.getCurrencyCode() + "', '" +
-                subIssuer.getName() + "', '" +
-                subIssuer.getLabel() + "', '" +
-                subIssuer.getAuthentMeans() + "', " +
-                subIssuer.getPersonnalDataStorage() + ", " +
-                subIssuer.getResetBackupsIfSuccess() + ", " +
-                subIssuer.getResetChoicesIfSuccess() + ", " +
-                subIssuer.getManageBackupsCombinedAmounts() + ", " +
-                subIssuer.getManageChoicesCombinedAmounts() + ", " +
-                subIssuer.getHubMaintenanceModeEnabled() + ");";
+                subIssuerEntity.getAcsId() + "', " +
+                subIssuerEntity.getAuthenticationTimeOut() + ", '" +
+                subIssuerEntity.getDefaultLanguage() + "', '" +
+                subIssuerEntity.getCode() + "', '" +
+                subIssuerEntity.getCodeSvi() + "', '" +
+                subIssuerEntity.getCurrencyCode() + "', '" +
+                subIssuerEntity.getName() + "', '" +
+                subIssuerEntity.getLabel() + "', '" +
+                subIssuerEntity.getAuthentMeans() + "', " +
+                subIssuerEntity.getPersonnalDataStorage() + ", " +
+                subIssuerEntity.isResetBackupsIfSuccess() + ", " +
+                subIssuerEntity.isResetChoicesIfSuccess() + ", " +
+                subIssuerEntity.isManageBackupsCombinedAmounts() + ", " +
+                subIssuerEntity.isManageChoicesCombinedAmounts() + ", " +
+                subIssuerEntity.isHubMaintenanceModeEnabled() + ");";
 
         String sqlInsert = queryType + queryValue;
 
         InsertPathGenerator(sqlInsert);
 
-        rollbackService.generateSqlScriptForInsertRollback(subIssuer.getCode());
+        rollbackService.generateSqlScriptForInsertRollback(subIssuerEntity.getCode());
 
         if (dbAction)
-            subIssuerRepository.save(subIssuer);
+            subIssuerRepository.save(subIssuerEntity);
 
         return INSERT_FILE_NAME;
     }
 
     @Transactional
     public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
-        SubIssuer oldSubIssuer = subIssuerRepository.findByCode(subIssuerDto.getCode());
-        SubIssuer newSubIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
-        newSubIssuer.setId(oldSubIssuer.getId());
+        SubIssuerEntity oldSubIssuerEntity = subIssuerRepository.findByCode(subIssuerDto.getCode());
+        SubIssuerEntity newSubIssuerEntity = SubissuerMapping.dtoToEntity(subIssuerDto);
+        newSubIssuerEntity.setId(oldSubIssuerEntity.getId());
 
         String queryUpdate = "UPDATE subissuer SET " +
                 "acsId = '" + subIssuerDto.getAcsId() + "', " +
@@ -129,9 +129,9 @@ public class SubIssuerService {
 
         InsertPathGenerator(queryUpdate);
 
-        rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
+        rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuerEntity);
         if (dbAction)
-            subIssuerRepository.save(newSubIssuer);
+            subIssuerRepository.save(newSubIssuerEntity);
 
         return INSERT_FILE_NAME;
     }

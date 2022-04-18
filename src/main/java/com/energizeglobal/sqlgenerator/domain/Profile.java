@@ -1,6 +1,7 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import com.energizeglobal.sqlgenerator.enums.UpdateState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
