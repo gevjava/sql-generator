@@ -1,11 +1,11 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 
 public class SubissuerMapping {
 
-    public static SubIssuerEntity dtoToEntity(SubIssuerDto subIssuerDto) {
+    public static SubIssuerEntity dtoToEntity(SubIssuerDTO subIssuerDto) {
         SubIssuerEntity subIssuerEntity = new SubIssuerEntity();
         subIssuerEntity.setAcsId(subIssuerDto.getAcsId());
         subIssuerEntity.setAuthenticationTimeOut(subIssuerDto.getAuthenticationTimeOut());
@@ -16,19 +16,19 @@ public class SubissuerMapping {
         subIssuerEntity.setName(subIssuerDto.getName());
         subIssuerEntity.setLabel(subIssuerDto.getLabel());
         subIssuerEntity.setAuthentMeans(subIssuerDto.getAuthentMeans());
-        subIssuerEntity.setPersonnalDataStorage(subIssuerDto.getPersonnalDataStorage());
-        subIssuerEntity.setResetBackupsIfSuccess(subIssuerDto.getResetBackupsIfSuccess());
-        subIssuerEntity.setResetChoicesIfSuccess(subIssuerDto.getResetChoicesIfSuccess());
-        subIssuerEntity.setManageBackupsCombinedAmounts(subIssuerDto.getManageBackupsCombinedAmounts());
-        subIssuerEntity.setManageChoicesCombinedAmounts(subIssuerDto.getManageChoicesCombinedAmounts());
-        subIssuerEntity.setHubMaintenanceModeEnabled(subIssuerDto.getHubMaintenanceModeEnabled());
+        subIssuerEntity.setPersonnalDataStorage(subIssuerDto.isPersonalDataStorage());
+        subIssuerEntity.setResetBackupsIfSuccess(subIssuerDto.isResetBackupsIfSuccess());
+        subIssuerEntity.setResetChoicesIfSuccess(subIssuerDto.isResetChoicesIfSuccess());
+        subIssuerEntity.setManageBackupsCombinedAmounts(subIssuerDto.isManageBackupsCombinedAmounts());
+        subIssuerEntity.setManageChoicesCombinedAmounts(subIssuerDto.isManageChoicesCombinedAmounts());
+        subIssuerEntity.setHubMaintenanceModeEnabled(subIssuerDto.isHubMaintenanceModeEnabled());
 
         return subIssuerEntity;
     }
 
 
-    public static SubIssuerDto entityToDto(SubIssuerEntity subIssuerEntity) {
-        SubIssuerDto subIssuerDto = new SubIssuerDto();
+    public static SubIssuerDTO entityToDto(SubIssuerEntity subIssuerEntity) {
+        SubIssuerDTO subIssuerDto = new SubIssuerDTO();
         subIssuerDto.setAcsId(subIssuerEntity.getAcsId());
         subIssuerDto.setAuthenticationTimeOut(subIssuerEntity.getAuthenticationTimeOut());
         subIssuerDto.setDefaultLanguage(subIssuerEntity.getDefaultLanguage());
@@ -38,7 +38,7 @@ public class SubissuerMapping {
         subIssuerDto.setName(subIssuerEntity.getName());
         subIssuerDto.setLabel(subIssuerEntity.getLabel());
         subIssuerDto.setAuthentMeans(subIssuerEntity.getAuthentMeans());
-        subIssuerDto.setPersonnalDataStorage(subIssuerEntity.getPersonnalDataStorage());
+        subIssuerDto.setPersonalDataStorage(subIssuerEntity.getPersonnalDataStorage());
         subIssuerDto.setResetBackupsIfSuccess(subIssuerEntity.isResetBackupsIfSuccess());
         subIssuerDto.setResetChoicesIfSuccess(subIssuerEntity.isResetChoicesIfSuccess());
         subIssuerDto.setManageBackupsCombinedAmounts(subIssuerEntity.isManageBackupsCombinedAmounts());

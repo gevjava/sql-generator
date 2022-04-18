@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.service;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import org.slf4j.Logger;
@@ -48,13 +48,13 @@ public class SubIssuerService {
         return subIssuerEntityList;
     }
 
-    public SubIssuerDto findByCode(String code) {
+    public SubIssuerDTO findByCode(String code) {
         SubIssuerEntity subIssuerEntity = subIssuerRepository.findByCode(code);
         return SubissuerMapping.entityToDto(subIssuerEntity);
     }
 
     @Transactional
-    public String generateInsertSqlScript(SubIssuerDto dto) {
+    public String generateInsertSqlScript(SubIssuerDTO dto) {
 
         SubIssuerEntity subIssuerEntity = SubissuerMapping.dtoToEntity(dto);
 
@@ -105,7 +105,7 @@ public class SubIssuerService {
     }
 
     @Transactional
-    public String generateUpdateSqlScript(SubIssuerDto subIssuerDto) {
+    public String generateUpdateSqlScript(SubIssuerDTO subIssuerDto) {
         SubIssuerEntity oldSubIssuerEntity = subIssuerRepository.findByCode(subIssuerDto.getCode());
         SubIssuerEntity newSubIssuerEntity = SubissuerMapping.dtoToEntity(subIssuerDto);
         newSubIssuerEntity.setId(oldSubIssuerEntity.getId());
@@ -119,12 +119,12 @@ public class SubIssuerService {
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
                 "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
-                "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + ", " +
-                "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + ", " +
-                "resetChoicesIfSuccess = " + subIssuerDto.getResetChoicesIfSuccess() + ", " +
-                "manageBackupsCombinedAmounts = " + subIssuerDto.getManageBackupsCombinedAmounts() + ", " +
-                "manageChoicesCombinedAmounts = " + subIssuerDto.getManageChoicesCombinedAmounts() + ", " +
-                "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
+                "personnalDataStorage = " + subIssuerDto.isPersonalDataStorage() + ", " +
+                "resetBackupsIfSuccess = " + subIssuerDto.isResetBackupsIfSuccess() + ", " +
+                "resetChoicesIfSuccess = " + subIssuerDto.isResetChoicesIfSuccess() + ", " +
+                "manageBackupsCombinedAmounts = " + subIssuerDto.isManageBackupsCombinedAmounts() + ", " +
+                "manageChoicesCombinedAmounts = " + subIssuerDto.isManageChoicesCombinedAmounts() + ", " +
+                "hubMaintenanceModeEnabled = " + subIssuerDto.isHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
 
         InsertPathGenerator(queryUpdate);
@@ -139,7 +139,7 @@ public class SubIssuerService {
     @Transactional
     public String generateDeleteSqlScript(String code) {
 
-        SubIssuerDto oldSubIssuer = findByCode(code);
+        SubIssuerDTO oldSubIssuer = findByCode(code);
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +

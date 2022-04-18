@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.service;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class SubissuerRollbackService {
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 
-    public String generateSqlScriptForDeleteRollback(SubIssuerDto dto) {
+    public String generateSqlScriptForDeleteRollback(SubIssuerDTO dto) {
 
         SubIssuerEntity subIssuerEntity = SubissuerMapping.dtoToEntity(dto);
 
