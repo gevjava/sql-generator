@@ -15,7 +15,4 @@ export class IssuerService {
   sendIssuerData(issuerData:any){
     return this.http.post('/issuers', issuerData, { responseType: 'text'});
   }
-
-
-
 }

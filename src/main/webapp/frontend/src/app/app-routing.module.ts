@@ -8,6 +8,11 @@ import {ProfileComponent} from './profiles/profile/profile.component';
 import {ProfilesetComponent} from './profiles/profileset/profileset.component';
 import {CryptoConfigComponent} from "./cryptoconfig/crypto-config.component";
 import {AuthentmeansComponent} from "./authentmeans/authentmeans.component";
+import {ProfileComponent} from './profiles/profile/profile.component';
+import {ProfilesetComponent} from './profiles/profileset/profileset.component';
+import {SubIssuerComponent} from "./subissuer/sub-issuer.component";
+import {EditsubissuerComponent} from "./subissuer/edit/editsubissuer.component";
+import {DeletesubissuerComponent} from "./subissuer/delete/deletesubissuer.component";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
@@ -18,6 +23,9 @@ const routes: Routes = [
   {path: '', component: IssuerComponent},
   {path: 'crypto', component: CryptoConfigComponent},
   {path: 'authent', component: AuthentmeansComponent},
+  {path: '', component: SubIssuerComponent},
+  {path: 'subissuer/:code/edit', component: EditsubissuerComponent},
+  {path: 'subissuer/:code/delete', component: DeletesubissuerComponent}
 ];
 
 @NgModule({
@@ -28,4 +36,7 @@ export class AppRoutingModule {
 }
 
 export const routesList = [IssuerComponent, SubissuerComponent, EditComponent, DeleteComponent, ProfileComponent,
-  ProfilesetComponent, CryptoConfigComponent, AuthentmeansComponent];
+  ProfilesetComponent, EditsubissuerComponent, DeletesubissuerComponent, CryptoConfigComponent, AuthentmeansComponent];
+
+export class AppRoutingModule {
+}

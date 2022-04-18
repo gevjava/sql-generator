@@ -80,4 +80,5 @@ testem.log
 Thumbs.db
 
 #scripts
-src/main/resources/sql_scripts
+src/main/resources/sql_scripts/data.sql
+src/main/resources/sql_scripts/rollback_data.sql
