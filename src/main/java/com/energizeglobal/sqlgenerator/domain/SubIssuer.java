@@ -238,22 +238,7 @@ public class SubIssuer {
 
     @Override
     public String toString() {
-        return "SubIssuer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", authentMeans='" + authentMeans + '\'' +
-                ", issuer=" + issuer +
-                ", cryptoConfigEntity=" + cryptoConfigEntity +
-                ", acsId='" + acsId + '\'' +
-                ", authenticationTimeOut=" + authenticationTimeOut +
-                ", defaultLanguage='" + defaultLanguage + '\'' +
-                ", codeSvi='" + codeSvi + '\'' +
-                ", currencyCode='" + currencyCode + '\'' +
-                ", label='" + label + '\'' +
-                ", personnalDataStorage=" + personnalDataStorage +
-                '}';
+        return "SubIssuer{" + "id=" + id + ", name='" + name + '\'' + ", code='" + code + '\'' + ", authentMeans='" + authentMeans + '\'' + ", issuer=" + issuer + ", cryptoConfigEntity=" + cryptoConfigEntity + ", acsId='" + acsId + '\'' + ", authenticationTimeOut=" + authenticationTimeOut + ", defaultLanguage='" + defaultLanguage + '\'' + ", codeSvi='" + codeSvi + '\'' + ", currencyCode='" + currencyCode + '\'' + ", label='" + label + '\'' + ", personnalDataStorage=" + personnalDataStorage + '}';
     }
 
 }
-

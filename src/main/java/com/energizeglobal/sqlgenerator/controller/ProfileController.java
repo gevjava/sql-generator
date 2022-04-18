@@ -20,7 +20,7 @@ public class ProfileController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Profile>>  index(){
+    public ResponseEntity<List<Profile>> index() {
         List<Profile> profiles = this.service.getAllProfiles();
         return ResponseEntity.ok(profiles);
     }
