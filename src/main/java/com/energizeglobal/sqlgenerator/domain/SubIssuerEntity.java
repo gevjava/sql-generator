@@ -3,10 +3,11 @@ package com.energizeglobal.sqlgenerator.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "subissuer")
-public class SubIssuer {
+public class SubIssuerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -22,13 +23,32 @@ public class SubIssuer {
     private String authentMeans;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id", updatable = false)
-    private Issuer issuer;
+    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
+    private IssuerEntity issuer;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false)
+    @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuers")
     @JsonIgnore
-    private CryptoConfig cryptoConfigEntity;
+    private List<BinRangeEntity> bins;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+    @JsonIgnore
+    private CryptoConfigurationEntity cryptoConfigEntity;
+
+//    @ManyToMany(mappedBy = "subIssuers")
+//    private List<NetworkEntity> networks;
+//
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subIssuer")
+    @JsonIgnore
+    private List<Profile> profile;
+//
+//    @OneToMany(mappedBy = "subIssuer")
+//    @JsonIgnore
+//    private List<CustomItemSetEntity> customItemSets;
+//
+//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuer")
+//    @JsonBackReference(value="MerchantPivotList")
+//    private List<MerchantPivotListEntity> merchantPivotList;
 
     @Column
     private String acsId;
@@ -66,17 +86,12 @@ public class SubIssuer {
     @Column(columnDefinition = "BIT", length = 1)
     private boolean hubMaintenanceModeEnabled;
 
-
-    public SubIssuer() {
-    }
-
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-
+        this.id = id;
     }
 
     public String getName() {
@@ -103,35 +118,19 @@ public class SubIssuer {
         this.authentMeans = authentMeans;
     }
 
-    public Issuer getIssuer() {
+    public IssuerEntity getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(Issuer issuer) {
+    public void setIssuer(IssuerEntity issuer) {
         this.issuer = issuer;
     }
 
-    public boolean isResetChoicesIfSuccess() {
-        return resetChoicesIfSuccess;
-    }
-
-    public boolean isManageBackupsCombinedAmounts() {
-        return manageBackupsCombinedAmounts;
-    }
-
-    public boolean isManageChoicesCombinedAmounts() {
-        return manageChoicesCombinedAmounts;
-    }
-
-    public boolean isHubMaintenanceModeEnabled() {
-        return hubMaintenanceModeEnabled;
-    }
-
-    public CryptoConfig getCryptoConfigEntity() {
+    public CryptoConfigurationEntity getCryptoConfigEntity() {
         return cryptoConfigEntity;
     }
 
-    public void setCryptoConfigEntity(CryptoConfig cryptoConfigEntity) {
+    public void setCryptoConfigEntity(CryptoConfigurationEntity cryptoConfigEntity) {
         this.cryptoConfigEntity = cryptoConfigEntity;
     }
 
@@ -183,6 +182,14 @@ public class SubIssuer {
         this.label = label;
     }
 
+    public boolean isResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
+        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
+    }
+
     public Boolean getPersonnalDataStorage() {
         return personnalDataStorage;
     }
@@ -191,19 +198,7 @@ public class SubIssuer {
         this.personnalDataStorage = personnalDataStorage;
     }
 
-    public boolean getResetBackupsIfSuccess() {
-        return resetBackupsIfSuccess;
-    }
-
-    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
-        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
-    }
-
-    public boolean isResetBackupsIfSuccess() {
-        return resetBackupsIfSuccess;
-    }
-
-    public boolean getResetChoicesIfSuccess() {
+    public boolean isResetChoicesIfSuccess() {
         return resetChoicesIfSuccess;
     }
 
@@ -211,7 +206,7 @@ public class SubIssuer {
         this.resetChoicesIfSuccess = resetChoicesIfSuccess;
     }
 
-    public boolean getManageBackupsCombinedAmounts() {
+    public boolean isManageBackupsCombinedAmounts() {
         return manageBackupsCombinedAmounts;
     }
 
@@ -219,7 +214,7 @@ public class SubIssuer {
         this.manageBackupsCombinedAmounts = manageBackupsCombinedAmounts;
     }
 
-    public boolean getManageChoicesCombinedAmounts() {
+    public boolean isManageChoicesCombinedAmounts() {
         return manageChoicesCombinedAmounts;
     }
 
@@ -227,7 +222,7 @@ public class SubIssuer {
         this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
     }
 
-    public boolean getHubMaintenanceModeEnabled() {
+    public boolean isHubMaintenanceModeEnabled() {
         return hubMaintenanceModeEnabled;
     }
 
@@ -236,24 +231,4 @@ public class SubIssuer {
     }
 
 
-    @Override
-    public String toString() {
-        return "SubIssuer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", authentMeans='" + authentMeans + '\'' +
-                ", issuer=" + issuer +
-                ", cryptoConfigEntity=" + cryptoConfigEntity +
-                ", acsId='" + acsId + '\'' +
-                ", authenticationTimeOut=" + authenticationTimeOut +
-                ", defaultLanguage='" + defaultLanguage + '\'' +
-                ", codeSvi='" + codeSvi + '\'' +
-                ", currencyCode='" + currencyCode + '\'' +
-                ", label='" + label + '\'' +
-                ", personnalDataStorage=" + personnalDataStorage +
-                '}';
-    }
-
 }
-

@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.SubIssuer;
-import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
+import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
+import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,25 +25,25 @@ public class SubIssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubIssuer>> getAllSubIssuer() {
-        List<SubIssuer> subIssuerList = subIssuerService.getAllSubIssuer();
-        return ResponseEntity.ok(subIssuerList);
+    public ResponseEntity<List<SubIssuerEntity>> getAllSubIssuer() {
+        List<SubIssuerEntity> subIssuerEntityList = subIssuerService.getAllSubIssuer();
+        return ResponseEntity.ok(subIssuerEntityList);
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<SubIssuerDto> getByCodeSubIssuer(@PathVariable("code") String code) {
-        SubIssuerDto subIssuerDto = subIssuerService.findByCode(code);
+    public ResponseEntity<SubIssuerDTO> getByCodeSubIssuer(@PathVariable("code") String code) {
+        SubIssuerDTO subIssuerDto = subIssuerService.findByCode(code);
         return ResponseEntity.ok(subIssuerDto);
     }
 
     @PostMapping
-    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDto subIssuerDTO) {
+    public ResponseEntity<String> generateSqlScript(@RequestBody SubIssuerDTO subIssuerDTO) {
         String filename = subIssuerService.generateInsertSqlScript(subIssuerDTO);
         return ResponseEntity.ok(filename);
     }
 
     @PutMapping
-    public ResponseEntity<String> updateSubissuer(@RequestBody SubIssuerDto subIssuerDto) {
+    public ResponseEntity<String> updateSubissuer(@RequestBody SubIssuerDTO subIssuerDto) {
         String filename = subIssuerService.generateUpdateSqlScript(subIssuerDto);
         return ResponseEntity.ok(filename);
     }

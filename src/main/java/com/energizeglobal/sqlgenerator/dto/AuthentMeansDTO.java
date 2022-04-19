@@ -1,41 +1,29 @@
-package com.energizeglobal.sqlgenerator.domain;
+package com.energizeglobal.sqlgenerator.dto;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.energizeglobal.sqlgenerator.enums.UpdateState;
 
-import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
-@Table(name = "authentmeans")
-public class AuthentMeans {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class AuthentMeansDTO {
+
     private Long id;
 
-    @Column(name = "createdBy", nullable = false)
     private String createdBy;
 
-    @Column(name = "creationDate", nullable = false)
-    @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "lastUpdateBy")
     private String lastUpdateBy;
 
-    @Column(name = "lastUpdateDate")
-    private LocalDate lastUpdateDate;
+    private LocalDateTime lastUpdateDate;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "updateState", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Profile.UpdateState updateState;
+    private UpdateState updateState;
+
+    private List<ProfileDTO> profiles;
 
     public Long getId() {
         return id;
@@ -77,11 +65,11 @@ public class AuthentMeans {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    public LocalDate getLastUpdateDate() {
+    public LocalDateTime getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(LocalDate lastUpdateDate) {
+    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 
@@ -93,11 +81,19 @@ public class AuthentMeans {
         this.name = name;
     }
 
-    public Profile.UpdateState getUpdateState() {
+    public UpdateState getUpdateState() {
         return updateState;
     }
 
-    public void setUpdateState(Profile.UpdateState updateState) {
+    public void setUpdateState(UpdateState updateState) {
         this.updateState = updateState;
+    }
+
+    public List<ProfileDTO> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<ProfileDTO> profiles) {
+        this.profiles = profiles;
     }
 }

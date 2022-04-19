@@ -11,13 +11,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "issuer")
-public class Issuer {
+public class IssuerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
-
     @Column
     String code;
 
@@ -51,10 +50,8 @@ public class Issuer {
     String availaibleAuthentMeans;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
-
     @JsonIgnore
-
-    private List<SubIssuer> subIssuers;
+    private List<SubIssuerEntity> subIssuers;
 
 
     public long getId() {
@@ -145,11 +142,11 @@ public class Issuer {
         this.availaibleAuthentMeans = availaibleAuthentMeans;
     }
 
-    public List<SubIssuer> getSubIssuers() {
+    public List<SubIssuerEntity> getSubIssuers() {
         return subIssuers;
     }
 
-    public void setSubIssuers(List<SubIssuer> subIssuers) {
-        this.subIssuers = subIssuers;
+    public void setSubIssuers(List<SubIssuerEntity> subIssuerEntities) {
+        this.subIssuers = subIssuerEntities;
     }
 }

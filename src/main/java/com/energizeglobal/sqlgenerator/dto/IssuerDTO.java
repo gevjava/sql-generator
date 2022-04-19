@@ -4,14 +4,15 @@ import java.time.Instant;
 
 public class IssuerDTO {
 
-    String id;
-    String code;
-    String createdBy;
-    Instant creationDate;
-    String name;
-    String updateState;
-    String label;
-    String availaibleAuthentMeans;
+    private String id;
+    private String code;
+    private String createdBy;
+    private Instant creationDate;
+    private String description;
+    private String name;
+    private String updateState;
+    private String label;
+    private String availaibleAuthentMeans;
 
     public String getId() {
         return id;
@@ -45,6 +46,14 @@ public class IssuerDTO {
         this.creationDate = creationDate;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getName() {
         return name;
     }
@@ -75,19 +84,5 @@ public class IssuerDTO {
 
     public void setAvailaibleAuthentMeans(String availaibleAuthentMeans) {
         this.availaibleAuthentMeans = availaibleAuthentMeans;
-    }
-
-    @Override
-    public String toString() {
-        return "IssuerDTO{" +
-                "id='" + id + '\'' +
-                ", code='" + code + '\'' +
-                ", createdBy='" + createdBy + '\'' +
-                ", creationDate='" + creationDate + '\'' +
-                ", name='" + name + '\'' +
-                ", updateState='" + updateState + '\'' +
-                ", label='" + label + '\'' +
-                ", availaibleAuthentMeans='" + availaibleAuthentMeans + '\'' +
-                '}';
     }
 }

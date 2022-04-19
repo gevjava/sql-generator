@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.dto;
 
-public class SubIssuerDto {
+public class SubIssuerDTO {
     String acsId;
     Integer authenticationTimeOut;
     String defaultLanguage;
@@ -10,12 +10,12 @@ public class SubIssuerDto {
     String name;
     String authentMeans;
     String label;
-    Boolean personnalDataStorage;
-    Boolean resetBackupsIfSuccess;
-    Boolean resetChoicesIfSuccess;
-    Boolean manageBackupsCombinedAmounts;
-    Boolean manageChoicesCombinedAmounts;
-    Boolean hubMaintenanceModeEnabled;
+    boolean personnalDataStorage;
+    boolean resetBackupsIfSuccess;
+    boolean resetChoicesIfSuccess;
+    boolean manageBackupsCombinedAmounts;
+    boolean manageChoicesCombinedAmounts;
+    boolean hubMaintenanceModeEnabled;
 
     public String getAcsId() {
         return acsId;
@@ -89,51 +89,51 @@ public class SubIssuerDto {
         this.label = label;
     }
 
-    public Boolean getPersonnalDataStorage() {
+    public boolean isPersonnalDataStorage() {
         return personnalDataStorage;
     }
 
-    public void setPersonnalDataStorage(Boolean personnalDataStorage) {
+    public void setPersonalDataStorage(boolean personnalDataStorage) {
         this.personnalDataStorage = personnalDataStorage;
     }
 
-    public Boolean getResetBackupsIfSuccess() {
+    public boolean isResetBackupsIfSuccess() {
         return resetBackupsIfSuccess;
     }
 
-    public void setResetBackupsIfSuccess(Boolean resetBackupsIfSuccess) {
+    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
         this.resetBackupsIfSuccess = resetBackupsIfSuccess;
     }
 
-    public Boolean getResetChoicesIfSuccess() {
+    public boolean isResetChoicesIfSuccess() {
         return resetChoicesIfSuccess;
     }
 
-    public void setResetChoicesIfSuccess(Boolean resetChoicesIfSuccess) {
+    public void setResetChoicesIfSuccess(boolean resetChoicesIfSuccess) {
         this.resetChoicesIfSuccess = resetChoicesIfSuccess;
     }
 
-    public Boolean getManageBackupsCombinedAmounts() {
+    public boolean isManageBackupsCombinedAmounts() {
         return manageBackupsCombinedAmounts;
     }
 
-    public void setManageBackupsCombinedAmounts(Boolean manageBackupsCombinedAmounts) {
+    public void setManageBackupsCombinedAmounts(boolean manageBackupsCombinedAmounts) {
         this.manageBackupsCombinedAmounts = manageBackupsCombinedAmounts;
     }
 
-    public Boolean getManageChoicesCombinedAmounts() {
+    public boolean isManageChoicesCombinedAmounts() {
         return manageChoicesCombinedAmounts;
     }
 
-    public void setManageChoicesCombinedAmounts(Boolean manageChoicesCombinedAmounts) {
+    public void setManageChoicesCombinedAmounts(boolean manageChoicesCombinedAmounts) {
         this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
     }
 
-    public Boolean getHubMaintenanceModeEnabled() {
+    public boolean isHubMaintenanceModeEnabled() {
         return hubMaintenanceModeEnabled;
     }
 
-    public void setHubMaintenanceModeEnabled(Boolean hubMaintenanceModeEnabled) {
+    public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
         this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
 }
