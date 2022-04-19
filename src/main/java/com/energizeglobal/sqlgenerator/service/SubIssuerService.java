@@ -119,7 +119,7 @@ public class SubIssuerService {
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
                 "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
-                "personnalDataStorage = " + subIssuerDto.isPersonalDataStorage() + ", " +
+                "personnalDataStorage = " + subIssuerDto.isPersonnalDataStorage() + ", " +
                 "resetBackupsIfSuccess = " + subIssuerDto.isResetBackupsIfSuccess() + ", " +
                 "resetChoicesIfSuccess = " + subIssuerDto.isResetChoicesIfSuccess() + ", " +
                 "manageBackupsCombinedAmounts = " + subIssuerDto.isManageBackupsCombinedAmounts() + ", " +

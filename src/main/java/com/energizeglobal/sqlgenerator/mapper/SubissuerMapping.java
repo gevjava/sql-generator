@@ -16,7 +16,7 @@ public class SubissuerMapping {
         subIssuerEntity.setName(subIssuerDto.getName());
         subIssuerEntity.setLabel(subIssuerDto.getLabel());
         subIssuerEntity.setAuthentMeans(subIssuerDto.getAuthentMeans());
-        subIssuerEntity.setPersonnalDataStorage(subIssuerDto.isPersonalDataStorage());
+        subIssuerEntity.setPersonnalDataStorage(subIssuerDto.isPersonnalDataStorage());
         subIssuerEntity.setResetBackupsIfSuccess(subIssuerDto.isResetBackupsIfSuccess());
         subIssuerEntity.setResetChoicesIfSuccess(subIssuerDto.isResetChoicesIfSuccess());
         subIssuerEntity.setManageBackupsCombinedAmounts(subIssuerDto.isManageBackupsCombinedAmounts());
