@@ -1,7 +1,7 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+
 import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+
 @Table(name = "cryptoconfig")
 public class CryptoConfigurationEntity implements Serializable {
 
@@ -31,11 +31,58 @@ public class CryptoConfigurationEntity implements Serializable {
     @OneToMany(mappedBy = "cryptoConfigEntity")
     @Lazy
     @JsonIgnore
-    private List<SubIssuerEntity> linkedSubIssuers = new ArrayList<>();
+    private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "cryptoConfigurationEntity")
     @JsonIgnore
     private List<BinRangeEntity> linkedBinRanges = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getProtocolOne() {
+        return protocolOne;
+    }
+
+    public void setProtocolOne(String protocolOne) {
+        this.protocolOne = protocolOne;
+    }
+
+    public String getProtocolTwo() {
+        return protocolTwo;
+    }
+
+    public void setProtocolTwo(String protocolTwo) {
+        this.protocolTwo = protocolTwo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<SubIssuer> getLinkedSubIssuers() {
+        return linkedSubIssuers;
+    }
+
+    public void setLinkedSubIssuers(List<SubIssuer> linkedSubIssuers) {
+        this.linkedSubIssuers = linkedSubIssuers;
+    }
+
+    public List<BinRangeEntity> getLinkedBinRanges() {
+        return linkedBinRanges;
+    }
+
+    public void setLinkedBinRanges(List<BinRangeEntity> linkedBinRanges) {
+        this.linkedBinRanges = linkedBinRanges;
+    }
 }

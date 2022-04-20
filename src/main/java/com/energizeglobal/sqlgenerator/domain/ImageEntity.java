@@ -1,11 +1,29 @@
 package com.energizeglobal.sqlgenerator.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@Embeddable
-public class EntityData {
+@Entity
+@Table(name = "Image")
+public class ImageEntity {
 
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToMany(mappedBy = "image")
+    @JsonBackReference
+    private List<CustomImageEntity> customImages;
+
+    @Lob
+    @Column(columnDefinition = "longblob")
+    private String binaryData;
+
+    private String relativePath;
     @Column
     private String name;
 
@@ -16,12 +34,12 @@ public class EntityData {
     @Column(name = "creationDate", nullable = false)
     private Date creationDate;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String createdBy;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UpdateState updateState;
+    private EntityData.UpdateState updateState;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
@@ -30,7 +48,7 @@ public class EntityData {
     @Column
     private String lastUpdateBy;
 
-    public enum UpdateState{
+    public enum UpdateState {
         WAITING_VALIDATION,
         PUSHED_TO_CONFIG,
         WAITING_FOR_PUSH
@@ -49,9 +67,9 @@ public class EntityData {
     }
 
     public void setCreationDate(Date creationDate) {
-        if(creationDate != null) {
+        if (creationDate != null) {
             this.creationDate = (Date) creationDate.clone();
-        }else{
+        } else {
             this.creationDate = null;
         }
     }
@@ -64,11 +82,11 @@ public class EntityData {
         this.createdBy = createdBy;
     }
 
-    public UpdateState getUpdateState() {
+    public EntityData.UpdateState getUpdateState() {
         return updateState;
     }
 
-    public void setUpdateState(UpdateState updateState) {
+    public void setUpdateState(EntityData.UpdateState updateState) {
         this.updateState = updateState;
     }
 
@@ -85,9 +103,9 @@ public class EntityData {
     }
 
     public void setLastUpdateDate(Date lastUpdateDate) {
-        if(lastUpdateDate != null) {
+        if (lastUpdateDate != null) {
             this.lastUpdateDate = (Date) lastUpdateDate.clone();
-        }else{
+        } else {
             this.lastUpdateDate = null;
         }
     }
@@ -98,5 +116,38 @@ public class EntityData {
 
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getBinaryData() {
+        return binaryData;
+    }
+
+    public void setBinaryData(String binaryData) {
+        this.binaryData = binaryData;
+    }
+
+    public List<CustomImageEntity> getCustomImages() {
+        return customImages;
+    }
+
+    public void setCustomImages(List<CustomImageEntity> customImages) {
+        this.customImages = customImages;
+    }
+
+    public String getRelativePath() {
+        return relativePath;
+    }
+
+    public void setRelativePath(String relativePath) {
+        this.relativePath = relativePath;
     }
 }
