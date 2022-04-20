@@ -4,8 +4,9 @@ import com.energizeglobal.sqlgenerator.domain.AuthentMeansEntity;
 import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
 import com.energizeglobal.sqlgenerator.mapper.Mapping;
 import com.energizeglobal.sqlgenerator.repository.AuthentMeansRepository;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
