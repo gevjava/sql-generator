@@ -8,7 +8,7 @@ export class EditService {
 
   constructor(private http:HttpClient) { }
 
-  edit(subissuer:any,code:any){
+  edit(subissuer:any){
     return this.http.put('/subissuer/',subissuer,{responseType: 'text'});
   }
 
@@ -17,7 +17,7 @@ export class EditService {
   }
 
   getByCodeSubissuer(code:any){
-    return this.http.get('/subissuer/'+code);
+    return this.http.get('/subissuer/'+ code);
   }
 
 }

@@ -79,7 +79,7 @@ public class ImageService {
 
         String sqlInsert = queryType + queryValue;
 
-        InsertPathGenerator(sqlInsert);
+        insertPathGenerator(sqlInsert);
 
         imageRollbackService.generateSqlScriptForInsertRollback(image.getId());
 
@@ -89,8 +89,35 @@ public class ImageService {
         return INSERT_FILE_NAME;
     }
 
+    @Transactional
+    public String generateUpdateSqlScript(ImageDTO imageDto) {
+        ImageEntity oldImage = imageRepository.getById(imageDto.getId());
+        ImageEntity newImage = ImageMapper.dtoToEntity(imageDto);
+        newImage.setId(oldImage.getId());
 
-    private void InsertPathGenerator(String sql) {
+        String queryUpdate = "UPDATE image SET " +
+                "createdBy = '" + imageDto.getCreatedBy() + "', " +
+                "creationDate = '" + imageDto.getCreationDate() + "', " +
+                "description = '" + imageDto.getDescription() + "', " +
+                "lastUpdateBy = '" + imageDto.getLastUpdateBy() + "', " +
+                "lastUpdateDate = '" + imageDto.getLastUpdateDate() + "', " +
+                "name = '" + imageDto.getName()+ "', " +
+                "updateState = '" + imageDto.getUpdateState() + "', " +
+                "binaryData = '" + imageDto.getBinaryData() + "', " +
+                "relativePath = '" + imageDto.getRelativePath() + "', " +
+                " WHERE id = " + imageDto.getId() + ";";
+
+        insertPathGenerator(queryUpdate);
+
+        imageRollbackService.generateSqlScriptForUpdateRollback(oldImage);
+        if (dbAction)
+            imageRepository.save(newImage);
+
+        return INSERT_FILE_NAME;
+
+
+    }
+    private void insertPathGenerator(String sql) {
 
         Path newFilePath = Paths.get(path);
         try {
@@ -108,7 +135,7 @@ public class ImageService {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException("IOException: " + e.getMessage());
         }
     }
 

@@ -96,7 +96,7 @@ public class SubIssuerService {
 
         String sqlInsert = queryType + queryValue;
 
-        InsertPathGenerator(sqlInsert);
+        insertPathGenerator(sqlInsert);
 
         rollbackService.generateSqlScriptForInsertRollback(subIssuer.getCode());
 
@@ -129,7 +129,7 @@ public class SubIssuerService {
                 "hubMaintenanceModeEnabled = " + subIssuerDto.getHubMaintenanceModeEnabled() + " " +
                 " WHERE code = " + subIssuerDto.getCode() + ";";
 
-        InsertPathGenerator(queryUpdate);
+        insertPathGenerator(queryUpdate);
 
         rollbackService.generateSqlScriptForUpdateRollback(oldSubIssuer);
         if (dbAction)
@@ -149,7 +149,7 @@ public class SubIssuerService {
                 "DELETE FROM subissuer WHERE code = " + code + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
-        InsertPathGenerator(deleteQuery);
+        insertPathGenerator(deleteQuery);
 
         rollbackService.generateSqlScriptForDeleteRollback(oldSubIssuer);
 
@@ -159,7 +159,7 @@ public class SubIssuerService {
         return INSERT_FILE_NAME;
     }
 
-    private void InsertPathGenerator(String sql) {
+    private void insertPathGenerator(String sql) {
 
         Path newFilePath = Paths.get(path);
         try {
@@ -177,7 +177,7 @@ public class SubIssuerService {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException("IOException: " + e.getMessage());
         }
     }
 

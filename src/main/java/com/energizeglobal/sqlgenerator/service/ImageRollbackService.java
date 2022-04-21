@@ -1,5 +1,6 @@
 package com.energizeglobal.sqlgenerator.service;
 
+import com.energizeglobal.sqlgenerator.domain.ImageEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -27,6 +28,25 @@ public class ImageRollbackService {
                 "COMMIT;";
 
         pathGenerator(deleteQuery);
+
+        return ROLLBACK_FILE_NAME;
+    }
+
+    public String generateSqlScriptForUpdateRollback(ImageEntity oldImage){
+
+        String queryUpdate = "UPDATE image SET " +
+                "createdBy = '" + oldImage.getCreatedBy() + "', " +
+                "creationDate = '" + oldImage.getCreationDate() + "', " +
+                "description = '" + oldImage.getDescription() + "', " +
+                "lastUpdateBy = '" + oldImage.getLastUpdateBy() + "', " +
+                "lastUpdateDate = '" + oldImage.getLastUpdateDate() + "', " +
+                "name = '" + oldImage.getName()+ "', " +
+                "updateState = '" + oldImage.getUpdateState() + "', " +
+                "binaryData = '" + oldImage.getBinaryData() + "', " +
+                "relativePath = '" + oldImage.getRelativePath() + "', " +
+                " WHERE id = " + oldImage.getId() + ";";
+
+        pathGenerator(queryUpdate);
 
         return ROLLBACK_FILE_NAME;
     }

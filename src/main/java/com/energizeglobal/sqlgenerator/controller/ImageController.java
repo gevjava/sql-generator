@@ -43,5 +43,11 @@ public class ImageController {
                 .body(file);
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateImage(@RequestBody ImageDTO imageDto){
+        String filename = imageService.generateUpdateSqlScript(imageDto);
+        return ResponseEntity.ok(filename);
+    }
+
 
 }

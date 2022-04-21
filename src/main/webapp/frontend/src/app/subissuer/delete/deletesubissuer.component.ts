@@ -26,7 +26,7 @@ export class DeletesubissuerComponent implements OnInit {
   ngOnInit(): void {
     this.code = this.router.snapshot.paramMap.get("code");
     this.initializeForm();
-    this.getByCode(this.code)
+    this.getByCode(this.code);
   }
 
   delete() {

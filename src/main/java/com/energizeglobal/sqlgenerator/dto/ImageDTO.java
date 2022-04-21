@@ -11,18 +11,13 @@ public class ImageDTO {
     private String binaryData;
     private String relativePath;
     private String name;
-
     private String description;
-
     private Date creationDate;
-
     private String createdBy;
-
+    private Date lastUpdateDate;
+    private String lastUpdateBy;
     private EntityData.UpdateState updateState;
 
-    private Date lastUpdateDate;
-
-    private String lastUpdateBy;
     public Long getId() {
         return id;
     }
