@@ -14,7 +14,7 @@ import static java.nio.file.StandardOpenOption.APPEND;
 @Service
 public class ImageRollbackService {
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String ROLLBACK_FILE_NAME = "rollback_data.sql";
+    String ROLLBACK_FILE_NAME = "image_rollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
     public String generateSqlScriptForInsertRollback(Long id) {

@@ -34,7 +34,7 @@ public class SubIssuerService {
 
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_FILE_NAME = "data.sql";
+    private String INSERT_FILE_NAME = "subissuer.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
 
     public SubIssuerService(SubIssuerRepository subIssuerRepository, SubissuerRollbackService rollbackService) {

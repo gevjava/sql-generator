@@ -28,7 +28,7 @@ public class ImageService {
     private final ImageRollbackService imageRollbackService;
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_FILE_NAME = "image_insert.sql";
+    private String INSERT_FILE_NAME = "image.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
 
 

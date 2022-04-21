@@ -18,7 +18,7 @@ import static java.nio.file.StandardOpenOption.APPEND;
 public class SubissuerRollbackService {
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String ROLLBACK_FILE_NAME = "rollback_data.sql";
+    String ROLLBACK_FILE_NAME = "subissuer_rollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 
