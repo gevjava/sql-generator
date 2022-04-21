@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagedeleteComponent } from './imagedelete.component';
+import { DeleteImageComponent } from './delete-image.component';
 
-describe('ImagedeleteComponent', () => {
-  let component: ImagedeleteComponent;
-  let fixture: ComponentFixture<ImagedeleteComponent>;
+describe('DeleteImageComponent', () => {
+  let component: DeleteImageComponent;
+  let fixture: ComponentFixture<DeleteImageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImagedeleteComponent ]
+      declarations: [ DeleteImageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImagedeleteComponent);
+    fixture = TestBed.createComponent(DeleteImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

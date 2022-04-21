@@ -3,6 +3,7 @@ package com.energizeglobal.sqlgenerator.dto;
 
 import com.energizeglobal.sqlgenerator.domain.EntityData;
 
+import java.time.Instant;
 import java.util.Date;
 
 public class ImageDTO {
@@ -14,7 +15,7 @@ public class ImageDTO {
     private String description;
     private Date creationDate;
     private String createdBy;
-    private Date lastUpdateDate;
+    private Instant lastUpdateDate;
     private String lastUpdateBy;
     private EntityData.UpdateState updateState;
 
@@ -84,11 +85,11 @@ public class ImageDTO {
         this.updateState = updateState;
     }
 
-    public Date getLastUpdateDate() {
+    public Instant getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
+    public void setLastUpdateDate(Instant lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 

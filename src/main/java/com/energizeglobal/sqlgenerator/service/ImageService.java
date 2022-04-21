@@ -56,10 +56,8 @@ public class ImageService {
         String queryType = "INSERT INTO image  ( " +
                 "id, " +
                 "createdBy, " +
-                "creationDate, " +
                 "description, " +
                 "lastUpdateBy, " +
-                "lastUpdateDate, " +
                 "name, " +
                 "updateState, " +
                 "binaryData, " +
@@ -68,10 +66,8 @@ public class ImageService {
         String queryValue = "  VALUES (" +
                 image.getId() + " , '" +
                 image.getCreatedBy() + "', '" +
-                image.getCreationDate() + "', '" +
                 image.getDescription() + "', '" +
                 image.getLastUpdateBy() + "', '" +
-                image.getLastUpdateDate() + "', '" +
                 image.getName() + "', '" +
                 image.getUpdateState() + "', '" +
                 image.getBinaryData() + "', '" +

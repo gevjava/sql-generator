@@ -6,11 +6,7 @@
         <div class="card">
           <div class="card-body">
             <div class="wrapper">
-              <div class="row  text-center" *ngIf="filename">
-                <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
-                </div>
-              </div>
+
               <form [formGroup]="imageForm" (ngSubmit)="sendImageData()">
 
 
@@ -19,10 +15,8 @@
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">CreatedBy</th>
-                    <th scope="col">CreationDate</th>
                     <th scope="col">Description</th>
                     <th scope="col">LastUpdateBy</th>
-                    <th scope="col">LastUpdateDate</th>
                     <th scope="col">Name</th>
                     <th scope="col">UpdateState</th>
                     <th scope="col">BinaryData</th>
@@ -32,22 +26,16 @@
                   <tbody>
                   <tr>
                     <td>
-                      <input class="form-control" type="text" formControlName="id" name="id" >
+                      <input class="form-control" type="number" formControlName="id" name="id" style="width: 70px;">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="createdBy" name="createdBy" >
-                    </td>
-                    <td>
-                      <input class="form-control" type="date" formControlName="creationDate" name="creationDate">
+                      <input class="form-control" type="text" formControlName="createdBy" name="createdBy">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="description" name="description">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="lastUpdateBy" name="lastUpdateBy">
-                    </td>
-                    <td>
-                      <input class="form-control" type="date" formControlName="lastUpdateDate" name="lastUpdateDate">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="name" name="name">
@@ -68,7 +56,6 @@
                     <td>
                       <input class="form-control" type="text" formControlName="relativePath" name="relativePath">
                     </td>
-
                   </tr>
                   </tbody>
                 </table>
@@ -76,6 +63,9 @@
                 <div class="form-group">
                   <button type="submit" [disabled]="!imageForm.valid" class="btn btn-primary btn-block">Generate
                     SQL
+                  </button>
+                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary" style="width: auto; margin-left: 150px;"
+                          (click)="downloadFile()">Download - {{filename}}
                   </button>
                 </div>
               </form>
@@ -111,13 +101,13 @@
           <tr>
             <th scope="row">{{ image.id }}</th>
             <td>{{ image.createdBy }}</td>
-            <td>{{ image.creationDate }}</td>
+            <td>{{ image.creationDate.substring(0, 10) }}</td>
             <td>{{ image.description }}</td>
             <td>{{ image.lastUpdateBy }}</td>
             <td>{{ image.lastUpdateDate }}</td>
             <td>{{ image.name }}</td>
             <td>{{ image.updateState }}</td>
-            <td>{{ image.binaryData.substring(0, 57) }}</td>
+            <td>{{ image.binaryData.substring(0, 10) }}</td>
             <td>{{ image.resetChoicesIfSuccess}}</td>
           </tr>
           </tbody>

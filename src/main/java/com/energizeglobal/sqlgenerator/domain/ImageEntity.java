@@ -1,8 +1,10 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
 @Table(name = "Image")
 public class ImageEntity {
 
-    @Column
+    @Column(unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,9 +45,9 @@ public class ImageEntity {
     @Enumerated(EnumType.STRING)
     private EntityData.UpdateState updateState;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column
-    private Date lastUpdateDate;
+    @CreatedDate
+    @Column(name = "lastUpdateDate", updatable = false)
+    private Instant lastUpdateDate = Instant.now();
 
     @Column
     private String lastUpdateBy;
@@ -100,16 +102,12 @@ public class ImageEntity {
         this.description = description;
     }
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate != null ? (Date) lastUpdateDate.clone() : null;
+    public Instant getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        if (lastUpdateDate != null) {
-            this.lastUpdateDate = (Date) lastUpdateDate.clone();
-        } else {
-            this.lastUpdateDate = null;
-        }
+    public void setLastUpdateDate(Instant lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public String getLastUpdateBy() {

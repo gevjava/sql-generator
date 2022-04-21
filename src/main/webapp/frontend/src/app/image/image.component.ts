@@ -35,10 +35,8 @@ export class ImageComponent implements OnInit {
     this.imageForm = this.formBuilder.group({
       id: [0, Validators.required],
       createdBy: ['', Validators.required],
-      creationDate: ['', Validators.required],
       description: ['', Validators.required],
       lastUpdateBy: ['', Validators.required],
-      lastUpdateDate: ['', Validators.required],
       name: ['', Validators.required],
       updateState: ['', Validators.required],
       binaryData: ['', Validators.required],

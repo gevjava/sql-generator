@@ -52,8 +52,33 @@ public class ImageRollbackService {
         return ROLLBACK_FILE_NAME;
     }
 
-    public void generateSqlScriptForDeleteRollback(ImageDTO image) {
+    public String generateSqlScriptForDeleteRollback(ImageDTO image) {
 
+        String queryType = "INSERT INTO image  ( " +
+                "id, " +
+                "createdBy, " +
+                "description, " +
+                "lastUpdateBy, " +
+                "name, " +
+                "updateState, " +
+                "binaryData, " +
+                "relativePath )";
+
+        String queryValue = "  VALUES (" +
+                image.getId() + " , '" +
+                image.getCreatedBy() + "', '" +
+                image.getDescription() + "', '" +
+                image.getLastUpdateBy() + "', '" +
+                image.getName() + "', '" +
+                image.getUpdateState() + "', '" +
+                image.getBinaryData() + "', '" +
+                image.getRelativePath() + "');";
+
+        String sqlInsert = queryType + queryValue;
+
+        pathGenerator(sqlInsert);
+
+        return ROLLBACK_FILE_NAME;
     }
 
     private void pathGenerator(String sql) {

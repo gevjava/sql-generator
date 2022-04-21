@@ -51,7 +51,6 @@ public class ImageController {
         return  ResponseEntity.ok(filename);
     }
 
-
     @GetMapping("/script/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
@@ -62,8 +61,5 @@ public class ImageController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getFilename())
                 .body(file);
     }
-
-
-
 
 }

@@ -7,12 +7,6 @@
           <div class="card-header"></div>
           <div class="card-body">
             <div class="wrapper">
-              <div class="row  text-center" *ngIf="filename">
-                <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
-                    - {{filename}}</button>
-                </div>
-              </div>
               <form [formGroup]="imageForm" (ngSubmit)="updateImageData()">
                 <table class="table">
                   <thead class="thead-dark">
@@ -33,7 +27,8 @@
                   <tr>
                     <td>
                       <input class="form-control" type="text" formControlName="id" name="id"
-                             [(ngModel)]="image.id" placeholder="{{ image.id }}" readonly="true">
+                             [(ngModel)]="image.id" placeholder="{{ image.id }}" readonly="true"
+                      style="width: 50px;">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="createdBy" name="createdBy"
@@ -54,7 +49,7 @@
                     </td>
                     <td>
                       <input class="form-control" type="date" formControlName="lastUpdateDate" name="lastUpdateDate"
-                             [(ngModel)]="image.lastUpdateDate" placeholder="{{ image.lastUpdateDate }}">
+                             [(ngModel)]="image.lastUpdateDate" placeholder="{{ image.lastUpdateDate }}" readonly = "true">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="name" name="name"
@@ -78,6 +73,9 @@
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Generate SQL</button>
+                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary" style="width: auto; margin-left: 150px;"
+                          (click)="downloadFile()">Download - {{filename}}
+                  </button>
                 </div>
 
               </form>

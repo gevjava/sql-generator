@@ -11,7 +11,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { ReactiveFormsModule} from "@angular/forms";
 import { ImageComponent } from './image/image.component';
 import { EditimageComponent } from './image/edit/editimage.component';
-import { ImagedeleteComponent } from './image/delete/imagedelete.component';
+import { DeleteImageComponent } from './image/delete/delete-image.component';
 
 
 
@@ -23,7 +23,7 @@ import { ImagedeleteComponent } from './image/delete/imagedelete.component';
     routesList,
     ImageComponent,
     EditimageComponent,
-    ImagedeleteComponent
+    DeleteImageComponent
 
   ],
   imports: [
