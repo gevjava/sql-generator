@@ -26,11 +26,31 @@ public class ImageController {
         return ResponseEntity.ok(imageList);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ImageDTO> getImageById(@PathVariable("id") Long id){
+        ImageDTO imageDto = imageService.findeById(id);
+        return ResponseEntity.ok(imageDto);
+
+    }
+
     @PostMapping
     public ResponseEntity<String> generateSqlScript(@RequestBody ImageDTO imageDto){
         String filename = imageService.generateInsertSqlScript(imageDto);
         return ResponseEntity.ok(filename);
     }
+
+    @PutMapping
+    public ResponseEntity<String> updateImage(@RequestBody ImageDTO imageDto){
+        String filename = imageService.generateUpdateSqlScript(imageDto);
+        return ResponseEntity.ok(filename);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable("id") Long id){
+        String filename = imageService.generateDeleteSqlScript(id);
+        return  ResponseEntity.ok(filename);
+    }
+
 
     @GetMapping("/script/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
@@ -43,11 +63,7 @@ public class ImageController {
                 .body(file);
     }
 
-    @PutMapping
-    public ResponseEntity<String> updateImage(@RequestBody ImageDTO imageDto){
-        String filename = imageService.generateUpdateSqlScript(imageDto);
-        return ResponseEntity.ok(filename);
-    }
+
 
 
 }

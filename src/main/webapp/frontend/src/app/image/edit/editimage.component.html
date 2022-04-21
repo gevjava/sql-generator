@@ -40,9 +40,9 @@
                              [(ngModel)]="image.createdBy" placeholder="{{ image.createdBy }}">
                     </td>
                     <td>
-                      <input class="form-control" type="date" formControlName="creationDate"
+                      <input class="form-control" type="test" formControlName="creationDate"
                              name="authenticationTimeOut" [(ngModel)]="image.creationDate"
-                             placeholder="{{ image.creationDate }}">
+                             placeholder="{{ image.creationDate }}" readonly="true">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="description" name="description"
@@ -62,7 +62,7 @@
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="updateState" name="updateState"
-                             [(ngModel)]="image.data.updateState" placeholder="{{ image.data.updateState }}">
+                             [(ngModel)]="image.updateState" placeholder="{{ image.updateState }}">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="binaryData" name="binaryData"

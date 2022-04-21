@@ -104,7 +104,7 @@ public class ImageService {
                 "name = '" + imageDto.getName()+ "', " +
                 "updateState = '" + imageDto.getUpdateState() + "', " +
                 "binaryData = '" + imageDto.getBinaryData() + "', " +
-                "relativePath = '" + imageDto.getRelativePath() + "', " +
+                "relativePath = '" + imageDto.getRelativePath() + "' " +
                 " WHERE id = " + imageDto.getId() + ";";
 
         insertPathGenerator(queryUpdate);
@@ -114,9 +114,29 @@ public class ImageService {
             imageRepository.save(newImage);
 
         return INSERT_FILE_NAME;
-
-
     }
+
+    @Transactional
+    public String generateDeleteSqlScript(Long id) {
+
+        ImageDTO image = findeById(id);
+
+        String deleteQuery = "\n" +
+                "START TRANSACTION; \n" +
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM image WHERE id = " + id + ";\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
+        insertPathGenerator(deleteQuery);
+
+        imageRollbackService.generateSqlScriptForDeleteRollback(image);
+
+        if (dbAction)
+            imageRepository.deleteById(id);
+
+        return INSERT_FILE_NAME;
+    }
+
     private void insertPathGenerator(String sql) {
 
         Path newFilePath = Paths.get(path);

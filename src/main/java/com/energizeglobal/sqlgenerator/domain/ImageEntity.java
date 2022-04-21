@@ -23,7 +23,9 @@ public class ImageEntity {
     @Column(columnDefinition = "longblob")
     private String binaryData;
 
+    @Column
     private String relativePath;
+
     @Column
     private String name;
 
