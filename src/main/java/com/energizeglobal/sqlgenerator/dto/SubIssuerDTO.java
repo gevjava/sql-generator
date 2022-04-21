@@ -136,6 +136,4 @@ public class SubIssuerDTO {
     public void setHubMaintenanceModeEnabled(Boolean hubMaintenanceModeEnabled) {
         this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
-
-
 }

@@ -65,29 +65,28 @@ public class ImageService {
                 "binaryData, " +
                 "relativePath )";
 
-        System.out.println(image.toString());
-
         String queryValue = "  VALUES (" +
                 image.getId() + " , '" +
                 image.getCreatedBy() + "', '" +
-                image.getCreationDate()+ "', '" +
+                image.getCreationDate() + "', '" +
                 image.getDescription() + "', '" +
                 image.getLastUpdateBy() + "', '" +
                 image.getLastUpdateDate() + "', '" +
                 image.getName() + "', '" +
-                image.getUpdateState()+ "', '" +
-                image.getBinaryData()+ "', '" +
+                image.getUpdateState() + "', '" +
+                image.getBinaryData() + "', '" +
                 image.getRelativePath() + "');";
 
         String sqlInsert = queryType + queryValue;
 
         InsertPathGenerator(sqlInsert);
 
-        // todo rollback & if
+        imageRollbackService.generateSqlScriptForInsertRollback(image.getId());
+
+        if (dbAction)
+            imageRepository.save(image);
 
         return INSERT_FILE_NAME;
-
-
     }
 
 
@@ -108,8 +107,8 @@ public class ImageService {
                 }
             }
         } catch (IOException e) {
-            dbAction = false;
             e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 

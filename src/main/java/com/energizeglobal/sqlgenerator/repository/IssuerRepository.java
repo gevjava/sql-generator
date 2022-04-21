@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IssuerRepository extends JpaRepository<Issuer, Long> {
+
     @Query("SELECT i FROM Issuer i WHERE i.code = ?1")
     Issuer getIssuerByCode(String code);
 }
