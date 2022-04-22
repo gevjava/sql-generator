@@ -6,10 +6,13 @@
         <div class="card">
           <div class="card-body">
             <div class="wrapper">
-
+              <div class="row  text-center" *ngIf="filename">
+                <div class="col">
+                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
+                    - {{filename}}</button>
+                </div>
+              </div>
               <form [formGroup]="imageForm" (ngSubmit)="sendImageData()">
-
-
                 <table class="table">
                   <thead class="thead-dark">
                   <tr>
@@ -63,10 +66,6 @@
                 <div class="form-group">
                   <button type="submit" [disabled]="!imageForm.valid" class="btn btn-primary btn-block">Generate
                     SQL
-                  </button>
-                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary"
-                          style="width: auto; margin-left: 150px;"
-                          (click)="downloadFile()">Download - {{filename}}
                   </button>
                 </div>
               </form>
