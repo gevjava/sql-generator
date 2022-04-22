@@ -49,7 +49,7 @@ public class SubIssuerController {
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity deletByCode(@PathVariable("code") String code) {
+    public ResponseEntity deleteByCode(@PathVariable("code") String code) {
         String filename = subIssuerService.generateDeleteSqlScript(code);
         return ResponseEntity.ok(filename);
     }

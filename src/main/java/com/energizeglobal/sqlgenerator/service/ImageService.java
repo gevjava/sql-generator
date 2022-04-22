@@ -44,7 +44,7 @@ public class ImageService {
     }
 
     @Transactional(readOnly = true)
-    public ImageDTO findeById(Long id) {
+    public ImageDTO findById(Long id) {
         ImageEntity imageEntity = imageRepository.getById(id);
         return ImageMapper.entityToDto(imageEntity);
     }
@@ -115,7 +115,9 @@ public class ImageService {
     @Transactional
     public String generateDeleteSqlScript(Long id) {
 
-        ImageDTO image = findeById(id);
+        ImageDTO image = findById(id);
+
+        System.out.println(image);
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
@@ -150,7 +152,6 @@ public class ImageService {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("IOException: " + e.getMessage());
         }
     }

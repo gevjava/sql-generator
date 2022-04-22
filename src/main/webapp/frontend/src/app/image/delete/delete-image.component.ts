@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from "file-saver";
@@ -14,7 +14,7 @@ export class DeleteImageComponent implements OnInit {
   id: any;
   image: any;
   filename: string = "";
- imageForm: any;
+  imageForm: any;
 
   constructor(
     private service: DeleteimageserviceService,
@@ -24,7 +24,7 @@ export class DeleteImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.paramMap.get("code");
+    this.id = this.router.snapshot.paramMap.get("id");
     this.initializeForm();
     this.getByCode(this.id);
   }
@@ -43,9 +43,10 @@ export class DeleteImageComponent implements OnInit {
 
 
   getByCode(id: any) {
-    this.service.getImageById(id).subscribe(resposne => {
-      this.image = resposne;
-    });
+    this.service.getImageById(id);
+    //   .subscribe(resposne => {
+    //   this.image = resposne;
+    // });
   }
 
   initializeForm() {

@@ -176,7 +176,6 @@ public class SubIssuerService {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("IOException: " + e.getMessage());
         }
     }
