@@ -3,6 +3,8 @@ package com.energizeglobal.sqlgenerator.mapper;
 import com.energizeglobal.sqlgenerator.domain.ImageEntity;
 import com.energizeglobal.sqlgenerator.dto.ImageDTO;
 
+import java.time.Instant;
+
 public class ImageMapper {
 
     public static ImageEntity dtoToEntity(ImageDTO imageDto) {
@@ -13,7 +15,7 @@ public class ImageMapper {
         imageEntity.setCreationDate(imageDto.getCreationDate());
         imageEntity.setDescription(imageDto.getDescription());
         imageEntity.setLastUpdateBy(imageDto.getLastUpdateBy());
-        imageEntity.setLastUpdateDate(imageDto.getLastUpdateDate());
+        imageEntity.setLastUpdateDate(Instant.now());
         imageEntity.setName(imageDto.getName());
         imageEntity.setUpdateState(imageDto.getUpdateState());
         imageEntity.setBinaryData(imageDto.getBinaryData());
@@ -31,7 +33,7 @@ public class ImageMapper {
         imageDto.setCreationDate(imageEntity.getCreationDate());
         imageDto.setDescription(imageEntity.getDescription());
         imageDto.setLastUpdateBy(imageEntity.getLastUpdateBy());
-        imageDto.setLastUpdateDate(imageEntity.getLastUpdateDate());
+        imageDto.setLastUpdateDate(Instant.now());
         imageDto.setName(imageEntity.getName());
         imageDto.setUpdateState(imageEntity.getUpdateState());
         imageDto.setBinaryData(imageEntity.getBinaryData());
