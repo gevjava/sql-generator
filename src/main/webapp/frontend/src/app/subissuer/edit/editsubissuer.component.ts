@@ -24,19 +24,19 @@ export class EditsubissuerComponent implements OnInit {
 
   ngOnInit(): void {
     this.code = this.route.snapshot.paramMap.get("code");
-    this.getByCode(this.code)
+    this.getByCode(this.code);
     this.initializeForm();
   }
 
   updateSubIssuerData() {
     console.log(this.subIssuerForm);
     let subIssuerData = this.subIssuerForm.value;
-    this.service.edit(subIssuerData, this.code).subscribe(response => {
+    this.service.edit(subIssuerData).subscribe(response => {
       this.filename = response;
     });
   }
 
-  getByCode(code:any) {
+  getByCode(code: any) {
     this.service.getByCodeSubissuer(code).subscribe(resposne => {
       this.subIssuer = resposne;
     });

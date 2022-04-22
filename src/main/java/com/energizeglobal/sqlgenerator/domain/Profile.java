@@ -1,7 +1,6 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import com.energizeglobal.sqlgenerator.enums.UpdateState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -56,7 +55,7 @@ public class Profile {
     @ManyToOne(fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
-    private SubIssuerEntity subIssuer;
+    private SubIssuer subIssuer;
 
 
     public Long getId() {
@@ -155,11 +154,11 @@ public class Profile {
         this.authentMeans = authentMeans;
     }
 
-    public SubIssuerEntity getSubIssuer() {
+    public SubIssuer getSubIssuer() {
         return subIssuer;
     }
 
-    public void setSubIssuer(SubIssuerEntity subIssuer) {
+    public void setSubIssuer(SubIssuer subIssuer) {
         this.subIssuer = subIssuer;
     }
 }

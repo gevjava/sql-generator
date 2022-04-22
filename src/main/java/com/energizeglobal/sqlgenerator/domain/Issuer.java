@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "issuer")
-public class IssuerEntity {
+public class Issuer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +51,7 @@ public class IssuerEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
     @JsonIgnore
-    private List<SubIssuerEntity> subIssuers;
+    private List<SubIssuer> subIssuers;
 
 
     public long getId() {
@@ -142,11 +142,11 @@ public class IssuerEntity {
         this.availaibleAuthentMeans = availaibleAuthentMeans;
     }
 
-    public List<SubIssuerEntity> getSubIssuers() {
+    public List<SubIssuer> getSubIssuers() {
         return subIssuers;
     }
 
-    public void setSubIssuers(List<SubIssuerEntity> subIssuerEntities) {
+    public void setSubIssuers(List<SubIssuer> subIssuerEntities) {
         this.subIssuers = subIssuerEntities;
     }
 }

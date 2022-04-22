@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.service;
 
-import com.energizeglobal.sqlgenerator.domain.IssuerEntity;
+import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.repository.IssuerRepository;
 import org.slf4j.Logger;
@@ -25,8 +25,8 @@ public class IssuerService {
     private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
-    private final String DATA_FILE_NAME = "insert_query.sql";
-    private final String DATA_ROLLBACK_FILE_NAME = "rollback_query.sql";
+    private final String DATA_FILE_NAME = "data.sql";
+    private final String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
 
     private final IssuerRepository issuerRepository;
 
@@ -35,13 +35,13 @@ public class IssuerService {
     }
 
     @Transactional(readOnly = true)
-    public List<IssuerEntity> getAllIssuer() {
-        List<IssuerEntity> issuerList = issuerRepository.findAll();
+    public List<Issuer> getAllIssuer() {
+        List<Issuer> issuerList = issuerRepository.findAll();
         return issuerList;
     }
 
-    public IssuerEntity findByIssuerByCode(String code) {
-        IssuerEntity issuer = issuerRepository.getIssuerByCode(code);
+    public Issuer findByIssuerByCode(String code) {
+        Issuer issuer = issuerRepository.getIssuerByCode(code);
         return issuer;
     }
 
@@ -65,7 +65,7 @@ public class IssuerService {
     }
 
     public String generateEditSqlScriptWithRollback(IssuerDTO dto, String code) {
-        IssuerEntity issuer = this.issuerRepository.getIssuerByCode(code);
+        Issuer issuer = this.issuerRepository.getIssuerByCode(code);
         String sql = "UPDATE Issuer SET " + "createdBy='" + issuer.getCreatedBy() + "', " + "creationDate='" + issuer.getCreationDate() + "' ," + "name='" + issuer.getName() + "', " + "updateState='" + issuer.getUpdateState() + "', " + "label='" + issuer.getLabel() + "' , " + "availaibleAuthentMeans='" + issuer.getAvailaibleAuthentMeans() + "'" + " WHERE code='" + issuer.getCode() + "';";
         String path = FILE_PATH + DATA_ROLLBACK_FILE_NAME;
         return this.storeQueryInFile(path, sql);
@@ -78,7 +78,7 @@ public class IssuerService {
     }
 
     public String generateDeleteSqlScriptWithRollback(String code) {
-        IssuerEntity issuer = this.issuerRepository.getIssuerByCode(code);
+        Issuer issuer = this.issuerRepository.getIssuerByCode(code);
         LocalDateTime date = LocalDateTime.ofInstant(issuer.getCreationDate(), ZoneId.of(ZoneOffset.UTC.getId()));
         String sql = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label,availaibleAuthentMeans) VALUES ('" + issuer.getCode() + "', '" + issuer.getCreatedBy() + "','" + date + "','" + issuer.getName() + "','" + issuer.getUpdateState() + "','" + issuer.getLabel() + "','" + issuer.getAvailaibleAuthentMeans() + "');";
         String path = FILE_PATH + DATA_ROLLBACK_FILE_NAME;

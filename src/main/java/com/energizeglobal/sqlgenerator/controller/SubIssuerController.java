@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
+import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 import com.energizeglobal.sqlgenerator.service.SubIssuerService;
 import org.slf4j.Logger;
@@ -25,9 +25,9 @@ public class SubIssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubIssuerEntity>> getAllSubIssuer() {
-        List<SubIssuerEntity> subIssuerEntityList = subIssuerService.getAllSubIssuer();
-        return ResponseEntity.ok(subIssuerEntityList);
+    public ResponseEntity<List<SubIssuer>> getAllSubIssuer() {
+        List<SubIssuer> subIssuerList = subIssuerService.getAllSubIssuer();
+        return ResponseEntity.ok(subIssuerList);
     }
 
     @GetMapping("/{code}")
@@ -49,7 +49,7 @@ public class SubIssuerController {
     }
 
     @DeleteMapping("/{code}")
-    private ResponseEntity deletByCode(@PathVariable("code") String code) {
+    public ResponseEntity deleteByCode(@PathVariable("code") String code) {
         String filename = subIssuerService.generateDeleteSqlScript(code);
         return ResponseEntity.ok(filename);
     }

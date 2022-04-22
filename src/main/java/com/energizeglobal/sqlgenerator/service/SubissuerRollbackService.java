@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.service;
 
-import com.energizeglobal.sqlgenerator.domain.SubIssuerEntity;
+import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,13 @@ import static java.nio.file.StandardOpenOption.APPEND;
 public class SubissuerRollbackService {
 
     String FILE_PATH = "src/main/resources/sql_scripts/";
-    String ROLLBACK_FILE_NAME = "rollback_data.sql";
+    String ROLLBACK_FILE_NAME = "subissuer_rollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 
     public String generateSqlScriptForDeleteRollback(SubIssuerDTO dto) {
 
-        SubIssuerEntity subIssuerEntity = SubissuerMapping.dtoToEntity(dto);
+        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId, " +
@@ -44,21 +44,21 @@ public class SubissuerRollbackService {
                 "hubMaintenanceModeEnabled )";
 
         String queryValue = "  VALUES ('" +
-                subIssuerEntity.getAcsId() + "', " +
-                subIssuerEntity.getAuthenticationTimeOut() + ", '" +
-                subIssuerEntity.getDefaultLanguage() + "', '" +
-                subIssuerEntity.getCode() + "', '" +
-                subIssuerEntity.getCodeSvi() + "', '" +
-                subIssuerEntity.getCurrencyCode() + "', '" +
-                subIssuerEntity.getName() + "', '" +
-                subIssuerEntity.getLabel() + "', '" +
-                subIssuerEntity.getAuthentMeans() + "', " +
-                subIssuerEntity.getPersonnalDataStorage() + ", " +
-                subIssuerEntity.isResetBackupsIfSuccess() + ", " +
-                subIssuerEntity.isResetChoicesIfSuccess() + ", " +
-                subIssuerEntity.isManageBackupsCombinedAmounts() + ", " +
-                subIssuerEntity.isManageChoicesCombinedAmounts() + ", " +
-                subIssuerEntity.isHubMaintenanceModeEnabled() + ");";
+                subIssuer.getAcsId() + "', " +
+                subIssuer.getAuthenticationTimeOut() + ", '" +
+                subIssuer.getDefaultLanguage() + "', '" +
+                subIssuer.getCode() + "', '" +
+                subIssuer.getCodeSvi() + "', '" +
+                subIssuer.getCurrencyCode() + "', '" +
+                subIssuer.getName() + "', '" +
+                subIssuer.getLabel() + "', '" +
+                subIssuer.getAuthentMeans() + "', " +
+                subIssuer.getPersonnalDataStorage() + ", " +
+                subIssuer.isResetBackupsIfSuccess() + ", " +
+                subIssuer.isResetChoicesIfSuccess() + ", " +
+                subIssuer.isManageBackupsCombinedAmounts() + ", " +
+                subIssuer.isManageChoicesCombinedAmounts() + ", " +
+                subIssuer.isHubMaintenanceModeEnabled() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -67,24 +67,24 @@ public class SubissuerRollbackService {
         return ROLLBACK_FILE_NAME;
     }
 
-    public String generateSqlScriptForUpdateRollback(SubIssuerEntity oldSubIssuerEntity) {
+    public String generateSqlScriptForUpdateRollback(SubIssuer oldSubIssuer) {
 
         String queryUpdate = "UPDATE subissuer SET " +
-                "acsId = '" + oldSubIssuerEntity.getAcsId() + "', " +
-                "authenticationTimeOut = " + oldSubIssuerEntity.getAuthenticationTimeOut() + ", " +
-                "defaultLanguage = '" + oldSubIssuerEntity.getDefaultLanguage() + "', " +
-                "codeSvi = " + oldSubIssuerEntity.getCodeSvi() + ", " +
-                "currencyCode = " + oldSubIssuerEntity.getCurrencyCode() + ", " +
-                "name = '" + oldSubIssuerEntity.getName() + "', " +
-                "label = '" + oldSubIssuerEntity.getLabel() + "', " +
-                "authentMeans = '" + oldSubIssuerEntity.getAuthentMeans() + "', " +
-                "personnalDataStorage = " + oldSubIssuerEntity.getPersonnalDataStorage() + ", " +
-                "resetBackupsIfSuccess = " + oldSubIssuerEntity.isResetBackupsIfSuccess() + ", " +
-                "resetChoicesIfSuccess = " + oldSubIssuerEntity.isResetChoicesIfSuccess() + ", " +
-                "manageBackupsCombinedAmounts = " + oldSubIssuerEntity.isManageBackupsCombinedAmounts() + ", " +
-                "manageChoicesCombinedAmounts = " + oldSubIssuerEntity.isManageChoicesCombinedAmounts() + ", " +
-                "hubMaintenanceModeEnabled = " + oldSubIssuerEntity.isHubMaintenanceModeEnabled() + " " +
-                " WHERE code = " + oldSubIssuerEntity.getCode() + ";";
+                "acsId = '" + oldSubIssuer.getAcsId() + "', " +
+                "authenticationTimeOut = " + oldSubIssuer.getAuthenticationTimeOut() + ", " +
+                "defaultLanguage = '" + oldSubIssuer.getDefaultLanguage() + "', " +
+                "codeSvi = " + oldSubIssuer.getCodeSvi() + ", " +
+                "currencyCode = " + oldSubIssuer.getCurrencyCode() + ", " +
+                "name = '" + oldSubIssuer.getName() + "', " +
+                "label = '" + oldSubIssuer.getLabel() + "', " +
+                "authentMeans = '" + oldSubIssuer.getAuthentMeans() + "', " +
+                "personnalDataStorage = " + oldSubIssuer.getPersonnalDataStorage() + ", " +
+                "resetBackupsIfSuccess = " + oldSubIssuer.isResetBackupsIfSuccess() + ", " +
+                "resetChoicesIfSuccess = " + oldSubIssuer.isResetChoicesIfSuccess() + ", " +
+                "manageBackupsCombinedAmounts = " + oldSubIssuer.isManageBackupsCombinedAmounts() + ", " +
+                "manageChoicesCombinedAmounts = " + oldSubIssuer.isManageChoicesCombinedAmounts() + ", " +
+                "hubMaintenanceModeEnabled = " + oldSubIssuer.isHubMaintenanceModeEnabled() + " " +
+                " WHERE code = " + oldSubIssuer.getCode() + ";";
 
         pathGenerator(queryUpdate);
 

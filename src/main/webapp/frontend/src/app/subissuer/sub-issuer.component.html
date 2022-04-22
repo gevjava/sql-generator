@@ -8,7 +8,8 @@
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename">
                 <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
+                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
+                    - {{filename}}</button>
                 </div>
               </div>
               <form [formGroup]="subIssuerForm" (ngSubmit)="sendSubIssuerData()">
@@ -38,13 +39,13 @@
                       <input class="form-control" type="text" formControlName="defaultLanguage" name="defaultLanguage">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="code" name="code">
+                      <input class="form-control" type="number" formControlName="code" name="code">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="codeSvi" name="codeSvi">
+                      <input class="form-control" type="number" formControlName="codeSvi" name="codeSvi">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="currencyCode" name="currencyCode">
+                      <input class="form-control" type="number" formControlName="currencyCode" name="currencyCode">
                     </td>
                     <td>
                       <input class="form-control" type="text" formControlName="name" name="name">

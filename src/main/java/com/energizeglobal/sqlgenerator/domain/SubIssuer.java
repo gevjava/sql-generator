@@ -3,11 +3,10 @@ package com.energizeglobal.sqlgenerator.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "subissuer")
-public class SubIssuerEntity {
+public class SubIssuer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,32 +22,13 @@ public class SubIssuerEntity {
     private String authentMeans;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
-    private IssuerEntity issuer;
+    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id", updatable = false)
+    private Issuer issuer;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuers")
-    @JsonIgnore
-    private List<BinRangeEntity> bins;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false)
     @JsonIgnore
     private CryptoConfigurationEntity cryptoConfigEntity;
-
-//    @ManyToMany(mappedBy = "subIssuers")
-//    private List<NetworkEntity> networks;
-//
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subIssuer")
-    @JsonIgnore
-    private List<Profile> profile;
-//
-//    @OneToMany(mappedBy = "subIssuer")
-//    @JsonIgnore
-//    private List<CustomItemSetEntity> customItemSets;
-//
-//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "subIssuer")
-//    @JsonBackReference(value="MerchantPivotList")
-//    private List<MerchantPivotListEntity> merchantPivotList;
 
     @Column
     private String acsId;
@@ -86,12 +66,14 @@ public class SubIssuerEntity {
     @Column(columnDefinition = "BIT", length = 1)
     private boolean hubMaintenanceModeEnabled;
 
+    public SubIssuer() {
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -118,20 +100,28 @@ public class SubIssuerEntity {
         this.authentMeans = authentMeans;
     }
 
-    public IssuerEntity getIssuer() {
+    public Issuer getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(IssuerEntity issuer) {
+    public void setIssuer(Issuer issuer) {
         this.issuer = issuer;
     }
 
-    public CryptoConfigurationEntity getCryptoConfigEntity() {
-        return cryptoConfigEntity;
+    public boolean isResetChoicesIfSuccess() {
+        return resetChoicesIfSuccess;
     }
 
-    public void setCryptoConfigEntity(CryptoConfigurationEntity cryptoConfigEntity) {
-        this.cryptoConfigEntity = cryptoConfigEntity;
+    public boolean isManageBackupsCombinedAmounts() {
+        return manageBackupsCombinedAmounts;
+    }
+
+    public boolean isManageChoicesCombinedAmounts() {
+        return manageChoicesCombinedAmounts;
+    }
+
+    public boolean isHubMaintenanceModeEnabled() {
+        return hubMaintenanceModeEnabled;
     }
 
     public String getAcsId() {
@@ -182,14 +172,6 @@ public class SubIssuerEntity {
         this.label = label;
     }
 
-    public boolean isResetBackupsIfSuccess() {
-        return resetBackupsIfSuccess;
-    }
-
-    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
-        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
-    }
-
     public Boolean getPersonnalDataStorage() {
         return personnalDataStorage;
     }
@@ -198,7 +180,19 @@ public class SubIssuerEntity {
         this.personnalDataStorage = personnalDataStorage;
     }
 
-    public boolean isResetChoicesIfSuccess() {
+    public boolean getResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
+        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
+    }
+
+    public boolean isResetBackupsIfSuccess() {
+        return resetBackupsIfSuccess;
+    }
+
+    public boolean getResetChoicesIfSuccess() {
         return resetChoicesIfSuccess;
     }
 
@@ -206,7 +200,7 @@ public class SubIssuerEntity {
         this.resetChoicesIfSuccess = resetChoicesIfSuccess;
     }
 
-    public boolean isManageBackupsCombinedAmounts() {
+    public boolean getManageBackupsCombinedAmounts() {
         return manageBackupsCombinedAmounts;
     }
 
@@ -214,7 +208,7 @@ public class SubIssuerEntity {
         this.manageBackupsCombinedAmounts = manageBackupsCombinedAmounts;
     }
 
-    public boolean isManageChoicesCombinedAmounts() {
+    public boolean getManageChoicesCombinedAmounts() {
         return manageChoicesCombinedAmounts;
     }
 
@@ -222,7 +216,7 @@ public class SubIssuerEntity {
         this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
     }
 
-    public boolean isHubMaintenanceModeEnabled() {
+    public boolean getHubMaintenanceModeEnabled() {
         return hubMaintenanceModeEnabled;
     }
 
@@ -230,5 +224,11 @@ public class SubIssuerEntity {
         this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
 
+    public CryptoConfigurationEntity getCryptoConfigEntity() {
+        return cryptoConfigEntity;
+    }
 
+    public void setCryptoConfigEntity(CryptoConfigurationEntity cryptoConfigEntity) {
+        this.cryptoConfigEntity = cryptoConfigEntity;
+    }
 }
