@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Image} from "./imge";
 
@@ -7,13 +7,14 @@ import {Image} from "./imge";
 })
 export class ImageService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getAllImage(){
+  getAllImage() {
     return this.http.get('/image');
   }
 
-  sendData(imageData: Image){
+  sendData(imageData: Image) {
     return this.http.post('/image', imageData, {responseType: 'text'});
   }
 

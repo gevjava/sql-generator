@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ImageeditService} from "./imageedit.service";
@@ -20,7 +20,8 @@ export class EditimageComponent implements OnInit {
     private service: ImageeditService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -30,7 +31,7 @@ export class EditimageComponent implements OnInit {
   }
 
 
-  updateImageData(){
+  updateImageData() {
     this.id = this.route.snapshot.paramMap.get("id");
     let imageData = this.imageForm.value;
     this.service.edit(imageData).subscribe(response => {
@@ -38,11 +39,12 @@ export class EditimageComponent implements OnInit {
     });
   }
 
-  getById(id:any) {
+  getById(id: any) {
     this.service.getImageById(id).subscribe(response => {
       this.image = response;
     });
   }
+
   initializeForm() {
     this.imageForm = this.formBuilder.group({
       id: [0, Validators.required],

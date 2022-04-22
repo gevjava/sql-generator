@@ -33,7 +33,7 @@ public class ImageRollbackService {
         return ROLLBACK_FILE_NAME;
     }
 
-    public String generateSqlScriptForUpdateRollback(ImageEntity oldImage){
+    public String generateSqlScriptForUpdateRollback(ImageEntity oldImage) {
 
         String queryUpdate = "UPDATE image SET " +
                 "createdBy = '" + oldImage.getCreatedBy() + "', " +
@@ -41,7 +41,7 @@ public class ImageRollbackService {
                 "description = '" + oldImage.getDescription() + "', " +
                 "lastUpdateBy = '" + oldImage.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + oldImage.getLastUpdateDate() + "', " +
-                "name = '" + oldImage.getName()+ "', " +
+                "name = '" + oldImage.getName() + "', " +
                 "updateState = '" + oldImage.getUpdateState() + "', " +
                 "binaryData = '" + oldImage.getBinaryData() + "', " +
                 "relativePath = '" + oldImage.getRelativePath() + "' " +

@@ -66,13 +66,15 @@ public class SubIssuer {
     @Column(columnDefinition = "BIT", length = 1)
     private boolean hubMaintenanceModeEnabled;
 
-    public SubIssuer() { }
+    public SubIssuer() {
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) { }
+    public void setId(Long id) {
+    }
 
     public String getName() {
         return name;
@@ -135,7 +137,8 @@ public class SubIssuer {
     }
 
     public void setAuthenticationTimeOut(Integer authenticationTimeOut) {
-        this.authenticationTimeOut = authenticationTimeOut; }
+        this.authenticationTimeOut = authenticationTimeOut;
+    }
 
     public String getDefaultLanguage() {
         return defaultLanguage;
@@ -174,14 +177,16 @@ public class SubIssuer {
     }
 
     public void setPersonnalDataStorage(Boolean personnalDataStorage) {
-        this.personnalDataStorage = personnalDataStorage; }
+        this.personnalDataStorage = personnalDataStorage;
+    }
 
     public boolean getResetBackupsIfSuccess() {
         return resetBackupsIfSuccess;
     }
 
     public void setResetBackupsIfSuccess(boolean resetBackupsIfSuccess) {
-        this.resetBackupsIfSuccess = resetBackupsIfSuccess; }
+        this.resetBackupsIfSuccess = resetBackupsIfSuccess;
+    }
 
     public boolean isResetBackupsIfSuccess() {
         return resetBackupsIfSuccess;
@@ -192,7 +197,8 @@ public class SubIssuer {
     }
 
     public void setResetChoicesIfSuccess(boolean resetChoicesIfSuccess) {
-        this.resetChoicesIfSuccess = resetChoicesIfSuccess; }
+        this.resetChoicesIfSuccess = resetChoicesIfSuccess;
+    }
 
     public boolean getManageBackupsCombinedAmounts() {
         return manageBackupsCombinedAmounts;
@@ -207,18 +213,22 @@ public class SubIssuer {
     }
 
     public void setManageChoicesCombinedAmounts(boolean manageChoicesCombinedAmounts) {
-        this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts; }
+        this.manageChoicesCombinedAmounts = manageChoicesCombinedAmounts;
+    }
 
     public boolean getHubMaintenanceModeEnabled() {
         return hubMaintenanceModeEnabled;
     }
 
     public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
-        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled; }
+        this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
+    }
 
     public CryptoConfigurationEntity getCryptoConfigEntity() {
-        return cryptoConfigEntity; }
+        return cryptoConfigEntity;
+    }
 
     public void setCryptoConfigEntity(CryptoConfigurationEntity cryptoConfigEntity) {
-        this.cryptoConfigEntity = cryptoConfigEntity; }
+        this.cryptoConfigEntity = cryptoConfigEntity;
+    }
 }

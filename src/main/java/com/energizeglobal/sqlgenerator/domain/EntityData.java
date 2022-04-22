@@ -16,7 +16,7 @@ public class EntityData {
     @Column(name = "creationDate", nullable = false)
     private Date creationDate;
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private String createdBy;
 
     @Column(nullable = false)
@@ -30,7 +30,7 @@ public class EntityData {
     @Column
     private String lastUpdateBy;
 
-    public enum UpdateState{
+    public enum UpdateState {
         WAITING_VALIDATION,
         PUSHED_TO_CONFIG,
         WAITING_FOR_PUSH
@@ -49,9 +49,9 @@ public class EntityData {
     }
 
     public void setCreationDate(Date creationDate) {
-        if(creationDate != null) {
+        if (creationDate != null) {
             this.creationDate = (Date) creationDate.clone();
-        }else{
+        } else {
             this.creationDate = null;
         }
     }
@@ -85,9 +85,9 @@ public class EntityData {
     }
 
     public void setLastUpdateDate(Date lastUpdateDate) {
-        if(lastUpdateDate != null) {
+        if (lastUpdateDate != null) {
             this.lastUpdateDate = (Date) lastUpdateDate.clone();
-        }else{
+        } else {
             this.lastUpdateDate = null;
         }
     }

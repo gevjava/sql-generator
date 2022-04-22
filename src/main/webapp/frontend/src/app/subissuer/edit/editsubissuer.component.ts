@@ -36,7 +36,7 @@ export class EditsubissuerComponent implements OnInit {
     });
   }
 
-  getByCode(code:any) {
+  getByCode(code: any) {
     this.service.getByCodeSubissuer(code).subscribe(resposne => {
       this.subIssuer = resposne;
     });

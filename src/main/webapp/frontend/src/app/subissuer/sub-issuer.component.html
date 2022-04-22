@@ -8,7 +8,8 @@
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename">
                 <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
+                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
+                    - {{filename}}</button>
                 </div>
               </div>
               <form [formGroup]="subIssuerForm" (ngSubmit)="sendSubIssuerData()">

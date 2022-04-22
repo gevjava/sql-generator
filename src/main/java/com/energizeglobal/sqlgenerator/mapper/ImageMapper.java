@@ -5,7 +5,7 @@ import com.energizeglobal.sqlgenerator.dto.ImageDTO;
 
 public class ImageMapper {
 
-    public static ImageEntity dtoToEntity(ImageDTO imageDto){
+    public static ImageEntity dtoToEntity(ImageDTO imageDto) {
         ImageEntity imageEntity = new ImageEntity();
 
         imageEntity.setId(imageDto.getId());
@@ -23,7 +23,7 @@ public class ImageMapper {
 
     }
 
-    public static ImageDTO entityToDto(ImageEntity imageEntity){
+    public static ImageDTO entityToDto(ImageEntity imageEntity) {
         ImageDTO imageDto = new ImageDTO();
 
         imageDto.setId(imageEntity.getId());

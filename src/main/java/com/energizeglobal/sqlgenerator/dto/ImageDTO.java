@@ -27,7 +27,8 @@ public class ImageDTO {
         this.id = id;
     }
 
-    public ImageDTO() {}
+    public ImageDTO() {
+    }
 
     public String getBinaryData() {
         return binaryData;

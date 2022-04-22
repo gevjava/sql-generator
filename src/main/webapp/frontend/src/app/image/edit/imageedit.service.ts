@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -6,17 +6,18 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ImageeditService {
 
-  constructor(private  http:HttpClient) { }
+  constructor(private  http: HttpClient) {
+  }
 
-  edit(image:any){
-    return this.http.put('/image/',image,{responseType: 'text'});
+  edit(image: any) {
+    return this.http.put('/image/', image, {responseType: 'text'});
   }
 
   downloadSqlFile(filename: String) {
     return this.http.get('/image/script/download/' + filename, {responseType: 'blob'});
   }
 
-  getImageById(id:any){
-    return this.http.get('/image/'+ id);
+  getImageById(id: any) {
+    return this.http.get('/image/' + id);
   }
 }

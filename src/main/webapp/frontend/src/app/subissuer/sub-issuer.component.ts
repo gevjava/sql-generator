@@ -16,7 +16,8 @@ export class SubIssuerComponent implements OnInit {
   filename: string = "";
   filterTerm!: string;
 
-  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {}
+  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();

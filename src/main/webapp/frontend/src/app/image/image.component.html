@@ -64,7 +64,8 @@
                   <button type="submit" [disabled]="!imageForm.valid" class="btn btn-primary btn-block">Generate
                     SQL
                   </button>
-                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary" style="width: auto; margin-left: 150px;"
+                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary"
+                          style="width: auto; margin-left: 150px;"
                           (click)="downloadFile()">Download - {{filename}}
                   </button>
                 </div>

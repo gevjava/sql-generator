@@ -97,7 +97,7 @@ public class ImageService {
                 "description = '" + imageDto.getDescription() + "', " +
                 "lastUpdateBy = '" + imageDto.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + imageDto.getLastUpdateDate() + "', " +
-                "name = '" + imageDto.getName()+ "', " +
+                "name = '" + imageDto.getName() + "', " +
                 "updateState = '" + imageDto.getUpdateState() + "', " +
                 "binaryData = '" + imageDto.getBinaryData() + "', " +
                 "relativePath = '" + imageDto.getRelativePath() + "' " +

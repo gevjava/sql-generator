@@ -21,34 +21,34 @@ public class ImageController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ImageEntity>> getAllImage(){
+    public ResponseEntity<List<ImageEntity>> getAllImage() {
         List<ImageEntity> imageList = imageService.getAllImages();
         return ResponseEntity.ok(imageList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ImageDTO> getImageById(@PathVariable("id") Long id){
+    public ResponseEntity<ImageDTO> getImageById(@PathVariable("id") Long id) {
         ImageDTO imageDto = imageService.findById(id);
         return ResponseEntity.ok(imageDto);
 
     }
 
     @PostMapping
-    public ResponseEntity<String> generateSqlScript(@RequestBody ImageDTO imageDto){
+    public ResponseEntity<String> generateSqlScript(@RequestBody ImageDTO imageDto) {
         String filename = imageService.generateInsertSqlScript(imageDto);
         return ResponseEntity.ok(filename);
     }
 
     @PutMapping
-    public ResponseEntity<String> updateImage(@RequestBody ImageDTO imageDto){
+    public ResponseEntity<String> updateImage(@RequestBody ImageDTO imageDto) {
         String filename = imageService.generateUpdateSqlScript(imageDto);
         return ResponseEntity.ok(filename);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable("id") Long id){
+    public ResponseEntity deleteById(@PathVariable("id") Long id) {
         String filename = imageService.generateDeleteSqlScript(id);
-        return  ResponseEntity.ok(filename);
+        return ResponseEntity.ok(filename);
     }
 
     @GetMapping("/script/download/{filename}")
