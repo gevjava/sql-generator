@@ -7,6 +7,12 @@
           <div class="card-header"></div>
           <div class="card-body">
             <div class="wrapper">
+              <div class="row  text-center" *ngIf="filename">
+                <div class="col">
+                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
+                    - {{filename}}</button>
+                </div>
+              </div>
               <form [formGroup]="imageForm" (ngSubmit)="updateImageData()">
                 <table class="table">
                   <thead class="thead-dark">
@@ -74,10 +80,6 @@
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Generate SQL</button>
-                  <button *ngIf="filename" class="btn btn-sm btn-outline-primary"
-                          style="width: auto; margin-left: 150px;"
-                          (click)="downloadFile()">Download - {{filename}}
-                  </button>
                 </div>
 
               </form>
