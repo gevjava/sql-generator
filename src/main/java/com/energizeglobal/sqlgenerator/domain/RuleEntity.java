@@ -1,14 +1,9 @@
 package com.energizeglobal.sqlgenerator.domain;
 
-
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 
@@ -23,7 +18,6 @@ public class RuleEntity {
 
     @Column(nullable = false)
     private String createdBy;
-
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationDate", nullable = false)
@@ -52,7 +46,7 @@ public class RuleEntity {
     @ManyToOne
     @JoinColumn(name = "fk_id_profile", referencedColumnName = "id", nullable = false)
     private Profile profile;
-    
+
     public Long getId() {
         return id;
     }
@@ -60,7 +54,6 @@ public class RuleEntity {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Profile getProfile() {
         return profile;
@@ -78,5 +71,60 @@ public class RuleEntity {
         this.orderRule = orderRule;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
+    }
+
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Instant getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Instant lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public EntityData.UpdateState getUpdateState() {
+        return updateState;
+    }
+
+    public void setUpdateState(EntityData.UpdateState updateState) {
+        this.updateState = updateState;
+    }
 }
 
