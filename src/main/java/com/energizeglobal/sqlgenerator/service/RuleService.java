@@ -64,8 +64,10 @@ public class RuleService {
 
         String sqlInsert = queryType + queryValue;
 
-        insertPathGenerator(sqlInsert);
+        pathGenerator(sqlInsert);
 
+        generateSqlScriptForInsertRollback(ruleEntity.getId());
+        
         if (dbAction)
             ruleRepository.save(ruleEntity);
 
@@ -73,8 +75,21 @@ public class RuleService {
 
     }
 
+    public String generateSqlScriptForInsertRollback(Long id) {
 
-    private void insertPathGenerator(String sql) {
+        String deleteQuery = "\n" +
+                "START TRANSACTION; \n" +
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM rule WHERE id = " + id + ";\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
+
+        pathGenerator(deleteQuery);
+
+        return ROLLBACK_FILE_NAME;
+    }
+
+    private void pathGenerator(String sql) {
 
         Path newFilePath = Paths.get(path);
         try {
