@@ -62,6 +62,13 @@ public class RuleService {
                 ruleEntity.getOrderRule() + ", '" +
                 ruleEntity.getDescription() + "');";
 
+        String sqlInsert = queryType + queryValue;
+
+        insertPathGenerator(sqlInsert);
+
+        if (dbAction)
+            ruleRepository.save(ruleEntity);
+
         return INSERT_FILE_NAME;
 
     }
