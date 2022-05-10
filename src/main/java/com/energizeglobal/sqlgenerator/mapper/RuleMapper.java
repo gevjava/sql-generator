@@ -10,7 +10,12 @@ public class RuleMapper {
         ruleEntity.setId(ruleDto.getId());
         ruleEntity.setName(ruleDto.getName());
         ruleEntity.setOrderRule(ruleDto.getOrderRule());
+        ruleEntity.setCreatedBy(ruleDto.getCreatedBy());
+        ruleEntity.setLastUpdateBy(ruleDto.getLastUpdateBy());
         ruleEntity.setDescription(ruleDto.getDescription());
+        ruleEntity.setLastUpdateDate(ruleDto.getLastUpdateDate());
+        ruleEntity.setUpdateState(ruleDto.getUpdateState());
+        ruleEntity.setCreationDate(ruleDto.getCreationDate());
 
         return ruleEntity;
 
@@ -22,7 +27,12 @@ public class RuleMapper {
         ruleDto.setId(ruleEntity.getId());
         ruleDto.setName(ruleEntity.getName());
         ruleDto.setOrderRule(ruleEntity.getOrderRule());
+        ruleDto.setCreatedBy(ruleEntity.getCreatedBy());
+        ruleDto.setLastUpdateBy(ruleEntity.getLastUpdateBy());
         ruleDto.setDescription(ruleEntity.getDescription());
+        ruleDto.setLastUpdateDate(ruleEntity.getLastUpdateDate());
+        ruleDto.setUpdateState(ruleEntity.getUpdateState());
+        ruleDto.setCreationDate(ruleEntity.getCreationDate());
 
         return ruleDto;
     }
