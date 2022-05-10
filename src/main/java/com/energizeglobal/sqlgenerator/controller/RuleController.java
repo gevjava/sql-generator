@@ -36,5 +36,11 @@ public class RuleController {
         return ResponseEntity.ok(filename);
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateRule(@RequestBody RuleDTO ruleDto){
+        String filename = ruleService.generateUpdateSqlScript(ruleDto);
+        return ResponseEntity.ok(filename);
+    }
+
 
 }

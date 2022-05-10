@@ -52,15 +52,26 @@ public class RuleService {
         RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
         String queryType = "INSERT INTO rule  ( " +
                 "id, " +
+                "createdBy, " +
+                "creationDate, " +
+                "description, " +
+                "lastUpdateBy, " +
+                "lastUpdateDate, " +
                 "name, " +
-                "orderRule, " +
-                "description )";
+                "updateState, " +
+                "orderRule )";
+
 
         String queryValue = "  VALUES (" +
                 ruleEntity.getId() + ", '" +
-                ruleEntity.getName() + "', " +
-                ruleEntity.getOrderRule() + ", '" +
-                ruleEntity.getDescription() + "');";
+                ruleEntity.getCreatedBy() + "', '" +
+                ruleEntity.getCreationDate() + "', '" +
+                ruleEntity.getDescription() + "', '" +
+                ruleEntity.getLastUpdateBy() + "', '" +
+                ruleEntity.getLastUpdateDate() + "', '" +
+                ruleEntity.getName() + "', '" +
+                ruleEntity.getUpdateState() + "', " +
+                ruleEntity.getOrderRule() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -88,6 +99,101 @@ public class RuleService {
         return ROLLBACK_FILE_NAME;
     }
 
+    @Transactional
+    public String generateUpdateSqlScript(RuleDTO ruleDto) {
+        RuleEntity oldRule = ruleRepository.getById(ruleDto.getId());
+        RuleEntity newRule = RuleMapper.dtoToEntity(ruleDto);
+        newRule.setId(oldRule.getId());
+
+        String queryUpdate = "UPDATE rule SET " +
+                "createdBy = '" + ruleDto.getCreatedBy() + "', " +
+                "creationDate = '" + ruleDto.getCreationDate() + "', " +
+                "description = '" + ruleDto.getDescription() + "', " +
+                "lastUpdateBy = '" + ruleDto.getLastUpdateBy() + "', " +
+                "lastUpdateDate = '" + ruleDto.getLastUpdateDate() + "', " +
+                "name = '" + ruleDto.getName() + "', " +
+                "updateState = '" + ruleDto.getUpdateState() + "', " +
+                "orderRule = " + ruleDto.getOrderRule() + " " +
+                " WHERE id = " + ruleDto.getId() + ";";
+
+        pathGenerator(queryUpdate);
+
+        generateSqlScriptForUpdateRollback(oldRule);
+
+        if (dbAction)
+            ruleRepository.save(newRule);
+
+        return INSERT_FILE_NAME;
+    }
+
+    public String generateSqlScriptForUpdateRollback(RuleEntity oldRule) {
+
+        String queryUpdate = "UPDATE rule SET " +
+                "createdBy = '" + oldRule.getCreatedBy() + "', " +
+                "creationDate = '" + oldRule.getCreationDate() + "', " +
+                "description = '" + oldRule.getDescription() + "', " +
+                "lastUpdateBy = '" + oldRule.getLastUpdateBy() + "', " +
+                "lastUpdateDate = '" + oldRule.getLastUpdateDate() + "', " +
+                "name = '" + oldRule.getName() + "', " +
+                "updateState = '" + oldRule.getUpdateState() + "', " +
+                "orderRule = " + oldRule.getOrderRule() + " " +
+                " WHERE id = " + oldRule.getId() + ";";
+
+        pathGenerator(queryUpdate);
+
+        return ROLLBACK_FILE_NAME;
+    }
+
+    @Transactional
+    public String generateDeleteSqlScript(Long id) {
+
+        RuleDTO rule = findById(id);
+
+        System.out.println(rule);
+
+        String deleteQuery = "\n" +
+                "START TRANSACTION; \n" +
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM rule WHERE id = " + id + ";\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
+        pathGenerator(deleteQuery);
+
+        generateSqlScriptForDeleteRollback(rule);
+
+        if (dbAction)
+            ruleRepository.deleteById(id);
+
+        return INSERT_FILE_NAME;
+    }
+
+
+    public String generateSqlScriptForDeleteRollback(RuleDTO rule) {
+
+        String queryType = "INSERT INTO rule  ( " +
+                "id, " +
+                "createdBy, " +
+                "description, " +
+                "lastUpdateBy, " +
+                "name, " +
+                "updateState, " +
+                "orderRule )";
+
+        String queryValue = "  VALUES (" +
+                rule.getId() + " , '" +
+                rule.getCreatedBy() + "', '" +
+                rule.getDescription() + "', '" +
+                rule.getLastUpdateBy() + "', '" +
+                rule.getName() + "', '" +
+                rule.getUpdateState() + "', " +
+                rule.getOrderRule() + ");";
+
+        String sqlInsert = queryType + queryValue;
+
+        pathGenerator(sqlInsert);
+
+        return ROLLBACK_FILE_NAME;
+    }
     private void pathGenerator(String sql) {
 
         Path newFilePath = Paths.get(path);
@@ -122,4 +228,6 @@ public class RuleService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
+
+
 }
