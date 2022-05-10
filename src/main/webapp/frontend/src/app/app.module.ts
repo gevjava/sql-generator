@@ -11,6 +11,7 @@ import {NavbarComponent} from './layouts/navbar/navbar.component';
 import {ImageComponent} from './image/image.component';
 import {EditimageComponent} from './image/edit/editimage.component';
 import {DeleteImageComponent} from './image/delete/delete-image.component';
+import {RuleComponent} from './rule/rule.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {DeleteImageComponent} from './image/delete/delete-image.component';
     routesList,
     ImageComponent,
     EditimageComponent,
-    DeleteImageComponent
+    DeleteImageComponent,
+    RuleComponent
 
   ],
   imports: [
