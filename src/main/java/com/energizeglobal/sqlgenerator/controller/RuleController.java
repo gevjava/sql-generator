@@ -3,6 +3,8 @@ package com.energizeglobal.sqlgenerator.controller;
 import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleDTO;
 import com.energizeglobal.sqlgenerator.service.RuleService;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +44,21 @@ public class RuleController {
         return ResponseEntity.ok(filename);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id){
+        String filename = ruleService.generateDeleteSqlScript(id);
+        return ResponseEntity.ok(filename);
+    }
+
+    @GetMapping("/script/download/{filename}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
+
+        Resource file = ruleService.downloadFile(filename);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, "application/sql")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getFilename())
+                .body(file);
+    }
 
 }
