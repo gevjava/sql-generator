@@ -67,12 +67,11 @@ public class RuleService {
         pathGenerator(sqlInsert);
 
         generateSqlScriptForInsertRollback(ruleEntity.getId());
-        
+
         if (dbAction)
             ruleRepository.save(ruleEntity);
 
         return INSERT_FILE_NAME;
-
     }
 
     public String generateSqlScriptForInsertRollback(Long id) {
