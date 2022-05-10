@@ -39,13 +39,13 @@ public class RuleController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateRule(@RequestBody RuleDTO ruleDto){
+    public ResponseEntity<String> updateRule(@RequestBody RuleDTO ruleDto) {
         String filename = ruleService.generateUpdateSqlScript(ruleDto);
         return ResponseEntity.ok(filename);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id){
+    public ResponseEntity deleteById(@PathVariable Long id) {
         String filename = ruleService.generateDeleteSqlScript(id);
         return ResponseEntity.ok(filename);
     }
