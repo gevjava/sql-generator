@@ -11,7 +11,6 @@
                 <table class="table">
                   <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">CreatedBy</th>
                     <th scope="col">Description</th>
                     <th scope="col">LastUpdateBy</th>
@@ -22,9 +21,6 @@
                   </thead>
                   <tbody>
                   <tr>
-                    <td>
-                      <input class="form-control" type="number" formControlName="id" name="id" style="width: 70px;">
-                    </td>
                     <td>
                       <input class="form-control" type="text" formControlName="createdBy" name="createdBy">
                     </td>
@@ -56,9 +52,9 @@
 
                 <div class="form-group text-center ">
                   <button type="submit" [disabled]="!ruleForm.valid" class="btn btn-primary btn-block">Generate SQL
-                  </button> <br> <br>
+                  </button>
                 <div class="row  text-center" *ngIf="filename">
-                  <div class="col">
+                  <div class="col"> <br>
                     <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download - {{filename}}</button>
                   </div>
                 </div>
@@ -94,14 +90,12 @@
             <td>{{ rule.name }}</td>
             <td>{{ rule.updateState }}</td>
             <div class="form-group">
-              <a routerLink="/rule/edit/{{ rule.id }}" class="btn btn-success"> Update</a>
-              <a routerLink="/rule/delete/{{ rule.id }}" class="btn btn-danger"> Delete</a>
+              <a routerLink="/rule/edit/{{ rule.id }}" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-pencil-square-o"></i></a>
+              <a routerLink="/rule/delete/{{ rule.id }}" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-trash-o"></i></a>
             </div>
           </tr>
           </tbody>
         </table>
-
-
       </div>
     </div>
   </div>
