@@ -55,7 +55,6 @@ public class ImageRollbackService {
     public String generateSqlScriptForDeleteRollback(ImageDTO image) {
 
         String queryType = "INSERT INTO image  ( " +
-                "id, " +
                 "createdBy, " +
                 "description, " +
                 "lastUpdateBy, " +
@@ -64,8 +63,7 @@ public class ImageRollbackService {
                 "binaryData, " +
                 "relativePath )";
 
-        String queryValue = "  VALUES (" +
-                image.getId() + " , '" +
+        String queryValue = "  VALUES (" + " '" +
                 image.getCreatedBy() + "', '" +
                 image.getDescription() + "', '" +
                 image.getLastUpdateBy() + "', '" +
