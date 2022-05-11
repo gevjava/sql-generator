@@ -28,14 +28,15 @@
                     <div class="form-group">
                       <button type="button" class="btn btn-outline-danger">Delete</button>
                     </div>
-                    <div class="row " *ngIf="filename">
-                      <div class="col">
-                        <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
-                          - {{filename}}</button>
-                      </div>
-                    </div>
+
                   </div>
                 </form>
+                <div class="row " *ngIf="filename">
+                  <div class="col">
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
