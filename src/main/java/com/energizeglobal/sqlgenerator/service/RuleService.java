@@ -52,8 +52,8 @@ public class RuleService {
     @Transactional
     public String generateInsertSqlScript(RuleDTO ruleDto) {
         RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
+
         String queryType = "INSERT INTO rule  ( " +
-                "id, " +
                 "createdBy, " +
                 "creationDate, " +
                 "description, " +
@@ -65,8 +65,7 @@ public class RuleService {
 
 
         String queryValue = " \n" +
-                "VALUES (" +
-                ruleEntity.getId() + ", '" +
+                "VALUES (" + " '" +
                 ruleEntity.getCreatedBy() + "', '" +
                 Instant.now() + "', '" +
                 ruleEntity.getDescription() + "', '" +
@@ -174,7 +173,6 @@ public class RuleService {
     public String generateSqlScriptForDeleteRollback(RuleDTO rule) {
 
         String queryType = "INSERT INTO rule  ( " +
-                "id, " +
                 "createdBy, " +
                 "creationDate, " +
                 "description, " +
@@ -185,8 +183,7 @@ public class RuleService {
                 "orderRule )";
 
         String queryValue = " \n" +
-                " VALUES (" +
-                rule.getId() + " , '" +
+                " VALUES (" + " '" +
                 rule.getCreatedBy() + "', '" +
                 Instant.now() + "', '" +
                 rule.getDescription() + "', '" +
