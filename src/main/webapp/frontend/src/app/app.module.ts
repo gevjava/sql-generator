@@ -12,6 +12,8 @@ import {ImageComponent} from './image/image.component';
 import {EditimageComponent} from './image/edit/editimage.component';
 import {DeleteImageComponent} from './image/delete/delete-image.component';
 import {RuleComponent} from './rule/rule.component';
+import {RuleDeleteComponent} from './rule/rule-delete/rule-delete.component';
+import { RuleEditComponent } from './rule/rule-edit/rule-edit.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {RuleComponent} from './rule/rule.component';
     ImageComponent,
     EditimageComponent,
     DeleteImageComponent,
-    RuleComponent
+    RuleComponent,
+    RuleDeleteComponent,
+    RuleEditComponent
 
   ],
   imports: [

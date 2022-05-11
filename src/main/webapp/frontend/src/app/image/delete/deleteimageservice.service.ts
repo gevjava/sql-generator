@@ -17,8 +17,6 @@ export class DeleteimageserviceService {
   }
 
   getImageById(id: any) {
-    // return this.http.get('/image/' + id);
-
-    console.log(id);
+     return this.http.get('/image/' + id);
   }
 }

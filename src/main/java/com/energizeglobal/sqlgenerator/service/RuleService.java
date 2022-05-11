@@ -64,7 +64,8 @@ public class RuleService {
                 "orderRule )";
 
 
-        String queryValue = "  VALUES (" +
+        String queryValue = " \n" +
+                "VALUES (" +
                 ruleEntity.getId() + ", '" +
                 ruleEntity.getCreatedBy() + "', '" +
                 Instant.now() + "', '" +
@@ -183,7 +184,8 @@ public class RuleService {
                 "updateState, " +
                 "orderRule )";
 
-        String queryValue = "  VALUES (" +
+        String queryValue = " \n" +
+                " VALUES (" +
                 rule.getId() + " , '" +
                 rule.getCreatedBy() + "', '" +
                 Instant.now() + "', '" +

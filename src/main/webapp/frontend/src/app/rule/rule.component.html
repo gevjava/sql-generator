@@ -6,12 +6,7 @@
         <div class="card">
           <div class="card-body">
             <div class="wrapper">
-              <div class="row  text-center" *ngIf="filename">
-                <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download
-                    - {{filename}}</button>
-                </div>
-              </div>
+
               <form [formGroup]="ruleForm" (ngSubmit)="sendRuleData()">
                 <table class="table">
                   <thead class="thead-dark">
@@ -59,10 +54,14 @@
                   </tbody>
                 </table>
 
-                <div class="form-group">
-                  <button type="submit" [disabled]="!ruleForm.valid" class="btn btn-primary btn-block">Generate
-                    SQL
-                  </button>
+                <div class="form-group text-center ">
+                  <button type="submit" [disabled]="!ruleForm.valid" class="btn btn-primary btn-block">Generate SQL
+                  </button> <br> <br>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col">
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download - {{filename}}</button>
+                  </div>
+                </div>
                 </div>
               </form>
             </div>
@@ -85,6 +84,7 @@
             <th scope="col">Description</th>
             <th scope="col">Name</th>
             <th scope="col">UpdateState</th>
+            <th scope="col">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -93,15 +93,15 @@
             <td>{{ rule.description }}</td>
             <td>{{ rule.name }}</td>
             <td>{{ rule.updateState }}</td>
-
+            <div class="form-group">
+              <a routerLink="/rule/edit/{{ rule.id }}" class="btn btn-success"> Update</a>
+              <a routerLink="/rule/delete/{{ rule.id }}" class="btn btn-danger"> Delete</a>
+            </div>
           </tr>
           </tbody>
         </table>
 
-        <div class="form-group">
-          <a routerLink="/rule/edit/{{ rule.id }}" class="btn btn-success"> Update</a>
-          <a routerLink="/rule/delete/{{ rule.id }}" class="btn btn-danger"> Delete</a>
-        </div>
+
       </div>
     </div>
   </div>
