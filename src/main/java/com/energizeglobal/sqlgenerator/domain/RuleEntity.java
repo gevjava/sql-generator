@@ -1,11 +1,8 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import java.time.Instant;
-import java.util.Date;
-
 import javax.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
-
 
 @Entity
 @Table(name = "Rule")
@@ -19,9 +16,8 @@ public class RuleEntity {
     @Column(nullable = false)
     private String createdBy;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationDate", nullable = false)
-    private Date creationDate;
+    private Instant creationDate;
 
     @Column
     private String description;
@@ -79,11 +75,9 @@ public class RuleEntity {
         this.createdBy = createdBy;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+    public Instant getCreationDate() { return creationDate; }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
 

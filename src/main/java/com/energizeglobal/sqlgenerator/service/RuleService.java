@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -27,9 +28,10 @@ public class RuleService {
     private final RuleRepository ruleRepository;
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String INSERT_FILE_NAME = "rule.sql";
-    String ROLLBACK_FILE_NAME = "rule_rollback.sql";
-    private String path = FILE_PATH + INSERT_FILE_NAME;
+    private String MAIN_FILE_NAME = "rule.sql";
+    private String ROLLBACK_FILE_NAME = "rule_rollback.sql";
+    private String mainPath = FILE_PATH + MAIN_FILE_NAME;
+    private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
 
     public RuleService(RuleRepository ruleRepository) {
         this.ruleRepository = ruleRepository;
@@ -65,7 +67,7 @@ public class RuleService {
         String queryValue = "  VALUES (" +
                 ruleEntity.getId() + ", '" +
                 ruleEntity.getCreatedBy() + "', '" +
-                ruleEntity.getCreationDate() + "', '" +
+                Instant.now() + "', '" +
                 ruleEntity.getDescription() + "', '" +
                 ruleEntity.getLastUpdateBy() + "', '" +
                 ruleEntity.getLastUpdateDate() + "', '" +
@@ -75,14 +77,14 @@ public class RuleService {
 
         String sqlInsert = queryType + queryValue;
 
-        pathGenerator(sqlInsert);
+        pathGenerator(sqlInsert, mainPath);
 
         generateSqlScriptForInsertRollback(ruleEntity.getId());
 
         if (dbAction)
             ruleRepository.save(ruleEntity);
 
-        return INSERT_FILE_NAME;
+        return MAIN_FILE_NAME;
     }
 
     public String generateSqlScriptForInsertRollback(Long id) {
@@ -94,7 +96,7 @@ public class RuleService {
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
 
-        pathGenerator(deleteQuery);
+        pathGenerator(deleteQuery, rollbackPath);
 
         return ROLLBACK_FILE_NAME;
     }
@@ -116,14 +118,14 @@ public class RuleService {
                 "orderRule = " + ruleDto.getOrderRule() + " " +
                 " WHERE id = " + ruleDto.getId() + ";";
 
-        pathGenerator(queryUpdate);
+        pathGenerator(queryUpdate, mainPath);
 
         generateSqlScriptForUpdateRollback(oldRule);
 
         if (dbAction)
             ruleRepository.save(newRule);
 
-        return INSERT_FILE_NAME;
+        return MAIN_FILE_NAME;
     }
 
     public String generateSqlScriptForUpdateRollback(RuleEntity oldRule) {
@@ -139,7 +141,7 @@ public class RuleService {
                 "orderRule = " + oldRule.getOrderRule() + " " +
                 " WHERE id = " + oldRule.getId() + ";";
 
-        pathGenerator(queryUpdate);
+        pathGenerator(queryUpdate, rollbackPath);
 
         return ROLLBACK_FILE_NAME;
     }
@@ -157,14 +159,14 @@ public class RuleService {
                 "DELETE FROM rule WHERE id = " + id + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
-        pathGenerator(deleteQuery);
+        pathGenerator(deleteQuery, mainPath);
 
         generateSqlScriptForDeleteRollback(rule);
 
         if (dbAction)
             ruleRepository.deleteById(id);
 
-        return INSERT_FILE_NAME;
+        return MAIN_FILE_NAME;
     }
 
 
@@ -173,8 +175,10 @@ public class RuleService {
         String queryType = "INSERT INTO rule  ( " +
                 "id, " +
                 "createdBy, " +
+                "creationDate, " +
                 "description, " +
                 "lastUpdateBy, " +
+                "lastUpdateDate, " +
                 "name, " +
                 "updateState, " +
                 "orderRule )";
@@ -182,19 +186,22 @@ public class RuleService {
         String queryValue = "  VALUES (" +
                 rule.getId() + " , '" +
                 rule.getCreatedBy() + "', '" +
+                Instant.now() + "', '" +
                 rule.getDescription() + "', '" +
                 rule.getLastUpdateBy() + "', '" +
                 rule.getName() + "', '" +
                 rule.getUpdateState() + "', " +
+                rule.getLastUpdateDate() + "', '" +
                 rule.getOrderRule() + ");";
 
         String sqlInsert = queryType + queryValue;
 
-        pathGenerator(sqlInsert);
+        pathGenerator(sqlInsert , rollbackPath);
 
         return ROLLBACK_FILE_NAME;
     }
-    private void pathGenerator(String sql) {
+
+    private void pathGenerator(String sql, String path) {
 
         Path newFilePath = Paths.get(path);
         try {
@@ -228,6 +235,4 @@ public class RuleService {
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
-
-
 }

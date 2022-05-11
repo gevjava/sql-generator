@@ -1,9 +1,8 @@
 package com.energizeglobal.sqlgenerator.dto;
 
 import com.energizeglobal.sqlgenerator.domain.EntityData;
-
 import java.time.Instant;
-import java.util.Date;
+
 
 public class RuleDTO {
 
@@ -13,7 +12,7 @@ public class RuleDTO {
     private String createdBy;
     private String lastUpdateBy;
     private String description;
-    private Date creationDate;
+    private Instant creationDate;
     private Instant lastUpdateDate;
     private EntityData.UpdateState updateState;
 
@@ -81,11 +80,7 @@ public class RuleDTO {
         this.updateState = updateState;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+    public Instant getCreationDate() { return creationDate; }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+    public void setCreationDate(Instant creationDate) { this.creationDate = creationDate; }
 }
