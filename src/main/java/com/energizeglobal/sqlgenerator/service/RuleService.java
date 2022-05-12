@@ -189,8 +189,8 @@ public class RuleService {
                 rule.getDescription() + "', '" +
                 rule.getLastUpdateBy() + "', '" +
                 rule.getName() + "', '" +
-                rule.getUpdateState() + "', " +
-                rule.getLastUpdateDate() + "', '" +
+                rule.getUpdateState() + "', '" +
+                rule.getLastUpdateDate() + "', " +
                 rule.getOrderRule() + ");";
 
         String sqlInsert = queryType + queryValue;
