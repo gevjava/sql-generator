@@ -6,6 +6,7 @@ import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "profile")
@@ -56,6 +57,9 @@ public class Profile {
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
     private SubIssuer subIssuer;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
+    private List<RuleEntity> ruleEntity;
 
 
     public Long getId() {
@@ -160,5 +164,13 @@ public class Profile {
 
     public void setSubIssuer(SubIssuer subIssuer) {
         this.subIssuer = subIssuer;
+    }
+
+    public List<RuleEntity> getRuleEntity() {
+        return ruleEntity;
+    }
+
+    public void setRuleEntity(List<RuleEntity> ruleEntity) {
+        this.ruleEntity = ruleEntity;
     }
 }
