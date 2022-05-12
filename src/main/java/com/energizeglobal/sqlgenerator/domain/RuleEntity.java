@@ -2,6 +2,8 @@ package com.energizeglobal.sqlgenerator.domain;
 
 import java.time.Instant;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
@@ -26,7 +28,7 @@ public class RuleEntity {
     private String lastUpdateBy;
 
     @CreatedDate
-    @Column(name = "lastUpdateDate", updatable = false)
+    @Column
     private Instant lastUpdateDate = Instant.now();
 
     @Column
@@ -40,7 +42,8 @@ public class RuleEntity {
     private Integer orderRule;
 
     @ManyToOne
-    @JoinColumn(name = "fk_id_profile", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "fk_id_profile", referencedColumnName = "id", updatable = false)
+    @JsonIgnore
     private Profile profile;
 
     public Long getId() {

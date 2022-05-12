@@ -4,9 +4,11 @@ import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -60,9 +62,9 @@ public class Profile {
     private SubIssuer subIssuer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
+    @Lazy
     @JsonIgnore
-    private List<RuleEntity> ruleEntity;
-
+    private List<RuleEntity> rules = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -168,11 +170,11 @@ public class Profile {
         this.subIssuer = subIssuer;
     }
 
-    public List<RuleEntity> getRuleEntity() {
-        return ruleEntity;
+    public List<RuleEntity> getRules() {
+        return rules;
     }
 
-    public void setRuleEntity(List<RuleEntity> ruleEntity) {
-        this.ruleEntity = ruleEntity;
+    public void setRules(List<RuleEntity> rules) {
+        this.rules = rules;
     }
 }

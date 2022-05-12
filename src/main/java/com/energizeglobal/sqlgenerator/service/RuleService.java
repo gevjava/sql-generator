@@ -24,7 +24,7 @@ import static java.nio.file.StandardOpenOption.APPEND;
 @Service
 public class RuleService {
 
-    private Boolean dbAction = true;
+    private Boolean dbAction = false;
     private final RuleRepository ruleRepository;
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
@@ -51,9 +51,11 @@ public class RuleService {
 
     @Transactional
     public String generateInsertSqlScript(RuleDTO ruleDto) {
-        ruleDto.setCreationDate(Instant.now());
+        Long aLong = 147L;
         RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
+        RuleEntity ruleEntity2 = ruleRepository.getById(aLong);
         ruleEntity.setCreationDate(Instant.now());
+        ruleEntity.setProfile(ruleEntity2.getProfile());
 
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
@@ -107,7 +109,6 @@ public class RuleService {
     public String generateUpdateSqlScript(RuleDTO ruleDto) {
         RuleEntity oldRule = ruleRepository.getById(ruleDto.getId());
         RuleEntity newRule = RuleMapper.dtoToEntity(ruleDto);
-        newRule.setProfile(oldRule.getProfile());
         newRule.setId(oldRule.getId());
 
         String queryUpdate = "UPDATE rule SET " +
