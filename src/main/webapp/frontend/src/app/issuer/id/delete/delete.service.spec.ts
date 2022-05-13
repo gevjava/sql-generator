@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DeleteService } from './delete.service';
 
-describe('DeleteService', () => {
+describe('RuleDeleteService', () => {
   let service: DeleteService;
 
   beforeEach(() => {

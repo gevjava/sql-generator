@@ -43,10 +43,10 @@ export class DeleteImageComponent implements OnInit {
 
 
   getByCode(id: any) {
-    this.service.getImageById(id);
-    //   .subscribe(resposne => {
-    //   this.image = resposne;
-    // });
+    this.service.getImageById(id)
+      .subscribe(resposne => {
+      this.image = resposne;
+    });
   }
 
   initializeForm() {

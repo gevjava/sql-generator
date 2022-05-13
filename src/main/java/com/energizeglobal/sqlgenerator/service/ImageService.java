@@ -54,7 +54,6 @@ public class ImageService {
         ImageEntity image = ImageMapper.dtoToEntity(imageDto);
 
         String queryType = "INSERT INTO image  ( " +
-                "id, " +
                 "createdBy, " +
                 "description, " +
                 "lastUpdateBy, " +
@@ -63,8 +62,7 @@ public class ImageService {
                 "binaryData, " +
                 "relativePath )";
 
-        String queryValue = "  VALUES (" +
-                image.getId() + " , '" +
+        String queryValue = "  VALUES (" + " '" +
                 image.getCreatedBy() + "', '" +
                 image.getDescription() + "', '" +
                 image.getLastUpdateBy() + "', '" +

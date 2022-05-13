@@ -2,6 +2,7 @@ package com.energizeglobal.sqlgenerator.domain;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "profile")
 public class ProfileSet {
@@ -17,4 +18,5 @@ public class ProfileSet {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
