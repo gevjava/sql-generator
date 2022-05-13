@@ -1,6 +1,8 @@
 package com.energizeglobal.sqlgenerator.dto;
 
 import com.energizeglobal.sqlgenerator.domain.EntityData;
+import com.energizeglobal.sqlgenerator.domain.Profile;
+
 import java.time.Instant;
 
 
@@ -15,6 +17,7 @@ public class RuleDTO {
     private Instant creationDate;
     private Instant lastUpdateDate;
     private EntityData.UpdateState updateState;
+    private Profile profile;
 
     public Long getId() {
         return id;
@@ -83,4 +86,8 @@ public class RuleDTO {
     public Instant getCreationDate() { return creationDate; }
 
     public void setCreationDate(Instant creationDate) { this.creationDate = creationDate; }
+
+    public Profile getProfile() { return profile; }
+
+    public void setProfile(Profile profile) { this.profile = profile; }
 }

@@ -53,11 +53,10 @@ public class RuleService {
 
     @Transactional
     public String generateInsertSqlScript(RuleDTO ruleDto) {
-        Long aLong = 147L;
+
         RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
-        RuleEntity ruleEntity2 = ruleRepository.getById(aLong);
         ruleEntity.setCreationDate(Instant.now());
-        ruleEntity.setProfile(ruleEntity2.getProfile());
+
 
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +

@@ -1,11 +1,14 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
+import com.energizeglobal.sqlgenerator.domain.Profile;
 import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleDTO;
 
 public class RuleMapper {
     public static RuleEntity dtoToEntity(RuleDTO ruleDto) {
         RuleEntity ruleEntity = new RuleEntity();
+        Profile profile = new Profile();
+        profile.setId(175L);
 
         ruleEntity.setId(ruleDto.getId());
         ruleEntity.setName(ruleDto.getName());
@@ -16,9 +19,9 @@ public class RuleMapper {
         ruleEntity.setLastUpdateDate(ruleDto.getLastUpdateDate());
         ruleEntity.setUpdateState(ruleDto.getUpdateState());
         ruleEntity.setCreationDate(ruleDto.getCreationDate());
+        ruleEntity.setProfile(profile);
 
         return ruleEntity;
-
     }
 
     public static RuleDTO entityToDto(RuleEntity ruleEntity) {
