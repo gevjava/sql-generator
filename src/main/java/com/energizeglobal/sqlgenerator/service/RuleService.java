@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
+
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -32,6 +33,7 @@ public class RuleService {
     private String ROLLBACK_FILE_NAME = "rule_rollback.sql";
     private String mainPath = FILE_PATH + MAIN_FILE_NAME;
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
+    String momentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
 
     public RuleService(RuleRepository ruleRepository) {
         this.ruleRepository = ruleRepository;
@@ -57,6 +59,7 @@ public class RuleService {
         ruleEntity.setCreationDate(Instant.now());
         ruleEntity.setProfile(ruleEntity2.getProfile());
 
+
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
                 "creationDate, " +
@@ -71,10 +74,10 @@ public class RuleService {
         String queryValue = " \n" +
                 "VALUES (" + " '" +
                 ruleEntity.getCreatedBy() + "', '" +
-                Instant.now() + "', '" +
+                momentTime + "', '" +
                 ruleEntity.getDescription() + "', '" +
                 ruleEntity.getLastUpdateBy() + "', '" +
-                ruleEntity.getLastUpdateDate() + "', '" +
+                momentTime + "', '" +
                 ruleEntity.getName() + "', '" +
                 ruleEntity.getUpdateState() + "', " +
                 ruleEntity.getOrderRule() + ");";
@@ -107,16 +110,16 @@ public class RuleService {
 
     @Transactional
     public String generateUpdateSqlScript(RuleDTO ruleDto) {
+        ruleDto.setLastUpdateDate(Instant.now());
         RuleEntity oldRule = ruleRepository.getById(ruleDto.getId());
         RuleEntity newRule = RuleMapper.dtoToEntity(ruleDto);
-        newRule.setId(oldRule.getId());
 
         String queryUpdate = "UPDATE rule SET " +
                 "createdBy = '" + ruleDto.getCreatedBy() + "', " +
-                "creationDate = '" + ruleDto.getCreationDate() + "', " +
+                "creationDate = '" + ruleDto.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
                 "description = '" + ruleDto.getDescription() + "', " +
                 "lastUpdateBy = '" + ruleDto.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + ruleDto.getLastUpdateDate() + "', " +
+                "lastUpdateDate = '" + momentTime + "', " +
                 "name = '" + ruleDto.getName() + "', " +
                 "updateState = '" + ruleDto.getUpdateState() + "', " +
                 "orderRule = " + ruleDto.getOrderRule() + " " +
@@ -136,10 +139,10 @@ public class RuleService {
 
         String queryUpdate = "UPDATE rule SET " +
                 "createdBy = '" + oldRule.getCreatedBy() + "', " +
-                "creationDate = '" + oldRule.getCreationDate() + "', " +
+                "creationDate = '" + oldRule.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
                 "description = '" + oldRule.getDescription() + "', " +
                 "lastUpdateBy = '" + oldRule.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + oldRule.getLastUpdateDate() + "', " +
+                "lastUpdateDate = '" + momentTime + "', " +
                 "name = '" + oldRule.getName() + "', " +
                 "updateState = '" + oldRule.getUpdateState() + "', " +
                 "orderRule = " + oldRule.getOrderRule() + " " +
