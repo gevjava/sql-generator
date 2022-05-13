@@ -33,7 +33,7 @@ public class RuleService {
     private String ROLLBACK_FILE_NAME = "rule_rollback.sql";
     private String mainPath = FILE_PATH + MAIN_FILE_NAME;
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
-    String momentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
+    String thisMomentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
 
     public RuleService(RuleRepository ruleRepository) {
         this.ruleRepository = ruleRepository;
@@ -74,10 +74,10 @@ public class RuleService {
         String queryValue = " \n" +
                 "VALUES (" + " '" +
                 ruleEntity.getCreatedBy() + "', '" +
-                momentTime + "', '" +
+                thisMomentTime + "', '" +
                 ruleEntity.getDescription() + "', '" +
                 ruleEntity.getLastUpdateBy() + "', '" +
-                momentTime + "', '" +
+                thisMomentTime + "', '" +
                 ruleEntity.getName() + "', '" +
                 ruleEntity.getUpdateState() + "', " +
                 ruleEntity.getOrderRule() + ");";
@@ -119,7 +119,7 @@ public class RuleService {
                 "creationDate = '" + ruleDto.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
                 "description = '" + ruleDto.getDescription() + "', " +
                 "lastUpdateBy = '" + ruleDto.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + momentTime + "', " +
+                "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + ruleDto.getName() + "', " +
                 "updateState = '" + ruleDto.getUpdateState() + "', " +
                 "orderRule = " + ruleDto.getOrderRule() + " " +
@@ -142,7 +142,7 @@ public class RuleService {
                 "creationDate = '" + oldRule.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
                 "description = '" + oldRule.getDescription() + "', " +
                 "lastUpdateBy = '" + oldRule.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + momentTime + "', " +
+                "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + oldRule.getName() + "', " +
                 "updateState = '" + oldRule.getUpdateState() + "', " +
                 "orderRule = " + oldRule.getOrderRule() + " " +
