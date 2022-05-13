@@ -59,7 +59,6 @@ public class RuleService {
         ruleEntity.setCreationDate(Instant.now());
         ruleEntity.setProfile(ruleEntity2.getProfile());
 
-
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
                 "creationDate, " +
@@ -69,7 +68,6 @@ public class RuleService {
                 "name, " +
                 "updateState, " +
                 "orderRule )";
-
 
         String queryValue = " \n" +
                 "VALUES (" + " '" +
@@ -175,7 +173,6 @@ public class RuleService {
 
         return MAIN_FILE_NAME;
     }
-
 
     public String generateSqlScriptForDeleteRollback(RuleDTO rule) {
 

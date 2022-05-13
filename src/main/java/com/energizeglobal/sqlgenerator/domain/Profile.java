@@ -62,7 +62,6 @@ public class Profile {
     private SubIssuer subIssuer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
-    @Lazy
     @JsonIgnore
     private List<RuleEntity> rules = new ArrayList<>();
 
