@@ -8,7 +8,6 @@ import java.time.Instant;
 public class RuleConditionDTO {
     private Long id;
     private String name;
-    private Integer orderRule;
     private String createdBy;
     private String lastUpdateBy;
     private String description;
@@ -24,10 +23,7 @@ public class RuleConditionDTO {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
-
-    public Integer getOrderRule() { return orderRule; }
-
-    public void setOrderRule(Integer orderRule) { this.orderRule = orderRule; }
+    
 
     public String getCreatedBy() { return createdBy; }
 
