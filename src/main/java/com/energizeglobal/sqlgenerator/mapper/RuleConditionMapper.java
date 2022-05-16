@@ -1,7 +1,6 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
 import com.energizeglobal.sqlgenerator.domain.RuleCondition;
-import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleConditionDTO;
 
 
@@ -26,7 +25,7 @@ public class RuleConditionMapper {
 
     }
 
-    public static RuleConditionDTO entityToDto(RuleEntity ruleCondition) {
+    public static RuleConditionDTO entityToDto(RuleCondition ruleCondition) {
 
         RuleConditionDTO ruleConditionDto = new RuleConditionDTO();
 
