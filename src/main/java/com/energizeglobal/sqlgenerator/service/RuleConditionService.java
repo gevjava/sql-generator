@@ -87,7 +87,7 @@ public class RuleConditionService {
                 "COMMIT;";
 
         pathGenerator(deleteQuery, rollbackPath);
-        
+
     }
 
     @Transactional
