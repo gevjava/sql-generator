@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IssuerService } from 'src/app/issuer/issuer.service';
+import { SubIssuerService } from 'src/app/subissuer/subIssuer.service';
 import { ProfileService } from './profile.service';
 
 @Component({
@@ -7,13 +9,17 @@ import { ProfileService } from './profile.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+   
+  issuers:any = [];
+  subIssuers:any = [];
   profiles:any = [];
   profileTerm!:string;
   showOnchange: boolean = false;
 
   constructor(
-    private service: ProfileService
+    private issuerService: IssuerService,
+    private subIssuerService: SubIssuerService,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -21,11 +27,17 @@ export class ProfileComponent implements OnInit {
   }
 
   index(){
-    this.service.getAllProfiles().subscribe(response => {this.profiles = response});
+    this.issuerService.getAllIssuer().subscribe(response => {this.issuers = response});
+    this.subIssuerService.getAllSubIssuer().subscribe(response => {this.subIssuers = response});
+    this.profileService.getAllProfiles().subscribe(response => {this.profiles = response});
   }
 
-  changeFunction(){
-     this.showOnchange = true; 
+  showBlock(){
+    this.showOnchange = true;
+  }
+
+  hideBlock(){
+    this.showOnchange = false;
   }
 
 }

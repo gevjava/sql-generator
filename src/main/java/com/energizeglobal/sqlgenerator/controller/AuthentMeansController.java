@@ -2,7 +2,7 @@ package com.energizeglobal.sqlgenerator.controller;
 
 import com.energizeglobal.sqlgenerator.domain.AuthentMeansEntity;
 import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
-import com.energizeglobal.sqlgenerator.service.impl.AuthentMeansServiceImpl;
+import com.energizeglobal.sqlgenerator.service.AuthentMeansService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,9 @@ import java.util.List;
 public class AuthentMeansController {
 
 
-    private final AuthentMeansServiceImpl authentMeansService;
+    private final AuthentMeansService authentMeansService;
 
-    public AuthentMeansController(AuthentMeansServiceImpl authentMeansService) {
+    public AuthentMeansController(AuthentMeansService authentMeansService) {
         this.authentMeansService = authentMeansService;
     }
 

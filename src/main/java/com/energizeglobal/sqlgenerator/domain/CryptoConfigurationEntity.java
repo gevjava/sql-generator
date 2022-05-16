@@ -28,10 +28,9 @@ public class CryptoConfigurationEntity implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "cryptoConfigurationEntity")
+    @OneToMany(mappedBy = "cryptoConfigEntity")
     @JsonIgnore
-    private List<SubIssuerEntity> linkedSubIssuers = new ArrayList<>();
-
+    private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
 
     @OneToMany(mappedBy = "cryptoConfigurationEntity")
     @JsonIgnore

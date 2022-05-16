@@ -11,4 +11,8 @@ public interface ProfileRepository extends JpaRepository<Profile,Long> {
     @Query(value = "SELECT DISTINCT * FROM profile",nativeQuery = true)
     List<Profile> findAll();
 
+    @Query("SELECT p FROM Profile p WHERE p.id=?1")
+    Profile getProfileById(long id);
+
+
 }

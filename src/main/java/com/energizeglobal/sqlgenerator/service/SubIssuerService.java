@@ -4,8 +4,7 @@ import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDto;
 import com.energizeglobal.sqlgenerator.mapping.SubissuerMapping;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -23,9 +22,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
 
 @Service
-public class SubIssuerService {
+public class  SubIssuerService {
 
-    private final Logger log = LoggerFactory.getLogger(SubIssuerService.class);
 
     private Boolean dbAction = false;
     private final SubIssuerRepository subIssuerRepository;

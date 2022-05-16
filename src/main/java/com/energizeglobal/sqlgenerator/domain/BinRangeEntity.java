@@ -18,7 +18,7 @@ public class BinRangeEntity {
 
     @ManyToMany
     @JoinTable(name = "BinRange_SubIssuer", joinColumns = @JoinColumn(name = "id_binRange", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_subIssuer", referencedColumnName = "id"))
-    private List<SubIssuerEntity> subIssuers;
+    private List<SubIssuer> subIssuers;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id")

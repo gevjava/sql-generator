@@ -55,8 +55,10 @@ public class Profile {
     @ManyToOne(fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
-    private SubIssuerEntity subIssuer;
+    private SubIssuer subIssuer;
 
+    public Profile() {
+    }
 
     public Long getId() {
         return id;
@@ -154,11 +156,11 @@ public class Profile {
         this.authentMeans = authentMeans;
     }
 
-    public SubIssuerEntity getSubIssuer() {
+    public SubIssuer getSubIssuer() {
         return subIssuer;
     }
 
-    public void setSubIssuer(SubIssuerEntity subIssuer) {
+    public void setSubIssuer(SubIssuer subIssuer) {
         this.subIssuer = subIssuer;
     }
 }

@@ -49,13 +49,5 @@ public class MerchantPivotListEntity {
 
     @Column(nullable = false, columnDefinition = "BIT", length = 1)
     private boolean forceAuthent;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "fk_id_issuer", referencedColumnName = "id")
-//    private IssuerEntity issuer;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
-//    private SubIssuerEntity subIssuer;
-//
+
 }

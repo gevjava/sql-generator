@@ -1,6 +1,6 @@
 package com.energizeglobal.sqlgenerator.controller;
 
-import com.energizeglobal.sqlgenerator.domain.IssuerEntity;
+import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.service.IssuerService;
 import org.slf4j.Logger;
@@ -14,8 +14,6 @@ import java.util.List;
 @RequestMapping("/issuers")
 public class IssuerController {
 
-    private final Logger log = LoggerFactory.getLogger(IssuerController.class);
-
     private final IssuerService issuerService;
 
     public IssuerController(IssuerService issuerService) {
@@ -23,9 +21,8 @@ public class IssuerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IssuerEntity>> getAllIssuer() {
-        List<IssuerEntity> issuerList = issuerService.getAllIssuer();
-        return ResponseEntity.ok(issuerList);
+    public ResponseEntity<List<Issuer>> index() {
+        return ResponseEntity.ok(issuerService.getAllIssuer());
     }
 
     @PostMapping
@@ -36,8 +33,8 @@ public class IssuerController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<IssuerEntity> show(@PathVariable("code") String someId) {
-        IssuerEntity issuer = issuerService.findByIssuerByCode(someId);
+    public ResponseEntity<Issuer> show(@PathVariable("code") String someId) {
+        Issuer issuer = issuerService.findByIssuerByCode(someId);
         return ResponseEntity.ok(issuer);
     }
 

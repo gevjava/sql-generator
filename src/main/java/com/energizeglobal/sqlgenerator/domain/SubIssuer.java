@@ -70,13 +70,12 @@ public class SubIssuer {
     public SubIssuer() {
     }
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-
+        this.id = id;
     }
 
     public String getName() {
@@ -234,7 +233,6 @@ public class SubIssuer {
     public void setHubMaintenanceModeEnabled(boolean hubMaintenanceModeEnabled) {
         this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
     }
-
 
     @Override
     public String toString() {
