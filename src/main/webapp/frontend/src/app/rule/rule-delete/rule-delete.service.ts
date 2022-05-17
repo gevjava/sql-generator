@@ -15,6 +15,7 @@ export class RuleDeleteService {
   downloadSqlFile(filename: String) {
     return this.http.get('/rule/script/download/' + filename, {responseType: 'blob'});
   }
+
   getById(id: number){
     return this.http.get('/rule/' + id);
   }

@@ -1,0 +1,87 @@
+<section class="issuer_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h3 style="color: #337ab7">Rule Condition</h3>
+        </div>
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <div class="wrapper">
+              <form [formGroup]="conditionForm" (ngSubmit)="updateCondition()">
+                <table class="table">
+                  <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">CreatedBy</th>
+                    <th scope="col">CreationDate</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">LastUpdateBy</th>
+                    <th scope="col">LastUpdateDate</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">UpdateState</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      <input class="form-control" type="text" formControlName="id" name="id"
+                             [(ngModel)]="condition.id" placeholder="{{condition.id }}" readonly="true"
+                             style="width: 50px;">
+                    </td>
+                    <td>
+                      <input class="form-control" type="text" formControlName="createdBy" name="createdBy"
+                             [(ngModel)]="condition.createdBy" placeholder="{{ condition.createdBy }}">
+                    </td>
+                    <td>
+                      <input class="form-control" type="test" formControlName="creationDate"
+                             name="authenticationTimeOut" [(ngModel)]="condition.creationDate"
+                             placeholder="{{ condition.creationDate }}" readonly="true">
+                    </td>
+                    <td>
+                      <input class="form-control" type="text" formControlName="description" name="description"
+                             [(ngModel)]="condition.description" placeholder="{{condition.description }}">
+                    </td>
+                    <td>
+                      <input class="form-control" type="text" formControlName="lastUpdateBy" name="lastUpdateBy"
+                             [(ngModel)]="condition.lastUpdateBy" placeholder="{{ condition.lastUpdateBy}}">
+                    </td>
+                    <td>
+                      <input class="form-control" type="date" formControlName="lastUpdateDate" name="lastUpdateDate"
+                             [(ngModel)]="condition.lastUpdateDate" placeholder="{{condition.lastUpdateDate }}"
+                             readonly="true">
+                    </td>
+                    <td>
+                      <input class="form-control" type="text" formControlName="name" name="name"
+                             [(ngModel)]="condition.name" placeholder="{{ condition.name }}">
+                    </td>
+                    <td>
+                      <input class="form-control" type="text" formControlName="updateState" name="updateState"
+                             [(ngModel)]="condition.updateState" placeholder="{{ condition.updateState }}">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary">Generate SQL</button>
+                </div> <br>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col">
+                    <button class="btn btn-primary" type="button" (click)="downloadFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</section>
+
+

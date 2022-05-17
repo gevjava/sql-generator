@@ -10,12 +10,11 @@ import {saveAs} from "file-saver";
   styleUrls: ['./rule-delete.component.css']
 })
 export class RuleDeleteComponent implements OnInit {
+
   id: any ;
   rule: any;
   filename: string = "";
   ruleForm: any;
-
-
 
   constructor(
     private service: RuleDeleteService,
@@ -46,9 +45,11 @@ export class RuleDeleteComponent implements OnInit {
       this.rule = response
     })
   }
+
   initializeForm() {
     this.ruleForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
   }
+
 }

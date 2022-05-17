@@ -1,4 +1,4 @@
-<form [formGroup]="ruleForm" (ngSubmit)="deleteRule()">
+<form [formGroup]="conditionForm" (ngSubmit)="deleteCondition()">
   <div class="container-fluid">
     <div class="row bg-grey">
       <div class="col text-center">
@@ -9,16 +9,19 @@
     </div>
     <div class="col-md-4"></div>
   </div>
-
   <section class="issuer_section">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
+          <div class="center-pill text-center"
+               style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+            <h3 style="color: #337ab7">Rule Condition</h3>
+          </div>
           <div class="card">
             <div class="card-body">
               <div class="wrapper">
-                <form (click)="deleteRule()">
+                <form (click)="deleteCondition()">
                   <div class="alert alert-danger" role="alert">
                     <span style="font-size: 36px;" class="material-icons">dangerous</span>
                     <hr>
@@ -28,13 +31,11 @@
                     <div class="form-group">
                       <button type="button" class="btn btn-outline-danger">Delete</button>
                     </div>
-
                   </div>
                 </form>
                 <div class="row " *ngIf="filename">
                   <div class="col">
-                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
-                      - {{filename}}</button>
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download - {{filename}}</button>
                   </div>
                 </div>
               </div>
@@ -45,7 +46,5 @@
       </div>
     </div>
   </section>
-
-
 </form>
 

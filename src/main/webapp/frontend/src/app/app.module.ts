@@ -15,8 +15,8 @@ import {RuleComponent} from './rule/rule.component';
 import {RuleDeleteComponent} from './rule/rule-delete/rule-delete.component';
 import {RuleEditComponent} from './rule/rule-edit/rule-edit.component';
 import {RuleConditionComponent} from './rulecondition/rule-condition.component';
-import { ConditioneditComponent } from './rulecondition/conditionedit/conditionedit.component';
-import { ConditionDeleteComponent } from './rulecondition/conditiondelete/condition-delete.component';
+import {ConditionEditComponent} from './rulecondition/conditionedit/condition-edit.component';
+import {ConditionDeleteComponent} from './rulecondition/conditiondelete/condition-delete.component';
 
 
 @NgModule({
@@ -32,9 +32,8 @@ import { ConditionDeleteComponent } from './rulecondition/conditiondelete/condit
     RuleDeleteComponent,
     RuleEditComponent,
     RuleConditionComponent,
-    ConditioneditComponent,
+    ConditionEditComponent,
     ConditionDeleteComponent
-
   ],
   imports: [
     AppRoutingModule,
@@ -50,5 +49,6 @@ import { ConditionDeleteComponent } from './rulecondition/conditiondelete/condit
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
