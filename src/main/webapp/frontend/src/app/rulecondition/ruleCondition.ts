@@ -1,4 +1,4 @@
-export interface Rulecondition {
+export interface RuleCondition {
 
   id: number;
   createdBy: string;

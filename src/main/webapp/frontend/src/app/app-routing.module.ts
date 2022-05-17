@@ -17,7 +17,7 @@ import {DeleteImageComponent} from "./image/delete/delete-image.component";
 import {RuleComponent} from './rule/rule.component';
 import {RuleDeleteComponent} from "./rule/rule-delete/rule-delete.component";
 import {RuleEditComponent} from "./rule/rule-edit/rule-edit.component";
-import {RuleconditionComponent} from "./rulecondition/rulecondition.component";
+import {RuleConditionComponent} from "./rulecondition/rule-condition.component";
 
 const routes: Routes = [
   {path: 'image', component: ImageComponent},
@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'rule', component: RuleComponent},
   {path: 'rule/delete/:id', component: RuleDeleteComponent},
   {path: 'rule/edit/:id', component: RuleEditComponent},
-  {path: 'condition/edit/:id', component: RuleconditionComponent}
+  {path: 'condition', component: RuleConditionComponent}
 
 
 ];
@@ -51,6 +51,6 @@ export class AppRoutingModule {
 
 export const routesList = [IssuerComponent, SubIssuerComponent, EditComponent, DeleteComponent, ProfileComponent,
   ProfilesetComponent, EditsubissuerComponent, DeletesubissuerComponent, ImageComponent, EditimageComponent, DeleteImageComponent,
-  CryptoConfigComponent, AuthentmeansComponent, RuleComponent, RuleDeleteComponent,RuleEditComponent, RuleconditionComponent];
+  CryptoConfigComponent, AuthentmeansComponent, RuleComponent, RuleDeleteComponent,RuleEditComponent, RuleConditionComponent];
 
 

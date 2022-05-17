@@ -5,10 +5,10 @@ import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-rulecondition',
-  templateUrl: './rulecondition.component.html',
-  styleUrls: ['./rulecondition.component.css']
+  templateUrl: './rule-condition.component.html',
+  styleUrls: ['./rule-condition.component.css']
 })
-export class RuleconditionComponent implements OnInit {
+export class RuleConditionComponent implements OnInit {
 
   conditions: any;
   conditionForm: any;

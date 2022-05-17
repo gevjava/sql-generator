@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Rulecondition} from "./rulecondition";
+import {RuleCondition} from "./ruleCondition";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class RuleConditionService {
     return this.http.get('/condition')
   }
 
-  sendData(conditionData: Rulecondition){
+  sendData(conditionData: RuleCondition){
     return this.http.post('/condition', conditionData, {responseType: 'text'});
   }
 
