@@ -10,7 +10,6 @@ public class RuleConditionMapper {
 
         RuleCondition ruleCondition = new RuleCondition();
 
-
         ruleCondition.setId(ruleConditionDto.getId());
         ruleCondition.setName(ruleConditionDto.getName());
         ruleCondition.setCreatedBy(ruleConditionDto.getCreatedBy());

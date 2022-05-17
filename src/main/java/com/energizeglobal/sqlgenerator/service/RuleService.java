@@ -57,7 +57,6 @@ public class RuleService {
         RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
         ruleEntity.setCreationDate(Instant.now());
 
-
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
                 "creationDate, " +
@@ -154,8 +153,6 @@ public class RuleService {
     public String generateDeleteSqlScript(Long id) {
 
         RuleDTO rule = findById(id);
-
-        System.out.println(rule);
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +

@@ -31,14 +31,14 @@ public class RuleConditionService {
     private String ROLLBACK_FILE_NAME = "ruleCondition_rollback.sql";
     private String mainPath = FILE_PATH + MAIN_FILE_NAME;
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
-    String thisMomentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
+    String thisMomentTime = Instant.now().toString().replace("T", " ").replace("Z", " ");
 
     public RuleConditionService(RuleConditionRepository repository) {
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
-    public RuleConditionDTO findById(Long id){
+    public RuleConditionDTO findById(Long id) {
         RuleCondition condition = repository.getById(id);
         return RuleConditionMapper.entityToDto(condition);
     }
@@ -49,9 +49,8 @@ public class RuleConditionService {
         return conditions;
     }
 
-
     @Transactional
-    public String generateInsertSqlScript(RuleConditionDTO ruleConditionDto){
+    public String generateInsertSqlScript(RuleConditionDTO ruleConditionDto) {
 
         RuleCondition ruleCondition = RuleConditionMapper.dtoToEntity(ruleConditionDto);
         ruleCondition.setCreationDate(Instant.now());
@@ -72,7 +71,7 @@ public class RuleConditionService {
                 ruleCondition.getLastUpdateBy() + "', '" +
                 thisMomentTime + "', '" +
                 ruleCondition.getName() + "', '" +
-                ruleCondition.getUpdateState()  + ");";
+                ruleCondition.getUpdateState() + ");";
 
         String sqlInsert = queryType + queryValue;
         pathGenerator(sqlInsert, mainPath);
@@ -85,7 +84,7 @@ public class RuleConditionService {
         return MAIN_FILE_NAME;
     }
 
-    private void generateSqlScriptForInsertRollback(Long id) {
+    private String generateSqlScriptForInsertRollback(Long id) {
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
@@ -96,6 +95,7 @@ public class RuleConditionService {
 
         pathGenerator(deleteQuery, rollbackPath);
 
+        return ROLLBACK_FILE_NAME;
     }
 
     @Transactional
@@ -124,7 +124,7 @@ public class RuleConditionService {
         return MAIN_FILE_NAME;
     }
 
-    private void generateSqlScriptForUpdateRollback(RuleCondition oldRuleCondition) {
+    private String generateSqlScriptForUpdateRollback(RuleCondition oldRuleCondition) {
 
         String queryUpdate = "UPDATE rulecondition SET " +
                 "createdBy = '" + oldRuleCondition.getCreatedBy() + "', " +
@@ -138,6 +138,7 @@ public class RuleConditionService {
 
         pathGenerator(queryUpdate, rollbackPath);
 
+        return ROLLBACK_FILE_NAME;
     }
 
     @Transactional
@@ -145,14 +146,13 @@ public class RuleConditionService {
 
         RuleConditionDTO ruleCondition = findById(id);
 
-        System.out.println(ruleCondition);
-
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
                 "DELETE FROM rulecondition WHERE id = " + id + ";\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
+
         pathGenerator(deleteQuery, mainPath);
 
         generateSqlScriptForDeleteRollback(ruleCondition);
@@ -163,7 +163,7 @@ public class RuleConditionService {
         return MAIN_FILE_NAME;
     }
 
-    private void generateSqlScriptForDeleteRollback(RuleConditionDTO ruleConditionDto) {
+    private String generateSqlScriptForDeleteRollback(RuleConditionDTO ruleConditionDto) {
 
         String queryType = "INSERT INTO rulecondition  ( " +
                 "createdBy, " +
@@ -186,7 +186,9 @@ public class RuleConditionService {
 
         String sqlInsert = queryType + queryValue;
 
-        pathGenerator(sqlInsert , rollbackPath);
+        pathGenerator(sqlInsert, rollbackPath);
+
+        return ROLLBACK_FILE_NAME;
     }
 
 
