@@ -111,7 +111,7 @@ public class RuleConditionService {
                 "lastUpdateBy = '" + ruleConditionDto.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + ruleConditionDto.getName() + "', " +
-                "updateState = '" + ruleConditionDto.getUpdateState() + "', " +
+                "updateState = '" + ruleConditionDto.getUpdateState() + "' " +
                 " WHERE id = " + ruleConditionDto.getId() + ";";
 
         pathGenerator(queryUpdate, mainPath);
@@ -133,7 +133,7 @@ public class RuleConditionService {
                 "lastUpdateBy = '" + oldRuleCondition.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + oldRuleCondition.getName() + "', " +
-                "updateState = '" + oldRuleCondition.getUpdateState() + "', " +
+                "updateState = '" + oldRuleCondition.getUpdateState() + "' " +
                 " WHERE id = " + oldRuleCondition.getId() + ";";
 
         pathGenerator(queryUpdate, rollbackPath);
