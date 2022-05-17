@@ -106,7 +106,8 @@ public class RuleConditionService {
 
         String queryUpdate = "UPDATE rulecondition SET " +
                 "createdBy = '" + ruleConditionDto.getCreatedBy() + "', " +
-                "creationDate = '" + ruleConditionDto.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
+                "creationDate = '" + ruleConditionDto.getCreationDate().toString().replace("T", " ")
+                .replace("Z", " ") + "', " +
                 "description = '" + ruleConditionDto.getDescription() + "', " +
                 "lastUpdateBy = '" + ruleConditionDto.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
@@ -128,7 +129,8 @@ public class RuleConditionService {
 
         String queryUpdate = "UPDATE rulecondition SET " +
                 "createdBy = '" + oldRuleCondition.getCreatedBy() + "', " +
-                "creationDate = '" + oldRuleCondition.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
+                "creationDate = '" + oldRuleCondition.getCreationDate().toString().replace("T", " ")
+                .replace("Z", " ") + "', " +
                 "description = '" + oldRuleCondition.getDescription() + "', " +
                 "lastUpdateBy = '" + oldRuleCondition.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
@@ -177,7 +179,8 @@ public class RuleConditionService {
         String queryValue = " \n" +
                 " VALUES (" + " '" +
                 ruleConditionDto.getCreatedBy() + "', '" +
-                Instant.now() + "', '" +
+                Instant.now().toString().replace("T", " ")
+                        .replace("Z", " ") + "', '" +
                 ruleConditionDto.getDescription() + "', '" +
                 ruleConditionDto.getLastUpdateBy() + "', '" +
                 ruleConditionDto.getLastUpdateDate() + "', '" +
