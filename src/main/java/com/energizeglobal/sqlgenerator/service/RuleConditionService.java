@@ -71,7 +71,7 @@ public class RuleConditionService {
                 ruleCondition.getLastUpdateBy() + "', '" +
                 thisMomentTime + "', '" +
                 ruleCondition.getName() + "', '" +
-                ruleCondition.getUpdateState() + ");";
+                ruleCondition.getUpdateState() + "');";
 
         String sqlInsert = queryType + queryValue;
         pathGenerator(sqlInsert, mainPath);
@@ -180,9 +180,9 @@ public class RuleConditionService {
                 Instant.now() + "', '" +
                 ruleConditionDto.getDescription() + "', '" +
                 ruleConditionDto.getLastUpdateBy() + "', '" +
-                ruleConditionDto.getLastUpdateDate() + "', " +
+                ruleConditionDto.getLastUpdateDate() + "', '" +
                 ruleConditionDto.getName() + "', '" +
-                ruleConditionDto.getUpdateState() + ");";
+                ruleConditionDto.getUpdateState() + "');";
 
         String sqlInsert = queryType + queryValue;
 
