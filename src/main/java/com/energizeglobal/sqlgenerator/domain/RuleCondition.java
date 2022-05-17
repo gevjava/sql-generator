@@ -5,8 +5,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class RuleCondition {
@@ -42,7 +40,7 @@ public class RuleCondition {
     @ManyToOne
     @JoinColumn(name = "fk_id_rule", referencedColumnName = "id", updatable = false)
     @JsonIgnore
-    private List<RuleEntity> rules = new ArrayList<>();
+    private RuleEntity rule;
 
     public Long getId() { return id; }
 
@@ -76,7 +74,7 @@ public class RuleCondition {
 
     public void setUpdateState(EntityData.UpdateState updateState) { this.updateState = updateState; }
 
-    public List<RuleEntity> getRules() { return rules; }
+    public RuleEntity getRule() { return rule; }
 
-    public void setRules(List<RuleEntity> rules) { this.rules = rules; }
+    public void setRule(RuleEntity rule) { this.rule = rule; }
 }
