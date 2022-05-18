@@ -4,7 +4,6 @@ import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.time.Instant;

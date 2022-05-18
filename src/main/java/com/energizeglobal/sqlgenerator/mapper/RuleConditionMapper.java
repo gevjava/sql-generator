@@ -11,7 +11,7 @@ public class RuleConditionMapper {
         RuleCondition ruleCondition = new RuleCondition();
         RuleEntity rule = new RuleEntity();
         rule.setId(174L);
-        
+
         ruleCondition.setId(ruleConditionDto.getId());
         ruleCondition.setName(ruleConditionDto.getName());
         ruleCondition.setCreatedBy(ruleConditionDto.getCreatedBy());
