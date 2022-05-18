@@ -6,11 +6,12 @@ import com.energizeglobal.sqlgenerator.dto.RuleConditionDTO;
 
 public class RuleConditionMapper {
 
-    public static RuleCondition  dtoToEntity(RuleConditionDTO ruleConditionDto) {
+    public static RuleCondition dtoToEntity(RuleConditionDTO ruleConditionDto) {
 
         RuleCondition ruleCondition = new RuleCondition();
         RuleEntity rule = new RuleEntity();
         rule.setId(174L);
+        
         ruleCondition.setId(ruleConditionDto.getId());
         ruleCondition.setName(ruleConditionDto.getName());
         ruleCondition.setCreatedBy(ruleConditionDto.getCreatedBy());

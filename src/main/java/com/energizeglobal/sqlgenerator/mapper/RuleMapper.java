@@ -6,6 +6,7 @@ import com.energizeglobal.sqlgenerator.dto.RuleDTO;
 
 public class RuleMapper {
     public static RuleEntity dtoToEntity(RuleDTO ruleDto) {
+
         RuleEntity ruleEntity = new RuleEntity();
         Profile profile = new Profile();
         profile.setId(175L);
@@ -25,6 +26,7 @@ public class RuleMapper {
     }
 
     public static RuleDTO entityToDto(RuleEntity ruleEntity) {
+
         RuleDTO ruleDto = new RuleDTO();
 
         ruleDto.setId(ruleEntity.getId());
