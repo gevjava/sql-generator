@@ -61,7 +61,8 @@ public class RuleConditionService {
                 "lastUpdateBy, " +
                 "lastUpdateDate, " +
                 "name, " +
-                "updateState )";
+                "updateState, " +
+                "fk_id_rule )";
 
         String queryValue = " \n" +
                 "VALUES (" + " '" +
@@ -71,7 +72,8 @@ public class RuleConditionService {
                 ruleCondition.getLastUpdateBy() + "', '" +
                 thisMomentTime + "', '" +
                 ruleCondition.getName() + "', '" +
-                ruleCondition.getUpdateState() + "');";
+                ruleCondition.getUpdateState() + "', " +
+                ruleCondition.getRule().getId() + ");";
 
         String sqlInsert = queryType + queryValue;
         pathGenerator(sqlInsert, mainPath);

@@ -1,15 +1,16 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
 import com.energizeglobal.sqlgenerator.domain.RuleCondition;
+import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleConditionDTO;
-
 
 public class RuleConditionMapper {
 
     public static RuleCondition  dtoToEntity(RuleConditionDTO ruleConditionDto) {
 
         RuleCondition ruleCondition = new RuleCondition();
-
+        RuleEntity rule = new RuleEntity();
+        rule.setId(174L);
         ruleCondition.setId(ruleConditionDto.getId());
         ruleCondition.setName(ruleConditionDto.getName());
         ruleCondition.setCreatedBy(ruleConditionDto.getCreatedBy());
@@ -18,10 +19,9 @@ public class RuleConditionMapper {
         ruleCondition.setLastUpdateDate(ruleConditionDto.getLastUpdateDate());
         ruleCondition.setUpdateState(ruleConditionDto.getUpdateState());
         ruleCondition.setCreationDate(ruleConditionDto.getCreationDate());
-
+        ruleCondition.setRule(rule);
 
         return ruleCondition;
-
     }
 
     public static RuleConditionDTO entityToDto(RuleCondition ruleCondition) {
