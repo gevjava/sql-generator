@@ -1,6 +1,8 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +47,10 @@ public class RuleEntity {
     @JoinColumn(name = "fk_id_profile", referencedColumnName = "id", updatable = false)
     @JsonIgnore
     private Profile profile;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rule")
+    @JsonIgnore
+    private List<RuleCondition> conditions = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -123,5 +129,9 @@ public class RuleEntity {
     public void setUpdateState(EntityData.UpdateState updateState) {
         this.updateState = updateState;
     }
+
+    public List<RuleCondition> getConditions() { return conditions; }
+
+    public void setConditions(List<RuleCondition> conditions) { this.conditions = conditions; }
 }
 

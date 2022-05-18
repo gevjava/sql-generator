@@ -26,7 +26,7 @@ export class RuleComponent implements OnInit {
     let ruleData = this.ruleForm.value;
     this.ruleService.sendData(ruleData).subscribe(response => {
       this.filename = response;
-    })
+    });
   }
 
 

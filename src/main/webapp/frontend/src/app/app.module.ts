@@ -13,7 +13,10 @@ import {EditimageComponent} from './image/edit/editimage.component';
 import {DeleteImageComponent} from './image/delete/delete-image.component';
 import {RuleComponent} from './rule/rule.component';
 import {RuleDeleteComponent} from './rule/rule-delete/rule-delete.component';
-import { RuleEditComponent } from './rule/rule-edit/rule-edit.component';
+import {RuleEditComponent} from './rule/rule-edit/rule-edit.component';
+import {RuleConditionComponent} from './rulecondition/rule-condition.component';
+import {ConditionEditComponent} from './rulecondition/conditionedit/condition-edit.component';
+import {ConditionDeleteComponent} from './rulecondition/conditiondelete/condition-delete.component';
 
 
 @NgModule({
@@ -27,8 +30,10 @@ import { RuleEditComponent } from './rule/rule-edit/rule-edit.component';
     DeleteImageComponent,
     RuleComponent,
     RuleDeleteComponent,
-    RuleEditComponent
-
+    RuleEditComponent,
+    RuleConditionComponent,
+    ConditionEditComponent,
+    ConditionDeleteComponent
   ],
   imports: [
     AppRoutingModule,
@@ -44,5 +49,6 @@ import { RuleEditComponent } from './rule/rule-edit/rule-edit.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

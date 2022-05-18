@@ -11,6 +11,7 @@ export class RuleEditService {
   editRule(rule: any){
     return this.http.put('/rule/', rule, {responseType: 'text'});
   }
+
   downloadSqlFile(filename: String) {
     return this.http.get('/rule/script/download/' + filename, {responseType: 'blob'});
   }

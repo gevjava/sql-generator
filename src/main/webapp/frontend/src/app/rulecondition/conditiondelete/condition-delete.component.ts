@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {RuleDeleteService} from "./rule-delete.service";
+import {ConditionDeleteService} from "./condition-delete.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from "file-saver";
 
 @Component({
-  selector: 'app-delete',
-  templateUrl: './rule-delete.component.html',
-  styleUrls: ['./rule-delete.component.css']
+  selector: 'app-conditiondelete',
+  templateUrl: './condition-delete.component.html',
+  styleUrls: ['./condition-delete.component.css']
 })
-export class RuleDeleteComponent implements OnInit {
-
+export class ConditionDeleteComponent implements OnInit {
   id: any ;
-  rule: any;
+  condition: any;
   filename: string = "";
-  ruleForm: any;
+  conditionForm: any;
 
   constructor(
-    private service: RuleDeleteService,
+    private service: ConditionDeleteService,
     private router: ActivatedRoute,
     private formBuilder: FormBuilder
   ) { }
@@ -28,10 +27,10 @@ export class RuleDeleteComponent implements OnInit {
     this.initializeForm();
   }
 
-  deleteRule(){
-    console.log(this.rule);
-    let ruleData = this.ruleForm.value;
-    this.service.deleteRule(ruleData, this.id).subscribe(response =>{
+  deleteCondition(){
+    console.log(this.condition);
+    let conditionData = this.conditionForm.value;
+    this.service.deleteCondition(conditionData, this.id).subscribe(response =>{
       this.filename = response
     })
   }
@@ -42,12 +41,12 @@ export class RuleDeleteComponent implements OnInit {
 
   getById(id: any){
     this.service.getById(id).subscribe(response =>{
-      this.rule = response
+      this.condition = response
     })
   }
 
   initializeForm() {
-    this.ruleForm = this.formBuilder.group({
+    this.conditionForm = this.formBuilder.group({
       id: ['', Validators.required]
     });
   }
