@@ -1,2 +1,3 @@
 
-UPDATE Profile SET createdBy='A708534', creationDate='2019-07-31T23:09:05' ,  name='LBBW_TA_01', updateState='PUSHED_TO_CONFIG'  WHERE id='223';
+DELETE FROM Issuer  WHERE code='00006';
+UPDATE Issuer SET createdBy='A169318', creationDate='2018-06-07T10:20:42Z' ,name='China Bank Corporation', updateState='PUSHED_TO_CONFIG', label='China Bank Corporation' , availaibleAuthentMeans='OTP_SMS|REFUSAL' WHERE code='00070';

@@ -7,11 +7,12 @@
           <div class="card-header"></div>
           <div class="card-body">
             <div class="wrapper">
-              <legend>Issuer search </legend>
+              <legend>Issuer search</legend>
               <hr>
               <div class="form-group col-md-4">
                 <label for="transaction-issuer-code">Issuercode</label>
-                <select [(ngModel)]="filterTerm" (ngModelChange)="listOfIssuers();" id="transaction-issuer-code" class="form-select"  title="Choose an issuer code" style="">
+                <select [(ngModel)]="filterTerm" (ngModelChange)="listOfIssuers();" id="transaction-issuer-code"
+                  class="form-select" title="Choose an issuer code" style="">
                   <option label="* - All" value="" selected="selected">* - All</option>
                   <option *ngFor="let issuer of issuers;" value="{{ issuer.code }}">{{ issuer.code + " " + issuer.name
                     }}</option>
