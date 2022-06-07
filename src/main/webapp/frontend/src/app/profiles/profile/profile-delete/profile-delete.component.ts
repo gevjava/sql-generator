@@ -12,4 +12,7 @@ export class ProfileDeleteComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(){
+
+  }
 }

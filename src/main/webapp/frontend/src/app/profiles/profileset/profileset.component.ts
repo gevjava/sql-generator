@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProfilesetService} from "./profileset.service";
 
 @Component({
   selector: 'app-profileset',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilesetComponent implements OnInit {
 
-  constructor() { }
+  profilesets : any = [];
+  showOnchange: boolean = false;
+
+  constructor(
+    private profileSetService: ProfilesetService,
+
+    ) { }
 
   ngOnInit(): void {
+    this.index();
   }
+
+  index(){
+    this.profileSetService.getAllProfileSets().subscribe(response => {this.profilesets = response});
+  }
+
+  showBlock(){
+    this.showOnchange = true;
+  }
+
 
 }

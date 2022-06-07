@@ -11,6 +11,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 export class EditComponent implements OnInit {
 
   code:any;
+
   // @ts-ignore
   issuerEditForm: FormGroup;
 
@@ -23,7 +24,7 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.code = this.route.snapshot.paramMap.get("code");
+    this.code = this.route.snapshot.paramMap.get("id");
     this.initializeForm();
     this.find(this.code);
   }
@@ -44,8 +45,8 @@ export class EditComponent implements OnInit {
      this.service.findById(id).subscribe(resposne => {this.issuer = resposne});
   }
 
-  onEdit(issuerEditForm:any){
-     this.service.edit(issuerEditForm.value,this.code).subscribe(response => {console.log(response)});
+  onEdit(data:any){
+     this.service.edit(data.value,this.code).subscribe(response => {console.log(response)});
   }
 
 }
