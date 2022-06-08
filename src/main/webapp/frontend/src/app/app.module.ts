@@ -17,6 +17,13 @@ import {RuleEditComponent} from './rule/rule-edit/rule-edit.component';
 import {RuleConditionComponent} from './rulecondition/rule-condition.component';
 import {ConditionEditComponent} from './rulecondition/conditionedit/condition-edit.component';
 import {ConditionDeleteComponent} from './rulecondition/conditiondelete/condition-delete.component';
+import { CryptoConfigComponent } from "./cryptoconfig/crypto-config.component";
+import { AuthentmeansComponent } from "./authentmeans/authentmeans.component";
+import { ProfileEditComponent } from './profiles/profile/profile-edit/profile-edit.component';
+import { ProfileDeleteComponent } from './profiles/profile/profile-delete/profile-delete.component';
+import { ProfilesetDeleteComponent } from './profiles/profileset/profileset-delete/profileset-delete.component';
+import { ProfilesetEditComponent } from './profiles/profileset/profileset-edit/profileset-edit.component';
+
 
 
 @NgModule({
@@ -33,7 +40,11 @@ import {ConditionDeleteComponent} from './rulecondition/conditiondelete/conditio
     RuleEditComponent,
     RuleConditionComponent,
     ConditionEditComponent,
-    ConditionDeleteComponent
+    ConditionDeleteComponent,
+    CryptoConfigComponent,
+    AuthentmeansComponent,
+    routesList
+
   ],
   imports: [
     AppRoutingModule,
