@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {IssuerComponent} from "./issuer/issuer.component";
-import {EditComponent} from "./issuer/id/edit/edit.component";
-import {DeleteComponent} from "./issuer/id/delete/delete.component";
 import {CryptoConfigComponent} from "./cryptoconfig/crypto-config.component";
 import {AuthentmeansComponent} from "./authentmeans/authentmeans.component";
 import {ProfileComponent} from './profiles/profile/profile.component';
@@ -28,8 +26,6 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'profileset', component: ProfilesetComponent},
   {path: 'subissuer', component: SubIssuerComponent},
-  {path: 'issuer/:code/edit', component: EditComponent},
-  {path: 'issuer/:code/delete', component: DeleteComponent},
   {path: 'crypto', component: CryptoConfigComponent},
   {path: 'authent', component: AuthentmeansComponent},
   {path: '', component: IssuerComponent},
@@ -53,7 +49,7 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const routesList = [IssuerComponent, EditComponent, DeleteComponent, ProfileComponent, ProfilesetComponent,
+export const routesList = [IssuerComponent,  ProfileComponent, ProfilesetComponent,
   CryptoConfigComponent, AuthentmeansComponent,
   SubIssuerComponent, EditsubissuerComponent, DeletesubissuerComponent,
   ImageComponent, EditimageComponent, DeleteImageComponent,
