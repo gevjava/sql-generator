@@ -17,6 +17,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">UpdateState</th>
                     <th scope="col">OrderRule</th>
+                    <th scope="col">Profile</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -35,16 +36,25 @@
                     </td>
                     <td>
                       <div class="form-group">
-                        <select class="form-select" type="text" formControlName="updateState">
+                        <select class="form-select" type="text" formControlName="updateState" name="updateState">
                           <option selected></option>
-                          <option value="1">PUSHED_TO_CONFIG</option>
-                          <option value="2">WAITING_FOR_PUSH</option>
-                          <option value="3">WAITING_VALIDATION</option>
+                          <option value="0">PUSHED_TO_CONFIG</option>
+                          <option value="1">WAITING_FOR_PUSH</option>
+                          <option value="2">WAITING_VALIDATION</option>
                         </select>
                       </div>
                     </td>
                     <td>
                       <input class="form-control" type="number" formControlName="orderRule" name="orderRule">
+                    </td>
+                    <td>
+                      <div class="form-group col-md-4">
+                        <select id="transaction-profile-id"
+                                class="form-select" title="Choose an issuer code" formControlName="profile_id" name="profile_id" style="">
+                          <option label="* - All" value="" selected="selected">* - All</option>
+                          <option *ngFor="let profile of profiles;" value="{{ profile.id }}">{{ profile.name }}</option>
+                        </select>
+                      </div>
                     </td>
                   </tr>
                   </tbody>
@@ -90,8 +100,8 @@
             <td>{{ rule.name }}</td>
             <td>{{ rule.updateState }}</td>
             <div class="form-group">
-              <a routerLink="/rule/edit/{{ rule.id }}" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-pencil-square-o"></i></a>
-              <a routerLink="/rule/delete/{{ rule.id }}" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-trash-o"></i></a>
+              <a routerLink="/rule/edit/{{ rule.id }}"  class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-pencil-square-o"></i></a>
+              <a routerLink="/rule/delete/{{ rule.id }}/{{ rule.profile['id'] }}" class="btn btn-outline-primary" style="border: none;"><i style="font-size: 2rem; " class="fa fa-trash-o"></i></a>
             </div>
           </tr>
           </tbody>

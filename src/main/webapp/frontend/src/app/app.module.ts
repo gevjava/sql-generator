@@ -19,11 +19,6 @@ import {ConditionEditComponent} from './rulecondition/conditionedit/condition-ed
 import {ConditionDeleteComponent} from './rulecondition/conditiondelete/condition-delete.component';
 import { CryptoConfigComponent } from "./cryptoconfig/crypto-config.component";
 import { AuthentmeansComponent } from "./authentmeans/authentmeans.component";
-import { ProfileEditComponent } from './profiles/profile/profile-edit/profile-edit.component';
-import { ProfileDeleteComponent } from './profiles/profile/profile-delete/profile-delete.component';
-import { ProfilesetDeleteComponent } from './profiles/profileset/profileset-delete/profileset-delete.component';
-import { ProfilesetEditComponent } from './profiles/profileset/profileset-edit/profileset-edit.component';
-
 
 
 @NgModule({
@@ -44,8 +39,8 @@ import { ProfilesetEditComponent } from './profiles/profileset/profileset-edit/p
     CryptoConfigComponent,
     AuthentmeansComponent,
     routesList
-
   ],
+
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -57,6 +52,7 @@ import { ProfilesetEditComponent } from './profiles/profileset/profileset-edit/p
     FormsModule,
     ReactiveFormsModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -18,6 +18,7 @@ public class RuleDTO {
     private Instant lastUpdateDate;
     private EntityData.UpdateState updateState;
     private Profile profile;
+    private Long profile_id;
 
     public Long getId() {
         return id;
@@ -90,4 +91,29 @@ public class RuleDTO {
     public Profile getProfile() { return profile; }
 
     public void setProfile(Profile profile) { this.profile = profile; }
+
+    public Long getProfile_id() {
+        return profile_id;
+    }
+
+    public void setProfile_id(Long profile_id) {
+        this.profile_id = profile_id;
+    }
+
+    @Override
+    public String toString() {
+        return "RuleDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", orderRule=" + orderRule +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastUpdateBy='" + lastUpdateBy + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", updateState=" + updateState +
+                ", profile=" + profile +
+                ", profileId=" + profile_id +
+                '}';
+    }
 }

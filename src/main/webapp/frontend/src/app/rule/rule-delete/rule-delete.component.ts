@@ -15,15 +15,19 @@ export class RuleDeleteComponent implements OnInit {
   rule: any;
   filename: string = "";
   ruleForm: any;
+  profile_id: any;
+
 
   constructor(
     private service: RuleDeleteService,
     private router: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+
   ) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.paramMap.get("id");
+    this.profile_id = this.router.snapshot.paramMap.get("profile_id");
     this.getById(this.id);
     this.initializeForm();
   }
@@ -31,7 +35,7 @@ export class RuleDeleteComponent implements OnInit {
   deleteRule(){
     console.log(this.rule);
     let ruleData = this.ruleForm.value;
-    this.service.deleteRule(ruleData, this.id).subscribe(response =>{
+    this.service.deleteRule(ruleData, this.id, this.profile_id).subscribe(response =>{
       this.filename = response
     })
   }

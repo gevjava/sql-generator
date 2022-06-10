@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RuleService} from "./rule.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from "file-saver";
+import {ProfileService} from "../profiles/profile/profile.service";
 
 @Component({
   selector: 'app-rule',
@@ -12,13 +13,19 @@ export class RuleComponent implements OnInit {
 
   rules: any;
   ruleForm: any;
+  profiles: any = [];
   filename: string = "";
 
-  constructor(private ruleService: RuleService, private formBuilder: FormBuilder) { }
+
+  constructor( private ruleService: RuleService,
+               private formBuilder: FormBuilder,
+               private profileService: ProfileService
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.getAllRules();
+    this.index();
   }
 
   sendRuleData() {
@@ -38,7 +45,8 @@ export class RuleComponent implements OnInit {
       lastUpdateBy: ['', Validators.required],
       name: ['', Validators.required],
       updateState: ['', Validators.required],
-      orderRule: ['', Validators.required]
+      orderRule: ['', Validators.required],
+      profile_id: ['', Validators.required]
     });
   }
 
@@ -53,4 +61,7 @@ export class RuleComponent implements OnInit {
     this.ruleService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
 
+  index(){
+    this.profileService.getAllProfiles().subscribe(response => {this.profiles = response});
+  }
 }

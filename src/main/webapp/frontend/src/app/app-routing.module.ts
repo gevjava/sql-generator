@@ -25,49 +25,50 @@ import { ProfilesetEditComponent } from './profiles/profileset/profileset-edit/p
 import { ProfilesetDeleteComponent } from './profiles/profileset/profileset-delete/profileset-delete.component';
 
 const routes: Routes = [
+  {path: '', component: IssuerComponent},
+  {path: 'issuer/:id/edit', component: EditComponent },
+  {path: 'issuer/:id/delete', component: DeleteComponent },
+  {path: '', component: SubIssuerComponent},
   {path: 'image', component: ImageComponent},
   {path: 'image/edit/:id', component: EditimageComponent},
   {path: 'image/delete/:id', component: DeleteImageComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:id/edit', component: ProfileEditComponent },
+  {path: 'profile/:id/delete', component: ProfileDeleteComponent },
   {path: 'profileset', component: ProfilesetComponent},
+  {path: 'profileset/:id/edit', component: ProfilesetEditComponent },
+  {path: 'profileset/:id/delete', component: ProfilesetDeleteComponent },
   {path: 'subissuer', component: SubIssuerComponent},
-  {path: 'crypto', component: CryptoConfigComponent},
-  {path: 'authent', component: AuthentmeansComponent},
-  {path: '', component: IssuerComponent},
-  {path: '', component: SubIssuerComponent},
   {path: 'subissuer/:code/edit', component: EditsubissuerComponent},
   {path: 'subissuer/:code/delete', component: DeletesubissuerComponent},
+  {path: 'crypto', component: CryptoConfigComponent},
+  {path: 'authent', component: AuthentmeansComponent},
   {path: 'rule', component: RuleComponent},
-  {path: 'rule/delete/:id', component: RuleDeleteComponent},
+  {path: 'rule/delete/:id/:profile_id', component: RuleDeleteComponent},
   {path: 'rule/edit/:id', component: RuleEditComponent},
   {path: 'condition', component: RuleConditionComponent},
   {path: 'condition/delete/:id', component: ConditionDeleteComponent},
   {path: 'condition/edit/:id', component: ConditionEditComponent},
-  { path: 'profile/:id/edit', component: ProfileEditComponent },
-  { path: 'profile/:id/delete', component: ProfileDeleteComponent },
-  { path: 'profileset/:id/edit', component: ProfilesetEditComponent },
-  { path: 'profileset/:id/delete', component: ProfilesetDeleteComponent },
-  { path: 'issuer/:id/edit', component: EditComponent },
-  { path: 'issuer/:id/delete', component: DeleteComponent },
-  { path: '', component: IssuerComponent },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 }
 
-export const routesList = [IssuerComponent, EditComponent, DeleteComponent,
-  ProfileComponent, ProfilesetComponent,
+export const routesList = [
+  IssuerComponent, EditComponent, DeleteComponent,
   CryptoConfigComponent, AuthentmeansComponent,
   SubIssuerComponent, EditsubissuerComponent, DeletesubissuerComponent,
   ImageComponent, EditimageComponent, DeleteImageComponent,
   RuleComponent, RuleDeleteComponent,RuleEditComponent,
   RuleConditionComponent, ConditionDeleteComponent, ConditionEditComponent,
-  ProfileEditComponent, ProfileDeleteComponent,
-  ProfilesetEditComponent, ProfilesetDeleteComponent
+  ProfileComponent,ProfileEditComponent, ProfileDeleteComponent,
+  ProfilesetComponent,ProfilesetEditComponent, ProfilesetDeleteComponent
 ];
 
 
