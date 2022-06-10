@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
@@ -44,8 +46,8 @@ public class RuleEntity {
     private Integer orderRule;
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_profile", referencedColumnName = "id", updatable = false)
-    @JsonIgnore
     private Profile profile;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rule")

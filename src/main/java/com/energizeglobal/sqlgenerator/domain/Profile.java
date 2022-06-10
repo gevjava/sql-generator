@@ -1,14 +1,12 @@
 package com.energizeglobal.sqlgenerator.domain;
 
 import com.energizeglobal.sqlgenerator.enums.UpdateState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "profile")
@@ -59,10 +57,6 @@ public class Profile {
     @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "fk_id_subIssuer", referencedColumnName = "id")
     private SubIssuer subIssuer;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profile")
-    @JsonIgnore
-    private List<RuleEntity> rules = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -168,11 +162,4 @@ public class Profile {
         this.subIssuer = subIssuer;
     }
 
-    public List<RuleEntity> getRules() {
-        return rules;
-    }
-
-    public void setRules(List<RuleEntity> rules) {
-        this.rules = rules;
-    }
 }

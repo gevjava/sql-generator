@@ -9,5 +9,6 @@ export interface Rule {
   name: string;
   updateState: any;
   orderRule: number;
+  profile_id: number;
 
 }

@@ -3,13 +3,35 @@ package com.energizeglobal.sqlgenerator.mapper;
 import com.energizeglobal.sqlgenerator.domain.Profile;
 import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleDTO;
+import com.energizeglobal.sqlgenerator.service.RuleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RuleMapper {
-    public static RuleEntity dtoToEntity(RuleDTO ruleDto) {
+
+
+    public RuleEntity dtoToEntity(RuleDTO ruleDto) {
 
         RuleEntity ruleEntity = new RuleEntity();
-        Profile profile = new Profile();
-        profile.setId(175L);
+
+        ruleEntity.setId(ruleDto.getId());
+        ruleEntity.setName(ruleDto.getName());
+        ruleEntity.setOrderRule(ruleDto.getOrderRule());
+        ruleEntity.setCreatedBy(ruleDto.getCreatedBy());
+        ruleEntity.setLastUpdateBy(ruleDto.getLastUpdateBy());
+        ruleEntity.setDescription(ruleDto.getDescription());
+        ruleEntity.setLastUpdateDate(ruleDto.getLastUpdateDate());
+        ruleEntity.setUpdateState(ruleDto.getUpdateState());
+        ruleEntity.setCreationDate(ruleDto.getCreationDate());
+
+
+        return ruleEntity;
+    }
+
+    public static RuleEntity dtoToEntity(RuleDTO ruleDto,Profile profile) {
+
+        RuleEntity ruleEntity = new RuleEntity();
 
         ruleEntity.setId(ruleDto.getId());
         ruleEntity.setName(ruleDto.getName());

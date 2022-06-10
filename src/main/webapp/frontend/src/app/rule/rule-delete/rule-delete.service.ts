@@ -8,8 +8,9 @@ export class RuleDeleteService {
 
   constructor(private http: HttpClient) { }
 
-  deleteRule(rule: any , id: number){
-    return this.http.delete('/rule/' + id, {responseType: 'text'});
+  deleteRule(rule: any , id: number, profile_id: number){
+    return this.http.delete('/rule/' + id + '/' + profile_id, {responseType: 'text'});
+
   }
 
   downloadSqlFile(filename: String) {

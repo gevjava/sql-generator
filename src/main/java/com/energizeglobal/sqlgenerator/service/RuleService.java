@@ -1,8 +1,10 @@
 package com.energizeglobal.sqlgenerator.service;
 
+import com.energizeglobal.sqlgenerator.domain.Profile;
 import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleDTO;
 import com.energizeglobal.sqlgenerator.mapper.RuleMapper;
+import com.energizeglobal.sqlgenerator.repository.ProfileRepository;
 import com.energizeglobal.sqlgenerator.repository.RuleRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -27,6 +29,8 @@ public class RuleService {
 
     private Boolean dbAction = false;
     private final RuleRepository ruleRepository;
+    ProfileRepository profileRepository;
+    RuleMapper ruleMapper;
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
     private String MAIN_FILE_NAME = "rule.sql";
@@ -35,8 +39,10 @@ public class RuleService {
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
     String thisMomentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
 
-    public RuleService(RuleRepository ruleRepository) {
+    public RuleService(RuleRepository ruleRepository, RuleMapper ruleMapper, ProfileRepository profileRepository) {
         this.ruleRepository = ruleRepository;
+        this.ruleMapper = ruleMapper;
+        this.profileRepository = profileRepository;
     }
 
     @Transactional(readOnly = true)
@@ -54,7 +60,8 @@ public class RuleService {
     @Transactional
     public String generateInsertSqlScript(RuleDTO ruleDto) {
 
-        RuleEntity ruleEntity = RuleMapper.dtoToEntity(ruleDto);
+        Profile profile =  profileRepository.getById(ruleDto.getProfile_id());
+        RuleEntity ruleEntity = ruleMapper.dtoToEntity(ruleDto , profile);
         ruleEntity.setCreationDate(Instant.now());
 
         String queryType = "INSERT INTO rule  ( " +
@@ -65,7 +72,8 @@ public class RuleService {
                 "lastUpdateDate, " +
                 "name, " +
                 "updateState, " +
-                "orderRule )";
+                "orderRule, " +
+                "fk_id_profile )";
 
         String queryValue = " \n" +
                 "VALUES (" + " '" +
@@ -76,7 +84,8 @@ public class RuleService {
                 thisMomentTime + "', '" +
                 ruleEntity.getName() + "', '" +
                 ruleEntity.getUpdateState() + "', " +
-                ruleEntity.getOrderRule() + ");";
+                ruleEntity.getOrderRule() + ", " +
+                ruleDto.getProfile_id() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -108,7 +117,7 @@ public class RuleService {
     public String generateUpdateSqlScript(RuleDTO ruleDto) {
         ruleDto.setLastUpdateDate(Instant.now());
         RuleEntity oldRule = ruleRepository.getById(ruleDto.getId());
-        RuleEntity newRule = RuleMapper.dtoToEntity(ruleDto);
+        RuleEntity newRule = ruleMapper.dtoToEntity(ruleDto);
 
         String queryUpdate = "UPDATE rule SET " +
                 "createdBy = '" + ruleDto.getCreatedBy() + "', " +
@@ -150,7 +159,7 @@ public class RuleService {
     }
 
     @Transactional
-    public String generateDeleteSqlScript(Long id) {
+    public String generateDeleteSqlScript(Long id , Long profile_id) {
 
         RuleDTO rule = findById(id);
 
@@ -162,7 +171,7 @@ public class RuleService {
                 "COMMIT;";
         pathGenerator(deleteQuery, mainPath);
 
-        generateSqlScriptForDeleteRollback(rule);
+        generateSqlScriptForDeleteRollback(rule, profile_id);
 
         if (dbAction)
             ruleRepository.deleteById(id);
@@ -170,7 +179,7 @@ public class RuleService {
         return MAIN_FILE_NAME;
     }
 
-    public String generateSqlScriptForDeleteRollback(RuleDTO rule) {
+    public String generateSqlScriptForDeleteRollback(RuleDTO rule, Long profile_id) {
 
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
@@ -180,7 +189,8 @@ public class RuleService {
                 "lastUpdateDate, " +
                 "name, " +
                 "updateState, " +
-                "orderRule )";
+                "orderRule, " +
+                "fk_id_profile  )";
 
         String queryValue = " \n" +
                 " VALUES (" + " '" +
@@ -191,7 +201,8 @@ public class RuleService {
                 rule.getName() + "', '" +
                 rule.getUpdateState() + "', '" +
                 rule.getLastUpdateDate() + "', " +
-                rule.getOrderRule() + ");";
+                rule.getOrderRule() + ", " +
+                profile_id + ");";
 
         String sqlInsert = queryType + queryValue;
 
