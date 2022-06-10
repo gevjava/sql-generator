@@ -44,10 +44,11 @@ public class RuleController {
         return ResponseEntity.ok(filename);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id) {
-        String filename = ruleService.generateDeleteSqlScript(id);
+    @DeleteMapping("/{id}/{profile_id}")
+    public ResponseEntity deleteById(@PathVariable Long id, @PathVariable Long profile_id) {
+        String filename = ruleService.generateDeleteSqlScript(id, profile_id);
         return ResponseEntity.ok(filename);
+
     }
 
     @GetMapping("/script/download/{filename}")

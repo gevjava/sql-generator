@@ -99,7 +99,6 @@ public class RuleService {
         return MAIN_FILE_NAME;
     }
 
-
     public String generateSqlScriptForInsertRollback(Long id) {
 
         String deleteQuery = "\n" +
@@ -180,7 +179,6 @@ public class RuleService {
         return MAIN_FILE_NAME;
     }
 
-    //todo
     public String generateSqlScriptForDeleteRollback(RuleDTO rule, Long profile_id) {
 
         String queryType = "INSERT INTO rule  ( " +

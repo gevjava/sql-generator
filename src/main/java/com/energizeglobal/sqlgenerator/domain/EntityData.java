@@ -31,9 +31,9 @@ public class EntityData {
     private String lastUpdateBy;
 
     public enum UpdateState {
-        WAITING_VALIDATION,
         PUSHED_TO_CONFIG,
-        WAITING_FOR_PUSH
+        WAITING_FOR_PUSH,
+        WAITING_VALIDATION
     }
 
     public String getName() {
