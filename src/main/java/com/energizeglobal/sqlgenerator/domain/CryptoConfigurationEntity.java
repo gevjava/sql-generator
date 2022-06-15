@@ -2,8 +2,6 @@ package com.energizeglobal.sqlgenerator.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.context.annotation.Lazy;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,12 +25,6 @@ public class CryptoConfigurationEntity implements Serializable {
 
     @Column(name = "description")
     private String description;
-
-    @OneToMany(mappedBy = "cryptoConfigEntity")
-    @Lazy
-    @JsonIgnore
-    private List<SubIssuer> linkedSubIssuers = new ArrayList<>();
-
 
     @OneToMany(mappedBy = "cryptoConfigurationEntity")
     @JsonIgnore
@@ -68,14 +60,6 @@ public class CryptoConfigurationEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<SubIssuer> getLinkedSubIssuers() {
-        return linkedSubIssuers;
-    }
-
-    public void setLinkedSubIssuers(List<SubIssuer> linkedSubIssuers) {
-        this.linkedSubIssuers = linkedSubIssuers;
     }
 
     public List<BinRangeEntity> getLinkedBinRanges() {

@@ -27,7 +27,6 @@ public class SubIssuer {
 
     @ManyToOne
     @JoinColumn(name = "fk_id_cryptoConfig", referencedColumnName = "id", updatable = false)
-    @JsonIgnore
     private CryptoConfigurationEntity cryptoConfigEntity;
 
     @Column
