@@ -1,5 +1,7 @@
 package com.energizeglobal.sqlgenerator.mapper;
 
+import com.energizeglobal.sqlgenerator.domain.CryptoConfigurationEntity;
+import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 
@@ -22,6 +24,32 @@ public class SubissuerMapping {
         subIssuer.setManageBackupsCombinedAmounts(subIssuerDto.getManageBackupsCombinedAmounts());
         subIssuer.setManageChoicesCombinedAmounts(subIssuerDto.getManageChoicesCombinedAmounts());
         subIssuer.setHubMaintenanceModeEnabled(subIssuerDto.getHubMaintenanceModeEnabled());
+
+        return subIssuer;
+    }
+
+
+    public static SubIssuer dtoToEntity(SubIssuerDTO subIssuerDto, Issuer issuer, CryptoConfigurationEntity crypto) {
+
+        SubIssuer subIssuer = new SubIssuer();
+
+        subIssuer.setAcsId(subIssuerDto.getAcsId());
+        subIssuer.setAuthenticationTimeOut(subIssuerDto.getAuthenticationTimeOut());
+        subIssuer.setDefaultLanguage(subIssuerDto.getDefaultLanguage());
+        subIssuer.setCode(subIssuerDto.getCode());
+        subIssuer.setCodeSvi(subIssuerDto.getCodeSvi());
+        subIssuer.setCurrencyCode(subIssuerDto.getCurrencyCode());
+        subIssuer.setName(subIssuerDto.getName());
+        subIssuer.setLabel(subIssuerDto.getLabel());
+        subIssuer.setAuthentMeans(subIssuerDto.getAuthentMeans());
+        subIssuer.setPersonnalDataStorage(subIssuerDto.getPersonnalDataStorage());
+        subIssuer.setResetBackupsIfSuccess(subIssuerDto.getResetBackupsIfSuccess());
+        subIssuer.setResetChoicesIfSuccess(subIssuerDto.getResetChoicesIfSuccess());
+        subIssuer.setManageBackupsCombinedAmounts(subIssuerDto.getManageBackupsCombinedAmounts());
+        subIssuer.setManageChoicesCombinedAmounts(subIssuerDto.getManageChoicesCombinedAmounts());
+        subIssuer.setHubMaintenanceModeEnabled(subIssuerDto.getHubMaintenanceModeEnabled());
+        subIssuer.setIssuer(issuer);
+        subIssuer.setCryptoConfigEntity(crypto);
 
         return subIssuer;
     }

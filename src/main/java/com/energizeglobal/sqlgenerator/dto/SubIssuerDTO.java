@@ -16,6 +16,8 @@ public class SubIssuerDTO {
     Boolean manageBackupsCombinedAmounts;
     Boolean manageChoicesCombinedAmounts;
     Boolean hubMaintenanceModeEnabled;
+    private Long  issuer_id;
+    private Long cryptoConfig_id;
 
     public String getAcsId() {
         return acsId;
@@ -135,5 +137,21 @@ public class SubIssuerDTO {
 
     public void setHubMaintenanceModeEnabled(Boolean hubMaintenanceModeEnabled) {
         this.hubMaintenanceModeEnabled = hubMaintenanceModeEnabled;
+    }
+
+    public Long getIssuer_id() {
+        return issuer_id;
+    }
+
+    public void setIssuer_id(Long issuer_id) {
+        this.issuer_id = issuer_id;
+    }
+
+    public Long getCryptoConfig_id() {
+        return cryptoConfig_id;
+    }
+
+    public void setCryptoConfig_id(Long cryptoConfig_id) {
+        this.cryptoConfig_id = cryptoConfig_id;
     }
 }
