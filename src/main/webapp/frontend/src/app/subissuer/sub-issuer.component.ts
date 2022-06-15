@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SubIssuerService} from "./subIssuer.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {saveAs} from 'file-saver';
-
+import {IssuerService} from "../issuer/issuer.service";
+import {CryptoConfigService} from "../cryptoconfig/crypto-config.service";
 
 @Component({
   selector: 'app-subissuer',
@@ -14,14 +15,19 @@ export class SubIssuerComponent implements OnInit {
   subIssuers: any;
   subIssuerForm: any;
   filename: string = "";
-  filterTerm!: string;
+  issuers: any ;
+  cryptoConfigs: any ;
 
-  constructor(private subIssuerService: SubIssuerService, private formBuilder: FormBuilder) {
-  }
+  constructor(private subIssuerService: SubIssuerService,
+              private formBuilder: FormBuilder,
+              private issuerService: IssuerService,
+              private criptoService: CryptoConfigService
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.getAllSubIssuer();
+    this.index();
   }
 
   sendSubIssuerData() {
@@ -48,7 +54,9 @@ export class SubIssuerComponent implements OnInit {
       resetChoicesIfSuccess: [0, Validators.required],
       manageBackupsCombinedAmounts: [0, Validators.required],
       manageChoicesCombinedAmounts: [0, Validators.required],
-      hubMaintenanceModeEnabled: [0, Validators.required]
+      hubMaintenanceModeEnabled: [0, Validators.required],
+      issuer_id: ['', Validators.required],
+      cryptoConfig_id: ['', Validators.required]
     });
   }
 
@@ -60,6 +68,11 @@ export class SubIssuerComponent implements OnInit {
 
   downloadFile() {
     this.subIssuerService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
+  }
+
+  index(){
+    this.issuerService.getAllIssuer().subscribe(response => {this.issuers = response});
+    this.criptoService.getCryptoConfigList().subscribe(response =>{this.cryptoConfigs = response});
   }
 }
 

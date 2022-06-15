@@ -15,6 +15,8 @@ export interface Subissuer {
   manageBackupsCombinedAmounts: boolean;
   manageChoicesCombinedAmounts: boolean;
   hubMaintenanceModeEnabled: boolean;
+  issuer_id: number;
+  cryptoConfig_id: number;
 
 }
 
