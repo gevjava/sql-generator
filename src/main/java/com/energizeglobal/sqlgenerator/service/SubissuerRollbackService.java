@@ -22,7 +22,7 @@ public class SubissuerRollbackService {
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
 
 
-    public String generateSqlScriptForDeleteRollback(SubIssuerDTO dto) {
+    public String generateSqlScriptForDeleteRollback(SubIssuerDTO dto, Long issuer_id, Long crypto_id) {
 
         SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
 
@@ -41,7 +41,9 @@ public class SubissuerRollbackService {
                 "resetChoicesIfSuccess, " +
                 "manageBackupsCombinedAmounts, " +
                 "manageChoicesCombinedAmounts, " +
-                "hubMaintenanceModeEnabled )";
+                "hubMaintenanceModeEnabled, " +
+                "fk_id_issuer, " +
+                "fk_id_cryptoConfig )";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -58,7 +60,9 @@ public class SubissuerRollbackService {
                 subIssuer.isResetChoicesIfSuccess() + ", " +
                 subIssuer.isManageBackupsCombinedAmounts() + ", " +
                 subIssuer.isManageChoicesCombinedAmounts() + ", " +
-                subIssuer.isHubMaintenanceModeEnabled() + ");";
+                subIssuer.isHubMaintenanceModeEnabled() + ", " +
+                issuer_id + ", " +
+                crypto_id + ");";
 
         String sqlInsert = queryType + queryValue;
 

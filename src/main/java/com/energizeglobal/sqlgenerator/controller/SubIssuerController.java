@@ -48,9 +48,9 @@ public class SubIssuerController {
         return ResponseEntity.ok(filename);
     }
 
-    @DeleteMapping("/{code}")
-    public ResponseEntity deleteByCode(@PathVariable("code") String code) {
-        String filename = subIssuerService.generateDeleteSqlScript(code);
+    @DeleteMapping("/{code}/{issuer_id}/{crypto_id}")
+    public ResponseEntity deleteByCode(@PathVariable String code, @PathVariable Long issuer_id, @PathVariable Long crypto_id) {
+        String filename = subIssuerService.generateDeleteSqlScript(code, issuer_id, crypto_id);
         return ResponseEntity.ok(filename);
     }
 
