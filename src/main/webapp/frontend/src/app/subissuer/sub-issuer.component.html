@@ -11,9 +11,6 @@
           <div class="card-body">
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename">
-                <div class="col">
-                  <button class="btn btn-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
-                </div>
               </div>
               <form [formGroup]="subIssuerForm" (ngSubmit)="sendSubIssuerData()">
                 <fieldset>
@@ -51,11 +48,13 @@
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="authentMeans">AuthentMeans</label>
-                      <input name="authentMeans" class="form-control input-sm" id="authentMeans" type="text" formControlName="authentMeans">
+                      <input name="authentMeans" class="form-control input-sm" id="authentMeans" type="text"
+                             formControlName="authentMeans">
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="defaultLanguage">Language</label>
-                      <input name="defaultLanguage" class="form-control input-sm" id="defaultLanguage" type="text" formControlName="defaultLanguage">
+                      <input name="defaultLanguage" class="form-control input-sm" id="defaultLanguage" type="text"
+                             formControlName="defaultLanguage">
                     </div>
                   </div>
                   <div class="row">
@@ -71,17 +70,20 @@
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="codeSvi">CodeSvi</label>
-                      <input name="codeSvi" class="form-control input-sm" id="codeSvi" type="number" formControlName="codeSvi">
+                      <input name="codeSvi" class="form-control input-sm" id="codeSvi" type="number"
+                             formControlName="codeSvi">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="currencyCode">CurrencyCode</label>
-                      <input name="currencyCode" class="form-control input-sm" id="currencyCode" type="number" formControlName="currencyCode">
+                      <input name="currencyCode" class="form-control input-sm" id="currencyCode" type="number"
+                             formControlName="currencyCode">
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="authenticationTimeOut">AuthenticationTimeOut</label>
-                      <input name="authenticationTimeOut" class="form-control input-sm" id="authenticationTimeOut" type="number" formControlName="authenticationTimeOut">
+                      <input name="authenticationTimeOut" class="form-control input-sm" id="authenticationTimeOut"
+                             type="number" formControlName="authenticationTimeOut">
                     </div>
                   </div>
                 </fieldset>
@@ -92,7 +94,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage" id="personnalDataStorage">
+                            <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage"
+                                   id="personnalDataStorage">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="personnalDataStorage">PersonalDataStorage</label>
                         </div>
@@ -102,7 +105,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess" id="resetBackupsIfSuccess">
+                            <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess"
+                                   id="resetBackupsIfSuccess">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
                         </div>
@@ -112,7 +116,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess" id="resetChoicesIfSuccess">
+                            <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess"
+                                   id="resetChoicesIfSuccess">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
                         </div>
@@ -124,7 +129,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
+                            <input class="form-check-input" type="checkbox"
+                                   formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
                         </div>
@@ -134,7 +140,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
+                            <input class="form-check-input" type="checkbox"
+                                   formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
                         </div>
@@ -144,7 +151,8 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled" id="hubMaintenanceModeEnabled">
+                            <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled"
+                                   id="hubMaintenanceModeEnabled">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
                         </div>
@@ -154,7 +162,15 @@
                   </thead>
                 </table>
                 <div class="form-group">
-                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL</button>
+                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate
+                    SQL
+                  </button>
+                  <div class="row  text-center" *ngIf="filename">
+                    <div class="col"><br>
+                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                        - {{filename}}</button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
@@ -177,54 +193,20 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">AcsId</th>
-            <th scope="col">Authentication
-              Time
-              Out
-            </th>
-            <th scope="col">Default
-              Language
-            </th>
+            <th scope="col">Authentication Time Out</th>
+            <th scope="col">Default Language</th>
             <th scope="col">Code</th>
             <th scope="col">CodeSvi</th>
             <th scope="col">CurrencyCode</th>
             <th scope="col">Name</th>
             <th scope="col">Label</th>
             <th scope="col">AuthentMeans</th>
-            <th scope="col">
-              Personal
-              Data
-              Storage
-            </th>
-            <th scope="col">
-              Reset
-              Backups
-              If
-              Success
-            </th>
-            <th scope="col">
-              Reset
-              Choices
-              If
-              Success
-            </th>
-            <th scope="col">
-              Manage
-              Backups
-              Combined
-              Amounts
-            </th>
-            <th scope="col">
-              Manage
-              Choices
-              Combined
-              Amounts
-            </th>
-            <th scope="col">
-              Hub
-              Maintenance
-              Mode
-              Enabled
-            </th>
+            <th scope="col">Personal Data Storage</th>
+            <th scope="col">Reset Backups If Success</th>
+            <th scope="col">Reset Choices If Success</th>
+            <th scope="col">Manage Backups Combined Amounts</th>
+            <th scope="col">Manage Choices Combined Amounts</th>
+            <th scope="col">Hub Maintenance Mode Enabled</th>
           </tr>
           </thead>
           <tbody>
