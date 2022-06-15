@@ -4,11 +4,10 @@
       <div class="col">
 
         <div class="card">
-          <div class="center-pill text-center"
-               style="border: 1px solid white; background-color: white ; padding-top: 10px; ">
-            <h3 style="color: #337ab7">Insert Subissuer</h3>
-          </div>
           <div class="card-body">
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7">Insert Subissuer</h3>
+            </div>
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename">
               </div>
@@ -161,7 +160,7 @@
                   </tr>
                   </thead>
                 </table>
-                <div class="form-group">
+                <div class="form-group text-center">
                   <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate
                     SQL
                   </button>
