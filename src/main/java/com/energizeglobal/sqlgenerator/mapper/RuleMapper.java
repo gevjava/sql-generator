@@ -25,7 +25,6 @@ public class RuleMapper {
         ruleEntity.setUpdateState(ruleDto.getUpdateState());
         ruleEntity.setCreationDate(ruleDto.getCreationDate());
 
-
         return ruleEntity;
     }
 

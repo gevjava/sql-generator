@@ -100,20 +100,4 @@ public class RuleDTO {
         this.profile_id = profile_id;
     }
 
-    @Override
-    public String toString() {
-        return "RuleDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", orderRule=" + orderRule +
-                ", createdBy='" + createdBy + '\'' +
-                ", lastUpdateBy='" + lastUpdateBy + '\'' +
-                ", description='" + description + '\'' +
-                ", creationDate=" + creationDate +
-                ", lastUpdateDate=" + lastUpdateDate +
-                ", updateState=" + updateState +
-                ", profile=" + profile +
-                ", profileId=" + profile_id +
-                '}';
-    }
 }

@@ -75,7 +75,9 @@ public class SubIssuerService {
                 "resetChoicesIfSuccess, " +
                 "manageBackupsCombinedAmounts, " +
                 "manageChoicesCombinedAmounts, " +
-                "hubMaintenanceModeEnabled )";
+                "hubMaintenanceModeEnabled, " +
+                "fk_id_issuer, " +
+                "fk_id_cryptoConfig)";
 
         String queryValue = "  VALUES ('" +
                 subIssuer.getAcsId() + "', " +
@@ -92,7 +94,9 @@ public class SubIssuerService {
                 subIssuer.getResetChoicesIfSuccess() + ", " +
                 subIssuer.getManageBackupsCombinedAmounts() + ", " +
                 subIssuer.getManageChoicesCombinedAmounts() + ", " +
-                subIssuer.getHubMaintenanceModeEnabled() + ");";
+                subIssuer.getHubMaintenanceModeEnabled() + ", " +
+                dto.getIssuer_id() + ", " +
+                dto.getCryptoConfig_id() + ");";
 
         String sqlInsert = queryType + queryValue;
 
@@ -139,7 +143,7 @@ public class SubIssuerService {
     }
 
     @Transactional
-    public String generateDeleteSqlScript(String code) {
+    public String generateDeleteSqlScript(String code, Long issuer_id, Long cripto_id) {
 
         SubIssuerDTO oldSubIssuer = findByCode(code);
 
@@ -151,7 +155,7 @@ public class SubIssuerService {
                 "COMMIT;";
         insertPathGenerator(deleteQuery);
 
-        rollbackService.generateSqlScriptForDeleteRollback(oldSubIssuer);
+        rollbackService.generateSqlScriptForDeleteRollback(oldSubIssuer, issuer_id, cripto_id);
 
         if (dbAction)
             subIssuerRepository.deleteByCode(code);

@@ -9,7 +9,7 @@ import {ProfileComponent} from './profiles/profile/profile.component';
 import {ProfilesetComponent} from './profiles/profileset/profileset.component';
 import {SubIssuerComponent} from "./subissuer/sub-issuer.component";
 import {EditsubissuerComponent} from "./subissuer/edit/editsubissuer.component";
-import {DeletesubissuerComponent} from "./subissuer/delete/deletesubissuer.component";
+import {DeleteSubissuerComponent} from "./subissuer/delete/delete-subissuer.component";
 import {ImageComponent} from "./image/image.component";
 import {EditimageComponent} from "./image/edit/editimage.component";
 import {DeleteImageComponent} from "./image/delete/delete-image.component";
@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'profileset/:id/delete', component: ProfilesetDeleteComponent },
   {path: 'subissuer', component: SubIssuerComponent},
   {path: 'subissuer/:code/edit', component: EditsubissuerComponent},
-  {path: 'subissuer/:code/delete', component: DeletesubissuerComponent},
+  {path: 'subissuer/:code/:issuer_id/:crypto_id/delete', component: DeleteSubissuerComponent},
   {path: 'crypto', component: CryptoConfigComponent},
   {path: 'authent', component: AuthentmeansComponent},
   {path: 'rule', component: RuleComponent},
@@ -63,7 +63,7 @@ export class AppRoutingModule {
 export const routesList = [
   IssuerComponent, EditComponent, DeleteComponent,
   CryptoConfigComponent, AuthentmeansComponent,
-  SubIssuerComponent, EditsubissuerComponent, DeletesubissuerComponent,
+  SubIssuerComponent, EditsubissuerComponent, DeleteSubissuerComponent,
   ImageComponent, EditimageComponent, DeleteImageComponent,
   RuleComponent, RuleDeleteComponent,RuleEditComponent,
   RuleConditionComponent, ConditionDeleteComponent, ConditionEditComponent,

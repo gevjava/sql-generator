@@ -9,8 +9,8 @@ export class DeleteService {
   constructor(private http: HttpClient) {
   }
 
-  deleteSubissuer(subissuer: any, code: any) {
-    return this.http.delete("/subissuer/" + code, {responseType: 'text'});
+  deleteSubissuer(subissuer: any, code: any, issuer_id: number, crypto_id: number) {
+    return this.http.delete("/subissuer/" + code + '/' + issuer_id + '/' + crypto_id, {responseType: 'text'});
   }
 
   downloadSqlFile(filename: String) {

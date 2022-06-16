@@ -23,15 +23,14 @@
                     <span style="font-size: 36px;" class="material-icons">dangerous</span>
                     <hr>
                     <h4 class="alert-heading">Dangerous message</h4>
-                    <p>This action can change your table structure. Please be aware.</p>
+                    <p>This action can change your Subissuer table structure. Please be aware.</p>
                     <hr>
                     <div class="form-group">
                       <button type="button" class="btn btn-outline-danger">Delete</button>
                     </div>
                     <div class="row  text-center" *ngIf="filename">
-                      <div class="col">
-                        <button class="btn btn-success" type="button" (click)="downloadFile()">Download
-                          - {{filename}}</button>
+                      <div class="col"> <br>
+                        <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download - {{filename}}</button>
                       </div>
                     </div>
                   </div>

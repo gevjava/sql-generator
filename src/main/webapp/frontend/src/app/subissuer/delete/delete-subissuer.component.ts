@@ -9,12 +9,14 @@ import {FormBuilder, Validators} from "@angular/forms";
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.css']
 })
-export class DeletesubissuerComponent implements OnInit {
+export class DeleteSubissuerComponent implements OnInit {
 
   code: any;
   subIssuer: any;
   filename: string = "";
   subIssuerForm: any;
+  issuer_id: any;
+  crypto_id: any;
 
   constructor(
     private service: DeleteService,
@@ -25,6 +27,8 @@ export class DeletesubissuerComponent implements OnInit {
 
   ngOnInit(): void {
     this.code = this.router.snapshot.paramMap.get("code");
+    this.issuer_id = this.router.snapshot.paramMap.get("issuer_id");
+    this.crypto_id = this.router.snapshot.paramMap.get("crypto_id")
     this.initializeForm();
     this.getByCode(this.code);
   }
@@ -32,7 +36,7 @@ export class DeletesubissuerComponent implements OnInit {
   delete() {
     console.log(this.subIssuerForm);
     let subIssuerData = this.subIssuerForm.value;
-    this.service.deleteSubissuer(subIssuerData, this.code).subscribe(response => {
+    this.service.deleteSubissuer(subIssuerData, this.code, this.issuer_id, this.crypto_id).subscribe(response => {
       this.filename = response;
     });
   }
