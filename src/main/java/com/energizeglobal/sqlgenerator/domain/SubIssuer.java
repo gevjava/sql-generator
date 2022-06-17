@@ -18,7 +18,7 @@ public class SubIssuer {
     @Column(name = "code", unique = true)
     private String code;
 
-    @Column(name = "authentMeans")
+    @Column(name = "subIssuer")
     private String authentMeans;
 
     @ManyToOne

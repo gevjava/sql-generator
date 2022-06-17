@@ -2,11 +2,10 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-
         <div class="card">
           <div class="card-body">
             <div class="center-pill text-center">
-              <h3 style="color: #337ab7">Insert Subissuer</h3>
+              <h2 style="color: #337ab7">Insert Subissuer</h2>
             </div>
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename">
@@ -16,21 +15,16 @@
                   <div class="row">
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="transaction-issuer_id">Issuer</label>
-                      <select id="transaction-issuer_id"
-                              class="form-select" title="Choose an issuer code" formControlName="issuer_id"
-                              name="issuer_id" style="">
+                      <select id="transaction-issuer_id" class="form-select" title="Choose an issuer code" formControlName="issuer_id" name="issuer_id" style="">
                         <option label="* - Select" value="" selected="selected">* - Select</option>
                         <option *ngFor="let issuer of issuers;" value="{{ issuer.id }}">{{ issuer.name }}</option>
                       </select>
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label class="control-label ng-scope">CryptoConfig</label>
-                      <select id="transaction-profile-id"
-                              class="form-select" title="Choose an cryptoConfig code"
-                              formControlName="cryptoConfig_id" name="cryptoConfig_id" style="">
+                      <select id="transaction-profile-id" class="form-select" title="Choose an cryptoConfig code" formControlName="cryptoConfig_id" name="cryptoConfig_id" style="">
                         <option label="* - Select" value="" selected="selected">* - Select</option>
-                        <option *ngFor="let crypto of cryptoConfigs;"
-                                value="{{ crypto.id }}">{{ crypto.description }}</option>
+                        <option *ngFor="let crypto of cryptoConfigs;" value="{{ crypto.id }}">{{ crypto.description }}</option>
                       </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -47,13 +41,11 @@
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="authentMeans">AuthentMeans</label>
-                      <input name="authentMeans" class="form-control input-sm" id="authentMeans" type="text"
-                             formControlName="authentMeans">
+                      <input name="authentMeans" class="form-control input-sm" id="authentMeans" type="text" formControlName="authentMeans">
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="defaultLanguage">Language</label>
-                      <input name="defaultLanguage" class="form-control input-sm" id="defaultLanguage" type="text"
-                             formControlName="defaultLanguage">
+                      <input name="defaultLanguage" class="form-control input-sm" id="defaultLanguage" type="text" formControlName="defaultLanguage">
                     </div>
                   </div>
                   <div class="row">
@@ -69,20 +61,17 @@
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="codeSvi">CodeSvi</label>
-                      <input name="codeSvi" class="form-control input-sm" id="codeSvi" type="number"
-                             formControlName="codeSvi">
+                      <input name="codeSvi" class="form-control input-sm" id="codeSvi" type="number" formControlName="codeSvi">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="currencyCode">CurrencyCode</label>
-                      <input name="currencyCode" class="form-control input-sm" id="currencyCode" type="number"
-                             formControlName="currencyCode">
+                      <input name="currencyCode" class="form-control input-sm" id="currencyCode" type="number" formControlName="currencyCode">
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="authenticationTimeOut">AuthenticationTimeOut</label>
-                      <input name="authenticationTimeOut" class="form-control input-sm" id="authenticationTimeOut"
-                             type="number" formControlName="authenticationTimeOut">
+                      <input name="authenticationTimeOut" class="form-control input-sm" id="authenticationTimeOut" type="number" formControlName="authenticationTimeOut">
                     </div>
                   </div>
                 </fieldset>
@@ -93,8 +82,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage"
-                                   id="personnalDataStorage">
+                            <input class="form-check-input" type="checkbox" formControlName="personnalDataStorage" id="personnalDataStorage">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="personnalDataStorage">PersonalDataStorage</label>
                         </div>
@@ -104,8 +92,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess"
-                                   id="resetBackupsIfSuccess">
+                            <input class="form-check-input" type="checkbox" formControlName="resetBackupsIfSuccess" id="resetBackupsIfSuccess">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="resetBackupsIfSuccess">ResetBackupsIfSuccess</label>
                         </div>
@@ -115,8 +102,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess"
-                                   id="resetChoicesIfSuccess">
+                            <input class="form-check-input" type="checkbox" formControlName="resetChoicesIfSuccess" id="resetChoicesIfSuccess">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="resetChoicesIfSuccess">ResetChoicesIfSuccess</label>
                         </div>
@@ -128,8 +114,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox"
-                                   formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
+                            <input class="form-check-input" type="checkbox" formControlName="manageBackupsCombinedAmounts" id="manageBackupsCombinedAmounts">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="manageBackupsCombinedAmounts">ManageBackupsCombinedAmounts</label>
                         </div>
@@ -139,8 +124,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox"
-                                   formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
+                            <input class="form-check-input" type="checkbox" formControlName="manageChoicesCombinedAmounts" id="manageChoicesCombinedAmounts">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="manageChoicesCombinedAmounts">ManageChoicesCombinedAmounts</label>
                         </div>
@@ -150,8 +134,7 @@
                       <div class="form-group">
                         <div class="input-group mb-3" style="margin-top: 15px;">
                           <div class="input-group-prepend">
-                            <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled"
-                                   id="hubMaintenanceModeEnabled">
+                            <input class="form-check-input" type="checkbox" formControlName="hubMaintenanceModeEnabled" id="hubMaintenanceModeEnabled">
                           </div>
                           <label class="form-check-label" style="margin-left: 15px;" for="hubMaintenanceModeEnabled">HubMaintenanceModeEnabled</label>
                         </div>
@@ -161,29 +144,20 @@
                   </thead>
                 </table>
                 <div class="form-group text-center">
-                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate
-                    SQL
-                  </button>
+                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL</button>
                   <div class="row  text-center" *ngIf="filename">
                     <div class="col"><br>
-                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
-                        - {{filename}}</button>
-                    </div>
-                  </div>
-                </div>
+                      <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download - {{filename}}</button>
+                    </div> </div> </div>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            </div> </div> </div> </div> </div> </div>
 </section>
 <div class="container-fluid">
   <div class="center-pill text-center"
        style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
-    <h3 style="color: #337ab7">Subissuers List</h3>
+    <h2 style="color: #337ab7">Subissuers List</h2>
   </div>
+  
   <div class="row">
     <div class="col" style="overflow: auto;">
       <div *ngFor="let subIssuer of subIssuers;" class="wrapper">
@@ -231,9 +205,7 @@
         </table>
         <div class="form-group">
           <a routerLink="/subissuer/{{ subIssuer.code }}/edit" class="btn btn-success"> Update</a>
-          <a
-            routerLink="/subissuer/{{ subIssuer.code }}/{{ subIssuer.issuer['id'] }}/{{ subIssuer.cryptoConfigEntity['id'] }}/delete"
-            class="btn btn-danger"> Delete</a>
+          <a routerLink="/subissuer/{{ subIssuer.code }}/{{ subIssuer.issuer['id'] }}/{{ subIssuer.cryptoConfigEntity['id'] }}/delete" class="btn btn-danger"> Delete</a>
         </div>
       </div>
     </div>
