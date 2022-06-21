@@ -48,13 +48,11 @@
                       <input class="form-control" type="number" formControlName="orderRule" name="orderRule">
                     </td>
                     <td>
-                      <div class="form-group col-md-4">
                         <select id="transaction-profile-id"
-                                class="form-select" title="Choose an issuer code" formControlName="profile_id" name="profile_id" style="">
-                          <option label="* - All" value="" selected="selected">* - All</option>
+                                class="form-select" title="Choose an profile code" formControlName="profile_id" name="profile_id" style="">
+                          <option label="* - Select" value="" selected="selected">* - Select</option>
                           <option *ngFor="let profile of profiles;" value="{{ profile.id }}">{{ profile.name }}</option>
                         </select>
-                      </div>
                     </td>
                   </tr>
                   </tbody>
