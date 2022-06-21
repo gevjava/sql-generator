@@ -1,7 +1,5 @@
 package com.energizeglobal.sqlgenerator.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +16,7 @@ public class SubIssuer {
     @Column(name = "code", unique = true)
     private String code;
 
-    @Column(name = "subIssuer")
+    @Column(name = "authentMeans")
     private String authentMeans;
 
     @ManyToOne
