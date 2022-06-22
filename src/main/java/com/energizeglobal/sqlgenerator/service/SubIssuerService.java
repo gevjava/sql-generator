@@ -69,7 +69,7 @@ public class SubIssuerService {
                 "currencyCode, " +
                 "name, " +
                 "label, " +
-                "subIssuer, " +
+                "authentMeans, " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
                 "resetChoicesIfSuccess, " +
@@ -124,7 +124,7 @@ public class SubIssuerService {
                 "currencyCode = '" + subIssuerDto.getCurrencyCode() + "', " +
                 "name = '" + subIssuerDto.getName() + "', " +
                 "label = '" + subIssuerDto.getLabel() + "', " +
-                "subIssuer = '" + subIssuerDto.getAuthentMeans() + "', " +
+                "authentMeans = '" + subIssuerDto.getAuthentMeans() + "', " +
                 "personnalDataStorage = " + subIssuerDto.getPersonnalDataStorage() + ", " +
                 "resetBackupsIfSuccess = " + subIssuerDto.getResetBackupsIfSuccess() + ", " +
                 "resetChoicesIfSuccess = " + subIssuerDto.getResetChoicesIfSuccess() + ", " +
