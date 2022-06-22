@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -30,6 +31,7 @@ public class ImageService {
     private String FILE_PATH = "src/main/resources/sql_scripts/";
     private String INSERT_FILE_NAME = "image.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
+    Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
 
     public ImageService(ImageRepository imageRepository, ImageRollbackService imageRollbackService) {
@@ -94,7 +96,7 @@ public class ImageService {
                 "creationDate = '" + imageDto.getCreationDate() + "', " +
                 "description = '" + imageDto.getDescription() + "', " +
                 "lastUpdateBy = '" + imageDto.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + imageDto.getLastUpdateDate() + "', " +
+                "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + imageDto.getName() + "', " +
                 "updateState = '" + imageDto.getUpdateState() + "', " +
                 "binaryData = '" + imageDto.getBinaryData() + "', " +

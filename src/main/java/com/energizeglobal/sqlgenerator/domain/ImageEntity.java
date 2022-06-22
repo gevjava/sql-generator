@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -34,9 +35,8 @@ public class ImageEntity {
     @Column
     private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationDate", nullable = false)
-    private Date creationDate;
+    private Timestamp creationDate;
 
     @Column(nullable = false)
     private String createdBy;
@@ -46,8 +46,8 @@ public class ImageEntity {
     private EntityData.UpdateState updateState;
 
     @CreatedDate
-    @Column(name = "lastUpdateDate", updatable = false)
-    private Instant lastUpdateDate = Instant.now();
+    @Column
+    private Timestamp lastUpdateDate;
 
     @Column
     private String lastUpdateBy;
@@ -60,13 +60,13 @@ public class ImageEntity {
         this.name = name;
     }
 
-    public Date getCreationDate() {
-        return creationDate != null ? (Date) creationDate.clone() : null;
+    public Timestamp getCreationDate() {
+        return creationDate != null ? (Timestamp) creationDate.clone() : null;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         if (creationDate != null) {
-            this.creationDate = (Date) creationDate.clone();
+            this.creationDate = (Timestamp)creationDate.clone();
         } else {
             this.creationDate = null;
         }
@@ -96,11 +96,11 @@ public class ImageEntity {
         this.description = description;
     }
 
-    public Instant getLastUpdateDate() {
+    public Timestamp getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(Instant lastUpdateDate) {
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 
