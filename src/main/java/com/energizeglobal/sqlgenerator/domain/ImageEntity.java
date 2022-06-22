@@ -5,8 +5,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 @Entity
