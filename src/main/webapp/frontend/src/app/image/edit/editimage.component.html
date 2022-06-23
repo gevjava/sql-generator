@@ -6,12 +6,8 @@
           <div class="center-pill text-center">
             <h2 style="color: #337ab7">Update Image</h2>
           </div>
+          {{image}}
           <div class="wrapper">
-            <div class="row  text-center" *ngIf="filename">
-              <div class="col">
-                <button class="btn btn-success" type="button" (click)="downloadFile()">Download - {{filename}}</button>
-              </div>
-            </div>
             <form [formGroup]="imageForm" (ngSubmit)="updateImageData()">
               <div class="row  text-center" *ngIf="filename"></div>
               <div class="row">
@@ -19,26 +15,38 @@
                   <label for="id" data-translate="id" class="ng-scope">Id</label>
                   <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                   <input class="form-control" type="text" formControlName="id" id="id" name="id"
-                         [(ngModel)]="image.id" placeholder="{{ image.id}}" readonly="true">
+                         [(ngModel)]="image.id" readonly="true">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="creationDate">CreationDate</label>
+                  <input class="form-control" type="text" formControlName="creationDate" id="creationDate"
+                         name="creationDate" [(ngModel)]="image.creationDate"
+                         placeholder="{{image.creationDate}}" readonly="true">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="lastUpdateDate">LastUpdateDate</label>
+                  <input class="form-control" type="text" formControlName="lastUpdateDate" id="lastUpdateDate"
+                         name="lastUpdateDate" [(ngModel)]="image.lastUpdateDate"
+                         placeholder="{{image.lastUpdateDate}}" readonly="true">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="name" data-translate="name" class="ng-scope">Name</label>
                   <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                   <input class="form-control" type="text" formControlName="name" id="name" name="name"
-                         [(ngModel)]="image.name" placeholder="{{ image.name }}">
+                         [(ngModel)]="image.name" placeholder="{{image.name}}">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="createdBy" data-translate="createdBy" class="ng-scope">CreatedBy</label>
                   <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                   <input class="form-control" type="text" formControlName="createdBy" id="createdBy" name="createdBy"
-                         [(ngModel)]="image.createdBy" placeholder="{{ image.createdBy}}">
+                         [(ngModel)]="image.createdBy" placeholder="{{image.createdBy}}">
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="description " data-translate="description " class="ng-scope">Description </label>
+                  <label for="description" data-translate="description " class="ng-scope">Description </label>
                   <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
-                  <input class="form-control" type="text" formControlName="description " id="description "
-                         name="description " [(ngModel)]="image.description "
-                         placeholder="{{ image.description  }}">
+                  <input class="form-control" type="text" formControlName="description" id="description"
+                         name="description" [(ngModel)]="image.description "
+                         placeholder="{{image.description}}">
                 </div>
                 <div class="form-group col-md-4">
                   <label for="lastUpdateBy">LastUpdateBy</label>
@@ -49,7 +57,8 @@
                 <div class="form-group col-md-4">
                   <label data-translate="updateState" class="ng-scope">UpdateState</label>
                   <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
-                  <select class="form-select" type="text" formControlName="updateState">
+                  <select class="form-select" type="text" formControlName="updateState" name="updateState"
+                          [(ngModel)]="image.updateState">
                     <option value="1" [selected]="image.updateState == 'PUSHED_TO_CONFIG'">PUSHED_TO_CONFIG</option>
                     <option value="2" [selected]="image.updateState == 'WAITING_FOR_PUSH'">WAITING_FOR_PUSH</option>
                     <option value="3" [selected]="image.updateState == 'WAITING_VALIDATION'">WAITING_VALIDATION</option>
@@ -71,7 +80,6 @@
                   <a class="btn btn-primary" href="" routerLink="/image">Cancel</a>&nbsp;
                   <button type="submit" class="btn btn-primary">Generate SQL</button>
                 </div>
-
               </div>
             </form>
             <div class="form-group text-center">
@@ -85,7 +93,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>

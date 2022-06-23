@@ -47,7 +47,8 @@ public class ImageController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable("id") Long id) {
-        String filename = imageService.generateDeleteSqlScript(id);
+        ImageDTO imageDTO = imageService.findById(id);
+        String filename = imageService.generateDeleteSqlScript(imageDTO.getName());
         return ResponseEntity.ok(filename);
     }
 

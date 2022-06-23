@@ -21,12 +21,12 @@ public class ImageRollbackService {
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
     Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
-    public String generateSqlScriptForInsertRollback(Long id) {
+    public String generateSqlScriptForInsertRollback(String name) {
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
-                "DELETE FROM image WHERE id = " + id + ";\n" +
+                "DELETE FROM image WHERE name = '" + name + "';\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
 

@@ -98,4 +98,20 @@ public class ImageDTO {
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
     }
+
+    @Override
+    public String toString() {
+        return "ImageDTO{" +
+                "id=" + id +
+                ", binaryData='" + binaryData + '\'' +
+                ", relativePath='" + relativePath + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", lastUpdateBy='" + lastUpdateBy + '\'' +
+                ", updateState=" + updateState +
+                '}';
+    }
 }
