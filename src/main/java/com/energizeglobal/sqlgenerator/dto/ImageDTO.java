@@ -3,8 +3,7 @@ package com.energizeglobal.sqlgenerator.dto;
 
 import com.energizeglobal.sqlgenerator.domain.EntityData;
 
-import java.time.Instant;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ImageDTO {
 
@@ -13,21 +12,19 @@ public class ImageDTO {
     private String relativePath;
     private String name;
     private String description;
-    private Date creationDate;
+    private Timestamp creationDate;
     private String createdBy;
-    private Instant lastUpdateDate;
+    private Timestamp lastUpdateDate;
     private String lastUpdateBy;
     private EntityData.UpdateState updateState;
 
+    public ImageDTO() { }
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public ImageDTO() {
     }
 
     public String getBinaryData() {
@@ -62,12 +59,20 @@ public class ImageDTO {
         this.description = description;
     }
 
-    public Date getCreationDate() {
+    public Timestamp getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Timestamp getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public String getCreatedBy() {
@@ -86,19 +91,27 @@ public class ImageDTO {
         this.updateState = updateState;
     }
 
-    public Instant getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(Instant lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
     public String getLastUpdateBy() {
         return lastUpdateBy;
     }
 
     public void setLastUpdateBy(String lastUpdateBy) {
         this.lastUpdateBy = lastUpdateBy;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageDTO{" +
+                "id=" + id +
+                ", binaryData='" + binaryData + '\'' +
+                ", relativePath='" + relativePath + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastUpdateDate=" + lastUpdateDate +
+                ", lastUpdateBy='" + lastUpdateBy + '\'' +
+                ", updateState=" + updateState +
+                '}';
     }
 }

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardOpenOption.APPEND;
@@ -18,13 +19,14 @@ public class ImageRollbackService {
     String FILE_PATH = "src/main/resources/sql_scripts/";
     String ROLLBACK_FILE_NAME = "image_rollback.sql";
     String path = FILE_PATH + ROLLBACK_FILE_NAME;
+    Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
-    public String generateSqlScriptForInsertRollback(Long id) {
+    public String generateSqlScriptForInsertRollback(String name) {
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
-                "DELETE FROM image WHERE id = " + id + ";\n" +
+                "DELETE FROM image WHERE name = '" + name + "';\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
 
@@ -40,7 +42,7 @@ public class ImageRollbackService {
                 "creationDate = '" + oldImage.getCreationDate() + "', " +
                 "description = '" + oldImage.getDescription() + "', " +
                 "lastUpdateBy = '" + oldImage.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + oldImage.getLastUpdateDate() + "', " +
+                "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + oldImage.getName() + "', " +
                 "updateState = '" + oldImage.getUpdateState() + "', " +
                 "binaryData = '" + oldImage.getBinaryData() + "', " +

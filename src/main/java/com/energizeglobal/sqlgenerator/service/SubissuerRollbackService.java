@@ -35,7 +35,7 @@ public class SubissuerRollbackService {
                 "currencyCode, " +
                 "name, " +
                 "label, " +
-                "subIssuer, " +
+                "authentMeans, " +
                 "personnalDataStorage, " +
                 "resetBackupsIfSuccess," +
                 "resetChoicesIfSuccess, " +
@@ -81,7 +81,7 @@ public class SubissuerRollbackService {
                 "currencyCode = " + oldSubIssuer.getCurrencyCode() + ", " +
                 "name = '" + oldSubIssuer.getName() + "', " +
                 "label = '" + oldSubIssuer.getLabel() + "', " +
-                "subIssuer = '" + oldSubIssuer.getAuthentMeans() + "', " +
+                "authentMeans = '" + oldSubIssuer.getAuthentMeans() + "', " +
                 "personnalDataStorage = " + oldSubIssuer.getPersonnalDataStorage() + ", " +
                 "resetBackupsIfSuccess = " + oldSubIssuer.isResetBackupsIfSuccess() + ", " +
                 "resetChoicesIfSuccess = " + oldSubIssuer.isResetChoicesIfSuccess() + ", " +
