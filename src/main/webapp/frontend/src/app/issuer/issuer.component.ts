@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-issuer',
@@ -18,6 +18,7 @@ export class IssuerComponent implements OnInit {
 
   issuerForm: any;
 
+
   constructor(
     private issuerService: IssuerService,
     private formBuilder: FormBuilder,
@@ -30,19 +31,18 @@ export class IssuerComponent implements OnInit {
 
   initializeForm(){
     this.issuerForm = this.formBuilder.group({
-      id:['', Validators.required],
-      code: ['', Validators.required],
-      createdBy: ['', Validators.required],
-      creationDate:['', Validators.required],
-      name: ['', Validators.required],
-      updateState:['',Validators.required],
-      label:['',Validators.required],
-      availaibleAuthentMeans: ['', Validators.required]
+      code: new FormControl(''),
+      createdBy: new FormControl(''),
+      creationDate: new FormControl(''),
+      name:new FormControl(''),
+      updateState:new FormControl(''),
+      label:new FormControl(''),
+      availaibleAuthentMeans: new FormControl('')
     });
   }
 
-  onSubmit(code: any){
-    this.issuerService.sendIssuerData(code).subscribe(response => {console.log(response)});
+  onSubmit(data:any){
+    this.issuerService.sendIssuerData(data.value).subscribe(response => {console.log(response)});
   }
 
   getAllIssuer(){
@@ -54,5 +54,7 @@ export class IssuerComponent implements OnInit {
   listOfIssuers(){
     this.showOnchange = true;
   }
+
+  
 
 }

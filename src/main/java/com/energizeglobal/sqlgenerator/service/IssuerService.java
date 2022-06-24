@@ -25,7 +25,7 @@ public class IssuerService {
     private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
-    private final String DATA_FILE_NAME = "data.sql";
+    private final String DATA_FILE_NAME = "insert_data.sql";
     private final String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
 
     private final IssuerRepository issuerRepository;
@@ -46,8 +46,7 @@ public class IssuerService {
     }
 
     public String generateInsertSqlScript(IssuerDTO dto) {
-        LocalDateTime date = LocalDateTime.ofInstant(dto.getCreationDate(), ZoneId.of(ZoneOffset.UTC.getId()));
-        String Insert = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label, availaibleAuthentMeans) VALUES ('" + dto.getCode() + "', '" + dto.getCreatedBy() + "','" + date + "','" + dto.getName() + "','" + dto.getUpdateState() + "','" + dto.getLabel() + "','" + dto.getAvailaibleAuthentMeans() + "');";
+        String Insert = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label, availaibleAuthentMeans) VALUES ('" + dto.getCode() + "', '" + dto.getCreatedBy() + "','" + dto.getCreationDate() + "','" + dto.getName() + "','" + dto.getUpdateState() + "','" + dto.getLabel() + "','" + dto.getAvailaibleAuthentMeans() + "');";
         String path = FILE_PATH + DATA_FILE_NAME;
         return this.storeQueryInFile(path, Insert);
     }
@@ -79,8 +78,7 @@ public class IssuerService {
 
     public String generateDeleteSqlScriptWithRollback(String code) {
         Issuer issuer = this.issuerRepository.getIssuerByCode(code);
-        LocalDateTime date = LocalDateTime.ofInstant(issuer.getCreationDate(), ZoneId.of(ZoneOffset.UTC.getId()));
-        String sql = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label,availaibleAuthentMeans) VALUES ('" + issuer.getCode() + "', '" + issuer.getCreatedBy() + "','" + date + "','" + issuer.getName() + "','" + issuer.getUpdateState() + "','" + issuer.getLabel() + "','" + issuer.getAvailaibleAuthentMeans() + "');";
+        String sql = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label,availaibleAuthentMeans) VALUES ('" + issuer.getCode() + "', '" + issuer.getCreatedBy() + "','" + issuer.getCreationDate() + "','" + issuer.getName() + "','" + issuer.getUpdateState() + "','" + issuer.getLabel() + "','" + issuer.getAvailaibleAuthentMeans() + "');";
         String path = FILE_PATH + DATA_ROLLBACK_FILE_NAME;
         return this.storeQueryInFile(path, sql);
     }

@@ -1,26 +1,19 @@
 package com.energizeglobal.sqlgenerator.dto;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 public class IssuerDTO {
 
-    private String id;
     private String code;
     private String createdBy;
-    private Instant creationDate;
+    private Timestamp creationDate;
     private String description;
     private String name;
     private String updateState;
     private String label;
     private String availaibleAuthentMeans;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
@@ -38,11 +31,11 @@ public class IssuerDTO {
         this.createdBy = createdBy;
     }
 
-    public Instant getCreationDate() {
+    public Timestamp getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Instant creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -84,5 +77,19 @@ public class IssuerDTO {
 
     public void setAvailaibleAuthentMeans(String availaibleAuthentMeans) {
         this.availaibleAuthentMeans = availaibleAuthentMeans;
+    }
+
+    @Override
+    public String toString() {
+        return "IssuerDTO{" +
+                "code='" + code + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", creationDate=" + creationDate +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", updateState='" + updateState + '\'' +
+                ", label='" + label + '\'' +
+                ", availaibleAuthentMeans='" + availaibleAuthentMeans + '\'' +
+                '}';
     }
 }

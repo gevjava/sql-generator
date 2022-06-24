@@ -1,4 +1,66 @@
-<section class="issuer_section">
+<section class="issuer_section" style="padding:50px 0px !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="wrapper">
+              <legend>Create new issuer</legend>
+              <hr />
+              <form  [formGroup]="issuerForm" (ngSubmit)="onSubmit(issuerForm)" autocomplete="off">
+                <div class="row">
+                  <div class="form-group col-4">
+                    <label for="code">Code</label>
+                    <input type="text" formControlName="code" id="code" name="code" class="form-control"
+                      placeholder="Enter code" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="createdBy">Created By</label>
+                    <input type="text" formControlName="createdBy" id="createdBy" name="createdBy" class="form-control"
+                      placeholder="Enter creator name" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="creationDate">Creation Date</label>
+                    <input type="date" formControlName="creationDate" id="creationDate" name="creationDate"
+                      class="form-control" placeholder="Enter date" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" id="name" name="name" class="form-control"
+                      placeholder="Enter name" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="updateState">Update State</label>
+                    <input type="text" formControlName="updateState" id="updateState" name="updateState"
+                      class="form-control" placeholder="Enter state" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="label">Label</label>
+                    <input type="text" formControlName="label" id="label" name="label" class="form-control"
+                      placeholder="Enter label" [attr.required]="true">
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="availaibleAuthentMeans">AvailaibleAuthent Means</label>
+                    <input type="text" formControlName="availaibleAuthentMeans" id="availaibleAuthentMeans"
+                      name="availaibleAuthentMeans" class="form-control" placeholder=" Enter authent means string" [attr.required]="true">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col">
+                    <button type="submit" class="btn btn-primary">Generate SQL</button>
+                  </div>
+                  <div class="form-group col"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr/>
+<section class="issuer_section" style="padding:50px 0px !important;">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2"></div>
@@ -8,7 +70,7 @@
           <div class="card-body">
             <div class="wrapper">
               <legend>Issuer search</legend>
-              <hr>
+              <hr />
               <div class="form-group col-md-4">
                 <label for="transaction-issuer-code">Issuercode</label>
                 <select [(ngModel)]="filterTerm" (ngModelChange)="listOfIssuers();" id="transaction-issuer-code"
@@ -21,8 +83,7 @@
             </div>
 
             <div *ngIf="showOnchange" class="wrapper">
-              <form *ngFor="let issuer of issuers | filter: filterTerm;" [formGroup]="issuerForm"
-                (ngSubmit)="onSubmit(issuer)">
+              <div *ngFor="let issuer of issuers | filter: filterTerm;">
                 <table class="table">
                   <thead class="thead-dark">
                     <tr>
@@ -39,48 +100,47 @@
                   <tbody>
                     <tr>
                       <td>
-                        <input formControlName="id" class="form-control" type="text" placeholder="{{ issuer.id }}"
-                          [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.id }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="code" class="form-control" type="text" placeholder="{{ issuer.code }}"
-                          [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.code }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="createdBy" class="form-control" type="text"
-                          placeholder="{{ issuer.createdBy }}" [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.createdBy }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="creationDate" class="form-control" type="date"
-                          placeholder="{{ issuer.creationDate }}" [readonly]="true">
+                        <input class="form-control" type="date" 
+                               placeholder="{{ issuer.creationDate }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="name" class="form-control" type="text" placeholder="{{ issuer.name }}"
-                          [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.name }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="updateState" class="form-control" type="text"
-                          placeholder="{{ issuer.updateState }}" [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.updateState }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="label" class="form-control" type="text" placeholder="{{ issuer.label }}"
-                          [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.label }}" [readonly]="true" />
                       </td>
                       <td>
-                        <input formControlName="availaibleAuthentMeans" class="form-control" type="text"
-                          placeholder="{{ issuer.availaibleAuthentMeans }}" [readonly]="true">
+                        <input class="form-control" type="text" 
+                               placeholder="{{ issuer.availaibleAuthentMeans }}" [readonly]="true" />
                       </td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Generate SQL</button>
                   &nbsp;
                   <a routerLink="/issuer/{{ issuer.code }}/edit" class="btn btn-success">Update SQL</a>
                   &nbsp;
                   <a routerLink="/issuer/{{ issuer.code }}/delete" class="btn btn-danger">Delete SQL</a>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
