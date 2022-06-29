@@ -23,25 +23,25 @@
                   <tbody>
                   <tr>
                     <td>
-                      <input class="form-control" type="text" formControlName="code" name="code"  placeholder="" readonly="true">
+                      <input class="form-control" type="text" formControlName="code" name="code" [ngModel]="issuer.code"  placeholder="" readonly="true">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="createdBy" name="createdBy"   placeholder="">
+                      <input class="form-control" type="text" formControlName="createdBy" name="createdBy" [ngModel]="issuer.createdBy"  placeholder="">
                     </td>
                     <td>
-                      <input class="form-control" type="date" formControlName="creationDate" name="creationDate"  placeholder="">
+                      <input class="form-control" type="date" formControlName="creationDate" name="creationDate" [ngModel]="issuer.creationDate"  placeholder="">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="name"  nama="name"  placeholder="">
+                      <input class="form-control" type="text" formControlName="name"  nama="name" [ngModel]="issuer.name" placeholder="">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="updateState" name="updateState"   placeholder="">
+                      <input class="form-control" type="text" formControlName="updateState" name="updateState" [ngModel]="issuer.updateState"  placeholder="">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="label" name="label"  placeholder="">
+                      <input class="form-control" type="text" formControlName="label" name="label" [ngModel]="issuer.label"  placeholder="">
                     </td>
                     <td>
-                      <input class="form-control" type="text" formControlName="availaibleAuthentMeans"  name="availaibleAuthentMeans"  placeholder="">
+                      <input class="form-control" type="text" formControlName="availaibleAuthentMeans"  name="availaibleAuthentMeans" [ngModel]="issuer.availaibleAuthentMeans" placeholder="">
                     </td>
                   </tr>
                   </tbody>

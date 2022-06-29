@@ -8,16 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
 
 @Service
 public class IssuerService {
@@ -89,11 +88,14 @@ public class IssuerService {
         try {
             if (Files.exists(newFilePath)) {
                 sql = System.getProperty("line.separator") + sql;
-                Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND);
+                bufferedWriter.write(sql);
+
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8));
+                BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND);
+                bufferedWriter.write(sql);
             }
         } catch (IOException e) {
             e.printStackTrace();
