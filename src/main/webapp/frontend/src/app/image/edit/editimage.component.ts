@@ -27,7 +27,6 @@ export class EditimageComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get("id");
     this.getById(this.id);
     this.initializeForm();
-
   }
 
 

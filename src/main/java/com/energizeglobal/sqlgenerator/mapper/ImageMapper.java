@@ -15,7 +15,7 @@ public class ImageMapper {
         imageEntity.setCreationDate(imageDto.getCreationDate());
         imageEntity.setDescription(imageDto.getDescription());
         imageEntity.setLastUpdateBy(imageDto.getLastUpdateBy());
-        imageEntity.setLastUpdateDate(Instant.now());
+        imageEntity.setLastUpdateDate(imageDto.getLastUpdateDate());
         imageEntity.setName(imageDto.getName());
         imageEntity.setUpdateState(imageDto.getUpdateState());
         imageEntity.setBinaryData(imageDto.getBinaryData());
@@ -33,7 +33,7 @@ public class ImageMapper {
         imageDto.setCreationDate(imageEntity.getCreationDate());
         imageDto.setDescription(imageEntity.getDescription());
         imageDto.setLastUpdateBy(imageEntity.getLastUpdateBy());
-        imageDto.setLastUpdateDate(Instant.now());
+        imageDto.setLastUpdateDate(imageEntity.getLastUpdateDate());
         imageDto.setName(imageEntity.getName());
         imageDto.setUpdateState(imageEntity.getUpdateState());
         imageDto.setBinaryData(imageEntity.getBinaryData());

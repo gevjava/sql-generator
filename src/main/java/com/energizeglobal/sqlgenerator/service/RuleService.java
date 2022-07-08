@@ -17,6 +17,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 import java.util.List;
@@ -37,7 +39,7 @@ public class RuleService {
     private String ROLLBACK_FILE_NAME = "rule_rollback.sql";
     private String mainPath = FILE_PATH + MAIN_FILE_NAME;
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
-    String thisMomentTime =  Instant.now().toString().replace("T", " ").replace("Z", " ");
+    Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
     public RuleService(RuleRepository ruleRepository, RuleMapper ruleMapper, ProfileRepository profileRepository) {
         this.ruleRepository = ruleRepository;
@@ -62,7 +64,7 @@ public class RuleService {
 
         Profile profile =  profileRepository.getById(ruleDto.getProfile_id());
         RuleEntity ruleEntity = ruleMapper.dtoToEntity(ruleDto , profile);
-        ruleEntity.setCreationDate(Instant.now());
+        ruleEntity.setCreationDate(thisMomentTime);
 
         String queryType = "INSERT INTO rule  ( " +
                 "createdBy, " +
@@ -115,13 +117,13 @@ public class RuleService {
 
     @Transactional
     public String generateUpdateSqlScript(RuleDTO ruleDto) {
-        ruleDto.setLastUpdateDate(Instant.now());
+        ruleDto.setLastUpdateDate(thisMomentTime);
         RuleEntity oldRule = ruleRepository.getById(ruleDto.getId());
         RuleEntity newRule = ruleMapper.dtoToEntity(ruleDto);
 
         String queryUpdate = "UPDATE rule SET " +
                 "createdBy = '" + ruleDto.getCreatedBy() + "', " +
-                "creationDate = '" + ruleDto.getCreationDate().toString().replace("T", " ").replace("Z", " ") + "', " +
+                "creationDate = '" + ruleDto.getCreationDate() + "', " +
                 "description = '" + ruleDto.getDescription() + "', " +
                 "lastUpdateBy = '" + ruleDto.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +

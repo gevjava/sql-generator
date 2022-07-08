@@ -1,5 +1,6 @@
 package com.energizeglobal.sqlgenerator.domain;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class RuleEntity {
     private String createdBy;
 
     @Column(name = "creationDate", nullable = false)
-    private Instant creationDate;
+    private Timestamp creationDate;
 
     @Column
     private String description;
@@ -33,7 +34,7 @@ public class RuleEntity {
 
     @CreatedDate
     @Column
-    private Instant lastUpdateDate = Instant.now();
+    private Timestamp lastUpdateDate;
 
     @Column
     private String name;
@@ -86,9 +87,11 @@ public class RuleEntity {
         this.createdBy = createdBy;
     }
 
-    public Instant getCreationDate() { return creationDate; }
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
 
-    public void setCreationDate(Instant creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -108,11 +111,11 @@ public class RuleEntity {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    public Instant getLastUpdateDate() {
+    public Timestamp getLastUpdateDate() {
         return lastUpdateDate;
     }
 
-    public void setLastUpdateDate(Instant lastUpdateDate) {
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
 

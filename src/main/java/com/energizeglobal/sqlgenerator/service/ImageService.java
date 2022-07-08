@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -30,6 +31,7 @@ public class ImageService {
     private String FILE_PATH = "src/main/resources/sql_scripts/";
     private String INSERT_FILE_NAME = "image.sql";
     private String path = FILE_PATH + INSERT_FILE_NAME;
+    private Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
 
     public ImageService(ImageRepository imageRepository, ImageRollbackService imageRollbackService) {
@@ -46,6 +48,12 @@ public class ImageService {
     @Transactional(readOnly = true)
     public ImageDTO findById(Long id) {
         ImageEntity imageEntity = imageRepository.getById(id);
+        return ImageMapper.entityToDto(imageEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public ImageDTO findByName(String name) {
+        ImageEntity imageEntity = imageRepository.findByName(name);
         return ImageMapper.entityToDto(imageEntity);
     }
 
@@ -75,7 +83,7 @@ public class ImageService {
 
         insertPathGenerator(sqlInsert);
 
-        imageRollbackService.generateSqlScriptForInsertRollback(image.getId());
+        imageRollbackService.generateSqlScriptForInsertRollback(image.getName());
 
         if (dbAction)
             imageRepository.save(image);
@@ -94,7 +102,7 @@ public class ImageService {
                 "creationDate = '" + imageDto.getCreationDate() + "', " +
                 "description = '" + imageDto.getDescription() + "', " +
                 "lastUpdateBy = '" + imageDto.getLastUpdateBy() + "', " +
-                "lastUpdateDate = '" + imageDto.getLastUpdateDate() + "', " +
+                "lastUpdateDate = '" + thisMomentTime + "', " +
                 "name = '" + imageDto.getName() + "', " +
                 "updateState = '" + imageDto.getUpdateState() + "', " +
                 "binaryData = '" + imageDto.getBinaryData() + "', " +
@@ -111,16 +119,16 @@ public class ImageService {
     }
 
     @Transactional
-    public String generateDeleteSqlScript(Long id) {
+    public String generateDeleteSqlScript(String name) {
 
-        ImageDTO image = findById(id);
+        ImageDTO image = findByName(name);
 
         System.out.println(image);
 
         String deleteQuery = "\n" +
                 "START TRANSACTION; \n" +
                 "SET FOREIGN_KEY_CHECKS = 0; \n" +
-                "DELETE FROM image WHERE id = " + id + ";\n" +
+                "DELETE FROM image WHERE name = '" + name + "';\n" +
                 "SET FOREIGN_KEY_CHECKS = 1; \n" +
                 "COMMIT;";
         insertPathGenerator(deleteQuery);
@@ -128,7 +136,7 @@ public class ImageService {
         imageRollbackService.generateSqlScriptForDeleteRollback(image);
 
         if (dbAction)
-            imageRepository.deleteById(id);
+            imageRepository.deleteById(image.getId());
 
         return INSERT_FILE_NAME;
     }
