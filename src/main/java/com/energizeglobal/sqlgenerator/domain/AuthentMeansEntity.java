@@ -4,6 +4,7 @@ import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,9 +20,8 @@ public class AuthentMeansEntity {
     @Column(name = "createdBy", nullable = false)
     private String createdBy;
 
-    @CreatedDate
-    @Column(name = "creationDate", updatable = false)
-    private LocalDateTime creationDate;
+    @Column(name = "creationDate", nullable = false)
+    private Timestamp creationDate;
 
     @Column(name = "description")
     private String description;
@@ -30,15 +30,15 @@ public class AuthentMeansEntity {
     private String lastUpdateBy;
 
     @CreatedDate
-    @Column(name = "lastUpdateDate")
-    private LocalDateTime lastUpdateDate;
+    @Column
+    private Timestamp lastUpdateDate;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "updateState", nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UpdateState updateState;
+    private EntityData.UpdateState updateState;
 
     public Long getId() {
         return id;
@@ -54,14 +54,6 @@ public class AuthentMeansEntity {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getDescription() {
@@ -80,14 +72,6 @@ public class AuthentMeansEntity {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    public LocalDateTime getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
     public String getName() {
         return name;
     }
@@ -96,11 +80,27 @@ public class AuthentMeansEntity {
         this.name = name;
     }
 
-    public UpdateState getUpdateState() {
+    public EntityData.UpdateState getUpdateState() {
         return updateState;
     }
 
-    public void setUpdateState(UpdateState updateState) {
+    public void setUpdateState(EntityData.UpdateState updateState) {
         this.updateState = updateState;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Timestamp getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

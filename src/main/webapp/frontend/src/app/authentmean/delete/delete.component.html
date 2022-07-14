@@ -1,4 +1,4 @@
-<form [formGroup]="imageForm" (ngSubmit)="deleteImage()">
+<form [formGroup]="authentForm" (ngSubmit)="deleteAuthentMeans()">
   <div class="container-fluid">
     <div class="row bg-grey">
       <div class="col text-center">
@@ -17,15 +17,15 @@
           <div class="card">
             <div class="card-body">
               <div class="center-pill text-center">
-                <h2 style="color: #337ab7">Delete Image</h2>
+                <h2 style="color: #337ab7">Delete AuthentMeans</h2>
               </div>
               <div class="wrapper">
-                <form (click)="deleteImage()">
+                <form (click)="deleteAuthentMeans()">
                   <div class="alert alert-danger" role="alert">
                     <span style="font-size: 36px;" class="material-icons">dangerous</span>
                     <hr>
                     <h4 class="alert-heading">Dangerous message</h4>
-                    <p>This action can change your Image table structure. Please be aware.</p>
+                    <p>This action can change your AuthentMeans table structure. Please be aware.</p>
                     <hr>
                     <div class="form-group">
                       <a class="btn btn-outline-primary" href="" routerLink="/image">Cancel</a>

@@ -4,15 +4,13 @@ import com.energizeglobal.sqlgenerator.domain.AuthentMeansEntity;
 import com.energizeglobal.sqlgenerator.dto.AuthentMeansDTO;
 import com.energizeglobal.sqlgenerator.mapper.Mapping;
 import com.energizeglobal.sqlgenerator.repository.AuthentMeansRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -34,6 +32,8 @@ public class AuthentMeansService {
 
     private final DownloadFileService downloadFileService;
 
+    private Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
+
     public AuthentMeansService(Mapping mappingAuthentMean,
                                AuthentMeansRepository authentMeansRepository,
                                GenerateSqlScriptService generateSqlScriptService,
@@ -44,28 +44,27 @@ public class AuthentMeansService {
         this.downloadFileService = downloadFileService;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<AuthentMeansDTO> getAllAuthentMeans() {
-
         List<AuthentMeansEntity> authentMeansEntityList = authentMeansRepository.findAll();
         return mappingAuthentMean.mapList(authentMeansEntityList, AuthentMeansDTO.class);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public AuthentMeansDTO getByIdAuthentMean(Long id) {
-
         AuthentMeansEntity authentMeansEntity = authentMeansRepository.getById(id);
-
-
         return mappingAuthentMean.convertToDto(authentMeansEntity, AuthentMeansDTO.class);
     }
 
     @Transactional
     public String deleteAuthentMeanById(Long id) {
-
         AuthentMeansEntity authentMeansEntity = authentMeansRepository.getById(id);
 
-        String deleteQuery = "DELETE FROM `authentmeans` WHERE id ='" + id + "';";
+        String deleteQuery = "START TRANSACTION; \n" +
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM authentmeans WHERE id = '" + id + "';\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
 
         String rollbackQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +
                         "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
@@ -89,7 +88,7 @@ public class AuthentMeansService {
     public String updateAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
-        authentMeansEntity.setLastUpdateDate(LocalDateTime.now());
+        authentMeansEntity.setLastUpdateDate(thisMomentTime);
         authentMeansRepository.getById(authentMeansDTO.getId());
         String updateQuery = String.format("UPDATE `authentmeans` SET createdBy='%s', creationDate='%s', description='%s'," +
                         " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' WHERE id='%s';",
@@ -126,23 +125,33 @@ public class AuthentMeansService {
     @Transactional
     public String saveAuthentMean(AuthentMeansDTO authentMeansDTO) {
 
-        AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
+        Long lastId = authentMeansRepository.getMaxId() + 1;
+        AuthentMeansEntity authentMeansEntity = mappingAuthentMean
+                .convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
         if (authentMeansEntity.getCreationDate() == null) {
-            authentMeansEntity.setCreationDate(LocalDateTime.now());
+            authentMeansEntity.setCreationDate(thisMomentTime);
         }
-        Long lastId = authentMeansRepository.getMaxId();
+        if (authentMeansEntity.getId() == null){
+            authentMeansEntity.setId(lastId);
+        }
 
         String insertQuery = String.format("INSERT INTO `authentmeans` (createdBy, creationDate, description, lastUpdateBy, " +
                         "lastUpdateDate, name, updateState) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s');",
                 authentMeansEntity.getCreatedBy(),
-                authentMeansEntity.getCreationDate(),
+                thisMomentTime,
                 authentMeansEntity.getDescription(),
                 authentMeansEntity.getLastUpdateBy(),
-                authentMeansEntity.getLastUpdateDate(),
+                thisMomentTime,
                 authentMeansEntity.getName(),
                 authentMeansEntity.getUpdateState());
 
-        String deleteQuery = "DELETE FROM `authentmeans` WHERE id ='" + lastId + "';";
+
+
+        String deleteQuery =  "START TRANSACTION; \n" +
+                "SET FOREIGN_KEY_CHECKS = 0; \n" +
+                "DELETE FROM authentmeans WHERE id = '" + authentMeansEntity.getId() + "';\n" +
+                "SET FOREIGN_KEY_CHECKS = 1; \n" +
+                "COMMIT;";
 
         generateSqlScriptService.insertSqlScript(insertQuery, INSERT_SQL_FILE_NAME);
         generateSqlScriptService.insertSqlScript(deleteQuery, ROLLBACK_SQL_FILE_NAME);
