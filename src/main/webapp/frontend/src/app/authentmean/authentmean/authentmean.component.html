@@ -79,23 +79,22 @@
             <table class="table text-center table-bordered">
               <thead>
               <tr>
-
+                <th scope="col">Name</th>
                 <th scope="col">CreationDate</th>
                 <th scope="col">CreatedBy</th>
                 <th scope="col">Description</th>
                 <th scope="col">LastUpdateBy</th>
-                <th scope="col">Name</th>
                 <th scope="col">UpdateState</th>
                 <th scope="col">Actions</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let mean of means;" class="wrapper">
+                <td>{{ mean.name }}</td>
                 <td>{{ mean.creationDate.substring(0, 10) }}</td>
                 <td>{{ mean.createdBy }}</td>
                 <td>{{ mean.description }}</td>
                 <td>{{ mean.lastUpdateBy }}</td>
-                <td>{{ mean.name }}</td>
                 <td>{{ mean.updateState }}</td>
                 <td>
                   <a routerLink="/authent/edit/{{ mean.id }}"
