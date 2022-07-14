@@ -21,7 +21,7 @@ export class RuleConditionComponent implements OnInit {
     this.getAllConditions();
   }
 
-  sendRuleData(){
+  sendRuleConditionData(){
     console.log(this.conditionForm);
     let conditionData = this.conditionForm.value;
     this.conditionService.sendData(conditionData).subscribe(response => {
@@ -32,10 +32,7 @@ export class RuleConditionComponent implements OnInit {
 
   initializeForm() {
     this.conditionForm = this.formBuilder.group({
-      id: [0, Validators.required],
-      createdBy: ['', Validators.required],
       description: ['', Validators.required],
-      lastUpdateBy: ['', Validators.required],
       name: ['', Validators.required],
       updateState: ['', Validators.required]
     });
