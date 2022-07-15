@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-issuer',
@@ -17,7 +17,7 @@ export class IssuerComponent implements OnInit {
   id!: string | null;
 
   issuerForm: any;
-
+  myDate = new Date();
 
   constructor(
     private issuerService: IssuerService,
@@ -31,30 +31,28 @@ export class IssuerComponent implements OnInit {
 
   initializeForm(){
     this.issuerForm = this.formBuilder.group({
-      code: new FormControl(''),
-      createdBy: new FormControl(''),
-      creationDate: new FormControl(''),
-      name:new FormControl(''),
-      updateState:new FormControl(''),
-      label:new FormControl(''),
-      availaibleAuthentMeans: new FormControl('')
+      code: ['', Validators.required],
+      createdBy: ['', Validators.required],
+      creationDate:['', Validators.required],
+      name: ['', Validators.required],
+      updateState:['',Validators.required],
+      label:['',Validators.required],
+      availaibleAuthentMeans: ['', Validators.required]
     });
   }
 
-  onSubmit(data:any){
+  onSubmit(data: any){
     this.issuerService.sendIssuerData(data.value).subscribe(response => {console.log(response)});
   }
 
   getAllIssuer(){
     this.issuerService.getAllIssuer().subscribe(issuers => {
-      this.issuers = issuers;
+       this.issuers = issuers;
     });
   }
 
   listOfIssuers(){
     this.showOnchange = true;
   }
-
-  
 
 }

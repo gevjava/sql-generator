@@ -32,7 +32,7 @@ public class IssuerController {
     public ResponseEntity<String> generateSqlScript(@RequestBody IssuerDTO issuerDTO) {
         String fileName_1 = issuerService.generateInsertSqlScript(issuerDTO);
         String fileName_2 = issuerService.generateInsertSqlScriptWithRollback(issuerDTO);
-        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
+        return ResponseEntity.ok(issuerDTO.toString());
     }
 
     @GetMapping("/{code}")

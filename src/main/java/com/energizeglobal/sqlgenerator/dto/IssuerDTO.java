@@ -8,7 +8,6 @@ public class IssuerDTO {
     private String code;
     private String createdBy;
     private Timestamp creationDate;
-    private String description;
     private String name;
     private String updateState;
     private String label;
@@ -37,14 +36,6 @@ public class IssuerDTO {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getName() {
@@ -85,7 +76,6 @@ public class IssuerDTO {
                 "code='" + code + '\'' +
                 ", createdBy='" + createdBy + '\'' +
                 ", creationDate=" + creationDate +
-                ", description='" + description + '\'' +
                 ", name='" + name + '\'' +
                 ", updateState='" + updateState + '\'' +
                 ", label='" + label + '\'' +

@@ -88,14 +88,16 @@ public class IssuerService {
         try {
             if (Files.exists(newFilePath)) {
                 sql = System.getProperty("line.separator") + sql;
-                BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND);
-                bufferedWriter.write(sql);
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
+                    bufferedWriter.write(sql);
+                }
 
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND);
-                bufferedWriter.write(sql);
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8)) {
+                    bufferedWriter.write(sql);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
