@@ -31,8 +31,7 @@ export class AuthentMeanDeleteComponent implements OnInit {
 
   deleteAuthentMeans() {
     console.log(this.authentForm);
-    let authentData = this.authentForm.value;
-    this.service.deleteAuthentMeansService(authentData, this.id).subscribe(response => {
+    this.service.deleteAuthentMeansService(this.id).subscribe(response => {
       this.filename = response;
     });
   }

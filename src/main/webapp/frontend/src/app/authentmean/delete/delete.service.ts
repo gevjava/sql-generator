@@ -10,7 +10,7 @@ export class DeleteService {
   constructor(private http: HttpClient) {
   }
 
-  deleteAuthentMeansService(means: any, id: any) {
+  deleteAuthentMeansService(id: any) {
     return this.http.delete('/authent/' + id, {responseType: 'text'});
   }
 

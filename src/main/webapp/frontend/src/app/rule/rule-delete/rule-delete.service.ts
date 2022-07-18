@@ -8,7 +8,7 @@ export class RuleDeleteService {
 
   constructor(private http: HttpClient) { }
 
-  deleteRule(rule: any , id: number, profile_id: number){
+  deleteRule( id: number, profile_id: number){
     return this.http.delete('/rule/' + id + '/' + profile_id, {responseType: 'text'});
 
   }

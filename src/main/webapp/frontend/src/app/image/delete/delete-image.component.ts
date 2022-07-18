@@ -31,8 +31,7 @@ export class DeleteImageComponent implements OnInit {
 
   deleteImage() {
     console.log(this.imageForm);
-    let imageData = this.imageForm.value;
-    this.service.deleteImageService(imageData, this.id).subscribe(response => {
+    this.service.deleteImageService(this.id).subscribe(response => {
       this.filename = response;
     });
   }
