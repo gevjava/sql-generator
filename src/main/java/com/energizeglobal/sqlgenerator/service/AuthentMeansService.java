@@ -89,7 +89,6 @@ public class AuthentMeansService {
 
         AuthentMeansEntity authentMeansEntity = mappingAuthentMean.convertToEntity(authentMeansDTO, AuthentMeansEntity.class);
         authentMeansEntity.setLastUpdateDate(thisMomentTime);
-        authentMeansRepository.getById(authentMeansDTO.getId());
         String updateQuery = String.format("UPDATE `authentmeans` SET createdBy='%s', creationDate='%s', description='%s'," +
                         " lastUpdateBy='%s', lastUpdateDate='%s', name='%s', updateState='%s' WHERE id='%s';",
                 authentMeansEntity.getCreatedBy(),

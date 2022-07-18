@@ -1,11 +1,9 @@
 package com.energizeglobal.sqlgenerator.domain;
 
-import com.energizeglobal.sqlgenerator.enums.UpdateState;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Entity
 
