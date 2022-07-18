@@ -16,6 +16,15 @@ public class RuleConditionDTO {
     private Timestamp lastUpdateDate;
     private EntityData.UpdateState updateState;
     private RuleEntity rule;
+    private Long rule_id;
+
+    public Long getRule_id() {
+        return rule_id;
+    }
+
+    public void setRule_id(Long rule_id) {
+        this.rule_id = rule_id;
+    }
 
     public Long getId() { return id; }
 

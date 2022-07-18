@@ -1,9 +1,11 @@
 package com.energizeglobal.sqlgenerator.service;
 
 import com.energizeglobal.sqlgenerator.domain.RuleCondition;
+import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 import com.energizeglobal.sqlgenerator.dto.RuleConditionDTO;
 import com.energizeglobal.sqlgenerator.mapper.RuleConditionMapper;
 import com.energizeglobal.sqlgenerator.repository.RuleConditionRepository;
+import com.energizeglobal.sqlgenerator.repository.RuleRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,7 @@ public class RuleConditionService {
 
     private Boolean dbConnection = false;
     private final RuleConditionRepository repository;
+    private final RuleRepository ruleRepository;
     private String MAIN_FILE_NAME = "ruleCondition.sql";
     private String FILE_PATH = "src/main/resources/sql_scripts/";
     private String ROLLBACK_FILE_NAME = "ruleCondition_rollback.sql";
@@ -33,8 +36,9 @@ public class RuleConditionService {
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
     Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
-    public RuleConditionService(RuleConditionRepository repository) {
+    public RuleConditionService(RuleConditionRepository repository, RuleRepository ruleRepository) {
         this.repository = repository;
+        this.ruleRepository = ruleRepository;
     }
 
     @Transactional(readOnly = true)
@@ -51,8 +55,9 @@ public class RuleConditionService {
 
     @Transactional
     public String generateInsertSqlScript(RuleConditionDTO ruleConditionDto) {
+        RuleEntity rule = ruleRepository.getById(ruleConditionDto.getRule_id());
 
-        RuleCondition ruleCondition = RuleConditionMapper.dtoToEntity(ruleConditionDto);
+        RuleCondition ruleCondition = RuleConditionMapper.dtoToEntity(ruleConditionDto, rule);
         ruleCondition.setCreationDate(thisMomentTime);
         String queryType = "INSERT INTO rulecondition  ( " +
                 "createdBy, " +
