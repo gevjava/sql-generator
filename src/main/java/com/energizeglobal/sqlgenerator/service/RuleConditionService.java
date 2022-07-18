@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Instant;
+import java.sql.Timestamp;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -31,7 +31,7 @@ public class RuleConditionService {
     private String ROLLBACK_FILE_NAME = "ruleCondition_rollback.sql";
     private String mainPath = FILE_PATH + MAIN_FILE_NAME;
     private String rollbackPath = FILE_PATH + ROLLBACK_FILE_NAME;
-    String thisMomentTime = Instant.now().toString().replace("T", " ").replace("Z", " ");
+    Timestamp thisMomentTime = new Timestamp(System.currentTimeMillis());
 
     public RuleConditionService(RuleConditionRepository repository) {
         this.repository = repository;
@@ -53,7 +53,7 @@ public class RuleConditionService {
     public String generateInsertSqlScript(RuleConditionDTO ruleConditionDto) {
 
         RuleCondition ruleCondition = RuleConditionMapper.dtoToEntity(ruleConditionDto);
-        ruleCondition.setCreationDate(Instant.now());
+        ruleCondition.setCreationDate(thisMomentTime);
         String queryType = "INSERT INTO rulecondition  ( " +
                 "createdBy, " +
                 "creationDate, " +
@@ -102,14 +102,13 @@ public class RuleConditionService {
 
     @Transactional
     public String generateUpdateSqlScript(RuleConditionDTO ruleConditionDto) {
-        ruleConditionDto.setLastUpdateDate(Instant.now());
+        ruleConditionDto.setLastUpdateDate(thisMomentTime);
         RuleCondition oldRuleCondition = repository.getById(ruleConditionDto.getId());
         RuleCondition newRuleCondition = RuleConditionMapper.dtoToEntity(ruleConditionDto);
 
         String queryUpdate = "UPDATE rulecondition SET " +
                 "createdBy = '" + ruleConditionDto.getCreatedBy() + "', " +
-                "creationDate = '" + ruleConditionDto.getCreationDate().toString().replace("T", " ")
-                .replace("Z", " ") + "', " +
+                "creationDate = '" + ruleConditionDto.getCreationDate() + "', " +
                 "description = '" + ruleConditionDto.getDescription() + "', " +
                 "lastUpdateBy = '" + ruleConditionDto.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
@@ -131,8 +130,7 @@ public class RuleConditionService {
 
         String queryUpdate = "UPDATE rulecondition SET " +
                 "createdBy = '" + oldRuleCondition.getCreatedBy() + "', " +
-                "creationDate = '" + oldRuleCondition.getCreationDate().toString().replace("T", " ")
-                .replace("Z", " ") + "', " +
+                "creationDate = '" + oldRuleCondition.getCreationDate() + "', " +
                 "description = '" + oldRuleCondition.getDescription() + "', " +
                 "lastUpdateBy = '" + oldRuleCondition.getLastUpdateBy() + "', " +
                 "lastUpdateDate = '" + thisMomentTime + "', " +
@@ -181,8 +179,7 @@ public class RuleConditionService {
         String queryValue = " \n" +
                 " VALUES (" + " '" +
                 ruleConditionDto.getCreatedBy() + "', '" +
-                Instant.now().toString().replace("T", " ")
-                        .replace("Z", " ") + "', '" +
+                thisMomentTime + "', '" +
                 ruleConditionDto.getDescription() + "', '" +
                 ruleConditionDto.getLastUpdateBy() + "', '" +
                 ruleConditionDto.getLastUpdateDate() + "', '" +
