@@ -1,0 +1,198 @@
+<section class="profile-section">
+  <div class="container">
+    <div class="row">
+      <div class="btn-group btn-breadcrumb">
+        <a href="" class="btn btn-default"><span class="material-icons">home</span></a>
+        <a class="btn btn-default">Profile Set search</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="wrapper">
+        <form name="form" class="common-form ">
+          <legend>Profile Set search</legend>
+          <hr>
+          <fieldset>
+            <div class="row">
+              <div class="form-group col-md-3">
+                   <label for="transaction-issuer-code">Issuercode</label>
+                          <select id="transaction-issuer-code" class="form-control" title="Choose an issuer code" style="">
+                                 <option label="* - All" value="string:*" selected="selected">* - All</option>
+                                 <option label="00006 - RCBC" value="00006">00006 - RCBC</option>
+                                 <option label="00062 - East West Bank" value="00062">00062 - East West Bank</option>
+                                 <option label="00070 - China Bank Corporation" value="00070">00070 - China BankCorporation</option>
+                                 <option label="10300 - ReiseBank" value="10300">10300 - ReiseBank</option>
+                                 <option label="16500 - ING" value="16500">16500 - ING</option>
+                                 <option label="16600 - Comdirect" value="16600">16600 - Comdirect</option>
+                                 <option label="16900 - Consorsbank" value="16900">16900 - Consorsbank</option>
+                                 <option label="16950 - Sparda-Bank" value="16950">16950 - Sparda-Bank</option>
+                                 <option label="18500 - Postbank" value="18500">18500 - Postbank</option>
+                                 <option label="19440 - Commerzbank AG" value="19440">19440 - Commerzbank AG</option>
+                                 <option label="19450 - Commerzbank Cobrands" value="19450">19450 - Commerzbank Cobrands</option>
+                                 <option label="19550 - Landesbank Baden-Württemberg" value="19550">19550 -LandesbankBaden-Württemberg</option>
+                                 <option label="19600 - Landesbank Berlin" value="19600">19600 - Landesbank Berlin</option>
+                                 <option label="20000 - OP Bank" value="20000">20000 - OP Bank</option>
+                          </select>
+              </div>
+              <div class="form-group col-md-offset-1 col-md-3">
+                   <label for="transaction-sub-issuer-code" class="control-label ng-scope">SubIssuer code</label>
+                          <select id="transaction-sub-issuer-code" class="form-control input-sm" title="Choose a sub issuer code"style="">
+                                 <option label="* - All" value="string:*" selected="selected">* - All</option>
+                          </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="bin-range" data-translate="BIN_RANGE" class="ng-scope">BIN range</label>
+                <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
+                <input id="bin-range" name="binrange" type="text" class="form-control input-sm" style="">
+                <p class="input-error ng-scope" style="">BIN range is too long</p>
+              </div>
+              <div class="form-group col-md-offset-1 col-md-3">
+                <label for="name_profile_set">Profile SetName</label>
+                <input name="nameprofileset" class="form-control input-sm" id="name_profile_set" type="text">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="row margin-top-10">
+            <div class="form-group col-md-12">
+              <button (click)="showBlock()" class="btn btn-success ladda-button">
+                      <span class="ladda-label">
+                            <i class="fa fa-search"></i> 
+                               <span class="ng-scope">
+                                     Search
+                               </span>
+                      </span>
+                      <span class="ladda-spinner"></span>
+              </button>
+              <button class="btn btn-grey">
+                <i class="fa fa-times"></i> 
+                <span class="ng-scope">
+                      Reset
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="profile-section">
+         <div class="container">
+              <div class="row">
+                   <div *ngIf="showOnchange" class="wrapper">
+                         <div class="dataTables_wrapper form-inline no-footer">
+                              <div class="dataTables_filter">
+                                   <label>Search:
+                                        <input type="search" class="form-control input-sm" placeholder="">
+                                   </label>
+                               </div>
+                               <table *ngFor="let profileset of profilesets;"  class="table table-striped table-condensed table-hover ng-isolate-scope no-footer dataTable"  id="DataTables_Table_0" role="grid">
+                                      <thead class="ng-scope">
+                                             <tr role="row">
+                                                 <th class="ng-scope sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 0px;"
+                                                  aria-sort="ascending" aria-label="Issuer code: activate to sort column descending">
+                                                          Issuer code
+                                                 </th>
+                                                 <th class="ng-scope sorting" tabindex="0" rowspan="1" colspan="1" style="width: 0px;">
+                                                          SubIssuer code
+                                                 </th>
+                                                 <th class="ng-scope sorting" tabindex="0" rowspan="1" colspan="1" style="width: 0px;">
+                                                          ProfileSet name
+                                                 </th>
+                                                 <th class="ng-scope sorting" tabindex="0" rowspan="1" colspan="1" style="width: 0px;">
+                                                          Authentication mean
+                                                 </th>
+                                                 <th class="ng-scope sorting" tabindex="0" rowspan="1" colspan="1" style="width: 0px;">
+                                                          Creation date
+                                                 </th>
+                                                 <th class="ng-scope sorting_disabled" rowspan="1" colspan="1" style="width: 0px;">
+                                                          Actions
+                                                 </th>
+                                              </tr>
+                                       </thead>
+                                       <tbody class="ng-scope">
+                                              <tr class="ng-scope odd" role="row">
+                                                  <td class="ng-binding sorting_1">
+                                                      <span *ngIf="profileset.subIssuer">
+                                                             {{ profileset.subIssuer.issuer['code'] + '-' + profileset.subIssuer.issuer['name'] }}
+                                                      </span>
+                                                  </td>
+                                                  <td class="ng-binding">
+                                                      <span *ngIf="profileset.subIssuer">
+                                                             {{ profileset.subIssuer['code'] + '-' + profileset.subIssuer['name'] }}
+                                                      </span>
+                                                  </td>
+                                                  <td class="ng-binding">
+                                                            {{ profileset.name }}
+                                                  </td>
+                                                  <td class="ng-binding">
+                                                            {{ profileset.authentMeans }}
+                                                  </td>
+                                                  <td style="width: 12%" class="ng-binding">
+                                                            {{ profileset.creationDate | date:'MM/dd/yyyy'}}
+                                                  </td>
+                                                  <td style="width: 1%">
+                                                      <a class="btn btn-primary btn-xs" data-bs-toggle="collapse" href="{{ '#collapseExample' + profileset.name }}" role="button" aria-expanded="false">
+                                                        <i class="fa fa-eye"></i>
+                                                      </a>
+                                                      <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                                           <div class="card card-body">
+                                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                                                Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                                           </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                        </tbody>
+                                        <tbody class="ng-scope collapse"  id="{{ 'collapseExample' + profileset.name }}">
+                                               <tr class="ng-scope odd" role="row">
+                                                   <td class="ng-binding">
+                                                       <a routerLink="/profileset/{{ profileset.id }}/edit" class="btn btn-success">
+                                                          Update
+                                                       </a>
+                                                   </td>
+                                                   <td class="ng-binding">
+                                                       <a routerLink="/profileset/{{ profileset.id }}/delete" class="btn btn-danger">
+                                                          Delete
+                                                       </a>
+                                                   </td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                               </tr>
+                                        </tbody>
+                                </table>
+                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                      Showing 1 to 2 of 2 entries
+                                </div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                     <ul class="pagination pagination-sm">
+                                         <li class="disabled">
+                                            <a href="#" class="previous" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">
+                                               Previous
+                                            </a>
+                                          </li>
+                                          <li></li>
+                                          <li class="active">
+                                              <a href="#" class="" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">
+                                                 1
+                                              </a>
+                                          </li>
+                                          <li class="disabled">
+                                              <a href="#" class="next" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">
+                                                 Next
+                                              </a>
+                                          </li>
+                                     </ul>
+                                </div>
+                          </div>
+                    </div>
+               </div>
+         </div>
+</section>

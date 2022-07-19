@@ -24,7 +24,7 @@ target/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
+src/main/webapp/frontend/dist
 /nbdist/
 /.nb-gradle/
 build/
@@ -78,3 +78,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#scripts
+src/main/resources/sql_scripts/
+
