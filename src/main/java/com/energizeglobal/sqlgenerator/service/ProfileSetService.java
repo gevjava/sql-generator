@@ -21,8 +21,8 @@ import java.util.List;
 public class ProfileSetService {
 
     private String FILE_PATH = "src/main/resources/sql_scripts/";
-    private String DATA_FILE_NAME = "insert_query.sql";
-    private String DATA_ROLLBACK_FILE_NAME = "rollback_query.sql";
+    private String DATA_FILE_NAME = "profile_query.sql";
+    private String DATA_ROLLBACK_FILE_NAME = "profile_rollback_query.sql";
 
     ProfileSetRepository profileSetRepository;
 
