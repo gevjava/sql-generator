@@ -56,6 +56,7 @@ public class RuleService {
     @Transactional(readOnly = true)
     public RuleDTO findById(Long id) {
         RuleEntity ruleEntity = ruleRepository.getById(id);
+        ruleEntity.setLastUpdateDate(thisMomentTime);
         return RuleMapper.entityToDto(ruleEntity);
     }
 

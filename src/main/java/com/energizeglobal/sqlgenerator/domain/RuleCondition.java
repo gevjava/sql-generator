@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
@@ -18,7 +19,7 @@ public class RuleCondition {
     private String createdBy;
 
     @Column(name = "creationDate", nullable = false)
-    private Instant creationDate;
+    private Timestamp creationDate;
 
     @Column
     private String description;
@@ -28,7 +29,7 @@ public class RuleCondition {
 
     @CreatedDate
     @Column
-    private Instant lastUpdateDate = Instant.now();
+    private Timestamp lastUpdateDate;
 
     @Column
     private String name;
@@ -50,9 +51,13 @@ public class RuleCondition {
 
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
 
-    public Instant getCreationDate() { return creationDate; }
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
 
-    public void setCreationDate(Instant creationDate) { this.creationDate = creationDate; }
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
 
     public String getDescription() { return description; }
 
@@ -62,9 +67,14 @@ public class RuleCondition {
 
     public void setLastUpdateBy(String lastUpdateBy) { this.lastUpdateBy = lastUpdateBy; }
 
-    public Instant getLastUpdateDate() { return lastUpdateDate; }
+    public Timestamp getLastUpdateDate() {
 
-    public void setLastUpdateDate(Instant lastUpdateDate) { this.lastUpdateDate = lastUpdateDate; }
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
 
     public String getName() { return name; }
 

@@ -8,7 +8,7 @@ export class ConditionDeleteService {
 
   constructor(private http: HttpClient) { }
 
-  deleteCondition(condition: any, id: number){
+  deleteCondition( id: number){
     return this.http.delete('/condition/' + id, {responseType: 'text'});
   }
 

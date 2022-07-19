@@ -18,7 +18,9 @@ import {RuleConditionComponent} from './rulecondition/rule-condition.component';
 import {ConditionEditComponent} from './rulecondition/conditionedit/condition-edit.component';
 import {ConditionDeleteComponent} from './rulecondition/conditiondelete/condition-delete.component';
 import { CryptoConfigComponent } from "./cryptoconfig/crypto-config.component";
-import { AuthentmeansComponent } from "./authentmeans/authentmeans.component";
+import { AuthentmeanComponent } from './authentmean/authentmean/authentmean.component';
+import {AuthentMeanDeleteComponent} from './authentmean/delete/delete.component';
+import {AuthentMeanEditComponent} from './authentmean/edit/edit.component';
 
 
 @NgModule({
@@ -37,8 +39,9 @@ import { AuthentmeansComponent } from "./authentmeans/authentmeans.component";
     ConditionEditComponent,
     ConditionDeleteComponent,
     CryptoConfigComponent,
-    AuthentmeansComponent,
-    routesList
+    AuthentmeanComponent,
+    AuthentMeanEditComponent,
+    AuthentMeanDeleteComponent
   ],
 
   imports: [

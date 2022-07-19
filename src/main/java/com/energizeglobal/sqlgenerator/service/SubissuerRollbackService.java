@@ -2,7 +2,7 @@ package com.energizeglobal.sqlgenerator.service;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
-import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
+import com.energizeglobal.sqlgenerator.mapper.SubissuerMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -24,7 +24,7 @@ public class SubissuerRollbackService {
 
     public String generateSqlScriptForDeleteRollback(SubIssuerDTO dto, Long issuer_id, Long crypto_id) {
 
-        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
+        SubIssuer subIssuer = SubissuerMapper.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId, " +

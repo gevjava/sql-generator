@@ -5,15 +5,16 @@
         <div class="card">
           <div class="card-body">
             <div class="center-pill text-center">
-              <h2 style="color: #337ab7">Insert Image Query</h2>
+              <h2 style="color: #337ab7">Insert AuthentMeans Query</h2>
             </div>
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename"></div>
-              <form [formGroup]="imageForm" (ngSubmit)="sendImageData()">
+              <form [formGroup]="meanForm" (ngSubmit)="sendMeanData()">
                 <fieldset>
                   <div class="row">
                     <div class="form-group col-md-offset-1 col-md-4">
                       <label for="name" data-translate="name" class="ng-scope">Name</label>
+                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="name" name="label" type="text" class="form-control input-sm" formControlName="name">
                     </div>
                     <div class="form-group col-md-4">
@@ -40,19 +41,10 @@
                         <option value="3">WAITING_VALIDATION</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="binaryData" data-translate="binaryData" class="ng-scope">BinaryData</label>
-                      <input id="binaryData" name="binaryData" type="text" class="form-control input-sm"
-                             formControlName="binaryData">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="relativePath" data-translate="binaryData" class="ng-scope">RelativePath</label>
-                      <input id="relativePath" name="binaryData" type="text" class="form-control input-sm"
-                             formControlName="relativePath">
-                    </div>
+
                   </div>
                   <div class="form-group text-center">
-                    <button type="submit" [disabled]="!imageForm.valid" class="btn btn-primary btn-block">Generate SQL
+                    <button type="submit" [disabled]="!meanForm.valid" class="btn btn-primary btn-block">Generate SQL
                     </button>
                     <div class="row  text-center" *ngIf="filename">
                       <div class="col"><br>
@@ -70,51 +62,41 @@
     </div>
   </div>
 </section>
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col">
       <div class="card">
         <div class="center-pill text-center"
              style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
-          <h2 style="color: #337ab7">Images List</h2>
+          <h2 style="color: #337ab7">AuthentMeans List</h2>
         </div>
         <div class="card-body">
           <div class="col" style="overflow: auto;">
             <table class="table text-center table-bordered">
               <thead>
               <tr>
-                <th scope="col">Id</th>
-                <th scope="col">CreatedBy</th>
+                <th scope="col">Name</th>
                 <th scope="col">CreationDate</th>
+                <th scope="col">CreatedBy</th>
                 <th scope="col">Description</th>
                 <th scope="col">LastUpdateBy</th>
-                <th scope="col">LastUpdateDate</th>
-                <th scope="col">Name</th>
                 <th scope="col">UpdateState</th>
-                <th scope="col">BinaryData</th>
-                <th scope="col">RelativePath</th>
                 <th scope="col">Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let image of images;" class="wrapper">
-                <th scope="row">{{ image.id }}</th>
-                <td>{{ image.createdBy }}</td>
-                <td>{{ image.creationDate.substring(0, 10) }}</td>
-                <td>{{ image.description }}</td>
-                <td>{{ image.lastUpdateBy }}</td>
-                <td>{{ image.lastUpdateDate }}</td>
-                <td>{{ image.name }}</td>
-                <td>{{ image.updateState }}</td>
-                <td>{{ image.binaryData.substring(0, 10) }}</td>
-                <td>{{ image.relativePath.substring(0, 5)}}</td>
+              <tr *ngFor="let mean of means;" class="wrapper">
+                <td>{{ mean.name }}</td>
+                <td>{{ mean.creationDate.substring(0, 10) }}</td>
+                <td>{{ mean.createdBy }}</td>
+                <td>{{ mean.description }}</td>
+                <td>{{ mean.lastUpdateBy }}</td>
+                <td>{{ mean.updateState }}</td>
                 <td>
-                  <a routerLink="/image/edit/{{ image.id }}"
+                  <a routerLink="/authent/edit/{{ mean.id }}"
                      class="btn btn-outline-primary" style="border: none;">
                     <i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
-                  <a routerLink="/image/delete/{{ image.id }}" class="btn btn-outline-danger" style="border: none;">
+                  <a routerLink="/authent/delete/{{ mean.id }}" class="btn btn-outline-danger" style="border: none;">
                     <i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
                 </td>
               </tr>

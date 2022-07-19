@@ -5,7 +5,7 @@ import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
 
-public class SubissuerMapping {
+public class SubissuerMapper {
 
     public static SubIssuer dtoToEntity(SubIssuerDTO subIssuerDto) {
         SubIssuer subIssuer = new SubIssuer();

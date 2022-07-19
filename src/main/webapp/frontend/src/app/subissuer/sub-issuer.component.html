@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body">
             <div class="center-pill text-center">
-              <h2 style="color: #337ab7">Insert Subissuer</h2>
+              <h2 style="color: #337ab7">Insert Subissuer Query</h2>
             </div>
             <div class="wrapper">
               <div class="row  text-center" *ngIf="filename"></div>
@@ -31,19 +31,16 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="name" data-translate="name" class="ng-scope">Name</label>
-                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="name" name="label" type="text" class="form-control input-sm" formControlName="name">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-4">
                       <label for="label" data-translate="label" class="ng-scope">Label</label>
-                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="label" name="label" type="text" class="form-control input-sm" formControlName="label">
                     </div>
                     <div class="form-group col-md-4">
                       <label for="authentMeans" data-translate="authentMeans" class="ng-scope">AuthentMeans</label>
-                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="authentMeans" name="authentMeans" type="text" class="form-control input-sm"
                              formControlName="authentMeans">
                     </div>
@@ -56,12 +53,10 @@
                   <div class="row">
                     <div class="form-group col-md-4">
                       <label for="acsId" data-translate="acsId" class="ng-scope">AcsId</label>
-                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="acsId" name="acsId" type="text" class="form-control input-sm" formControlName="acsId">
                     </div>
                     <div class="form-group col-md-4">
                       <label for="code" data-translate="code" class="ng-scope">Code</label>
-                      <span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span>
                       <input id="code" name="label" type="number" class="form-control input-sm" formControlName="code">
                     </div>
                     <div class="form-group col-md-offset-1 col-md-4">
@@ -191,14 +186,13 @@
             <table class="table text-center table-bordered">
               <thead>
               <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
                 <th scope="col">AcsId</th>
                 <th scope="col">Authentication Time Out</th>
                 <th scope="col">Default Language</th>
-                <th scope="col">Code</th>
                 <th scope="col">Code Svi</th>
                 <th scope="col">Currency Code</th>
-                <th scope="col">Name</th>
                 <th scope="col">Label</th>
                 <th scope="col">Authentication Means</th>
                 <th scope="col">Personal Data Storage</th>
@@ -212,14 +206,13 @@
               </thead>
               <tbody>
               <tr *ngFor="let subIssuer of subIssuers;" class="wrapper">
-                <th scope="row">{{ subIssuer.id }}</th>
+                <td>{{ subIssuer.code }}</td>
+                <td>{{ subIssuer.name }}</td>
                 <td>{{ subIssuer.acsId }}</td>
                 <td>{{ subIssuer.authenticationTimeOut }}</td>
                 <td>{{ subIssuer.defaultLanguage }}</td>
-                <td>{{ subIssuer.code }}</td>
                 <td>{{ subIssuer.codeSvi }}</td>
                 <td>{{ subIssuer.currencyCode }}</td>
-                <td>{{ subIssuer.name }}</td>
                 <td>{{ subIssuer.label }}</td>
                 <td>{{ subIssuer.authentMeans.substring(22, 33) }}</td>
                 <td>{{ subIssuer.personnalDataStorage }}</td>
@@ -230,12 +223,10 @@
                 <td>{{ subIssuer.hubMaintenanceModeEnabled }}</td>
                 <td>
                   <a routerLink="/subissuer/{{ subIssuer.code }}/edit"
-                     class="btn btn-outline-primary" style="border: none;"><i style="font-size: 1.5rem; "
-                                                                              class="fa fa-pencil-square-o"></i></a>
+                     class="btn btn-outline-primary" style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-pencil-square-o"></i></a>
                   <a
                     routerLink="/subissuer/{{ subIssuer.code }}/{{ subIssuer.issuer['id'] }}/{{ subIssuer.cryptoConfigEntity['id'] }}/delete"
-                    class="btn btn-outline-primary" style="border: none;"><i style="font-size: 1.5rem; "
-                                                                             class="fa fa-trash-o"></i></a>
+                    class="btn btn-outline-danger" style="border: none;"><i style="font-size: 1.5rem; " class="fa fa-trash-o"></i></a>
                 </td>
               </tr>
               </tbody>
