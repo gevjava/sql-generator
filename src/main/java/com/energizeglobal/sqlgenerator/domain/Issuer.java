@@ -1,22 +1,18 @@
 package com.energizeglobal.sqlgenerator.domain;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.List;
-
 
 @Entity
-@Table(name = "issuer")
+@Table(name = "Issuer")
 public class Issuer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private long id;
+
     @Column
     String code;
 
@@ -25,7 +21,7 @@ public class Issuer {
 
     @CreatedDate
     @Column(name = "creationDate", updatable = false)
-    Instant creationDate = Instant.now();
+    private Instant creationDate = Instant.now();
 
     @Column
     String description;
@@ -48,10 +44,6 @@ public class Issuer {
 
     @Column(name = "availaibleAuthentMeans")
     String availaibleAuthentMeans;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "issuer")
-    @JsonIgnore
-    private List<SubIssuer> subIssuers;
 
 
     public long getId() {
@@ -140,13 +132,5 @@ public class Issuer {
 
     public void setAvailaibleAuthentMeans(String availaibleAuthentMeans) {
         this.availaibleAuthentMeans = availaibleAuthentMeans;
-    }
-
-    public List<SubIssuer> getSubIssuers() {
-        return subIssuers;
-    }
-
-    public void setSubIssuers(List<SubIssuer> subIssuerEntities) {
-        this.subIssuers = subIssuerEntities;
     }
 }

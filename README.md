@@ -1,4 +1,4 @@
-# SQL-generator
+# sql-generator
 
 #Development
 
@@ -19,9 +19,8 @@ Back-End :
 or using RUN button in your IDE 
 
 Front-End:
-
-Go to folder "../webapp/frontend"
 1) for first time run <code>npm install</code>  to install node modules
-2) in command line run  <code>npm start</code> 
+2) run front-end using <code>npm start</code> 
+go to folder "frontend" and in command line run  <code>npm start</code> 
 
 Open web browser and call URL  http://localhost:4200 

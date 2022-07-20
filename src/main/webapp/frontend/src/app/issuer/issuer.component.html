@@ -1,91 +1,54 @@
-<section class="issuer_section">
+<form [formGroup]="issuerForm" (ngSubmit)="sendIssuerData()">
   <div class="container-fluid">
+    <div class="row bg-grey">
+      <div class="col text-center">
+        Insert Issuer Data
+      </div>
+    </div>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header"></div>
-          <div class="card-body">
-            <div class="wrapper">
-              <legend>Issuer search</legend>
-              <hr>
-              <div class="form-group col-md-4">
-                <label for="transaction-issuer-code">Issuercode</label>
-                <select [(ngModel)]="filterTerm" (ngModelChange)="listOfIssuers();" id="transaction-issuer-code"
-                  class="form-select" title="Choose an issuer code" style="">
-                  <option label="* - All" value="" selected="selected">* - All</option>
-                  <option *ngFor="let issuer of issuers;" value="{{ issuer.code }}">{{ issuer.code + " " + issuer.name
-                    }}</option>
-                </select>
-              </div>
-            </div>
-
-            <div *ngIf="showOnchange" class="wrapper">
-              <form *ngFor="let issuer of issuers | filter: filterTerm;" [formGroup]="issuerForm"
-                (ngSubmit)="onSubmit(issuer)">
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Code</th>
-                      <th scope="col">createdBy</th>
-                      <th scope="col">creationDate</th>
-                      <th scope="col">name</th>
-                      <th scope="col">updateState</th>
-                      <th scope="col">label</th>
-                      <th scope="col">availaibleAuthentMeans</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input formControlName="id" class="form-control" type="text" placeholder="{{ issuer.id }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="code" class="form-control" type="text" placeholder="{{ issuer.code }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="createdBy" class="form-control" type="text"
-                          placeholder="{{ issuer.createdBy }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="creationDate" class="form-control" type="date"
-                          placeholder="{{ issuer.creationDate }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="name" class="form-control" type="text" placeholder="{{ issuer.name }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="updateState" class="form-control" type="text"
-                          placeholder="{{ issuer.updateState }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="label" class="form-control" type="text" placeholder="{{ issuer.label }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="availaibleAuthentMeans" class="form-control" type="text"
-                          placeholder="{{ issuer.availaibleAuthentMeans }}" [readonly]="true">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Generate SQL</button>
-                  &nbsp;
-                  <a routerLink="/issuer/{{ issuer.code }}/edit" class="btn btn-success">Update SQL</a>
-                  &nbsp;
-                  <a routerLink="/issuer/{{ issuer.code }}/delete" class="btn btn-danger">Delete SQL</a>
-                </div>
-              </form>
-            </div>
-          </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="code">Code</label>
+          <input type="text" id="code" formControlName="code" class="form-control">
         </div>
       </div>
-      <div class="col-md-2"></div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="createdBy">Created By</label>
+          <input type="text" id="createdBy" formControlName="createdBy" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text"  id="description" formControlName="description" class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <button type="submit" [disabled]="!issuerForm.valid" class="btn btn-primary btn-block">Generate SQL Script</button>
+      </div>
+    </div>
+    <div class="row mt-2" *ngIf="filename">
+      <div class="col">
+        <button type="button" (click)="downloadFile()">Download - {{filename}}</button>
+      </div>
     </div>
   </div>
-</section>
+</form>
+
+<!--
+<hr>
+List of Issuer
+<hr>
+<div *ngFor="let issuer of issuers">
+  <div>{{issuer.code}} --- {{issuer.name}}</div>
+</div>
+-->
