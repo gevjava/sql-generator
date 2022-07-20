@@ -74,13 +74,12 @@ textarea {
 }
 
 
-
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
@@ -281,11 +280,10 @@ legend {
   vertical-align: middle;
 }
 
-.btn-group>.btn {
+.btn-group > .btn {
   position: relative;
   float: left;
 }
-
 
 
 label {
@@ -299,7 +297,7 @@ label {
   margin-bottom: 20px;
 }
 
-.form-group>a {
+.form-group > a {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -359,7 +357,7 @@ label {
   vertical-align: middle;
 }
 
-.btn-group>.btn {
+.btn-group > .btn {
   position: relative;
   float: left;
 }
@@ -376,7 +374,7 @@ label {
   margin-bottom: 20px;
 }
 
-.form-group>a {
+.form-group > a {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -462,7 +460,7 @@ table.dataTable {
   border-collapse: separate !important;
 }
 
-.table-striped>tbody>tr:nth-of-type(2n+1) {
+.table-striped > tbody > tr:nth-of-type(2n+1) {
   background-color: #f9f9f9;
 }
 
@@ -484,16 +482,16 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   border-radius: 4px;
 }
 
-tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
 }
 
-.issuer_section{
+.issuer_section {
   padding: 50px 0;
 }
 
