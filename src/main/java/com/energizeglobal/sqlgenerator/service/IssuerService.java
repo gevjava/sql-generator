@@ -5,11 +5,14 @@ import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.repository.IssuerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,8 +23,6 @@ import static java.nio.file.StandardOpenOption.APPEND;
 
 @Service
 public class IssuerService {
-
-    private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
     private final String DATA_FILE_NAME = "issuer_data.sql";
@@ -103,5 +104,19 @@ public class IssuerService {
             e.printStackTrace();
         }
         return DATA_FILE_NAME;
+    }
+
+    public Resource downloadFile(String filename) {
+        try {
+            Path file = Paths.get(FILE_PATH).resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
     }
 }
