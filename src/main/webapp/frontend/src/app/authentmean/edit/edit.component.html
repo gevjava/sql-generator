@@ -48,9 +48,9 @@
                   <label data-translate="updateState" class="ng-scope">UpdateState</label>
                   <select class="form-select" type="text" formControlName="updateState" name="updateState"
                           [(ngModel)]="mean.updateState">
-                    <option value="1" [selected]="mean.updateState == 'PUSHED_TO_CONFIG'">PUSHED_TO_CONFIG</option>
-                    <option value="2" [selected]="mean.updateState == 'WAITING_FOR_PUSH'">WAITING_FOR_PUSH</option>
-                    <option value="3" [selected]="mean.updateState == 'WAITING_VALIDATION'">WAITING_VALIDATION</option>
+                    <option value="0" [selected]="mean.updateState == 'PUSHED_TO_CONFIG'">PUSHED_TO_CONFIG</option>
+                    <option value="1" [selected]="mean.updateState == 'WAITING_FOR_PUSH'">WAITING_FOR_PUSH</option>
+                    <option value="2" [selected]="mean.updateState == 'WAITING_VALIDATION'">WAITING_VALIDATION</option>
                   </select>
                 </div>
                 <div class="form-group col-md-4">
