@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
 import {FormBuilder, Validators} from "@angular/forms";
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-issuer',
@@ -9,40 +10,24 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class IssuerComponent implements OnInit {
 
-  issuers: any = [];
-  filename: string ="";
-  filterTerm!: string;
-  showOnchange: boolean = false;
-  issuer: string = '';
-  id!: string | null;
-
+  issuers: any;
   issuerForm: any;
+  filename: string ="";
 
-  constructor(
-    private issuerService: IssuerService,
-    private formBuilder: FormBuilder,
-  ) { }
+  constructor(private issuerService: IssuerService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getAllIssuer();
     this.initializeForm();
+    this.getAllIssuer();
   }
 
   initializeForm(){
     this.issuerForm = this.formBuilder.group({
-      id:['', Validators.required],
       code: ['', Validators.required],
-      createdBy: ['', Validators.required],
-      creationDate:['', Validators.required],
       name: ['', Validators.required],
-      updateState:['',Validators.required],
-      label:['',Validators.required],
-      availaibleAuthentMeans: ['', Validators.required]
+      createdBy: ['', Validators.required],
+      description: ['', Validators.required]
     });
-  }
-
-  onSubmit(code: any){
-    this.issuerService.sendIssuerData(code).subscribe(response => {console.log(response)});
   }
 
   getAllIssuer(){
@@ -51,8 +36,12 @@ export class IssuerComponent implements OnInit {
     });
   }
 
-  listOfIssuers(){
-    this.showOnchange = true;
+  sendIssuerData(){
+    let issuerData = this.issuerForm.value;
+    this.issuerService.sendIssuerData(issuerData).subscribe(response => {this.filename = response;})
   }
 
+  downloadFile(){
+    this.issuerService.downloadFile(this.filename).subscribe(file => saveAs(file, this.filename));
+  }
 }
