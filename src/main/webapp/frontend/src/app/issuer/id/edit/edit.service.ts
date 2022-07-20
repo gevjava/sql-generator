@@ -17,6 +17,6 @@ export class EditService {
     return this.http.put("/issuers/"+ id,issuer,{ responseType: 'text'});
   }
 
-
+  
 
 }
