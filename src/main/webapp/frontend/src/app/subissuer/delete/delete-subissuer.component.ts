@@ -35,8 +35,7 @@ export class DeleteSubissuerComponent implements OnInit {
 
   delete() {
     console.log(this.subIssuerForm);
-    let subIssuerData = this.subIssuerForm.value;
-    this.service.deleteSubissuer(subIssuerData, this.code, this.issuer_id, this.crypto_id).subscribe(response => {
+    this.service.deleteSubissuer( this.code, this.issuer_id, this.crypto_id).subscribe(response => {
       this.filename = response;
     });
   }

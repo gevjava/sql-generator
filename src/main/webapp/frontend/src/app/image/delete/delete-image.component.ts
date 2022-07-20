@@ -26,13 +26,12 @@ export class DeleteImageComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.router.snapshot.paramMap.get("id");
     this.initializeForm();
-    this.getByCode(this.id);
+    this.getById(this.id);
   }
 
   deleteImage() {
     console.log(this.imageForm);
-    let subIssuerData = this.imageForm.value;
-    this.service.deleteImageService(subIssuerData, this.id).subscribe(response => {
+    this.service.deleteImageService(this.id).subscribe(response => {
       this.filename = response;
     });
   }
@@ -42,7 +41,7 @@ export class DeleteImageComponent implements OnInit {
   }
 
 
-  getByCode(id: any) {
+  getById(id: any) {
     this.service.getImageById(id)
       .subscribe(resposne => {
       this.image = resposne;

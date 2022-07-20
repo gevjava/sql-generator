@@ -9,8 +9,22 @@ public class RuleConditionMapper {
     public static RuleCondition dtoToEntity(RuleConditionDTO ruleConditionDto) {
 
         RuleCondition ruleCondition = new RuleCondition();
-        RuleEntity rule = new RuleEntity();
-        rule.setId(174L);
+
+
+        ruleCondition.setId(ruleConditionDto.getId());
+        ruleCondition.setName(ruleConditionDto.getName());
+        ruleCondition.setCreatedBy(ruleConditionDto.getCreatedBy());
+        ruleCondition.setLastUpdateBy(ruleConditionDto.getLastUpdateBy());
+        ruleCondition.setDescription(ruleConditionDto.getDescription());
+        ruleCondition.setLastUpdateDate(ruleConditionDto.getLastUpdateDate());
+        ruleCondition.setUpdateState(ruleConditionDto.getUpdateState());
+        ruleCondition.setCreationDate(ruleConditionDto.getCreationDate());
+
+        return ruleCondition;
+    }
+  public static RuleCondition dtoToEntity(RuleConditionDTO ruleConditionDto, RuleEntity rule) {
+
+        RuleCondition ruleCondition = new RuleCondition();
 
         ruleCondition.setId(ruleConditionDto.getId());
         ruleCondition.setName(ruleConditionDto.getName());

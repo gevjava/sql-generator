@@ -53,7 +53,7 @@ public class AuthentMeansController {
         return ResponseEntity.ok(filename);
     }
 
-    @GetMapping("/download/{filename}")
+    @GetMapping("/script/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
         Resource file = authentMeansService.getDownloadFile(filename);

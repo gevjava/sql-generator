@@ -2,7 +2,7 @@ package com.energizeglobal.sqlgenerator.service;
 
 import com.energizeglobal.sqlgenerator.domain.SubIssuer;
 import com.energizeglobal.sqlgenerator.dto.SubIssuerDTO;
-import com.energizeglobal.sqlgenerator.mapper.SubissuerMapping;
+import com.energizeglobal.sqlgenerator.mapper.SubissuerMapper;
 import com.energizeglobal.sqlgenerator.repository.SubIssuerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,13 +52,13 @@ public class SubIssuerService {
     @Transactional(readOnly = true)
     public SubIssuerDTO findByCode(String code) {
         SubIssuer subIssuer = subIssuerRepository.findByCode(code);
-        return SubissuerMapping.entityToDto(subIssuer);
+        return SubissuerMapper.entityToDto(subIssuer);
     }
 
     @Transactional
     public String generateInsertSqlScript(SubIssuerDTO dto) {
 
-        SubIssuer subIssuer = SubissuerMapping.dtoToEntity(dto);
+        SubIssuer subIssuer = SubissuerMapper.dtoToEntity(dto);
 
         String queryType = "INSERT INTO subissuer  ( " +
                 "acsId, " +
@@ -113,7 +113,7 @@ public class SubIssuerService {
     @Transactional
     public String generateUpdateSqlScript(SubIssuerDTO subIssuerDto) {
         SubIssuer oldSubIssuer = subIssuerRepository.findByCode(subIssuerDto.getCode());
-        SubIssuer newSubIssuer = SubissuerMapping.dtoToEntity(subIssuerDto);
+        SubIssuer newSubIssuer = SubissuerMapper.dtoToEntity(subIssuerDto);
         newSubIssuer.setId(oldSubIssuer.getId());
 
         String queryUpdate = "UPDATE subissuer SET " +

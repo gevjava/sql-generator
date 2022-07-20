@@ -95,6 +95,7 @@ public class ImageService {
     public String generateUpdateSqlScript(ImageDTO imageDto) {
         ImageEntity oldImage = imageRepository.getById(imageDto.getId());
         ImageEntity newImage = ImageMapper.dtoToEntity(imageDto);
+        newImage.setLastUpdateDate(thisMomentTime);
         newImage.setId(oldImage.getId());
 
         String queryUpdate = "UPDATE image SET " +

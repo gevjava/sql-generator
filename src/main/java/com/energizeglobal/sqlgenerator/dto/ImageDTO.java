@@ -19,6 +19,7 @@ public class ImageDTO {
     private EntityData.UpdateState updateState;
 
     public ImageDTO() { }
+
     public Long getId() {
         return id;
     }
@@ -99,19 +100,4 @@ public class ImageDTO {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    @Override
-    public String toString() {
-        return "ImageDTO{" +
-                "id=" + id +
-                ", binaryData='" + binaryData + '\'' +
-                ", relativePath='" + relativePath + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", creationDate=" + creationDate +
-                ", createdBy='" + createdBy + '\'' +
-                ", lastUpdateDate=" + lastUpdateDate +
-                ", lastUpdateBy='" + lastUpdateBy + '\'' +
-                ", updateState=" + updateState +
-                '}';
-    }
 }

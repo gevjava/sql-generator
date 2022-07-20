@@ -29,8 +29,7 @@ export class ConditionDeleteComponent implements OnInit {
 
   deleteCondition(){
     console.log(this.condition);
-    let conditionData = this.conditionForm.value;
-    this.service.deleteCondition(conditionData, this.id).subscribe(response =>{
+    this.service.deleteCondition( this.id).subscribe(response =>{
       this.filename = response
     })
   }
