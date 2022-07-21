@@ -42,8 +42,10 @@
                   <div class="col-4">
                     <div class="form-group">
                       <label for="updateState">Update State</label>
-                      <input formControlName="updateState" name="updateState" id="updateState" class="form-control"
-                        type="text" placeholder="" />
+                        <select  formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                              <option selected *ngFor="let issuer of issuers;" value="{{ issuer.updateState }}">{{ issuer.updateState }}</option>
+                        </select>
+                    
                     </div>
                   </div>
                   <div class="col-4">
