@@ -1,14 +1,15 @@
-<section class="issuer_section" style="padding: 0px !important;">
+<section class="issuer_section" style="padding: 15px 0 !important;">
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="wrapper">
-          <div class="card">
-            <div class="card-header text-center">
+        <div class="card">
+          <div class="card-body">
+            <div class="center-pill text-center">
               <h3 style="color: #337ab7;">Insert Issuer Query</h3>
             </div>
-            <div class="card-body">
+            <div class="wrapper">
               <form [formGroup]="issuerForm" (ngSubmit)="onSubmit(issuerForm)">
+                <fieldset>
                 <div class="row">
                   <div class="col-4">
                     <div class="form-group">
@@ -80,6 +81,7 @@
                       - {{filename}}</button>
                   </div>
                 </div>
+                </fieldset>
               </form>
             </div>
           </div>
@@ -88,12 +90,19 @@
     </div>
   </div>
 </section>
-<section class="issuer_section" style="padding: 0px !important;">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12" style="overflow: auto;">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">Issuers List</h2>
+        </div>
+        <div class="card-body">
+          <div>
         <table class="table text-center table-bordered">
-          <thead class="thead-dark">
+          <thead>
             <tr>
               <th scope="col">Code</th>
               <th scope="col">createdBy</th>
@@ -105,7 +114,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let issuer of issuers;">
+            <tr *ngFor="let issuer of issuers;" class="wrapper">
               <td>
                 <span>{{ issuer.code }}</span>
               </td>
@@ -140,5 +149,7 @@
         </table>
       </div>
     </div>
+    </div>
   </div>
-</section>
+  </div>
+</div>
