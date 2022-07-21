@@ -30,14 +30,14 @@ export class EditComponent implements OnInit {
   }
 
   initializeForm(){
-    this.issuerEditForm = new FormGroup({
-      code: new FormControl(''),
-      createdBy: new FormControl(''),
-      creationDate:new FormControl(''),
-      name: new FormControl(''),
-      updateState:new FormControl(''),
-      label:new FormControl(''),
-      availaibleAuthentMeans:new FormControl('')
+    this.issuerEditForm = this.formBuilder.group({
+      code: ['', Validators.required],
+      createdBy: ['', Validators.required],
+      creationDate:['', Validators.required],
+      name: ['', Validators.required],
+      updateState:['',Validators.required],
+      label:['',Validators.required],
+      availaibleAuthentMeans: ['', Validators.required]
     });
   }
 

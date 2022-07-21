@@ -5,24 +5,24 @@ import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.repository.IssuerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
 
 @Service
 public class IssuerService {
-
-    private final Logger log = LoggerFactory.getLogger(IssuerService.class);
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
     private final String DATA_FILE_NAME = "data.sql";
@@ -46,8 +46,7 @@ public class IssuerService {
     }
 
     public String generateInsertSqlScript(IssuerDTO dto) {
-        LocalDateTime date = LocalDateTime.ofInstant(dto.getCreationDate(), ZoneId.of(ZoneOffset.UTC.getId()));
-        String Insert = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label, availaibleAuthentMeans) VALUES ('" + dto.getCode() + "', '" + dto.getCreatedBy() + "','" + date + "','" + dto.getName() + "','" + dto.getUpdateState() + "','" + dto.getLabel() + "','" + dto.getAvailaibleAuthentMeans() + "');";
+        String Insert = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label, availaibleAuthentMeans) VALUES ('" + dto.getCode() + "', '" + dto.getCreatedBy() + "','" + dto.getCreationDate() + "','" + dto.getName() + "','" + dto.getUpdateState() + "','" + dto.getLabel() + "','" + dto.getAvailaibleAuthentMeans() + "');";
         String path = FILE_PATH + DATA_FILE_NAME;
         return this.storeQueryInFile(path, Insert);
     }
@@ -79,8 +78,7 @@ public class IssuerService {
 
     public String generateDeleteSqlScriptWithRollback(String code) {
         Issuer issuer = this.issuerRepository.getIssuerByCode(code);
-        LocalDateTime date = LocalDateTime.ofInstant(issuer.getCreationDate(), ZoneId.of(ZoneOffset.UTC.getId()));
-        String sql = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label,availaibleAuthentMeans) VALUES ('" + issuer.getCode() + "', '" + issuer.getCreatedBy() + "','" + date + "','" + issuer.getName() + "','" + issuer.getUpdateState() + "','" + issuer.getLabel() + "','" + issuer.getAvailaibleAuthentMeans() + "');";
+        String sql = "INSERT INTO Issuer (code, createdBy,creationDate, name, updateState,label,availaibleAuthentMeans) VALUES ('" + issuer.getCode() + "', '" + issuer.getCreatedBy() + "','" + issuer.getCreationDate() + "','" + issuer.getName() + "','" + issuer.getUpdateState() + "','" + issuer.getLabel() + "','" + issuer.getAvailaibleAuthentMeans() + "');";
         String path = FILE_PATH + DATA_ROLLBACK_FILE_NAME;
         return this.storeQueryInFile(path, sql);
     }
@@ -91,15 +89,34 @@ public class IssuerService {
         try {
             if (Files.exists(newFilePath)) {
                 sql = System.getProperty("line.separator") + sql;
-                Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8, APPEND)) {
+                    bufferedWriter.write(sql);
+                }
+
             } else {
                 Path fileDirectory = Paths.get(FILE_PATH);
                 Files.createDirectories(fileDirectory);
-                Files.write(newFilePath, sql.getBytes(StandardCharsets.UTF_8));
+                try (BufferedWriter bufferedWriter = Files.newBufferedWriter(newFilePath, UTF_8)) {
+                    bufferedWriter.write(sql);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return DATA_FILE_NAME;
+    }
+
+    public Resource downloadFile(String filename) {
+        try {
+            Path file = Paths.get(FILE_PATH).resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
     }
 }

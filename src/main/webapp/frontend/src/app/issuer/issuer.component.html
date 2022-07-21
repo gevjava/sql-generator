@@ -1,91 +1,155 @@
-<section class="issuer_section">
+<section class="issuer_section" style="padding: 15px 0 !important;">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
+      <div class="col">
         <div class="card">
-          <div class="card-header"></div>
           <div class="card-body">
-            <div class="wrapper">
-              <legend>Issuer search</legend>
-              <hr>
-              <div class="form-group col-md-4">
-                <label for="transaction-issuer-code">Issuercode</label>
-                <select [(ngModel)]="filterTerm" (ngModelChange)="listOfIssuers();" id="transaction-issuer-code"
-                  class="form-select" title="Choose an issuer code" style="">
-                  <option label="* - All" value="" selected="selected">* - All</option>
-                  <option *ngFor="let issuer of issuers;" value="{{ issuer.code }}">{{ issuer.code + " " + issuer.name
-                    }}</option>
-                </select>
-              </div>
+            <div class="center-pill text-center">
+              <h3 style="color: #337ab7;">Insert Issuer Query</h3>
             </div>
+            <div class="wrapper">
+              <form [formGroup]="issuerForm" (ngSubmit)="onSubmit(issuerForm)">
+                <fieldset>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="code">Code</label>
+                      <input formControlName="code" name="code" id="code" class="form-control" type="text"
+                        placeholder="" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="createdBy">Created By</label>
+                      <input formControlName="createdBy" name="createdBy" id="createdBy" class="form-control"
+                        type="text" placeholder="" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="creationDate">Creation Date</label>
+                      <input formControlName="creationDate" name="creationDate" id="creationDate" class="form-control"
+                        type="text" [ngModel]="myDate | date :'yyyy-MM-dd'"
+                        placeholder="{{ myDate | date :'yyyy-MM-dd | hh-mm' }}" [readonly]="true" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input formControlName="name" name="name" id="name" class="form-control" type="text"
+                        placeholder="" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="updateState">Update State</label>
+                        <select  formControlName="updateState" name="updateState" id="updateState" class="form-select">
+                          <option value="PUSHED_TO_CONFIG">PUSHED_TO_CONFIG</option>
+                          <option value="WAITING_FOR_PUSH">WAITING_FOR_PUSH</option>
+                          <option value="WAITING_VALIDATION">WAITING_VALIDATION</option>
+                        </select>
 
-            <div *ngIf="showOnchange" class="wrapper">
-              <form *ngFor="let issuer of issuers | filter: filterTerm;" [formGroup]="issuerForm"
-                (ngSubmit)="onSubmit(issuer)">
-                <table class="table">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Code</th>
-                      <th scope="col">createdBy</th>
-                      <th scope="col">creationDate</th>
-                      <th scope="col">name</th>
-                      <th scope="col">updateState</th>
-                      <th scope="col">label</th>
-                      <th scope="col">availaibleAuthentMeans</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input formControlName="id" class="form-control" type="text" placeholder="{{ issuer.id }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="code" class="form-control" type="text" placeholder="{{ issuer.code }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="createdBy" class="form-control" type="text"
-                          placeholder="{{ issuer.createdBy }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="creationDate" class="form-control" type="date"
-                          placeholder="{{ issuer.creationDate }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="name" class="form-control" type="text" placeholder="{{ issuer.name }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="updateState" class="form-control" type="text"
-                          placeholder="{{ issuer.updateState }}" [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="label" class="form-control" type="text" placeholder="{{ issuer.label }}"
-                          [readonly]="true">
-                      </td>
-                      <td>
-                        <input formControlName="availaibleAuthentMeans" class="form-control" type="text"
-                          placeholder="{{ issuer.availaibleAuthentMeans }}" [readonly]="true">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Generate SQL</button>
-                  &nbsp;
-                  <a routerLink="/issuer/{{ issuer.code }}/edit" class="btn btn-success">Update SQL</a>
-                  &nbsp;
-                  <a routerLink="/issuer/{{ issuer.code }}/delete" class="btn btn-danger">Delete SQL</a>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="label">Label</label>
+                      <input formControlName="label" name="label" id="label" class="form-control" type="text"
+                        placeholder="" />
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="availaibleAuthentMeans">AvailaibleAuthentMeans</label>
+                      <input formControlName="availaibleAuthentMeans" name="availaibleAuthentMeans"
+                        id="availaibleAuthentMeans" class="form-control" type="text" placeholder="" />
+                    </div>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <div class="form-group text-center">
+                      <button type="submit" [disabled]="!issuerForm.valid" class="btn btn-primary">Generate Sql</button>
+                    </div>
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+                <div class="row  text-center" *ngIf="filename">
+                  <div class="col"><br>
+                    <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
+                      - {{filename}}</button>
+                  </div>
+                </div>
+                </fieldset>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-2"></div>
     </div>
   </div>
 </section>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="center-pill text-center"
+             style="border: 1px solid white; background-color: white ; padding-top: 10px; padding-bottom: 10px">
+          <h2 style="color: #337ab7">Issuers List</h2>
+        </div>
+        <div class="card-body">
+          <div>
+        <table class="table text-center table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">createdBy</th>
+              <th scope="col">creationDate</th>
+              <th scope="col">name</th>
+              <th scope="col">updateState</th>
+              <th scope="col">label</th>
+              <th scope="col">availaibleAuthentMeans</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let issuer of issuers;" class="wrapper">
+              <td>
+                <span>{{ issuer.code }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.createdBy }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.creationDate }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.name }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.updateState }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.label }}</span>
+              </td>
+              <td>
+                <span>{{ issuer.availaibleAuthentMeans }}</span>
+              </td>
+              <td>
+                <a routerLink="/issuer/{{ issuer.code }}/edit" class="btn btn-outline-primary"><i
+                    style="font-size: 1.5rem;" class="fa fa-pencil-square-o"></i></a>
+              </td>
+              <td>
+                <a routerLink="/issuer/{{ issuer.code }}/delete" class="btn btn-outline-danger"><i
+                    style="font-size: 1.5rem;" class="fa fa-trash-o"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>

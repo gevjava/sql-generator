@@ -1,5 +1,6 @@
 package com.energizeglobal.sqlgenerator.dto;
 
+import java.time.Instant;
 import java.util.Date;
 
 public class ProfileDTO {
@@ -9,7 +10,7 @@ public class ProfileDTO {
         private String subIssuerLabel;
         private String issuerCode;
         private String issuerLabel;
-        private Date creationDate;
+        private Instant creationDate;
         private String authentMeans;
 
     public String getId() {
@@ -60,11 +61,11 @@ public class ProfileDTO {
         this.issuerLabel = issuerLabel;
     }
 
-    public Date getCreationDate() {
+    public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
 

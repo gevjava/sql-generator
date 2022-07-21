@@ -15,4 +15,8 @@ export class IssuerService {
   sendIssuerData(issuerData:any){
     return this.http.post('/issuers', issuerData, { responseType: 'text'});
   }
+
+  downloadSqlFile(filename: String) {
+    return this.http.get('/issuers/script/download/' + filename, {responseType: 'blob'});
+  }
 }

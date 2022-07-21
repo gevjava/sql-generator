@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "./issuer.service";
 import {FormBuilder, Validators} from "@angular/forms";
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-issuer',
@@ -11,12 +12,11 @@ export class IssuerComponent implements OnInit {
 
   issuers: any = [];
   filename: string ="";
-  filterTerm!: string;
-  showOnchange: boolean = false;
   issuer: string = '';
   id!: string | null;
 
   issuerForm: any;
+  myDate = new Date();
 
   constructor(
     private issuerService: IssuerService,
@@ -30,7 +30,6 @@ export class IssuerComponent implements OnInit {
 
   initializeForm(){
     this.issuerForm = this.formBuilder.group({
-      id:['', Validators.required],
       code: ['', Validators.required],
       createdBy: ['', Validators.required],
       creationDate:['', Validators.required],
@@ -41,18 +40,20 @@ export class IssuerComponent implements OnInit {
     });
   }
 
-  onSubmit(code: any){
-    this.issuerService.sendIssuerData(code).subscribe(response => {console.log(response)});
+  onSubmit(data: any){
+    this.issuerService.sendIssuerData(data.value).subscribe(response =>
+          this.filename = response
+    );
   }
 
   getAllIssuer(){
     this.issuerService.getAllIssuer().subscribe(issuers => {
-      this.issuers = issuers;
+       this.issuers = issuers;
     });
   }
 
-  listOfIssuers(){
-    this.showOnchange = true;
+  downloadFile() {
+    this.issuerService.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
 
 }

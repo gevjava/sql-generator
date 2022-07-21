@@ -154,9 +154,7 @@
                   </thead>
                 </table>
                 <div class="form-group text-center">
-                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate
-                    SQL
-                  </button>
+                  <button type="submit" [disabled]="!subIssuerForm.valid" class="btn btn-primary btn-block">Generate SQL</button>
                   <div class="row  text-center" *ngIf="filename">
                     <div class="col"><br>
                       <button class="btn btn-primary btn-block" type="button" (click)="downloadFile()">Download
