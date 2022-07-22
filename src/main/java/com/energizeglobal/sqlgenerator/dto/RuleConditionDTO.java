@@ -3,6 +3,7 @@ package com.energizeglobal.sqlgenerator.dto;
 import com.energizeglobal.sqlgenerator.domain.EntityData;
 import com.energizeglobal.sqlgenerator.domain.RuleEntity;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 
 public class RuleConditionDTO {
@@ -11,10 +12,19 @@ public class RuleConditionDTO {
     private String createdBy;
     private String lastUpdateBy;
     private String description;
-    private Instant creationDate;
-    private Instant lastUpdateDate;
+    private Timestamp creationDate;
+    private Timestamp lastUpdateDate;
     private EntityData.UpdateState updateState;
     private RuleEntity rule;
+    private Long rule_id;
+
+    public Long getRule_id() {
+        return rule_id;
+    }
+
+    public void setRule_id(Long rule_id) {
+        this.rule_id = rule_id;
+    }
 
     public Long getId() { return id; }
 
@@ -36,13 +46,21 @@ public class RuleConditionDTO {
 
     public void setDescription(String description) { this.description = description; }
 
-    public Instant getCreationDate() { return creationDate; }
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
 
-    public void setCreationDate(Instant creationDate) { this.creationDate = creationDate; }
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
 
-    public Instant getLastUpdateDate() { return lastUpdateDate; }
+    public Timestamp getLastUpdateDate() {
+        return lastUpdateDate;
+    }
 
-    public void setLastUpdateDate(Instant lastUpdateDate) { this.lastUpdateDate = lastUpdateDate; }
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
 
     public EntityData.UpdateState getUpdateState() { return updateState; }
 

@@ -1,9 +1,10 @@
 package com.energizeglobal.sqlgenerator.dto;
 
-import com.energizeglobal.sqlgenerator.enums.UpdateState;
+import com.energizeglobal.sqlgenerator.domain.EntityData;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
+
 
 public class AuthentMeansDTO {
 
@@ -11,17 +12,18 @@ public class AuthentMeansDTO {
 
     private String createdBy;
 
-    private LocalDateTime creationDate;
+    private Timestamp creationDate;
 
     private String description;
 
     private String lastUpdateBy;
 
-    private LocalDateTime lastUpdateDate;
+    private Timestamp lastUpdateDate;
 
     private String name;
 
-    private UpdateState updateState;
+    private EntityData.UpdateState updateState;
+
 
     private List<ProfileDTO> profiles;
 
@@ -41,12 +43,21 @@ public class AuthentMeansDTO {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Timestamp getCreationDate() {
+
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Timestamp getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public String getDescription() {
@@ -65,14 +76,6 @@ public class AuthentMeansDTO {
         this.lastUpdateBy = lastUpdateBy;
     }
 
-    public LocalDateTime getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
     public String getName() {
         return name;
     }
@@ -81,11 +84,11 @@ public class AuthentMeansDTO {
         this.name = name;
     }
 
-    public UpdateState getUpdateState() {
+    public EntityData.UpdateState getUpdateState() {
         return updateState;
     }
 
-    public void setUpdateState(UpdateState updateState) {
+    public void setUpdateState(EntityData.UpdateState updateState) {
         this.updateState = updateState;
     }
 

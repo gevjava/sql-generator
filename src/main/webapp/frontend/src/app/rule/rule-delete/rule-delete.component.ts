@@ -34,8 +34,7 @@ export class RuleDeleteComponent implements OnInit {
 
   deleteRule(){
     console.log(this.rule);
-    let ruleData = this.ruleForm.value;
-    this.service.deleteRule(ruleData, this.id, this.profile_id).subscribe(response =>{
+    this.service.deleteRule( this.id, this.profile_id).subscribe(response =>{
       this.filename = response
     })
   }

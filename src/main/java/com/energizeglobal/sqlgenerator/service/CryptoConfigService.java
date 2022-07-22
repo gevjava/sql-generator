@@ -15,9 +15,9 @@ public class CryptoConfigService {
 
     static boolean activeDB = false;
 
-    private final String INSERT_SQL_FILE_NAME = "insert_query.sql";
+    private final String INSERT_SQL_FILE_NAME = "crypto.sql";
 
-    private final String ROLLBACK_SQL_FILE_NAME = "rollback_query.sql";
+    private final String ROLLBACK_SQL_FILE_NAME = "crypto_rollback.sql";
 
     private final Mapping mappingCryptoConfig;
 

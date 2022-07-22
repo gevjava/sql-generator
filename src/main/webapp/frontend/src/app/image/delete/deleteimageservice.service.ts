@@ -8,7 +8,7 @@ export class DeleteimageserviceService {
   constructor(private http: HttpClient) {
   }
 
-  deleteImageService(image: any, id: any) {
+  deleteImageService(id: any) {
     return this.http.delete("/image/" + id, {responseType: 'text'});
   }
 

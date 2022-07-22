@@ -25,8 +25,8 @@ import static java.nio.file.StandardOpenOption.APPEND;
 public class IssuerService {
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
-    private final String DATA_FILE_NAME = "issuer_data.sql";
-    private final String DATA_ROLLBACK_FILE_NAME = "issuer_rollback_data.sql";
+    private final String DATA_FILE_NAME = "data.sql";
+    private final String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
 
     private final IssuerRepository issuerRepository;
 
