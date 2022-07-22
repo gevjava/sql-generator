@@ -17,6 +17,8 @@ export class EditService {
     return this.http.put("/issuers/"+ id,issuer,{ responseType: 'text'});
   }
 
-  
+  downloadSqlFile(filename: String) {
+    return this.http.get('/issuers/script/download/' + filename, {responseType: 'blob'});
+  }  
 
 }

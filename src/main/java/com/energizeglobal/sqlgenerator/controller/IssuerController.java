@@ -46,7 +46,7 @@ public class IssuerController {
     public ResponseEntity<String> edit(@RequestBody IssuerDTO issuerDTO, @PathVariable("code") String code) {
         String fileName_1 = issuerService.generateEditSqlScript(issuerDTO, code);
         String fileName_2 = issuerService.generateEditSqlScriptWithRollback(issuerDTO, code);
-        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
+        return ResponseEntity.ok(fileName_1);
     }
 
     @DeleteMapping("/{code}")

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {EditService} from "./edit.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-edit',
@@ -14,6 +15,7 @@ export class EditComponent implements OnInit {
 
   // @ts-ignore
   issuerEditForm: FormGroup;
+  filename: string = "";
 
   issuer: any;
 
@@ -46,7 +48,13 @@ export class EditComponent implements OnInit {
   }
 
   onEdit(data:any){
-     this.service.edit(data.value,this.code).subscribe(response => {console.log(response)});
+     this.service.edit(data.value,this.code).subscribe(response => {
+         this.filename = response;
+     });
+  }
+
+  downloadFile() {
+    this.service.downloadSqlFile(this.filename).subscribe(file => saveAs(file, this.filename));
   }
 
 }
