@@ -3,8 +3,6 @@ package com.energizeglobal.sqlgenerator.controller;
 import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.service.IssuerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/issuers")
 public class IssuerController {
-
 
     private final IssuerService issuerService;
 
@@ -50,10 +47,10 @@ public class IssuerController {
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity<String> destroy(@PathVariable("code") String code) {
+    public ResponseEntity destroy(@PathVariable("code") String code) {
         String fileName_1 = issuerService.generateDeleteSqlScript(code);
         String fileName_2 = issuerService.generateDeleteSqlScriptWithRollback(code);
-        return ResponseEntity.ok(fileName_1 + " " + fileName_2);
+        return ResponseEntity.ok(fileName_1);
     }
 
     @GetMapping("/script/download/{filename}")

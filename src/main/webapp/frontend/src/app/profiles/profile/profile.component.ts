@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { IssuerService } from 'src/app/issuer/issuer.service';
 import { SubIssuerService } from 'src/app/subissuer/subIssuer.service';
 import { ProfileService } from './profile.service';
@@ -13,17 +14,36 @@ export class ProfileComponent implements OnInit {
   issuers:any = [];
   subIssuers:any = [];
   profiles:any = [];
-  profileTerm!:string;
-  showOnchange: boolean = false;
+
+  profileForm: any;
+  filename: String = "";
+
+  myDate = new Date();
 
   constructor(
     private issuerService: IssuerService,
     private subIssuerService: SubIssuerService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.index();
+    this.initializeForm();
+  }
+
+  initializeForm(){
+    this.profileForm = this.formBuilder.group({
+      createdBy: ['', Validators.required],
+      creationDate:['', Validators.required],
+      description: ['', Validators.required],
+      lastUpdateBy:  ['', Validators.required],
+      name: ['', Validators.required],
+      updateState:['',Validators.required],
+      maxAttempts:['',Validators.required],
+      dataEntryFormat: ['', Validators.required],
+      dataEntryAllowedPattern: ['', Validators.required]
+    });
   }
 
   index(){
@@ -32,12 +52,12 @@ export class ProfileComponent implements OnInit {
     this.profileService.getAllProfiles().subscribe(response => {this.profiles = response});
   }
 
-  showBlock(){
-    this.showOnchange = true;
+  onSubmit(data:any){
+
   }
 
-  hideBlock(){
-    this.showOnchange = false;
+  downloadFile(){
+
   }
 
 }

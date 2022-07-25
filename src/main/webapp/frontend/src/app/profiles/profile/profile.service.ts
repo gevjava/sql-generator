@@ -13,4 +13,8 @@ export class ProfileService {
     return this.http.get("/profiles");
   }
 
+  downloadSqlFile(filename: String) {
+    return this.http.get('/profiles/script/download/' + filename, {responseType: 'blob'});
+  }
+
 }

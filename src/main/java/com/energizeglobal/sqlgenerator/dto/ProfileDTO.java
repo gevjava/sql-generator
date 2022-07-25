@@ -1,24 +1,74 @@
 package com.energizeglobal.sqlgenerator.dto;
 
+
+import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.Date;
 
 public class ProfileDTO {
-        private String id;
-        private String name;
-        private String subIssuerCode;
-        private String subIssuerLabel;
-        private String issuerCode;
-        private String issuerLabel;
-        private Instant creationDate;
-        private String authentMeans;
+    private long id;
+    private String createdBy;
+    private Timestamp creationDate;
+    private String description;
+    private String lastUpdateBy;
+    private Instant lastUpdateDate;
+    private String name;
+    private String updateState;
+    private long maxAttempts;
+    private String dataEntryFormat;
+    private String dataEntryAllowedPattern;
 
-    public String getId() {
+    private AuthentMeansDTO authentMeansDTO;
+    private SubIssuerDTO subIssuerDTO;
+
+    public ProfileDTO() {
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLastUpdateBy() {
+        return lastUpdateBy;
+    }
+
+    public void setLastUpdateBy(String lastUpdateBy) {
+        this.lastUpdateBy = lastUpdateBy;
+    }
+
+    public Instant getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Instant lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public String getName() {
@@ -29,51 +79,51 @@ public class ProfileDTO {
         this.name = name;
     }
 
-    public String getSubIssuerCode() {
-        return subIssuerCode;
+    public String getUpdateState() {
+        return updateState;
     }
 
-    public void setSubIssuerCode(String subIssuerCode) {
-        this.subIssuerCode = subIssuerCode;
+    public void setUpdateState(String updateState) {
+        this.updateState = updateState;
     }
 
-    public String getSubIssuerLabel() {
-        return subIssuerLabel;
+    public long getMaxAttempts() {
+        return maxAttempts;
     }
 
-    public void setSubIssuerLabel(String subIssuerLabel) {
-        this.subIssuerLabel = subIssuerLabel;
+    public void setMaxAttempts(long maxAttempts) {
+        this.maxAttempts = maxAttempts;
     }
 
-    public String getIssuerCode() {
-        return issuerCode;
+    public String getDataEntryFormat() {
+        return dataEntryFormat;
     }
 
-    public void setIssuerCode(String issuerCode) {
-        this.issuerCode = issuerCode;
+    public void setDataEntryFormat(String dataEntryFormat) {
+        this.dataEntryFormat = dataEntryFormat;
     }
 
-    public String getIssuerLabel() {
-        return issuerLabel;
+    public String getDataEntryAllowedPattern() {
+        return dataEntryAllowedPattern;
     }
 
-    public void setIssuerLabel(String issuerLabel) {
-        this.issuerLabel = issuerLabel;
+    public void setDataEntryAllowedPattern(String dataEntryAllowedPattern) {
+        this.dataEntryAllowedPattern = dataEntryAllowedPattern;
     }
 
-    public Instant getCreationDate() {
-        return creationDate;
+    public AuthentMeansDTO getAuthentMeansDTO() {
+        return authentMeansDTO;
     }
 
-    public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
+    public void setAuthentMeansDTO(AuthentMeansDTO authentMeansDTO) {
+        this.authentMeansDTO = authentMeansDTO;
     }
 
-    public String getAuthentMeans() {
-        return authentMeans;
+    public SubIssuerDTO getSubIssuerDTO() {
+        return subIssuerDTO;
     }
 
-    public void setAuthentMeans(String authentMeans) {
-        this.authentMeans = authentMeans;
+    public void setSubIssuerDTO(SubIssuerDTO subIssuerDTO) {
+        this.subIssuerDTO = subIssuerDTO;
     }
 }

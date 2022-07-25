@@ -3,8 +3,6 @@ package com.energizeglobal.sqlgenerator.service;
 import com.energizeglobal.sqlgenerator.domain.Issuer;
 import com.energizeglobal.sqlgenerator.dto.IssuerDTO;
 import com.energizeglobal.sqlgenerator.repository.IssuerRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -25,8 +23,8 @@ import static java.nio.file.StandardOpenOption.APPEND;
 public class IssuerService {
 
     private final String FILE_PATH = "src/main/resources/sql_scripts/";
-    private final String DATA_FILE_NAME = "data.sql";
-    private final String DATA_ROLLBACK_FILE_NAME = "rollback_data.sql";
+    private final String DATA_FILE_NAME = "issuer.sql";
+    private final String DATA_ROLLBACK_FILE_NAME = "rollback_issuer.sql";
 
     private final IssuerRepository issuerRepository;
 

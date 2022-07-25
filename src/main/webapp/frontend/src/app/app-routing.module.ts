@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IssuerComponent} from "./issuer/issuer.component";
-import {EditComponent} from "./issuer/id/edit/edit.component";
-import {DeleteComponent} from "./issuer/id/delete/delete.component";
+import {EditComponent} from "./issuer/edit/edit.component";
+import {DeleteComponent} from "./issuer/delete/delete.component";
 import {CryptoConfigComponent} from "./cryptoconfig/crypto-config.component";
 import {ProfileComponent} from './profiles/profile/profile.component';
 import {ProfilesetComponent} from './profiles/profileset/profileset.component';
